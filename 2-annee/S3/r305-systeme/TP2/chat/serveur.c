@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
     struct sockaddr_in saclient={0};
     saclient.sin_family= AF_INET;
     saclient.sin_family= htons(PORT_SERVEUR);
-    saclient.sin_family=inet_addr("127.0.0.1");
+    saclient.sin_family= inet_addr("127.0.0.1");
 
   /* 4. On attache la socket a l'adresse du serveur. */
     bind(sserver,(struct sockaddr*)&saclient,sizeof(saclient));
