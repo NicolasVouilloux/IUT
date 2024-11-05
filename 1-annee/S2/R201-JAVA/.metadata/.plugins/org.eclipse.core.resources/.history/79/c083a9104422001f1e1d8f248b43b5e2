@@ -1,0 +1,22 @@
+package Calculatrice;
+
+import javax.swing.*;
+
+public class PanelBoutons extends JPanel{
+	JButton BTN0;
+	JButton BTN1;
+	JButton BTN2;
+	JButton BTN3;
+	JButton BTN4;
+	JButton BTN5;
+	JButton BTN6;
+	JButton BTN7;
+	JButton BTN8;
+	JButton BTN9;
+	JButton BTNAdd;
+	JButton BTNMin;
+	JButton BTNTim;
+	JButton BTNDiv;
+	
+	
+}

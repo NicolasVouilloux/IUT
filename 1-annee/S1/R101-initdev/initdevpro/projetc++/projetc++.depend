@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1702548882 source:z:\initdevpro\projetc++\main.cpp
+	"fonction.h"
+	<iostream>
+	<string>
+	<vector>
+
+1702548692 z:\initdevpro\projetc++\fonction.h
+	<iostream>
+	<string>
+	<vector>
+
+1702549000 source:z:\initdevpro\projetc++\fonction.cpp
+	"fonction.h"
+	<iostream>
+	<fstream>
+	<string>
+	<vector>
+

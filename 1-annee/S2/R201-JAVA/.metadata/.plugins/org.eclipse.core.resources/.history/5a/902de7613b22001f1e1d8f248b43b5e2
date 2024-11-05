@@ -1,0 +1,56 @@
+package fenetre;
+
+import java.awt.GridLayout;
+
+import javax.swing.*;
+
+public class PanelPerimetre extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private PanelSaisie panelLongueur;
+	private PanelSaisie panelLargeur;
+	private JPanel panelResultat;
+	private JPanel panelBoutons;
+	
+	public PanelPerimetre() {
+		panelLongueur = new PanelSaisie("Longueur : ",20);
+		panelLargeur = new PanelSaisie("Largueur : ",20);
+		panelResultat = new JPanel();
+		
+		JLabel perimetre = new JLabel("Perimetre : ");
+		JLabel resultat = new JLabel("0");
+		
+		panelResultat.add(perimetre);
+		panelResultat.add(resultat);
+		panelBoutons = new JPanel();
+		
+		JButton BTNCalculer = new JButton("Calculer");
+		JButton BTNNettoyer = new JButton("Nettoyer");
+		
+		panelBoutons.add(BTNCalculer);
+		panelBoutons.add(BTNNettoyer);
+		
+		add(panelLongueur);
+		add(panelLargeur);
+		add(panelResultat);
+		add(panelBoutons);
+		setLayout(new GridLayout(5,2));
+		
+	}
+	public static void main (String []args) {
+		JFrame fenetre;
+		fenetre = new JFrame ("Calcul Perimetre");
+		fenetre.setSize(10,100);
+		
+		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		fenetre.setResizable(false);
+		fenetre.setBounds (300,300,400,400);
+		
+		PanelPerimetre lecompletchef = new PanelPerimetre();
+		
+		fenetre.add(lecompletchef);
+		fenetre.setVisible(true);
+	}
+}

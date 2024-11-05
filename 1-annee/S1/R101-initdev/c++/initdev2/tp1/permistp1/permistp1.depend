@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1700583617 source:z:\r101-initdev\c++\initdev2\tp1\permistp1\main.cpp
+	<string>
+	<iostream>
+	<vector>
+	"permis.h"
+
+1700584259 z:\r101-initdev\c++\initdev2\tp1\permistp1\permis.h
+	<string>
+
+1700584261 source:z:\r101-initdev\c++\initdev2\tp1\permistp1\permis.cpp
+	<string>
+	<iostream>
+	<stdexcept>
+	"permis.h"
+

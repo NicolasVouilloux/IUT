@@ -1,0 +1,30 @@
+# depslib dependency file v1.0
+1702025033 source:z:\r101-initdev\c++\controle 3\ex1\prog\enfant.cpp
+	"cadeau.h"
+	"enfant.h"
+
+1702024416 z:\r101-initdev\c++\controle 3\ex1\prog\cadeau.h
+	<iostream>
+	<string>
+	<vector>
+
+1702024979 z:\r101-initdev\c++\controle 3\ex1\prog\enfant.h
+
+1702025998 source:z:\r101-initdev\c++\controle 3\ex1\prog\perenoel.cpp
+	"cadeau.h"
+	"enfant.h"
+	"pereNoel.h"
+
+1702025994 z:\r101-initdev\c++\controle 3\ex1\prog\perenoel.h
+	"enfant.h"
+	"cadeau.h"
+
+1702022591 source:z:\r101-initdev\c++\controle 3\ex1\prog\cadeau.cpp
+	"cadeau.h"
+
+1702025487 source:z:\r101-initdev\c++\controle 3\ex1\prog\mainnoel.cpp
+	"cadeau.h"
+	"enfant.h"
+	<iostream>
+	<vector>
+

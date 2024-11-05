@@ -1,0 +1,15 @@
+	LOADSI #-1
+boucle	INCSI
+	LOADDIADRSI
+	LOADASI
+	CMPDIA
+	JMPN fin
+	LOADBADRSI
+	CMPB #123
+	JMPPZ boucle
+	CMPB #97
+	JMPN boucle
+	SUBB #32
+	LOADADRSIB
+	JMP boucle
+fin	JMP fin

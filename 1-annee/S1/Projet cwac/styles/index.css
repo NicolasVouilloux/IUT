@@ -1,0 +1,212 @@
+@charset "utf-8";
+/*modification de la couleur de fond*/
+body{
+    font-size: x-large;
+    background: linear-gradient(#990066, #42013f);
+}
+/*toute modification pour les textes*/
+p{
+    margin-right: 10%;
+    color: black;
+    background-image: url(../image/fondrose.jpg);
+    border-radius: 3%;
+    border-width: 15px;
+    border: solid rgb(211, 7, 167) 8px;
+    width: 50%;
+    text-align:justify ;
+    padding: 10px;
+    text-shadow:1px 1px 3px #42013f;
+    
+}
+/*toute les information qui permettent de modifier la page avec pour largeur max 1000px*/
+@media (max-width: 1000px){
+    /*position nav en absolute */
+    nav {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: url(../image/candy.jpg);
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+    }
+    /*modification formulaire*/
+    .formulaire{
+        background-image: url(../image/fondrose.jpg);
+        border-radius: 10%;
+        width: 70%;
+        padding: 20px;
+        float: left;
+    }
+    /*espacement du top pour le titre*/
+    h1{
+        margin-top: 10%;
+        margin-left: 5%;
+    }
+    /* position carte*/
+    .megacarte{
+        padding-top: 30px;
+        margin-left: 40px;
+        border-radius: 10%;
+    }
+}
+/*toute les information qui permettent de modifier la page avec pour largeur mini 1000px*/
+@media (min-width: 1000px){
+    /*position nav en absolute*/
+    nav{
+        position: fixed;
+        width: 5.5em;
+        left: 0;
+        top: 0;
+        border-right: solid 1px rgb(153, 0, 255);
+        height: 100vh;
+        background-image: url(../image/candy.jpg);
+        padding: .5em;
+        border-color: #42013f;
+        border-width: 5px;
+    }
+    /*modification formulaire*/
+    .formulaire{
+        background-image: url(../image/fondrose.jpg);
+        border-radius: 10%;
+        width: 40%;
+        padding: 20px;
+        float: left;
+    }
+    /* position carte*/
+    .megacarte{
+        margin-left: 40px;
+        border-radius: 10%;
+    }
+    /*espacement du top pour le titre*/
+    h1{
+        margin-left: 10%;
+    }
+    /* position aside */
+    aside p{
+        margin-left: 20px;
+    }
+}
+/*permet de modifier la couleur du text de la navigation*/
+nav a{
+    font-size: x-large;
+    color: black;
+    margin-right: 10px;
+    font-family: 'balloons';
+}
+/*change la couleur avec le hover*/
+nav a:hover{
+    color: #f701a5;
+}
+/* image en haut a gauche du nav*/
+.imagelogo{
+    float: left;
+}
+/*taille du titre etc*/
+h1{
+    font-family: 'balloons';
+    border-radius: 4%;
+    border: solid rgb(252, 99, 219) 8px;
+    width: fit-content;
+    background-image: url(../image/candy.jpg);
+}
+/*image du titre*/
+h1 img{
+    vertical-align: middle;
+}
+/*police d'ecriture*/
+@font-face {
+    font-family: 'balloons';
+    src: url(../styles/Valoon.ttf);
+}
+/*modification footer*/
+.contact{
+    text-align: center;
+    margin: 0 -10px -10px -10px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    padding-top: 1%;
+    padding-bottom: 1%;
+    background-color: #00000080;  
+    border-radius: 10%;
+}
+/*photo lolipop en haut a droite sur formulaire*/
+.lolipop{
+    float: right;
+}
+/*Permet de mettre tout le contenue un peux decaller sur la droite et egalement de ne pas passer en dessous de la nav*/
+
+aside{
+    margin-left: 10%;
+}
+main{
+    margin-left: 10%;
+}
+/*Permet de decaller le " informations de contact :"*/
+h2{
+    margin-left: 20%;
+    color: white;
+}
+/* caracteristique du texte d'explication des formations de la page 1*/
+ol{
+    background-image: url(../image/fondrose.jpg);
+    border-radius: 3%;
+    border-width: 15px;
+    border: solid rgb(211, 7, 167) 8px;
+    padding: 40px;
+    text-align:justify ;
+    text-shadow:1px 1px 3px #42013f;
+}
+/*petite taille de lettre pour prelevement sur formulaire*/
+li div{
+    font-size: 2%
+}
+/*partie css sur la page formation*/
+h2{
+    margin-right: 10%;
+    color: black;
+    background-image: url(../image/fondrose.jpg);
+    border-radius: 3%;
+    border-width: 15px;
+    border: solid rgb(211, 7, 167) 8px;
+    width: 50%;
+    text-align:justify ;
+    padding: 10px;
+    text-shadow:1px 1px 3px #42013f;
+}
+h3{
+    margin-right: 10%;
+    color: black;
+    background-image: url(../image/fondrose.jpg);
+    border-radius: 3%;
+    border-width: 15px;
+    border: solid rgb(211, 7, 167) 8px;
+    width: 50%;
+    text-align:justify ;
+    padding: 10px;
+    text-shadow:1px 1px 3px #42013f;
+}
+h4{
+    margin-right: 10%;
+    color: black;
+    background-image: url(../image/fondrose.jpg);
+    border-radius: 3%;
+    border-width: 15px;
+    border: solid rgb(211, 7, 167) 8px;
+    width: 50%;
+    text-align:justify ;
+    padding: 10px;
+    text-shadow:1px 1px 3px #42013f;
+}
+.sectionformation{
+    margin-left: 10%;
+}
+.sectionformation div ul li{
+    margin-right: 10%;
+    color: black;
+    background-color: #42013f80;
+    text-align:justify ;
+    padding: 10px;
+    text-shadow:1px 1px 3px #42013f;
+}

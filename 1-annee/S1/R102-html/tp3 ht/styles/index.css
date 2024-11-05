@@ -1,0 +1,74 @@
+@charset"utf-8";
+*{
+	margin : 0; padding : 0;
+ }
+header
+{
+	text-align: center;
+	background-color: yellow;
+}
+header h1
+{
+		font-size: 500%;
+} 
+header h2 
+{
+	font-size: 250%;
+}
+aside 
+{
+	border: solid black;
+	margin-left: 20px;
+	margin-right: 20px;
+	background-image: url("../Images/Garen_3.jpg");	
+	background-size:cover;
+}
+aside p , aside p 
+{
+	margin-left: 15px;
+	margin-top:200px;
+	margin-bottom:200px;
+	color:white;
+	text-shadow: 1px 1px 2px black;
+	font-size: 200%;
+}
+section h1
+{
+	margin-left: 30px;
+	text-decoration:underline;
+	font-size: 220%;
+	margin-top: 20px;
+}
+article
+{
+	margin-top:20px;
+}
+article 
+{
+	text-indent: 1.5em;
+}
+article 
+{
+	text-indent: 1.5em;
+	margin-top: 20; 
+}
+footer
+{
+	background-color:yellow;
+	text-align:right;
+	
+}
+table,tbody
+{
+	background  : white;
+	color       : black;
+	font-weight : bold;
+	border: 1px solid #333;
+}
+table,thead
+{
+	background  : black;
+	color       : white;
+	font-weight : bold;
+	border: 1px solid #333;
+}

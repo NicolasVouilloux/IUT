@@ -1,0 +1,37 @@
+# depslib dependency file v1.0
+1699433053 source:z:\r101-initdev\c++\tp 7 id\exo 7\vecteur.cpp
+	<iostream>
+	<string>
+	<vector>
+	"vecteurs.h"
+
+1699433317 source:z:\r101-initdev\c++\tp 7 id\exo 7\main.cpp
+	<iostream>
+	<string>
+	<vector>
+	"vecteurs.h"
+
+1699433058 z:\r101-initdev\c++\tp 7 id\exo 7\vecteurs.h
+	<vector>
+
+1698311563 z:\r101-initdev\c++\tp 7 id\exo 7\vecteur.cpp
+	<iostream>
+	<string>
+	<vector>
+	"vecteurs.h"
+
+1699436902 source:z:\r101-initdev\c++\tp 7 id\exo1tp7\main.cpp
+	<iostream>
+	<string>
+	<vector>
+	"vecteurs.h"
+
+1699436400 z:\r101-initdev\c++\tp 7 id\exo1tp7\vecteurs.h
+	<vector>
+
+1699436404 source:z:\r101-initdev\c++\tp 7 id\exo1tp7\vecteur.cpp
+	<iostream>
+	<string>
+	<vector>
+	"vecteurs.h"
+

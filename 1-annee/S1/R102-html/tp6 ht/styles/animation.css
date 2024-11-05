@@ -1,0 +1,16 @@
+@charset  "utf-8";
+
+section td:hover{
+	box-shadow: 2px 2px 10px black;
+    scale: 150%;
+    background-color: rgb(26, 211, 202);
+    transform: scale(1.5);
+}
+section td{
+    transition: transform 0.2s;
+}
+section td:hover{
+    animation-direction: reverse ;
+    transform: scale(1.5);
+
+}

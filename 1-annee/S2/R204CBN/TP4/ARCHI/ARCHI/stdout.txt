@@ -1,0 +1,8 @@
+DOSBox version 0.74
+Copyright 2002-2010 DOSBox Team, published under GNU GPL.
+---
+CONFIG:Loading primary settings from config file ./start.ini
+MIDI:Opened device:win32
+DOS keyboard layout loaded with main language code FR for layout fr
+Diskcaching reset for normal mounted drives.
+Diskcaching reset for normal mounted drives.

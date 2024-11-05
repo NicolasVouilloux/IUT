@@ -1,0 +1,9 @@
+package volailler;
+
+public abstract class Volailles {
+
+	Ferme sonElevage;
+	protected float poids;
+	protected int numVolaille;
+
+}

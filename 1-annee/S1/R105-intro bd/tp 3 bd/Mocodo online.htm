@@ -1,0 +1,1494 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><style id="ace-chrome">.ace-chrome .ace_gutter {
+  background: #ebebeb;
+  color: #333;
+  overflow : hidden;
+}
+
+.ace-chrome .ace_print-margin {
+  width: 1px;
+  background: #e8e8e8;
+}
+
+.ace-chrome {
+  background-color: #FFFFFF;
+  color: black;
+}
+
+.ace-chrome .ace_cursor {
+  color: black;
+}
+
+.ace-chrome .ace_invisible {
+  color: rgb(191, 191, 191);
+}
+
+.ace-chrome .ace_constant.ace_buildin {
+  color: rgb(88, 72, 246);
+}
+
+.ace-chrome .ace_constant.ace_language {
+  color: rgb(88, 92, 246);
+}
+
+.ace-chrome .ace_constant.ace_library {
+  color: rgb(6, 150, 14);
+}
+
+.ace-chrome .ace_invalid {
+  background-color: rgb(153, 0, 0);
+  color: white;
+}
+
+.ace-chrome .ace_fold {
+}
+
+.ace-chrome .ace_support.ace_function {
+  color: rgb(60, 76, 114);
+}
+
+.ace-chrome .ace_support.ace_constant {
+  color: rgb(6, 150, 14);
+}
+
+.ace-chrome .ace_support.ace_type,
+.ace-chrome .ace_support.ace_class
+.ace-chrome .ace_support.ace_other {
+  color: rgb(109, 121, 222);
+}
+
+.ace-chrome .ace_variable.ace_parameter {
+  font-style:italic;
+  color:#FD971F;
+}
+.ace-chrome .ace_keyword.ace_operator {
+  color: rgb(104, 118, 135);
+}
+
+.ace-chrome .ace_comment {
+  color: #236e24;
+}
+
+.ace-chrome .ace_comment.ace_doc {
+  color: #236e24;
+}
+
+.ace-chrome .ace_comment.ace_doc.ace_tag {
+  color: #236e24;
+}
+
+.ace-chrome .ace_constant.ace_numeric {
+  color: rgb(0, 0, 205);
+}
+
+.ace-chrome .ace_variable {
+  color: rgb(49, 132, 149);
+}
+
+.ace-chrome .ace_xml-pe {
+  color: rgb(104, 104, 91);
+}
+
+.ace-chrome .ace_entity.ace_name.ace_function {
+  color: #0000A2;
+}
+
+
+.ace-chrome .ace_heading {
+  color: rgb(12, 7, 255);
+}
+
+.ace-chrome .ace_list {
+  color:rgb(185, 6, 144);
+}
+
+.ace-chrome .ace_marker-layer .ace_selection {
+  background: rgb(181, 213, 255);
+}
+
+.ace-chrome .ace_marker-layer .ace_step {
+  background: rgb(252, 255, 0);
+}
+
+.ace-chrome .ace_marker-layer .ace_stack {
+  background: rgb(164, 229, 101);
+}
+
+.ace-chrome .ace_marker-layer .ace_bracket {
+  margin: -1px 0 0 -1px;
+  border: 1px solid rgb(192, 192, 192);
+}
+
+.ace-chrome .ace_marker-layer .ace_active-line {
+  background: rgba(0, 0, 0, 0.07);
+}
+
+.ace-chrome .ace_gutter-active-line {
+    background-color : #dcdcdc;
+}
+
+.ace-chrome .ace_marker-layer .ace_selected-word {
+  background: rgb(250, 250, 255);
+  border: 1px solid rgb(200, 200, 250);
+}
+
+.ace-chrome .ace_storage,
+.ace-chrome .ace_keyword,
+.ace-chrome .ace_meta.ace_tag {
+  color: rgb(147, 15, 128);
+}
+
+.ace-chrome .ace_string.ace_regex {
+  color: rgb(255, 0, 0)
+}
+
+.ace-chrome .ace_string {
+  color: #1A1AA6;
+}
+
+.ace-chrome .ace_entity.ace_other.ace_attribute-name {
+  color: #994409;
+}
+
+.ace-chrome .ace_indent-guide {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;
+}
+  
+.ace-chrome .ace_indent-guide-active {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAZSURBVHjaYvj///9/hivKyv8BAAAA//8DACLqBhbvk+/eAAAAAElFTkSuQmCC") right repeat-y;
+}
+
+/*# sourceURL=ace/css/ace-chrome */</style><style id="autocompletion.css">
+.ace_editor.ace_autocomplete .ace_marker-layer .ace_active-line {
+    background-color: #CAD6FA;
+    z-index: 1;
+}
+.ace_dark.ace_editor.ace_autocomplete .ace_marker-layer .ace_active-line {
+    background-color: #3a674e;
+}
+.ace_editor.ace_autocomplete .ace_line-hover {
+    border: 1px solid #abbffe;
+    margin-top: -1px;
+    background: rgba(233,233,253,0.4);
+    position: absolute;
+    z-index: 2;
+}
+.ace_dark.ace_editor.ace_autocomplete .ace_line-hover {
+    border: 1px solid rgba(109, 150, 13, 0.8);
+    background: rgba(58, 103, 78, 0.62);
+}
+.ace_completion-meta {
+    opacity: 0.5;
+    margin: 0 0.9em;
+}
+.ace_completion-message {
+    color: blue;
+}
+.ace_editor.ace_autocomplete .ace_completion-highlight{
+    color: #2d69c7;
+}
+.ace_dark.ace_editor.ace_autocomplete .ace_completion-highlight{
+    color: #93ca12;
+}
+.ace_editor.ace_autocomplete {
+    width: 300px;
+    z-index: 200000;
+    border: 1px lightgray solid;
+    position: fixed;
+    box-shadow: 2px 3px 5px rgba(0,0,0,.2);
+    line-height: 1.4;
+    background: #fefefe;
+    color: #111;
+}
+.ace_dark.ace_editor.ace_autocomplete {
+    border: 1px #484747 solid;
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.51);
+    line-height: 1.4;
+    background: #25282c;
+    color: #c1c1c1;
+}
+.ace_autocomplete_right .ace_text-layer  {
+    width: calc(100% - 8px);
+}
+.ace_autocomplete_right .ace_line {
+    display: flex;
+}
+.ace_autocomplete_right .ace_completion-spacer {
+    flex: 1;
+}
+
+/*# sourceURL=ace/css/autocompletion.css */</style><style id="snippets.css">
+.ace_snippet-marker {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: rgba(194, 193, 208, 0.09);
+    border: 1px dotted rgba(211, 208, 235, 0.62);
+    position: absolute;
+}
+/*# sourceURL=ace/css/snippets.css */</style><style id="error_marker.css">
+    .error_widget_wrapper {
+        background: inherit;
+        color: inherit;
+        border:none
+    }
+    .error_widget {
+        border-top: solid 2px;
+        border-bottom: solid 2px;
+        margin: 5px 0;
+        padding: 10px 40px;
+        white-space: pre-wrap;
+    }
+    .error_widget.ace_error, .error_widget_arrow.ace_error{
+        border-color: #ff5a5a
+    }
+    .error_widget.ace_warning, .error_widget_arrow.ace_warning{
+        border-color: #F1D817
+    }
+    .error_widget.ace_info, .error_widget_arrow.ace_info{
+        border-color: #5a5a5a
+    }
+    .error_widget.ace_ok, .error_widget_arrow.ace_ok{
+        border-color: #5aaa5a
+    }
+    .error_widget_arrow {
+        position: absolute;
+        border: solid 5px;
+        border-top-color: transparent!important;
+        border-right-color: transparent!important;
+        border-left-color: transparent!important;
+        top: -5px;
+    }
+
+/*# sourceURL=ace/css/error_marker.css */</style><style id="ace-tm">.ace-tm .ace_gutter {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.ace-tm .ace_print-margin {
+  width: 1px;
+  background: #e8e8e8;
+}
+
+.ace-tm .ace_fold {
+    background-color: #6B72E6;
+}
+
+.ace-tm {
+  background-color: #FFFFFF;
+  color: black;
+}
+
+.ace-tm .ace_cursor {
+  color: black;
+}
+        
+.ace-tm .ace_invisible {
+  color: rgb(191, 191, 191);
+}
+
+.ace-tm .ace_storage,
+.ace-tm .ace_keyword {
+  color: blue;
+}
+
+.ace-tm .ace_constant {
+  color: rgb(197, 6, 11);
+}
+
+.ace-tm .ace_constant.ace_buildin {
+  color: rgb(88, 72, 246);
+}
+
+.ace-tm .ace_constant.ace_language {
+  color: rgb(88, 92, 246);
+}
+
+.ace-tm .ace_constant.ace_library {
+  color: rgb(6, 150, 14);
+}
+
+.ace-tm .ace_invalid {
+  background-color: rgba(255, 0, 0, 0.1);
+  color: red;
+}
+
+.ace-tm .ace_support.ace_function {
+  color: rgb(60, 76, 114);
+}
+
+.ace-tm .ace_support.ace_constant {
+  color: rgb(6, 150, 14);
+}
+
+.ace-tm .ace_support.ace_type,
+.ace-tm .ace_support.ace_class {
+  color: rgb(109, 121, 222);
+}
+
+.ace-tm .ace_keyword.ace_operator {
+  color: rgb(104, 118, 135);
+}
+
+.ace-tm .ace_string {
+  color: rgb(3, 106, 7);
+}
+
+.ace-tm .ace_comment {
+  color: rgb(76, 136, 107);
+}
+
+.ace-tm .ace_comment.ace_doc {
+  color: rgb(0, 102, 255);
+}
+
+.ace-tm .ace_comment.ace_doc.ace_tag {
+  color: rgb(128, 159, 191);
+}
+
+.ace-tm .ace_constant.ace_numeric {
+  color: rgb(0, 0, 205);
+}
+
+.ace-tm .ace_variable {
+  color: rgb(49, 132, 149);
+}
+
+.ace-tm .ace_xml-pe {
+  color: rgb(104, 104, 91);
+}
+
+.ace-tm .ace_entity.ace_name.ace_function {
+  color: #0000A2;
+}
+
+
+.ace-tm .ace_heading {
+  color: rgb(12, 7, 255);
+}
+
+.ace-tm .ace_list {
+  color:rgb(185, 6, 144);
+}
+
+.ace-tm .ace_meta.ace_tag {
+  color:rgb(0, 22, 142);
+}
+
+.ace-tm .ace_string.ace_regex {
+  color: rgb(255, 0, 0)
+}
+
+.ace-tm .ace_marker-layer .ace_selection {
+  background: rgb(181, 213, 255);
+}
+.ace-tm.ace_multiselect .ace_selection.ace_start {
+  box-shadow: 0 0 3px 0px white;
+}
+.ace-tm .ace_marker-layer .ace_step {
+  background: rgb(252, 255, 0);
+}
+
+.ace-tm .ace_marker-layer .ace_stack {
+  background: rgb(164, 229, 101);
+}
+
+.ace-tm .ace_marker-layer .ace_bracket {
+  margin: -1px 0 0 -1px;
+  border: 1px solid rgb(192, 192, 192);
+}
+
+.ace-tm .ace_marker-layer .ace_active-line {
+  background: rgba(0, 0, 0, 0.07);
+}
+
+.ace-tm .ace_gutter-active-line {
+    background-color : #dcdcdc;
+}
+
+.ace-tm .ace_marker-layer .ace_selected-word {
+  background: rgb(250, 250, 255);
+  border: 1px solid rgb(200, 200, 250);
+}
+
+.ace-tm .ace_indent-guide {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;
+}
+
+.ace-tm .ace_indent-guide-active {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAZSURBVHjaYvj///9/hivKyv8BAAAA//8DACLqBhbvk+/eAAAAAElFTkSuQmCC") right repeat-y;
+}
+
+/*# sourceURL=ace/css/ace-tm */</style><style id="ace_editor.css">
+.ace_br1 {border-top-left-radius    : 3px;}
+.ace_br2 {border-top-right-radius   : 3px;}
+.ace_br3 {border-top-left-radius    : 3px; border-top-right-radius:    3px;}
+.ace_br4 {border-bottom-right-radius: 3px;}
+.ace_br5 {border-top-left-radius    : 3px; border-bottom-right-radius: 3px;}
+.ace_br6 {border-top-right-radius   : 3px; border-bottom-right-radius: 3px;}
+.ace_br7 {border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px;}
+.ace_br8 {border-bottom-left-radius : 3px;}
+.ace_br9 {border-top-left-radius    : 3px; border-bottom-left-radius:  3px;}
+.ace_br10{border-top-right-radius   : 3px; border-bottom-left-radius:  3px;}
+.ace_br11{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-left-radius:  3px;}
+.ace_br12{border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}
+.ace_br13{border-top-left-radius    : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}
+.ace_br14{border-top-right-radius   : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}
+.ace_br15{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px;}
+
+
+.ace_editor {
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Source Code Pro', 'source-code-pro', monospace;
+    direction: ltr;
+    text-align: left;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.ace_scroller {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    bottom: 0;
+    background-color: inherit;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: text;
+}
+
+.ace_content {
+    position: absolute;
+    box-sizing: border-box;
+    min-width: 100%;
+    contain: style size layout;
+    font-variant-ligatures: no-common-ligatures;
+}
+
+.ace_keyboard-focus:focus {
+    box-shadow: inset 0 0 0 2px #5E9ED6;
+    outline: none;
+}
+
+.ace_dragging .ace_scroller:before{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+    background: rgba(250, 250, 250, 0.01);
+    z-index: 1000;
+}
+.ace_dragging.ace_dark .ace_scroller:before{
+    background: rgba(0, 0, 0, 0.01);
+}
+
+.ace_gutter {
+    position: absolute;
+    overflow : hidden;
+    width: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    cursor: default;
+    z-index: 4;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    contain: style size layout;
+}
+
+.ace_gutter-active-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.ace_scroller.ace_scroll-left:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    box-shadow: 17px 0 16px -16px rgba(0, 0, 0, 0.4) inset;
+    pointer-events: none;
+}
+
+.ace_gutter-cell, .ace_gutter-cell_svg-icons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding-left: 19px;
+    padding-right: 6px;
+    background-repeat: no-repeat;
+}
+
+.ace_gutter-cell_svg-icons .ace_gutter_annotation {
+    margin-left: -14px;
+    float: left;
+}
+
+.ace_gutter-cell .ace_gutter_annotation {
+    margin-left: -19px;
+    float: left;
+}
+
+.ace_gutter-cell.ace_error, .ace_icon.ace_error, .ace_icon.ace_error_fold {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABOFBMVEX/////////QRswFAb/Ui4wFAYwFAYwFAaWGAfDRymzOSH/PxswFAb/SiUwFAYwFAbUPRvjQiDllog5HhHdRybsTi3/Tyv9Tir+Syj/UC3////XurebMBIwFAb/RSHbPx/gUzfdwL3kzMivKBAwFAbbvbnhPx66NhowFAYwFAaZJg8wFAaxKBDZurf/RB6mMxb/SCMwFAYwFAbxQB3+RB4wFAb/Qhy4Oh+4QifbNRcwFAYwFAYwFAb/QRzdNhgwFAYwFAbav7v/Uy7oaE68MBK5LxLewr/r2NXewLswFAaxJw4wFAbkPRy2PyYwFAaxKhLm1tMwFAazPiQwFAaUGAb/QBrfOx3bvrv/VC/maE4wFAbRPBq6MRO8Qynew8Dp2tjfwb0wFAbx6eju5+by6uns4uH9/f36+vr/GkHjAAAAYnRSTlMAGt+64rnWu/bo8eAA4InH3+DwoN7j4eLi4xP99Nfg4+b+/u9B/eDs1MD1mO7+4PHg2MXa347g7vDizMLN4eG+Pv7i5evs/v79yu7S3/DV7/498Yv24eH+4ufQ3Ozu/v7+y13sRqwAAADLSURBVHjaZc/XDsFgGIBhtDrshlitmk2IrbHFqL2pvXf/+78DPokj7+Fz9qpU/9UXJIlhmPaTaQ6QPaz0mm+5gwkgovcV6GZzd5JtCQwgsxoHOvJO15kleRLAnMgHFIESUEPmawB9ngmelTtipwwfASilxOLyiV5UVUyVAfbG0cCPHig+GBkzAENHS0AstVF6bacZIOzgLmxsHbt2OecNgJC83JERmePUYq8ARGkJx6XtFsdddBQgZE2nPR6CICZhawjA4Fb/chv+399kfR+MMMDGOQAAAABJRU5ErkJggg==");
+    background-repeat: no-repeat;
+    background-position: 2px center;
+}
+
+.ace_gutter-cell.ace_warning, .ace_icon.ace_warning, .ace_icon.ace_warning_fold {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAmVBMVEX///8AAAD///8AAAAAAABPSzb/5sAAAAB/blH/73z/ulkAAAAAAAD85pkAAAAAAAACAgP/vGz/rkDerGbGrV7/pkQICAf////e0IsAAAD/oED/qTvhrnUAAAD/yHD/njcAAADuv2r/nz//oTj/p064oGf/zHAAAAA9Nir/tFIAAAD/tlTiuWf/tkIAAACynXEAAAAAAAAtIRW7zBpBAAAAM3RSTlMAABR1m7RXO8Ln31Z36zT+neXe5OzooRDfn+TZ4p3h2hTf4t3k3ucyrN1K5+Xaks52Sfs9CXgrAAAAjklEQVR42o3PbQ+CIBQFYEwboPhSYgoYunIqqLn6/z8uYdH8Vmdnu9vz4WwXgN/xTPRD2+sgOcZjsge/whXZgUaYYvT8QnuJaUrjrHUQreGczuEafQCO/SJTufTbroWsPgsllVhq3wJEk2jUSzX3CUEDJC84707djRc5MTAQxoLgupWRwW6UB5fS++NV8AbOZgnsC7BpEAAAAABJRU5ErkJggg==");
+    background-repeat: no-repeat;
+    background-position: 2px center;
+}
+
+.ace_gutter-cell.ace_info, .ace_icon.ace_info {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAJ0Uk5TAAB2k804AAAAPklEQVQY02NgIB68QuO3tiLznjAwpKTgNyDbMegwisCHZUETUZV0ZqOquBpXj2rtnpSJT1AEnnRmL2OgGgAAIKkRQap2htgAAAAASUVORK5CYII=");
+    background-repeat: no-repeat;
+    background-position: 2px center;
+}
+.ace_dark .ace_gutter-cell.ace_info, .ace_dark .ace_icon.ace_info {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAJFBMVEUAAAChoaGAgIAqKiq+vr6tra1ZWVmUlJSbm5s8PDxubm56enrdgzg3AAAAAXRSTlMAQObYZgAAAClJREFUeNpjYMAPdsMYHegyJZFQBlsUlMFVCWUYKkAZMxZAGdxlDMQBAG+TBP4B6RyJAAAAAElFTkSuQmCC");
+}
+
+.ace_icon_svg.ace_error {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAxNiI+CjxnIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSJyZWQiIHNoYXBlLXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIj4KPGNpcmNsZSBmaWxsPSJub25lIiBjeD0iOCIgY3k9IjgiIHI9IjciIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPGxpbmUgeDE9IjExIiB5MT0iNSIgeDI9IjUiIHkyPSIxMSIvPgo8bGluZSB4MT0iMTEiIHkxPSIxMSIgeDI9IjUiIHkyPSI1Ii8+CjwvZz4KPC9zdmc+");
+    background-color: crimson;
+}
+.ace_icon_svg.ace_warning {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAxNiI+CjxnIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSJkYXJrb3JhbmdlIiBzaGFwZS1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiI+Cjxwb2x5Z29uIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGZpbGw9Im5vbmUiIHBvaW50cz0iOCAxIDE1IDE1IDEgMTUgOCAxIi8+CjxyZWN0IHg9IjgiIHk9IjEyIiB3aWR0aD0iMC4wMSIgaGVpZ2h0PSIwLjAxIi8+CjxsaW5lIHgxPSI4IiB5MT0iNiIgeDI9IjgiIHkyPSIxMCIvPgo8L2c+Cjwvc3ZnPg==");
+    background-color: darkorange;
+}
+.ace_icon_svg.ace_info {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAxNiI+CjxnIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSJibHVlIiBzaGFwZS1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiI+CjxjaXJjbGUgZmlsbD0ibm9uZSIgY3g9IjgiIGN5PSI4IiByPSI3IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjxwb2x5bGluZSBwb2ludHM9IjggMTEgOCA4Ii8+Cjxwb2x5bGluZSBwb2ludHM9IjkgOCA2IDgiLz4KPGxpbmUgeDE9IjEwIiB5MT0iMTEiIHgyPSI2IiB5Mj0iMTEiLz4KPHJlY3QgeD0iOCIgeT0iNSIgd2lkdGg9IjAuMDEiIGhlaWdodD0iMC4wMSIvPgo8L2c+Cjwvc3ZnPg==");
+    background-color: royalblue;
+}
+
+.ace_icon_svg.ace_error_fold {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAxNiIgZmlsbD0ibm9uZSI+CiAgPHBhdGggZD0ibSAxOC45Mjk4NTEsNy44Mjk4MDc2IGMgMC4xNDYzNTMsNi4zMzc0NjA0IC02LjMyMzE0Nyw3Ljc3Nzg0NDQgLTcuNDc3OTEyLDcuNzc3ODQ0NCAtMi4xMDcyNzI2LC0wLjEyODc1IDUuMTE3Njc4LDAuMzU2MjQ5IDUuMDUxNjk4LC03Ljg3MDA2MTggLTAuNjA0NjcyLC04LjAwMzk3MzQ5IC03LjA3NzI3MDYsLTcuNTYzMTE4OSAtNC44NTczLC03LjQzMDM5NTU2IDEuNjA2LC0wLjExNTE0MjI1IDYuODk3NDg1LDEuMjYyNTQ1OTYgNy4yODM1MTQsNy41MjI2MTI5NiB6IiBmaWxsPSJjcmltc29uIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0ibSA4LjExNDc1NjIsMi4wNTI5ODI4IGMgMy4zNDkxNjk4LDAgNi4wNjQxMzI4LDIuNjc2ODYyNyA2LjA2NDEzMjgsNS45Nzg5NTMgMCwzLjMwMjExMjIgLTIuNzE0OTYzLDUuOTc4OTIwMiAtNi4wNjQxMzI4LDUuOTc4OTIwMiAtMy4zNDkxNDczLDAgLTYuMDY0MTc3MiwtMi42NzY4MDggLTYuMDY0MTc3MiwtNS45Nzg5MjAyIDAuMDA1MzksLTMuMjk5ODg2MSAyLjcxNzI2NTYsLTUuOTczNjQwOCA2LjA2NDE3NzIsLTUuOTc4OTUzIHogbSAwLC0xLjczNTgyNzE5IGMgLTQuMzIxNDgzNiwwIC03LjgyNDc0MDM4LDMuNDU0MDE4NDkgLTcuODI0NzQwMzgsNy43MTQ3ODAxOSAwLDQuMjYwNzI4MiAzLjUwMzI1Njc4LDcuNzE0NzQ1MiA3LjgyNDc0MDM4LDcuNzE0NzQ1MiA0LjMyMTQ0OTgsMCA3LjgyNDY5OTgsLTMuNDU0MDE3IDcuODI0Njk5OCwtNy43MTQ3NDUyIDAsLTIuMDQ2MDkxNCAtMC44MjQzOTIsLTQuMDA4MzY3MiAtMi4yOTE3NTYsLTUuNDU1MTc0NiBDIDEyLjE4MDIyNSwxLjEyOTk2NDggMTAuMTkwMDEzLDAuMzE3MTU1NjEgOC4xMTQ3NTYyLDAuMzE3MTU1NjEgWiBNIDYuOTM3NDU2Myw4LjI0MDU5ODUgNC42NzE4Njg1LDEwLjQ4NTg1MiA2LjAwODY4MTQsMTEuODc2NzI4IDguMzE3MDAzNSw5LjYwMDc5MTEgMTAuNjI1MzM3LDExLjg3NjcyOCAxMS45NjIxMzgsMTAuNDg1ODUyIDkuNjk2NTUwOCw4LjI0MDU5ODUgMTEuOTYyMTM4LDYuMDA2ODA2NiAxMC41NzMyNDYsNC42Mzc0MzM1IDguMzE3MDAzNSw2Ljg3MzQyOTcgNi4wNjA3NjA3LDQuNjM3NDMzNSA0LjY3MTg2ODUsNi4wMDY4MDY2IFoiIGZpbGw9ImNyaW1zb24iIHN0cm9rZS13aWR0aD0iMiIvPgo8L3N2Zz4=");
+    background-color: crimson;
+}
+.ace_icon_svg.ace_warning_fold {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAyMCAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC43NzY5IDE0LjczMzdMOC42NTE5MiAyLjQ4MzY5QzguMzI5NDYgMS44Mzg3NyA3LjQwOTEzIDEuODM4NzcgNy4wODY2NyAyLjQ4MzY5TDAuOTYxNjY5IDE0LjczMzdDMC42NzA3NzUgMTUuMzE1NSAxLjA5MzgzIDE2IDEuNzQ0MjkgMTZIMTMuOTk0M0MxNC42NDQ4IDE2IDE1LjA2NzggMTUuMzE1NSAxNC43NzY5IDE0LjczMzdaTTMuMTYwMDcgMTQuMjVMNy44NjkyOSA0LjgzMTU2TDEyLjU3ODUgMTQuMjVIMy4xNjAwN1pNOC43NDQyOSAxMS42MjVWMTMuMzc1SDYuOTk0MjlWMTEuNjI1SDguNzQ0MjlaTTYuOTk0MjkgMTAuNzVWNy4yNUg4Ljc0NDI5VjEwLjc1SDYuOTk0MjlaIiBmaWxsPSIjRUM3MjExIi8+CjxwYXRoIGQ9Ik0xMS4xOTkxIDIuOTUyMzhDMTAuODgwOSAyLjMxNDY3IDEwLjM1MzcgMS44MDUyNiA5LjcwNTUgMS41MDlMMTEuMDQxIDEuMDY5NzhDMTEuNjg4MyAwLjk0OTgxNCAxMi4zMzcgMS4yNzI2MyAxMi42MzE3IDEuODYxNDFMMTcuNjEzNiAxMS44MTYxQzE4LjM1MjcgMTMuMjkyOSAxNy41OTM4IDE1LjA4MDQgMTYuMDE4IDE1LjU3NDVDMTYuNDA0NCAxNC40NTA3IDE2LjMyMzEgMTMuMjE4OCAxNS43OTI0IDEyLjE1NTVMMTEuMTk5MSAyLjk1MjM4WiIgZmlsbD0iI0VDNzIxMSIvPgo8L3N2Zz4=");
+    background-color: darkorange;
+}
+
+.ace_scrollbar {
+    contain: strict;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 6;
+}
+
+.ace_scrollbar-inner {
+    position: absolute;
+    cursor: text;
+    left: 0;
+    top: 0;
+}
+
+.ace_scrollbar-v{
+    overflow-x: hidden;
+    overflow-y: scroll;
+    top: 0;
+}
+
+.ace_scrollbar-h {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    left: 0;
+}
+
+.ace_print-margin {
+    position: absolute;
+    height: 100%;
+}
+
+.ace_text-input {
+    position: absolute;
+    z-index: 0;
+    width: 0.5em;
+    height: 1em;
+    opacity: 0;
+    background: transparent;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    resize: none;
+    outline: none;
+    overflow: hidden;
+    font: inherit;
+    padding: 0 1px;
+    margin: 0 -1px;
+    contain: strict;
+    -ms-user-select: text;
+    -moz-user-select: text;
+    -webkit-user-select: text;
+    user-select: text;
+    /*with `pre-line` chrome inserts &nbsp; instead of space*/
+    white-space: pre!important;
+}
+.ace_text-input.ace_composition {
+    background: transparent;
+    color: inherit;
+    z-index: 1000;
+    opacity: 1;
+}
+.ace_composition_placeholder { color: transparent }
+.ace_composition_marker { 
+    border-bottom: 1px solid;
+    position: absolute;
+    border-radius: 0;
+    margin-top: 1px;
+}
+
+[ace_nocontext=true] {
+    transform: none!important;
+    filter: none!important;
+    clip-path: none!important;
+    mask : none!important;
+    contain: none!important;
+    perspective: none!important;
+    mix-blend-mode: initial!important;
+    z-index: auto;
+}
+
+.ace_layer {
+    z-index: 1;
+    position: absolute;
+    overflow: hidden;
+    /* workaround for chrome bug https://github.com/ajaxorg/ace/issues/2312*/
+    word-wrap: normal;
+    white-space: pre;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    /* setting pointer-events: auto; on node under the mouse, which changes
+        during scroll, will break mouse wheel scrolling in Safari */
+    pointer-events: none;
+}
+
+.ace_gutter-layer {
+    position: relative;
+    width: auto;
+    text-align: right;
+    pointer-events: auto;
+    height: 1000000px;
+    contain: style size layout;
+}
+
+.ace_text-layer {
+    font: inherit !important;
+    position: absolute;
+    height: 1000000px;
+    width: 1000000px;
+    contain: style size layout;
+}
+
+.ace_text-layer > .ace_line, .ace_text-layer > .ace_line_group {
+    contain: style size layout;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.ace_hidpi .ace_text-layer,
+.ace_hidpi .ace_gutter-layer,
+.ace_hidpi .ace_content,
+.ace_hidpi .ace_gutter {
+    contain: strict;
+}
+.ace_hidpi .ace_text-layer > .ace_line, 
+.ace_hidpi .ace_text-layer > .ace_line_group {
+    contain: strict;
+}
+
+.ace_cjk {
+    display: inline-block;
+    text-align: center;
+}
+
+.ace_cursor-layer {
+    z-index: 4;
+}
+
+.ace_cursor {
+    z-index: 4;
+    position: absolute;
+    box-sizing: border-box;
+    border-left: 2px solid;
+    /* workaround for smooth cursor repaintng whole screen in chrome */
+    transform: translatez(0);
+}
+
+.ace_multiselect .ace_cursor {
+    border-left-width: 1px;
+}
+
+.ace_slim-cursors .ace_cursor {
+    border-left-width: 1px;
+}
+
+.ace_overwrite-cursors .ace_cursor {
+    border-left-width: 0;
+    border-bottom: 1px solid;
+}
+
+.ace_hidden-cursors .ace_cursor {
+    opacity: 0.2;
+}
+
+.ace_hasPlaceholder .ace_hidden-cursors .ace_cursor {
+    opacity: 0;
+}
+
+.ace_smooth-blinking .ace_cursor {
+    transition: opacity 0.18s;
+}
+
+.ace_animate-blinking .ace_cursor {
+    animation-duration: 1000ms;
+    animation-timing-function: step-end;
+    animation-name: blink-ace-animate;
+    animation-iteration-count: infinite;
+}
+
+.ace_animate-blinking.ace_smooth-blinking .ace_cursor {
+    animation-duration: 1000ms;
+    animation-timing-function: ease-in-out;
+    animation-name: blink-ace-animate-smooth;
+}
+    
+@keyframes blink-ace-animate {
+    from, to { opacity: 1; }
+    60% { opacity: 0; }
+}
+
+@keyframes blink-ace-animate-smooth {
+    from, to { opacity: 1; }
+    45% { opacity: 1; }
+    60% { opacity: 0; }
+    85% { opacity: 0; }
+}
+
+.ace_marker-layer .ace_step, .ace_marker-layer .ace_stack {
+    position: absolute;
+    z-index: 3;
+}
+
+.ace_marker-layer .ace_selection {
+    position: absolute;
+    z-index: 5;
+}
+
+.ace_marker-layer .ace_bracket {
+    position: absolute;
+    z-index: 6;
+}
+
+.ace_marker-layer .ace_error_bracket {
+    position: absolute;
+    border-bottom: 1px solid #DE5555;
+    border-radius: 0;
+}
+
+.ace_marker-layer .ace_active-line {
+    position: absolute;
+    z-index: 2;
+}
+
+.ace_marker-layer .ace_selected-word {
+    position: absolute;
+    z-index: 4;
+    box-sizing: border-box;
+}
+
+.ace_line .ace_fold {
+    box-sizing: border-box;
+
+    display: inline-block;
+    height: 11px;
+    margin-top: -2px;
+    vertical-align: middle;
+
+    background-image:
+        url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),
+        url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACJJREFUeNpi+P//fxgTAwPDBxDxD078RSX+YeEyDFMCIMAAI3INmXiwf2YAAAAASUVORK5CYII=");
+    background-repeat: no-repeat, repeat-x;
+    background-position: center center, top left;
+    color: transparent;
+
+    border: 1px solid black;
+    border-radius: 2px;
+
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.ace_dark .ace_fold {
+}
+
+.ace_fold:hover{
+    background-image:
+        url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),
+        url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACBJREFUeNpi+P//fz4TAwPDZxDxD5X4i5fLMEwJgAADAEPVDbjNw87ZAAAAAElFTkSuQmCC");
+}
+
+.ace_tooltip {
+    background-color: #f5f5f5;
+    border: 1px solid gray;
+    border-radius: 1px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    color: black;
+    max-width: 100%;
+    padding: 3px 4px;
+    position: fixed;
+    z-index: 999999;
+    box-sizing: border-box;
+    cursor: default;
+    white-space: pre;
+    word-wrap: break-word;
+    line-height: normal;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: normal;
+    pointer-events: none;
+}
+
+.ace_tooltip.ace_dark {
+    background-color: #636363;
+    color: #fff;
+}
+
+.ace_tooltip:focus {
+    outline: 1px solid #5E9ED6;
+}
+
+.ace_icon {
+    display: inline-block;
+    width: 18px;
+    vertical-align: top;
+}
+
+.ace_icon_svg {
+    display: inline-block;
+    width: 12px;
+    vertical-align: top;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: 12px;
+    -webkit-mask-position: center;
+}
+
+.ace_folding-enabled > .ace_gutter-cell, .ace_folding-enabled > .ace_gutter-cell_svg-icons {
+    padding-right: 13px;
+}
+
+.ace_fold-widget {
+    box-sizing: border-box;
+
+    margin: 0 -12px 0 1px;
+    display: none;
+    width: 11px;
+    vertical-align: top;
+
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42mWKsQ0AMAzC8ixLlrzQjzmBiEjp0A6WwBCSPgKAXoLkqSot7nN3yMwR7pZ32NzpKkVoDBUxKAAAAABJRU5ErkJggg==");
+    background-repeat: no-repeat;
+    background-position: center;
+
+    border-radius: 3px;
+    
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.ace_folding-enabled .ace_fold-widget {
+    display: inline-block;   
+}
+
+.ace_fold-widget.ace_end {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42m3HwQkAMAhD0YzsRchFKI7sAikeWkrxwScEB0nh5e7KTPWimZki4tYfVbX+MNl4pyZXejUO1QAAAABJRU5ErkJggg==");
+}
+
+.ace_fold-widget.ace_closed {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAGCAYAAAAG5SQMAAAAOUlEQVR42jXKwQkAMAgDwKwqKD4EwQ26sSOkVWjgIIHAzPiCgaqiqnJHZnKICBERHN194O5b9vbLuAVRL+l0YWnZAAAAAElFTkSuQmCCXA==");
+}
+
+.ace_fold-widget:hover {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+
+.ace_fold-widget:active {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+/**
+ * Dark version for fold widgets
+ */
+.ace_dark .ace_fold-widget {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHklEQVQIW2P4//8/AzoGEQ7oGCaLLAhWiSwB146BAQCSTPYocqT0AAAAAElFTkSuQmCC");
+}
+.ace_dark .ace_fold-widget.ace_end {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAH0lEQVQIW2P4//8/AxQ7wNjIAjDMgC4AxjCVKBirIAAF0kz2rlhxpAAAAABJRU5ErkJggg==");
+}
+.ace_dark .ace_fold-widget.ace_closed {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFCAYAAACAcVaiAAAAHElEQVQIW2P4//+/AxAzgDADlOOAznHAKgPWAwARji8UIDTfQQAAAABJRU5ErkJggg==");
+}
+.ace_dark .ace_fold-widget:hover {
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.ace_dark .ace_fold-widget:active {
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.ace_inline_button {
+    border: 1px solid lightgray;
+    display: inline-block;
+    margin: -1px 8px;
+    padding: 0 5px;
+    pointer-events: auto;
+    cursor: pointer;
+}
+.ace_inline_button:hover {
+    border-color: gray;
+    background: rgba(200,200,200,0.2);
+    display: inline-block;
+    pointer-events: auto;
+}
+
+.ace_fold-widget.ace_invalid {
+    background-color: #FFB4B4;
+    border-color: #DE5555;
+}
+
+.ace_fade-fold-widgets .ace_fold-widget {
+    transition: opacity 0.4s ease 0.05s;
+    opacity: 0;
+}
+
+.ace_fade-fold-widgets:hover .ace_fold-widget {
+    transition: opacity 0.05s ease 0.05s;
+    opacity:1;
+}
+
+.ace_underline {
+    text-decoration: underline;
+}
+
+.ace_bold {
+    font-weight: bold;
+}
+
+.ace_nobold .ace_bold {
+    font-weight: normal;
+}
+
+.ace_italic {
+    font-style: italic;
+}
+
+
+.ace_error-marker {
+    background-color: rgba(255, 0, 0,0.2);
+    position: absolute;
+    z-index: 9;
+}
+
+.ace_highlight-marker {
+    background-color: rgba(255, 255, 0,0.2);
+    position: absolute;
+    z-index: 8;
+}
+
+.ace_mobile-menu {
+    position: absolute;
+    line-height: 1.5;
+    border-radius: 4px;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    background: white;
+    box-shadow: 1px 3px 2px grey;
+    border: 1px solid #dcdcdc;
+    color: black;
+}
+.ace_dark > .ace_mobile-menu {
+    background: #333;
+    color: #ccc;
+    box-shadow: 1px 3px 2px grey;
+    border: 1px solid #444;
+
+}
+.ace_mobile-button {
+    padding: 2px;
+    cursor: pointer;
+    overflow: hidden;
+}
+.ace_mobile-button:hover {
+    background-color: #eee;
+    opacity:1;
+}
+.ace_mobile-button:active {
+    background-color: #ddd;
+}
+
+.ace_placeholder {
+    font-family: arial;
+    transform: scale(0.9);
+    transform-origin: left;
+    white-space: pre;
+    opacity: 0.7;
+    margin: 0 10px;
+}
+
+.ace_ghost_text {
+    opacity: 0.5;
+    font-style: italic;
+    white-space: pre;
+}
+/*# sourceURL=ace/css/ace_editor.css */</style><style id="ace_scrollbar.css">.ace_editor>.ace_sb-v div, .ace_editor>.ace_sb-h div{
+  position: absolute;
+  background: rgba(128, 128, 128, 0.6);
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #bbb;
+  border-radius: 2px;
+  z-index: 8;
+}
+.ace_editor>.ace_sb-v, .ace_editor>.ace_sb-h {
+  position: absolute;
+  z-index: 6;
+  background: none;
+  overflow: hidden!important;
+}
+.ace_editor>.ace_sb-v {
+  z-index: 6;
+  right: 0;
+  top: 0;
+  width: 12px;
+}
+.ace_editor>.ace_sb-v div {
+  z-index: 8;
+  right: 0;
+  width: 100%;
+}
+.ace_editor>.ace_sb-h {
+  bottom: 0;
+  left: 0;
+  height: 12px;
+}
+.ace_editor>.ace_sb-h div {
+  bottom: 0;
+  height: 100%;
+}
+.ace_editor>.ace_sb_grabbed {
+  z-index: 8;
+  background: #000;
+}
+/*# sourceURL=ace/css/ace_scrollbar.css */</style>
+	<script type="text/javascript" async="" src="Mocodo%20online_fichiers/ga.js"></script><script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-1925109-8']);
+		_gaq.push(['_trackPageview']);
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+<script src="Mocodo%20online_fichiers/mode-mocodo.js"></script><script src="Mocodo%20online_fichiers/theme-chrome.js"></script></head><body><a href="https://github.com/laowantong/mocodo"><img style="position: absolute; top: 0; right: 0; border: 0; width: 149px; height: 149px;" src="Mocodo%20online_fichiers/fork-me-right-turquoise@2x.png" alt="Fork me on GitHub"></a>
+<title>Mocodo online</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="Mocodo%20online_fichiers/reset.css">
+<link rel="stylesheet" href="Mocodo%20online_fichiers/style.css">
+<link rel="stylesheet" href="Mocodo%20online_fichiers/font-awesome.min.css">
+<link rel="stylesheet" href="Mocodo%20online_fichiers/css.css" type="text/css">
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://www.mocodo.net/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="https://www.mocodo.net/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="https://www.mocodo.net/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="https://www.mocodo.net/manifest.json">
+<link rel="mask-icon" href="https://www.mocodo.net/safari-pinned-tab.svg" color="#0d42ff">
+<meta name="apple-mobile-web-app-title" content="Mocodo">
+<meta name="application-name" content="Mocodo">
+<meta name="theme-color" content="#fff">
+
+
+
+
+<div id="wrap">
+	<div id="banner">
+	    <img src="Mocodo%20online_fichiers/mocodonline.svg">
+	</div>​
+	<form method="post" id="mainForm" action="web/download.php" autocomplete="off">
+		<input type="hidden" name="state" id="state" value="ready">
+		<input type="hidden" name="archiveName" id="archiveName" value="Etapesvoyages.zip">
+		<input type="hidden" name="path" id="path" value="">
+		<input type="hidden" name="guess_title" id="guess_title" value="true">
+		<div id="inputZone">
+			<div class="line"></div>
+			<ul class="tabs">
+				<li><a href="#aboutContents" class="first_tab"><span class="fa fa-info-circle"></span></a></li>
+				<li><a href="#inputContents" class="active"><span>Entrée</span></a></li>
+				<li><a href="#paramContents"><span>Options</span></a></li>
+				<li><a href="#geoContents" id="geoTab" style="display: inline;"><span>Retouches</span></a></li>
+			</ul>
+			<div class="pane">
+				<div id="inputButtons" class="buttons">
+					<span class="fa fa-arrows-v fa-2x customButton" id="flipHorizontallyButton" onclick="reorganize('flip=h')" title="Inverser les rangées."></span>
+					<span class="fa fa-arrows-h fa-2x customButton" id="flipVerticallyButton" onclick="reorganize('flip=v')" title="Inverser les colonnes."></span>
+					<span class="fa fa-arrows-v fa-2x fa-rotate-45 customButton" id="flipDiagonallyButton" onclick="reorganize('flip=d')" title="Transposer colonnes et rangées."></span>
+					<span class="fa fa-random fa-2x customButton" id="arrangeButton" onclick="arrange(event)" title="Réarranger automatiquement les boîtes (sur la grille actuelle avec SHIFT, sur la plus petite grille «&nbsp;équilibrée&nbsp;» possible avec ALT, sur la suivante avec SHIFT+ALT)."></span>
+				</div>
+				<div id="aboutContents" class="contents" style="display: none;">
+<p>
+	Mocodo est un logiciel d'aide à l'enseignement et à la conception de <a href="https://fr.wikipedia.org/wiki/Base_de_donn%C3%A9es_relationnelle">bases de données relationnelles</a>.
+	En entrée, il prend une description textuelle des entités et associations du modèle conceptuel de données (<a href="https://fr.wikipedia.org/wiki/Mod%C3%A8le_entit%C3%A9-association">MCD</a>).
+	En sortie, il produit son diagramme entité-association en <a href="https://fr.wikipedia.org/wiki/Scalable_Vector_Graphics">SVG</a>, <a href="https://fr.wikipedia.org/wiki/Portable_Document_Format">PDF</a> et <a href="https://fr.wikipedia.org/wiki/Portable_Network_Graphics">PNG</a> et son schéma relationnel (<a href="https://fr.wikipedia.org/wiki/Merise_&amp;#%2040;informatique&amp;#%2041;#Le_MLD_mod.C3.A8le_logique_des_donn.C3.A9es">MLD</a>) en <a href="https://fr.wikipedia.org/wiki/Structured_Query_Language">SQL</a>, <a href="https://fr.wikipedia.org/wiki/LaTeX"><span style="font-family: serif; font-style: normal; margin-right: -.7em;">L<span style="font-size: 0.9em; position: relative; top: -.1em; left: -0.4em;">A</span><span style="position: relative; left: -.5em;">T</span><span style="position: relative; top: .2em; left: -.6em;">E</span><span style="position: relative; left: -.7em;">X</span></span></a>, <a href="https://fr.wikipedia.org/wiki/Markdown">Markdown</a>, etc.
+</p>
+<h1>Syntaxe du texte d'entrée</h1>
+
+<h2>Principe</h2>
+<ul>
+<li>Chaque ligne constitue la définition d'une entité ou d'une association («&nbsp;boîte&nbsp;» dans la suite).</li>
+</ul>
+
+<h2>Définir une entité</h2>
+
+<pre><code>nom entité: attribut 1, attribut 2, attribut 3, ...
+</code></pre>
+
+<ul>
+<li>Un nom d'entité est séparé de ses attributs par un deux-points.</li>
+<li>Les attributs sont séparés par des virgules.</li>
+<li>Le premier attribut est par défaut l'identifiant de l'entité.</li>
+</ul>
+
+<h2>Définir une association</h2>
+
+<pre><code>nom association, 01 nom entité 1, 1N nom entité 2, ... : attribut 1, attribut 2, ...
+</code></pre>
+
+<ul>
+<li>Un nom d'association est séparé de sa première patte par une virgule.</li>
+<li>Les pattes d'une association sont séparées par des virgules.</li>
+<li>Une patte consiste en un couple de cardinalités (<code>01</code>, <code>11</code>, <code>0N</code>, <code>1N</code>) suivi du nom d'une entité.</li>
+<li>La dernière patte d'une association est séparée de ses éventuels attributs par un deux-points.</li>
+<li>Les attributs sont séparés par des virgules.</li>
+<li>Deux pattes d'une même association peuvent aboutir à une même entité (association réflexive).</li>
+</ul>
+
+<h2>Spécifier une mise en page</h2>
+
+<ul>
+<li>Les boîtes définies sur des lignes <em>consécutives</em> sont tracées sur une même rangée.</li>
+<li>Un saut de ligne commence une nouvelle rangée.</li>
+<li>Toutes les boîtes d'une même colonne sont alignées verticalement.</li>
+<li>Une ligne réduite à un deux-points insère une boîte invisible.</li>
+</ul>
+
+<h1>Principales opérations</h1>
+
+<h2>Réorganiser les boîtes</h2>
+
+<ul>
+<li><i class="fa fa-arrows-v"></i>&nbsp;: inverser verticalement.</li>
+<li><i class="fa fa-arrows-h"></i>&nbsp;: inverser horizontalement.</li>
+<li><i class="fa fa-arrows-v fa-rotate-45"></i>&nbsp;: transposer selon la première diagonale.</li>
+<li><i class="fa fa-random"></i>&nbsp;: mettre en page en interdisant les croisements et en minimisant la longueur des liens,
+	<ul>
+		<li>avec <kbd>SHIFT</kbd>&nbsp;: sur la grille courante.</li>
+		<li>avec <kbd>ALT</kbd>&nbsp;: sur la plus petite grille «&nbsp;équilibrée&nbsp;» possible.</li>
+        <li>avec <kbd>ALT</kbd> et <kbd>SHIFT</kbd>&nbsp;: sur la deuxième plus petite grille «&nbsp;équilibrée&nbsp;» possible.</li>
+	</ul>
+</li>
+</ul>
+
+<h2>Manipuler les schémas</h2>
+
+<ul>
+<li><i class="fa fa-refresh"></i>&nbsp;: dessiner le MCD et générer le MLD à partir du texte d'entrée.</li>
+<li>Onglet «&nbsp;Retouches&nbsp;»&nbsp;: modifier la position de certains éléments.</li>
+<li><i class="fa fa-download"></i>&nbsp;: récupérer une archive de votre travail (entrée et sortie).</li>
+</ul>
+				</div>
+				<div id="inputContents" class="contents">
+					<div id="inputPane">
+						<div><input type="text" oninput="markAsDirty();freezeTitle();reveal()" onfocus="onFocus(this)" name="title" id="title" value="Etapesvoyages" onblur="onBlur(this)" autocomplete="off" title="Si vous ne donnez pas de titre à votre MCD, Mocodo essaiera d'en trouver un pour vous."></div>
+						<span id="gear" class="fa fa-cog fa-2x"></span>
+						<select onchange="changeTitleToNthTuto();reveal()" name="tutorial" id="tutorial" title="Parcourez notre galerie de MCD pour apprendre la syntaxe de Mocodo."><option selected="selected">MCD d'accueil</option><option>Entité</option><option>Attribut d'entité</option><option>Association</option><option>Attribut d'association</option><option>Cardinalités</option><option>Association de dépendance fonctionnelle</option><option>Explication interactive des cardinalités</option><option>Association réflexive</option><option>Flèche sur une patte</option><option>Schéma sur plusieurs rangées</option><option>Réarrangement automatique</option><option>Réarrangement automatique minimal</option><option>Explication des cardinalités</option><option>Rôle d'une patte pour le MLD</option><option>MLD sous forme de diagramme relationnel</option><option>Dévoilement progressif du schéma</option><option>Entité faible (ou identification relative)</option><option>Entité sans identifiant</option><option>Identifiant composite</option><option>Identifiants candidats</option><option>MCD vide</option><option>Boîtes homonymes</option><option>Agrégation (ou pseudo-entité)</option><option>Vue en extension</option><option>Contrainte d'intégrité fonctionnelle (CIF)</option><option>Contrainte sur associations</option><option>Explication interactive d'une contrainte</option><option>Héritage (ou spécialisation)</option></select>
+						<textarea name="text" hidden="">etapesvoyages:IDvoyage-&gt;voyage-&gt;IDvoyage,IDville-&gt;ville-&gt;IDville,_IDetape,durée
+ville:IDville,nomville,etatville,IDpays-&gt;pays-&gt;IDpays
+tarif:IDvoyage-&gt;voyage-&gt;IDvoyage,_datedepart,prix
+voyage:IDvoyage,nomvoyage,capavoyagemax,capavoyagemin,pensionclient
+lieu:IDlieu,libellelieu,IDville-&gt;ville-&gt;IDville,IDpays-&gt;pays-&gt;IDpays
+pays:IDpays,bompays,codepays,nompays_en,formalite,vaccin
+film:IDfilm,nomfilm,anneedesortie,revenuefilm,scorefilm,budgetfilm,paysfilm-&gt;pays-&gt;IDpays
+tournage:IDlieu-&gt;lieu-&gt;IDlieu,IDfilm-&gt;film-&gt;IDfilm,infostournage</textarea>
+						<div id="editor" onchange="markAsDirty();mayUnfreezeTitle()" class="ace_editor ace-chrome" draggable="false"><textarea class="ace_text-input" autocorrect="off" autocapitalize="none" spellcheck="false" style="opacity: 0; font-size: 1px; height: 1px; width: 1px; top: 40px; left: 513px;" aria-haspopup="true" aria-autocomplete="list" role="textbox" aria-activedescendant="suggest-aria-id:0" wrap="off">ville:IDville,nomville,etatville,IDpays-&gt;pays-&gt;IDpays
+
+</textarea><div class="ace_gutter" aria-hidden="true" style="display: none; left: 0px; width: 43px;"><div class="ace_layer ace_gutter-layer ace_folding-enabled" style="height: 1000000px; top: 0px; left: 0px; width: 43px;"><div class="ace_gutter-cell " style="height: 20px; top: 0px;" aria-hidden="true">1<span style="display: none;" tabindex="0"></span><span style="display: none;" tabindex="0"><span></span></span></div><div class="ace_gutter-cell ace_gutter-active-line " style="height: 20px; top: 20px;" aria-hidden="true">2<span style="display: none;" tabindex="0"></span><span style="display: none;" tabindex="0"><span></span></span></div><div class="ace_gutter-cell " style="height: 20px; top: 40px;" aria-hidden="true">3<span style="display: none;" tabindex="0"></span><span style="display: none;" tabindex="0"><span></span></span></div><div class="ace_gutter-cell " style="height: 20px; top: 60px;" aria-hidden="true">4<span style="display: none;" tabindex="0"></span><span style="display: none;" tabindex="0"><span></span></span></div><div class="ace_gutter-cell " style="height: 20px; top: 80px;" aria-hidden="true">5<span style="display: none;" tabindex="0"></span><span style="display: none;" tabindex="0"><span></span></span></div><div class="ace_gutter-cell " style="height: 20px; top: 100px;" aria-hidden="true">6<span style="display: none;" tabindex="0"></span><span style="display: none;" tabindex="0"><span></span></span></div><div class="ace_gutter-cell " style="height: 20px; top: 120px;" aria-hidden="true">7<span style="display: none;" tabindex="0"></span><span style="display: none;" tabindex="0"><span></span></span></div><div class="ace_gutter-cell " style="height: 20px; top: 140px;" aria-hidden="true">8<span style="display: none;" tabindex="0"></span><span style="display: none;" tabindex="0"><span></span></span></div></div></div><div class="ace_scroller " style="line-height: 20px; left: 0px; right: 0px; bottom: 0px;"><div class="ace_content" style="top: 0px; left: 0px; width: 862px; height: 388px;"><div class="ace_layer ace_print-margin-layer"><div class="ace_print-margin" style="left: 772px; visibility: hidden;"></div></div><div class="ace_layer ace_marker-layer"><div style="height: 20px; top: 20px; left: 0px; right: 0px;" class="ace_active-line"></div></div><div class="ace_layer ace_text-layer" style="height: 1000000px; margin: 0px 4px; top: 0px; left: 0px;"><div style="height: 20px; top: 0px;" class="ace_line"><span class="ace_heading ace_entity ace_mocodo markup ace_bold">etapesvoyages</span><span class="ace_entity ace_mocodo">:</span><span class="ace_variable ace_attribute ace_mocodo markup ace_underline">IDvoyage-</span><span class="ace_invalid ace_illegal ace_mocodo">&gt;voyage-&gt;IDvoyage,IDville-&gt;ville-&gt;IDville,_IDetape,durée</span></div><div style="height: 20px; top: 20px;" class="ace_line"><span class="ace_heading ace_entity ace_mocodo markup ace_bold">ville</span><span class="ace_entity ace_mocodo">:</span><span class="ace_variable ace_attribute ace_mocodo markup ace_underline">IDville</span>,<span class="ace_variable ace_attribute ace_mocodo">nomville</span>,<span class="ace_variable ace_attribute ace_mocodo">etatville</span>,<span class="ace_variable ace_attribute ace_mocodo">IDpays-</span><span class="ace_invalid ace_illegal ace_mocodo">&gt;pays-&gt;IDpays</span></div><div style="height: 20px; top: 40px;" class="ace_line"><span class="ace_heading ace_entity ace_mocodo markup ace_bold">tarif</span><span class="ace_entity ace_mocodo">:</span><span class="ace_variable ace_attribute ace_mocodo markup ace_underline">IDvoyage-</span><span class="ace_invalid ace_illegal ace_mocodo">&gt;voyage-&gt;IDvoyage,_datedepart,prix</span></div><div style="height: 20px; top: 60px;" class="ace_line"><span class="ace_heading ace_entity ace_mocodo markup ace_bold">voyage</span><span class="ace_entity ace_mocodo">:</span><span class="ace_variable ace_attribute ace_mocodo markup ace_underline">IDvoyage</span>,<span class="ace_variable ace_attribute ace_mocodo">nomvoyage</span>,<span class="ace_variable ace_attribute ace_mocodo">capavoyagemax</span>,<span class="ace_variable ace_attribute ace_mocodo">capavoyagemin</span>,<span class="ace_variable ace_attribute ace_mocodo">pensionclient</span></div><div style="height: 20px; top: 80px;" class="ace_line"><span class="ace_heading ace_entity ace_mocodo markup ace_bold">lieu</span><span class="ace_entity ace_mocodo">:</span><span class="ace_variable ace_attribute ace_mocodo markup ace_underline">IDlieu</span>,<span class="ace_variable ace_attribute ace_mocodo">libellelieu</span>,<span class="ace_variable ace_attribute ace_mocodo">IDville-</span><span class="ace_invalid ace_illegal ace_mocodo">&gt;ville-&gt;IDville,IDpays-&gt;pays-&gt;IDpays</span></div><div style="height: 20px; top: 100px;" class="ace_line"><span class="ace_heading ace_entity ace_mocodo markup ace_bold">pays</span><span class="ace_entity ace_mocodo">:</span><span class="ace_variable ace_attribute ace_mocodo markup ace_underline">IDpays</span>,<span class="ace_variable ace_attribute ace_mocodo">bompays</span>,<span class="ace_variable ace_attribute ace_mocodo">codepays</span>,<span class="ace_variable ace_attribute ace_mocodo">nompays_en</span>,<span class="ace_variable ace_attribute ace_mocodo">formalite</span>,<span class="ace_variable ace_attribute ace_mocodo">vaccin</span></div><div style="height: 20px; top: 120px;" class="ace_line"><span class="ace_heading ace_entity ace_mocodo markup ace_bold">film</span><span class="ace_entity ace_mocodo">:</span><span class="ace_variable ace_attribute ace_mocodo markup ace_underline">IDfilm</span>,<span class="ace_variable ace_attribute ace_mocodo">nomfilm</span>,<span class="ace_variable ace_attribute ace_mocodo">anneedesortie</span>,<span class="ace_variable ace_attribute ace_mocodo">revenuefilm</span>,<span class="ace_variable ace_attribute ace_mocodo">scorefilm</span>,<span class="ace_variable ace_attribute ace_mocodo">budgetfilm</span>,<span class="ace_variable ace_attribute ace_mocodo">paysfilm-</span><span class="ace_invalid ace_illegal ace_mocodo">&gt;pays-&gt;IDpays</span></div><div style="height: 20px; top: 140px;" class="ace_line"><span class="ace_heading ace_entity ace_mocodo markup ace_bold">tournage</span><span class="ace_entity ace_mocodo">:</span><span class="ace_variable ace_attribute ace_mocodo markup ace_underline">IDlieu-</span><span class="ace_invalid ace_illegal ace_mocodo">&gt;lieu-&gt;IDlieu,IDfilm-&gt;film-&gt;IDfilm,infostournage</span></div></div><div class="ace_layer ace_marker-layer"></div><div class="ace_layer ace_cursor-layer ace_hidden-cursors"><div class="ace_cursor" style="display: block; top: 20px; left: 513px; width: 10px; height: 20px; animation-duration: 1000ms;"></div></div></div></div><div class="ace_scrollbar ace_scrollbar-v" style="width: 22px; height: 348px; bottom: 0px; display: none;"><div class="ace_scrollbar-inner" style="width: 22px; height: 160px;">&nbsp;</div></div><div class="ace_scrollbar ace_scrollbar-h" style="height: 22px; left: 0px; right: 0px; width: 862px; display: none;"><div class="ace_scrollbar-inner" style="height: 22px; width: 862px;">&nbsp;</div></div><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font: inherit; overflow: hidden;"><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font: inherit; overflow: visible;">הההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההה</div><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font-style: inherit; font-variant: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; font-size-adjust: inherit; font-kerning: inherit; font-optical-sizing: inherit; font-language-override: inherit; font-feature-settings: inherit; font-variation-settings: inherit; overflow: visible;">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div></div></div>
+					</div>
+				</div>
+				<div id="paramContents" class="contents" style="display: none;">
+					<div><label class="fixedWidth" for="colors">Palette de couleurs</label><select onchange="markAsDirty();writeCookie()" name="colors" id="colors"><option>blank</option><option>bw</option><option>bw-alpha</option><option>desert</option><option>keepsake</option><option>mondrian</option><option>ocean</option><option>pond</option><option>wb</option><option>xinnian</option><option>brewer+1</option><option>brewer-1</option><option>brewer+2</option><option>brewer-2</option><option>brewer+3</option><option>brewer-3</option><option>brewer+4</option><option>brewer-4</option><option>brewer+5</option><option>brewer-5</option><option>brewer+6</option><option>brewer-6</option><option>brewer+7</option><option selected="selected">brewer-7</option><option>brewer+8</option><option>brewer-8</option><option>brewer+9</option><option>brewer-9</option></select></div>
+					<div><label class="fixedWidth" for="shapes">Police et proportions</label><select onchange="markAsDirty();writeCookie()" name="shapes" id="shapes"><option>arial</option><option>copperplate</option><option>georgia</option><option>mondrian</option><option>sans</option><option>serif</option><option>times</option><option>trebuchet</option><option selected="selected">verdana</option><option>xinnian</option></select></div>
+					<div><label class="fixedWidth" for="adjust_width">Ajustement de la largeur des libellés</label><input type="number" value="1" max="4.00" min="-0.01" onchange="writeCookie()" name="adjust_width" id="adjust_width" style="width: 6em; text-align: right; border-radius: 0; margin-right: 0.2em; "></div>
+					<div><label class="fixedWidth" for="flex">Inflexion des pattes trop rapprochées</label><select onchange="writeCookie()" name="flex" id="flex"><option>désactivée</option><option>peu perceptible</option><option>faible</option><option selected="selected">normale</option><option>forte</option><option>très prononcée</option></select></div>
+					<div><label class="fixedWidth" for="delays">Temps de calcul limité à </label><select onchange="writeCookie()" name="delays" id="delays"><option>15 secondes</option><option>30 secondes</option><option selected="selected">1 minute</option><option>2 minutes</option><option>4 minutes</option><option>8 minutes</option></select></div>
+					<div><label class="fixedWidth" for="disambiguation">Désambiguïsation des attributs migrants </label><select onchange="writeCookie()" name="disambiguation" id="disambiguation"><option selected="selected">notes et numéros</option><option>numéros seulement</option></select></div>
+					<div><label class="fixedWidth" for="detect_overlaps" title="Lève une erreur en cas de chevauchement de pattes horizontales ou verticales.">Détecter les chevauchements</label><input type="checkbox" name="detect_overlaps" id="detect_overlaps" onchange="markAsDirty();writeCookie()" checked="checked"></div>
+					<div><label class="fixedWidth" title="Les formats cochés seront générés et inclus dans l'archive téléchargée.">Format des images en sortie</label><span title="Pour le web, zoom illimité. Requis."><input type="checkbox" disabled="true" id="svg" checked="checked"><label for="svg">&nbsp;SVG&nbsp;&nbsp;</label></span><span title="Multi-usage, zoom limité."><input type="checkbox" name="png" id="png" onchange="markAsDirty();writeCookie()"><label for="png">&nbsp;PNG&nbsp;&nbsp;</label></span><span title="Pour l'impression, zoom illimité."><input type="checkbox" name="pdf" id="pdf" onchange="markAsDirty();writeCookie()"><label for="pdf">&nbsp;PDF&nbsp;&nbsp;</label></span></div>
+					<div><label class="fixedWidth" for="SQL_dialect" title="Pour générer un code SQL valide, faites suivre chaque attribut de son type entre crochets.">Dialecte SQL en sortie</label><select onchange="writeCookie()" name="SQL_dialect" id="SQL_dialect"><option selected="selected"></option><option>MySQL</option><option>Oracle</option><option>PostgreSQL</option><option>SQLite</option></select></div>
+					<div><label class="fixedWidth" for="relation_formats" title="Les formats cochés seront affichés sous l'onglet Relations et inclus dans l'archive téléchargée.">Format des relations en sortie</label> <ul name="relation_formats" id="relation_formats"><li><input type="checkbox" name="relations[]'" value="markdown_data_dict" onchange="markAsDirty();writeCookie()"> <label title="Option placée ici par commodité: un dictionnaire des données n'a rien à voir avec un schéma relationnel.">Dictionnaire des données (Markdown)</label></li><li><input type="checkbox" name="relations[]'" value="text" onchange="markAsDirty();writeCookie()"> <label>Texte brut</label></li><li><input type="checkbox" name="relations[]'" value="latex" onchange="markAsDirty();writeCookie()"> <label>LaTeX</label></li><li><input type="checkbox" name="relations[]'" value="markdown" onchange="markAsDirty();writeCookie()"> <label>Markdown</label></li><li><input type="checkbox" name="relations[]'" value="html_verbose" onchange="markAsDirty();writeCookie()"> <label title="S'affiche également au-dessous du diagramme conceptuel.">Explications du schéma relationnel</label></li><li><input type="checkbox" name="relations[]'" value="diagram" onchange="markAsDirty();writeCookie()"> <label title="Résultat à réinjecter sous l'onglet Entrée pour tracer un diagramme sagittal des relations.">Diagramme relationnel</label></li><li><input type="checkbox" name="relations[]'" value="dependencies" onchange="markAsDirty();writeCookie()"> <label>Graphe des dépendances</label></li></ul></div>
+				</div>
+				<div id="geoContents" class="contents" style="display: none;">
+					<fieldset><legend>Coordonnées du centre des boîtes</legend><div id="coords"><div><label>etapesvoyages</label> <input value="60" type="text" onfocus="markAsMoved()" name="cx0" id="cx0" min="0"> <input value="85" type="text" onfocus="markAsMoved()" name="cy0" id="cy0" min="0"> </div><div><label>ville</label> <input value="174" type="text" onfocus="markAsMoved()" name="cx1" id="cx1" min="0"> <input value="85" type="text" onfocus="markAsMoved()" name="cy1" id="cy1" min="0"> </div><div><label>tarif</label> <input value="276" type="text" onfocus="markAsMoved()" name="cx2" id="cx2" min="0"> <input value="85" type="text" onfocus="markAsMoved()" name="cy2" id="cy2" min="0"> </div><div><label>voyage</label> <input value="402" type="text" onfocus="markAsMoved()" name="cx3" id="cx3" min="0"> <input value="85" type="text" onfocus="markAsMoved()" name="cy3" id="cy3" min="0"> </div><div><label>lieu</label> <input value="523" type="text" onfocus="markAsMoved()" name="cx4" id="cx4" min="0"> <input value="85" type="text" onfocus="markAsMoved()" name="cy4" id="cy4" min="0"> </div><div><label>pays</label> <input value="633" type="text" onfocus="markAsMoved()" name="cx5" id="cx5" min="0"> <input value="85" type="text" onfocus="markAsMoved()" name="cy5" id="cy5" min="0"> </div><div><label>film</label> <input value="757" type="text" onfocus="markAsMoved()" name="cx6" id="cx6" min="0"> <input value="85" type="text" onfocus="markAsMoved()" name="cy6" id="cy6" min="0"> </div><div><label>tournage</label> <input value="884" type="text" onfocus="markAsMoved()" name="cx7" id="cx7" min="0"> <input value="85" type="text" onfocus="markAsMoved()" name="cy7" id="cy7" min="0"> </div></div></fieldset>
+					<fieldset><legend>Décalage des cardinalités</legend><div id="cards"></div></fieldset>
+					<fieldset><legend>Zone de rognage</legend><div id="size"><div><label>&nbsp;</label> <input value="940" type="text" onfocus="markAsMoved()" name="width" id="width" min="0"> <input value="170" type="text" onfocus="markAsMoved()" name="height" id="height" min="0"> </div></div></fieldset>
+					<fieldset><legend>Position des flèches des associations</legend><div id="arrows"></div></fieldset>
+				</div>
+			</div>
+		</div>
+		<div id="outputZone">
+			<div class="line"></div>
+			<ul class="tabs">
+				<li><a href="#diagramAndSupplementOutput" id="diagramTab" class="first_tab active"><span>Diagramme</span></a></li>
+				<li><a href="#relationalOutput" class=""><span>Relations</span></a></li>
+				<li><a href="#errorOutput" id="errorTab" style="display: none;" class=""><span>Erreurs</span></a></li>
+			</ul>
+			<div class="pane">
+				<div id="outputButtons" class="buttons">
+						<span class="fa fa-refresh fa-2x customButton" id="generateButton" onclick="generate()" title="Générer le MCD et les relations à partir du texte d'entrée."></span>
+						<span class="fa fa-download fa-2x customButton" id="downloadButton" onclick="mainForm.submit()" title="Télécharger l'ensemble des données et des résultats." style="display: inline;"></span>
+				</div>
+				<div id="diagramAndSupplementOutput" style="display: block;">
+					<div id="diagramOutput" class="contents active"><!--?xml version="1.0" encoding="utf-8"?-->
+<svg width="940" height="170" viewBox="0 0 940 170" xmlns="http://www.w3.org/2000/svg">
+<rect id="frame" x="0" y="0" width="940" height="170" fill="#ffffbf" stroke="#808080" stroke-width="1" stroke-dasharray="2,2"></rect>
+
+<!-- Entity etapesvoyages -->
+<g>
+	<g>
+		<rect x="9" y="34" width="102" height="25" fill="#fdae61" stroke="#fdae61" stroke-width="0" opacity="1"></rect>
+		<rect x="9" y="59" width="102" height="77" fill="#fee090" stroke="#fee090" stroke-width="0" opacity="1"></rect>
+		<rect x="9" y="34" width="102" height="102" fill="none" stroke="#f46d43" stroke-width="2" opacity="1"></rect>
+		<line x1="9" y1="59" x2="111" y2="59" stroke="#f46d43" stroke-width="1"></line>
+	</g>
+	<text x="15" y="51.75" fill="#000" font-family="Verdana" font-size="12">etapesvoyages</text>
+	<text x="14" y="76.8" fill="#000" font-family="Verdana" font-size="12">IDvoyage</text>
+	<line x1="14" y1="79" x2="73" y2="79" stroke="#000" stroke-width="1"></line>
+	<text x="14" y="93.8" fill="#000" font-family="Verdana" font-size="12">IDville</text>
+	<text x="14" y="110.8" fill="#000" font-family="Verdana" font-size="12">IDetape</text>
+	<line x1="14" y1="113" x2="63" y2="113" stroke="#000" stroke-width="1"></line>
+	<text x="14" y="127.8" fill="#000" font-family="Verdana" font-size="12">durée</text>
+</g>
+
+<!-- Entity ville -->
+<g>
+	<g>
+		<rect x="143" y="34" width="62" height="25" fill="#fdae61" stroke="#fdae61" stroke-width="0" opacity="1"></rect>
+		<rect x="143" y="59" width="62" height="77" fill="#fee090" stroke="#fee090" stroke-width="0" opacity="1"></rect>
+		<rect x="143" y="34" width="62" height="102" fill="none" stroke="#f46d43" stroke-width="2" opacity="1"></rect>
+		<line x1="143" y1="59" x2="205" y2="59" stroke="#f46d43" stroke-width="1"></line>
+	</g>
+	<text x="162" y="51.75" fill="#000" font-family="Verdana" font-size="12">ville</text>
+	<text x="148" y="76.8" fill="#000" font-family="Verdana" font-size="12">IDville</text>
+	<line x1="148" y1="79" x2="187" y2="79" stroke="#000" stroke-width="1"></line>
+	<text x="148" y="93.8" fill="#000" font-family="Verdana" font-size="12">nomville</text>
+	<text x="148" y="110.8" fill="#000" font-family="Verdana" font-size="12">etatville</text>
+	<text x="148" y="127.8" fill="#000" font-family="Verdana" font-size="12">IDpays</text>
+</g>
+
+<!-- Entity tarif -->
+<g>
+	<g>
+		<rect x="237" y="43" width="78" height="25" fill="#fdae61" stroke="#fdae61" stroke-width="0" opacity="1"></rect>
+		<rect x="237" y="68" width="78" height="59" fill="#fee090" stroke="#fee090" stroke-width="0" opacity="1"></rect>
+		<rect x="237" y="43" width="78" height="84" fill="none" stroke="#f46d43" stroke-width="2" opacity="1"></rect>
+		<line x1="237" y1="68" x2="315" y2="68" stroke="#f46d43" stroke-width="1"></line>
+	</g>
+	<text x="263" y="60.75" fill="#000" font-family="Verdana" font-size="12">tarif</text>
+	<text x="242" y="85.8" fill="#000" font-family="Verdana" font-size="12">IDvoyage</text>
+	<line x1="242" y1="88" x2="301" y2="88" stroke="#000" stroke-width="1"></line>
+	<text x="242" y="102.8" fill="#000" font-family="Verdana" font-size="12">datedepart</text>
+	<line x1="242" y1="105" x2="309" y2="105" stroke="#000" stroke-width="1"></line>
+	<text x="242" y="119.8" fill="#000" font-family="Verdana" font-size="12">prix</text>
+</g>
+
+<!-- Entity voyage -->
+<g>
+	<g>
+		<rect x="347" y="26" width="110" height="25" fill="#fdae61" stroke="#fdae61" stroke-width="0" opacity="1"></rect>
+		<rect x="347" y="51" width="110" height="93" fill="#fee090" stroke="#fee090" stroke-width="0" opacity="1"></rect>
+		<rect x="347" y="26" width="110" height="118" fill="none" stroke="#f46d43" stroke-width="2" opacity="1"></rect>
+		<line x1="347" y1="51" x2="457" y2="51" stroke="#f46d43" stroke-width="1"></line>
+	</g>
+	<text x="380" y="43.75" fill="#000" font-family="Verdana" font-size="12">voyage</text>
+	<text x="352" y="68.8" fill="#000" font-family="Verdana" font-size="12">IDvoyage</text>
+	<line x1="352" y1="71" x2="411" y2="71" stroke="#000" stroke-width="1"></line>
+	<text x="352" y="85.8" fill="#000" font-family="Verdana" font-size="12">nomvoyage</text>
+	<text x="352" y="102.8" fill="#000" font-family="Verdana" font-size="12">capavoyagemax</text>
+	<text x="352" y="119.8" fill="#000" font-family="Verdana" font-size="12">capavoyagemin</text>
+	<text x="352" y="136.8" fill="#000" font-family="Verdana" font-size="12">pensionclient</text>
+</g>
+
+<!-- Entity lieu -->
+<g>
+	<g>
+		<rect x="489" y="34" width="68" height="25" fill="#fdae61" stroke="#fdae61" stroke-width="0" opacity="1"></rect>
+		<rect x="489" y="59" width="68" height="77" fill="#fee090" stroke="#fee090" stroke-width="0" opacity="1"></rect>
+		<rect x="489" y="34" width="68" height="102" fill="none" stroke="#f46d43" stroke-width="2" opacity="1"></rect>
+		<line x1="489" y1="59" x2="557" y2="59" stroke="#f46d43" stroke-width="1"></line>
+	</g>
+	<text x="512" y="51.75" fill="#000" font-family="Verdana" font-size="12">lieu</text>
+	<text x="494" y="76.8" fill="#000" font-family="Verdana" font-size="12">IDlieu</text>
+	<line x1="494" y1="79" x2="531" y2="79" stroke="#000" stroke-width="1"></line>
+	<text x="494" y="93.8" fill="#000" font-family="Verdana" font-size="12">libellelieu</text>
+	<text x="494" y="110.8" fill="#000" font-family="Verdana" font-size="12">IDville</text>
+	<text x="494" y="127.8" fill="#000" font-family="Verdana" font-size="12">IDpays</text>
+</g>
+
+<!-- Entity pays -->
+<g>
+	<g>
+		<rect x="589" y="17" width="88" height="25" fill="#fdae61" stroke="#fdae61" stroke-width="0" opacity="1"></rect>
+		<rect x="589" y="42" width="88" height="111" fill="#fee090" stroke="#fee090" stroke-width="0" opacity="1"></rect>
+		<rect x="589" y="17" width="88" height="136" fill="none" stroke="#f46d43" stroke-width="2" opacity="1"></rect>
+		<line x1="589" y1="42" x2="677" y2="42" stroke="#f46d43" stroke-width="1"></line>
+	</g>
+	<text x="619" y="34.75" fill="#000" font-family="Verdana" font-size="12">pays</text>
+	<text x="594" y="59.8" fill="#000" font-family="Verdana" font-size="12">IDpays</text>
+	<line x1="594" y1="62" x2="637" y2="62" stroke="#000" stroke-width="1"></line>
+	<text x="594" y="76.8" fill="#000" font-family="Verdana" font-size="12">bompays</text>
+	<text x="594" y="93.8" fill="#000" font-family="Verdana" font-size="12">codepays</text>
+	<text x="594" y="110.8" fill="#000" font-family="Verdana" font-size="12">nompays_en</text>
+	<text x="594" y="127.8" fill="#000" font-family="Verdana" font-size="12">formalite</text>
+	<text x="594" y="144.8" fill="#000" font-family="Verdana" font-size="12">vaccin</text>
+</g>
+
+<!-- Entity film -->
+<g>
+	<g>
+		<rect x="709" y="9" width="96" height="25" fill="#fdae61" stroke="#fdae61" stroke-width="0" opacity="1"></rect>
+		<rect x="709" y="34" width="96" height="127" fill="#fee090" stroke="#fee090" stroke-width="0" opacity="1"></rect>
+		<rect x="709" y="9" width="96" height="152" fill="none" stroke="#f46d43" stroke-width="2" opacity="1"></rect>
+		<line x1="709" y1="34" x2="805" y2="34" stroke="#f46d43" stroke-width="1"></line>
+	</g>
+	<text x="746" y="26.75" fill="#000" font-family="Verdana" font-size="12">film</text>
+	<text x="714" y="51.8" fill="#000" font-family="Verdana" font-size="12">IDfilm</text>
+	<line x1="714" y1="54" x2="752" y2="54" stroke="#000" stroke-width="1"></line>
+	<text x="714" y="68.8" fill="#000" font-family="Verdana" font-size="12">nomfilm</text>
+	<text x="714" y="85.8" fill="#000" font-family="Verdana" font-size="12">anneedesortie</text>
+	<text x="714" y="102.8" fill="#000" font-family="Verdana" font-size="12">revenuefilm</text>
+	<text x="714" y="119.8" fill="#000" font-family="Verdana" font-size="12">scorefilm</text>
+	<text x="714" y="136.8" fill="#000" font-family="Verdana" font-size="12">budgetfilm</text>
+	<text x="714" y="153.8" fill="#000" font-family="Verdana" font-size="12">paysfilm</text>
+</g>
+
+<!-- Entity tournage -->
+<g>
+	<g>
+		<rect x="837" y="43" width="94" height="25" fill="#fdae61" stroke="#fdae61" stroke-width="0" opacity="1"></rect>
+		<rect x="837" y="68" width="94" height="59" fill="#fee090" stroke="#fee090" stroke-width="0" opacity="1"></rect>
+		<rect x="837" y="43" width="94" height="84" fill="none" stroke="#f46d43" stroke-width="2" opacity="1"></rect>
+		<line x1="837" y1="68" x2="931" y2="68" stroke="#f46d43" stroke-width="1"></line>
+	</g>
+	<text x="857" y="60.75" fill="#000" font-family="Verdana" font-size="12">tournage</text>
+	<text x="842" y="85.8" fill="#000" font-family="Verdana" font-size="12">IDlieu</text>
+	<line x1="842" y1="88" x2="879" y2="88" stroke="#000" stroke-width="1"></line>
+	<text x="842" y="102.8" fill="#000" font-family="Verdana" font-size="12">IDfilm</text>
+	<text x="842" y="119.8" fill="#000" font-family="Verdana" font-size="12">infostournage</text>
+</g>
+
+<!-- Link from &quot;IDvoyage&quot; (etapesvoyages) to &quot;IDvoyage&quot; (voyage) -->
+<path d="M111 72.5 C229 68.5 189.67 64.5 347 64.5" fill="none" stroke="#74add1" stroke-width="2"></path>
+<polygon points="347 64.5 335 70.5 339 64.5 335 58.5" fill="#74add1" stroke-width="0"></polygon>
+<circle cx="111" cy="72.5" r="2" stroke="#74add1" stroke-width="2" fill="#74add1"></circle>
+
+<!-- Link from &quot;IDville&quot; (etapesvoyages) to &quot;IDville&quot; (ville) -->
+<path d="M111 89.5 C127 81 121.67 72.5 143 72.5" fill="none" stroke="#74add1" stroke-width="2"></path>
+<polygon points="143 72.5 131 78.5 135 72.5 131 66.5" fill="#74add1" stroke-width="0"></polygon>
+<circle cx="111" cy="89.5" r="2" stroke="#74add1" stroke-width="2" fill="#74add1"></circle>
+
+<!-- Link from &quot;IDpays&quot; (ville) to &quot;IDpays&quot; (pays) -->
+<path d="M205 123.5 C397 89.5 333 55.5 589 55.5" fill="none" stroke="#74add1" stroke-width="2"></path>
+<polygon points="589 55.5 577 61.5 581 55.5 577 49.5" fill="#74add1" stroke-width="0"></polygon>
+<circle cx="205" cy="123.5" r="2" stroke="#74add1" stroke-width="2" fill="#74add1"></circle>
+
+<!-- Link from &quot;IDvoyage&quot; (tarif) to &quot;IDvoyage&quot; (voyage) -->
+<path d="M315 81.5 C331 73 325.67 64.5 347 64.5" fill="none" stroke="#74add1" stroke-width="2"></path>
+<polygon points="347 64.5 335 70.5 339 64.5 335 58.5" fill="#74add1" stroke-width="0"></polygon>
+<circle cx="315" cy="81.5" r="2" stroke="#74add1" stroke-width="2" fill="#74add1"></circle>
+
+<!-- Link from &quot;IDville&quot; (lieu) to &quot;IDville&quot; (ville) -->
+<path d="M489 106.5 C347 89.5 394.33 72.5 205 72.5" fill="none" stroke="#74add1" stroke-width="2"></path>
+<polygon points="205 72.5 217 66.5 213 72.5 217 78.5" fill="#74add1" stroke-width="0"></polygon>
+<circle cx="489" cy="106.5" r="2" stroke="#74add1" stroke-width="2" fill="#74add1"></circle>
+
+<!-- Link from &quot;IDpays&quot; (lieu) to &quot;IDpays&quot; (pays) -->
+<path d="M557 123.5 C573 89.5 567.67 55.5 589 55.5" fill="none" stroke="#74add1" stroke-width="2"></path>
+<polygon points="589 55.5 577 61.5 581 55.5 577 49.5" fill="#74add1" stroke-width="0"></polygon>
+<circle cx="557" cy="123.5" r="2" stroke="#74add1" stroke-width="2" fill="#74add1"></circle>
+
+<!-- Link from &quot;IDpays&quot; (film) to &quot;IDpays&quot; (pays) -->
+<path d="M709 149.5 C693 102.5 698.33 55.5 677 55.5" fill="none" stroke="#74add1" stroke-width="2"></path>
+<polygon points="677 55.5 689 49.5 685 55.5 689 61.5" fill="#74add1" stroke-width="0"></polygon>
+<circle cx="709" cy="149.5" r="2" stroke="#74add1" stroke-width="2" fill="#74add1"></circle>
+
+<!-- Link from &quot;IDlieu&quot; (tournage) to &quot;IDlieu&quot; (lieu) -->
+<path d="M837 81.5 C697 77 743.67 72.5 557 72.5" fill="none" stroke="#74add1" stroke-width="2"></path>
+<polygon points="557 72.5 569 66.5 565 72.5 569 78.5" fill="#74add1" stroke-width="0"></polygon>
+<circle cx="837" cy="81.5" r="2" stroke="#74add1" stroke-width="2" fill="#74add1"></circle>
+
+<!-- Link from &quot;IDfilm&quot; (tournage) to &quot;IDfilm&quot; (film) -->
+<path d="M837 98.5 C821 73 826.33 47.5 805 47.5" fill="none" stroke="#74add1" stroke-width="2"></path>
+<polygon points="805 47.5 817 41.5 813 47.5 817 53.5" fill="#74add1" stroke-width="0"></polygon>
+<circle cx="837" cy="98.5" r="2" stroke="#74add1" stroke-width="2" fill="#74add1"></circle>
+</svg></div>
+					<div id="diagramOutputSupplement" class="contents"></div>
+				</div>
+				<div id="relationalOutput" class="contents" style="display: none;"></div>
+				<div id="errorOutput" class="contents" style="display: none;"><pre>Mocodo Err.15 - L'attribute «&nbsp;IDlieu&nbsp;» de l'entité «&nbsp;tournage&nbsp;» fait référence à un
+attribut «&nbsp;IDlieu&nbsp;» inconnu dans l'entité «&nbsp;lieu&nbsp;».</pre></div>
+			</div>
+		</div>
+	</form>
+</div>
+<div id="navigation">
+	<a target="_blank" href="https://github.com/laowantong/mocodo">Mocodo 3.2.1</a>
+	&nbsp;∙&nbsp;
+	<a target="_blank" href="https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html">Documentation</a>
+	&nbsp;∙&nbsp;
+	<a target="_blank" href="https://www.transifex.com/aristide/mocodo">Localisation</a>
+	&nbsp;∙&nbsp;
+	<a target="_blank" href="https://github.com/laowantong/mocodo/issues">Récriminations</a>
+	&nbsp;∙&nbsp;
+	<a target="_blank" href="" title="En ligne de commande, faites `mocodo --help` pour afficher mon adresse mail." onclick="alert('En ligne de commande, faites :\n\xA0\xA0\xA0\xA0mocodo --help\npour afficher mon adresse mail.')">Contact</a>
+</div>
+
+<script type="text/javascript" charset="utf8" src="Mocodo%20online_fichiers/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" charset="utf8" src="Mocodo%20online_fichiers/js.cookie.js"></script>
+<script type="text/javascript" charset="utf8" src="Mocodo%20online_fichiers/mocodo.js"></script>
+<script type="text/javascript" charset="utf8" src="Mocodo%20online_fichiers/ace.js"></script>
+<script type="text/javascript" charset="utf8" src="Mocodo%20online_fichiers/ext-language_tools.js"></script>
+
+
+
+<div class=" ace_editor ace_autocomplete ace-chrome" style="top: 276.4px; left: 761.182px; height: 34px; display: none;" role="listbox" aria-label="Autocomplete suggestions" aria-activedescendant="suggest-aria-id:0"><textarea class="ace_text-input" autocorrect="off" autocapitalize="none" spellcheck="false" style="opacity: 0; font-size: 1px; top: 0px; left: -100px;" aria-haspopup="false" aria-autocomplete="both" role="textbox" wrap="off"></textarea><div class="ace_gutter" aria-hidden="true" style="display: none; left: 0px; width: 40px;"><div class="ace_layer ace_gutter-layer ace_folding-enabled" style="height: 1000000px; top: 0px; left: 0px; width: 40px;"><div class="ace_gutter-cell " style="height: 17px; top: 0px;" aria-hidden="true">1<span style="display: none;" tabindex="0"></span><span style="display: none;" tabindex="0"><span></span></span></div><div class="ace_gutter-cell " style="height: 17px; top: 17px;" aria-hidden="true">2<span style="display: none;" tabindex="0"></span><span style="display: none;" tabindex="0"><span></span></span></div><div class="ace_gutter-cell " style="height: 17px; top: 34px;" aria-hidden="true">3<span style="display: none;" tabindex="0"></span><span style="display: none;" tabindex="0"><span></span></span></div><div class="ace_gutter-cell " style="height: 17px; top: 51px;" aria-hidden="true">4<span style="display: none;" tabindex="0"></span><span style="display: none;" tabindex="0"><span></span></span></div><div class="ace_gutter-cell " style="height: 17px; top: 68px;" aria-hidden="true">5<span style="display: none;" tabindex="0"></span><span style="display: none;" tabindex="0"><span></span></span></div><div class="ace_gutter-cell " style="height: 17px; top: 85px;" aria-hidden="true">6<span style="display: none;" tabindex="0"></span><span style="display: none;" tabindex="0"><span></span></span></div><div class="ace_gutter-cell " style="height: 17px; top: 102px;" aria-hidden="true">7<span style="display: none;" tabindex="0"></span><span style="display: none;" tabindex="0"><span></span></span></div></div></div><div class="ace_scroller " style="line-height: 17px; left: 0px; right: 0px; bottom: 0px;"><div class="ace_content" style="cursor: default; top: 0px; left: 0px; width: 298px; height: 68px;"><div class="ace_layer ace_print-margin-layer"><div class="ace_print-margin" style="left: 564px; visibility: hidden;"></div></div><div class="ace_layer ace_marker-layer"><div style="height: 17px; top: 0px; left: 0px; right: 0px;" class="ace_active-line"></div></div><div class="ace_layer ace_text-layer" style="height: 1000000px; margin: 0px 4px; top: 0px; left: 0px;"><div style="height: 17px; top: 0px;" class="ace_line ace_selected" id="suggest-aria-id:0" role="option" aria-label="IDpays-" aria-setsize="2" aria-posinset="0" aria-describedby="doc-tooltip"><span class="ace_completion-highlight">IDpays</span><span class="ace_">-</span><span class="ace_completion-spacer"> </span><span class="ace_completion-meta">local</span></div><div style="height: 17px; top: 17px;" class="ace_line"><span class="ace_completion-highlight">IDpays</span><span class="ace_completion-spacer"> </span><span class="ace_completion-meta">local</span></div></div><div class="ace_layer ace_marker-layer"></div><div class="ace_layer ace_cursor-layer ace_hidden-cursors" style="opacity: 0;"><div class="ace_cursor" style="display: block; top: 0px; left: 4px; width: 7px; height: 17px;"></div></div></div></div><div class="ace_scrollbar ace_scrollbar-v" style="width: 22px; height: 34px; bottom: 0px; display: none;"><div class="ace_scrollbar-inner" style="width: 22px; height: 34px;">&nbsp;</div></div><div class="ace_scrollbar ace_scrollbar-h" style="display: none; height: 22px; left: 0px; right: 0px; width: 298px;"><div class="ace_scrollbar-inner" style="height: 22px; width: 281px;">&nbsp;</div></div><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font: inherit; overflow: hidden;"><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font: inherit; overflow: visible;">הההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההה</div><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font-style: inherit; font-variant: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; font-size-adjust: inherit; font-kerning: inherit; font-optical-sizing: inherit; font-language-override: inherit; font-feature-settings: inherit; font-variation-settings: inherit; overflow: visible;">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div></div></div></body></html>

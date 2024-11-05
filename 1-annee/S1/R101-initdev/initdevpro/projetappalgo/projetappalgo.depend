@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1703155532 source:z:\initdevpro\projetappalgo\fonction.cpp
+	"fonction.h"
+	<fstream>
+	<iostream>
+	<string>
+	<vector>
+
+1703155031 z:\initdevpro\projetappalgo\fonction.h
+	<iostream>
+	<string>
+	<vector>
+
+1703153267 source:z:\initdevpro\projetappalgo\main.cpp
+	"fonction.h"
+	<iostream>
+	<string>
+	<vector>
+

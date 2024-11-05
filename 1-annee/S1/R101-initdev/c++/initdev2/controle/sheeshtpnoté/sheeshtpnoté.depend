@@ -1,0 +1,27 @@
+# depslib dependency file v1.0
+1704809865 source:z:\r101-initdev\c++\initdev2\controle\sheeshtpnoté\boite.cpp
+	"perle.h"
+	"boite.h"
+	<string>
+
+1704808180 z:\r101-initdev\c++\initdev2\controle\sheeshtpnoté\perle.h
+	<iostream>
+	<vector>
+
+1704809554 z:\r101-initdev\c++\initdev2\controle\sheeshtpnoté\boite.h
+	"perle.h"
+	<iostream>
+	<vector>
+
+1704809767 source:z:\r101-initdev\c++\initdev2\controle\sheeshtpnoté\main.cpp
+	<iostream>
+	"perle.h"
+	"boite.h"
+	<string>
+	<ctime>
+
+1704808248 source:z:\r101-initdev\c++\initdev2\controle\sheeshtpnoté\perle.cpp
+	<iostream>
+	<vector>
+	"perle.h"
+

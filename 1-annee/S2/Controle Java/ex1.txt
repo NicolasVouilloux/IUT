@@ -1,0 +1,19 @@
+Nicolas Vouilloux Exercice 1 :
+En étant aussi précis que possible, décrivez dans quel(s) cas vous utilisez une interface. Même question pour la notion de classe abstraite.
+
+Une interface est a utiliser pour donner des informations spécifique des méthodes spécifiques elle sert surtout a rajouté de la documentation.
+l'exemple des class chat et lion qui herite de felin qui herite lui meme de animal , et loup et chien qui herite eux de (animal pas félin (j'espere que vous me comprendrez))
+l'interface apivoisable est utile dans ce cas car les chats et le chients ont besoin des attributs de apprivoisables et des fonctions qui vont avec (elle sont juste déclarer)
+ils faut donc quand meme les faires dans chats et dans chien. Une class abstraite sert surtout a ne pas faire les meme fonctions et attributs pour des objets qui se ressemble et
+qui en ont besoin, l'exemple de la classe si dessus avec animals qui donne felin qui donne chien lion , si je créer un objet animal cela na aucun sens il n'est pas précis je dois donc
+utiliser des attributs de animals comme bool estenvie par exemple pour toutes les class qui extends animals
+
+Quelle(s) diférence(s) voyez-vous entre les deux concepts ?
+
+une interfaces ne peut pas faire d'attribut non final et elle ne peut pas implementer de mehodes , elle peut cependant etendre une ou plusieurs autres interfaces.
+cependant une class abstraite peut faire des attributs non finals , implementer des methodes , mais elle ne peut pas etendre plusieurs class abstraite
+
+Une class peut-elle implémenter plusieurs interfaces ? Peut-elle hériter de plusieurs classes ? Peut-elle à la fois hériter d'une classe et implémenter une interface ?
+
+Une class peut implementer plusieurs interfaces, elle ne peut pas heriter de plusieurs classes. Elle peut a la fois heriter d'une classe et implementer une interface.
+

@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1697614730 source:z:\r101-initdev\c++\tp 6 id\exo 2\projet\calcul\calcul.cpp
+	"calcul.h"
+
+1697614224 z:\r101-initdev\c++\tp 6 id\exo 2\projet\calcul\calcul.h
+
+1697615282 source:z:\r101-initdev\c++\tp 6 id\exo 2\projet\calcul\main.cpp
+	<iostream>
+	"calcul.h"
+

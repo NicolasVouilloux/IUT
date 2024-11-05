@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1705572667 source:z:\r101-initdev\c++\initdev2\controle\controleinitidev2mix\combinaison.cpp
+	"combinaison.h"
+
+1705572829 z:\r101-initdev\c++\initdev2\controle\controleinitidev2mix\combinaison.h
+	"pion.h"
+
+1705570317 z:\r101-initdev\c++\initdev2\controle\controleinitidev2mix\pion.h
+	<iostream>
+	<vector>
+
+1705572703 source:z:\r101-initdev\c++\initdev2\controle\controleinitidev2mix\main.cpp
+	"pion.h"
+	"combinaison.h"
+	<ctime>
+	<iostream>
+
+1705570317 source:z:\r101-initdev\c++\initdev2\controle\controleinitidev2mix\pion.cpp
+	"pion.h"
+

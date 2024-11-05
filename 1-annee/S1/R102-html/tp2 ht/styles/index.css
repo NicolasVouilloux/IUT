@@ -1,0 +1,38 @@
+@charset"utf-8";
+*{
+	margin : 0; padding : 0;
+ }
+header
+{
+	text-align: center;
+	background-color: yellow;
+}
+header h1
+{
+		font-size: 500%;
+} 
+header h2 
+{
+	font-size: 250%;
+}
+aside 
+{
+	border: solid black;
+	margin-left: 20px;
+	margin-right: 20px;
+	background-image: url("../Images/Garen_3.jpg");	
+	background-size:cover;
+}
+aside p , aside p 
+{
+	margin-left: 15px;
+	margin-top:200px;
+	margin-bottom:200px;
+	color:white;
+	text-shadow: 1px 1px 2px black;
+	font-size: 200%;
+}
+*
+{
+	background-color:yellow;
+}

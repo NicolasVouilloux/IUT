@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1702398724 source:z:\r101-initdev\c++\initdev2\tp4\tp4ex1\main.cpp
+	<cstdlib>
+	<iostream>
+	"rat.h"
+
+1702399261 z:\r101-initdev\c++\initdev2\tp4\tp4ex1\rat.h
+	<iostream>
+	<cstdlib>
+
+1702399354 source:z:\r101-initdev\c++\initdev2\tp4\tp4ex1\rat.cpp
+	<iostream>
+	<stdexcept>
+	"rat.h"
+

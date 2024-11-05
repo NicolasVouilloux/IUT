@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>JayWon University</title>
+        <link rel="icon" type="image/png" href="../image/logomain2.jpg"/>
+        <link rel="stylesheet" href="../styles/index.css" />
+    </head>
+    <body>
+        <nav>
+            <a href="./pagedaccueill.html"><div class="imagelogo"><img src="../image/logomain2.jpg" width="50px" height="50px" alt="U"></div></a>
+            <br>
+            <a href="./pagedaccueill.html">Accueil</a>
+            <a href="./formation.html">Formation</a>
+            <a href="./contact.html">Contact</a>
+        </nav>
+        <header>
+            <div class="lolipop"><img src="../image/lolipop.png"width="250px" height="250px"></div>
+            <h1>
+                Contact <img src="../image/logomain2.jpg"width="150px" height="150px"> 
+            </h1>
+        </header>
+        <main>
+            <p>
+                Sur cette page, vous pourrez accéder à toutes les informations nécessaires concernant la communication avec notre établissement. Vous pourrez également accéder au formulaire ci-dessous vous permettant de nous contacter et de sélectionner la formation qui vous intéresse.
+            </p>
+            <div class="formulaire">
+                <ul>
+                    <li>
+                        <label for="Female">Female </label>
+                        <input type="radio" id="Female" name="check" onclick="onlyOne(this)">
+                        <label for="Male">Male </label>
+                        <input type="radio" id="male" name="check" onclick="onlyOne(this)">
+                        <label for="Other">Other </label>
+                        <input type="radio" id="Other" name="check" onclick="onlyOne(this)">
+                        <label for="DoubleMix">DoubleMix </label>
+                        <input type="radio" id="Other" name="check" onclick="onlyOne(this)">
+                    </li>
+
+                    <li>
+                        <label for="Nom"> Nom : </label>
+                        <input type="text" id="Nom" name="name">
+                        <label for="Prenom"> Prenom : </label>
+                        <input type="text" id="Prenom" name="name">
+                    </li>
+
+                    <li>
+                        <label for="mail"> Mail : </label>
+                        <input type="email" id="mail" name="mail">
+                    </li>
+                    <li>
+                        <label for="Numero carte bleue"> Numéro carte bleue</label>
+                        <input type="Numéro carte bleue" id="Numero carte bleue" name="Numéro carte bleue">
+                    </li>
+                    <li>
+                        <label for="Cryptograme">Cryptograme</label>
+                        <input type="Cryptograme" id="Cryptograme" name="Cryptograme">
+                        <div>Prélèvement quotidien d'une valeur de 100 euros, suivi de 10 mois supplémentaire après résiliation.</div>
+                    </li>
+                    <li>
+                        <label for="text"> Message : </label>
+                        <textarea id="text" name="message" rows="10" cols="50"></textarea>
+                    </li>
+                    <li>
+                        <label for="Formation">Formation :</label>
+                        <select id="Formation" name="Formation">
+                            <option label="Select">Select</option> 
+                            <option value="GCPP"> Master en GCPPP </option>
+                            <option value="FB"> Professionnal Entertainment Degree Overwatch  </option>
+                            <option value="FB"> Formation to grow  </option>
+                        </select>
+                    </li>
+                </ul>
+                <button>Envoyer le mail au copinou</button>
+            </div>
+            <iframe class="megacarte" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2847.01825316669!2d3.770130276588519!3d44.47379859897181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b482db53279207%3A0xe54c3da53b7112a6!2s7%20Vge%20de%20Cubi%C3%A8res%2C%2048190%20Cubi%C3%A8res!5e0!3m2!1sfr!2sfr!4v1701269593431!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </main>
+        <footer>
+                <h2> <em><strong>Informations de contact :</strong></em></h2>
+                <div class="contact">
+                    <strong>JayWon University 7 VGE de Cubières 48190 Cubières</strong><br><br>
+                    <a href="tel:+13947793">+13947793</a><br><br>
+                    <a href="mailto: prefecture@seine-saint-denis.gouv.fr."> prefecture@seine-saint-denis.gouv.fr.</a><br><br>
+                    Vouilloux Nicolas / Jorge Joel
+                </div>
+        </footer> 
+    </body>
+</html>

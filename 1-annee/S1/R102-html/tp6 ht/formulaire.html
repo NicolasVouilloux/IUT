@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<title>Formulaire</title>
+		<link rel="stylesheet" href="./styles/index.css" />
+		<link rel="stylesheet" href="./styles/animation.css" />
+	</head>
+	<body>
+		<header>
+			<h1>Premier	document html</h1>
+			<h2>Structure standard d'une page html</h2>
+			<p>Ales-Bianchetti Jacques,  IUT-Orsay</p>
+		</header>
+		<nav>
+			<a href="./index.html">Acceuil</a>
+			<a href="./tableau.html">Tableau</a>
+			<a class="ici" href="./formulaire.html">Formulaire</a>
+		</nav>
+		<main>
+
+			<section>
+				<h1>Le formulaire des questions incontournables</h1>
+				<article>
+					<form 
+						action="https://webdev.iut-orsay.fr/r102/tests/formulaire/test_formulaire.php"
+						method="post"
+						>
+						
+						<label for="u_name">
+							Utilisateur
+						</label>
+						<input id="u_name"
+							name="nom_utilisateur"
+							type="text"
+							required
+							placeholder="nom"
+						/>
+						
+						<label for="u_firstname">
+							Utilisateur
+						</label>
+						<input id="u_firstname"
+							name="prenom_utilisateur"
+							type="text"
+							placeholder="prénom"
+						/>
+						
+						<label for="u_password">
+							Mot de passe
+						</label>
+						<input id="u_password"
+							name="password_utilisateur"
+							type="password"
+							required
+							placeholder="***"
+						/>
+						
+						<label for="doc_name">
+							Nom document
+						</label>
+						<input id="doc_name"
+							name="nom_document"
+							type="text"
+							required
+							placeholder="AA999aa999.{pdf|csv}"
+							pattern="[A-Z]{2}\d{3}[a-z]{2}\d{3}\.((pdf)|(csv))"
+						/>
+						
+						<label for="doc_type">
+							Type document
+						</label>
+						<input id="doc_type"
+							name="type_document"
+							type="text"
+							required
+							placeholder="choisissez"
+							list="types_de_docs"/>
+							
+						<label for="doc_update">
+							Date Mise à jour document
+						</label>
+						<input id="doc_update"
+							name="date_maj_document"
+							type="date"
+							required							
+						/>
+
+						<label for="doc_version">
+							Version du document
+						</label>
+						<input id="doc_version"
+							name="version_document"
+							type="number"
+							required							
+							min="1"
+							max="20"
+							placeholder="entre 1 et 20"
+						/>
+
+						<label for="in_fichier">
+							Choisissez le fichier
+						</label>
+						<input id="in_fichier"
+							name="fichier_document"
+							type="file"
+							required
+							accept="application/pdf,text/csv"
+						/>
+						<input id="in_confirme_fichier"
+							name="check_confirmation_document"
+							type="checkbox"
+							required
+						/>
+						<label for="in_confirme_fichier">
+							(confirmation)
+						</label>
+						
+						<fieldset>
+							<legend>Urgence de l'envoi</legend>
+							<input id="in_radio_urgence_top"
+								type="radio"
+								name="urgence_envoi"
+								value="top priorite"
+							/>
+							<label for="in_radio_urgence_top">
+								top priorité!!!
+							</label>
+							<input id="in_radio_urgence_cava"
+								type="radio"
+								name="urgence_envoi"
+								value="ca va"
+							/>
+							<label for="in_radio_urgence_cava">
+								ca vaaaa......
+							</label>
+							<input id="in_radio_urgence_procrast"
+								type="radio"
+								name="urgence_envoi"
+								value="procrastinable"
+							/>
+							<label for="in_radio_urgence_procrast">
+								procrastinable
+							</label>
+						</fieldset>
+						
+						<label for="u_confidence">
+							Avez vous confiance en nous ?
+						</label>
+						<input id="u_confidence"
+							name="confiance_utilisateur"
+							type="range"
+							required							
+							min="1"
+							max="100"
+						/>
+
+						<label for="u_message">
+							Un message personnel ?
+						</label>
+						<select id="u_message" name="message_utilisateur">
+							<option value="merci">Merci!</option>
+							<option value="super">Super!!</option>
+							<option value="bravo">Bravo!!!</option>
+						</select>
+
+						<input 
+							name="je_te_connais"
+							type="hidden"
+							value="ton_numero_est_24254"
+						/>
+						
+						<input type="submit" value="envoyer" />
+						<input type="reset" value="annuler" />
+					</form>
+					<datalist id="types_de_docs">
+						<option value="comptable payé" />
+						<option value="comptable à payer" />
+						<option value="technique informatique" />
+						<option value="technique mécanique" />
+						<option value="marketing mensonger" />
+						<option value="marketing nocif" />
+						<option value="syndical" />
+						<option value="top secret" />
+						<option value="top inutil" />
+					</datalist/>					
+					
+				</article>
+			</section>
+
+		</main>
+		<footer>
+			<p>all rights reserved metatron</p>
+			<address>
+				<p>IUT D'Orsay - 13 avenue des Sciences - 91190 Gif-sur-Yvette | FRANCE</p>
+				<p><a href="https://www.iut-orsay.universite-paris-saclay.fr/">site web</a></p>
+			</address>
+		</footer>
+	</body>
+</html>

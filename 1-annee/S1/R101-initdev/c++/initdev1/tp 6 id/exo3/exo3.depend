@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1697614730 source:z:\r101-initdev\c++\tp 6 id\exo3\calcul.cpp
+	"calcul.h"
+
+1697614224 z:\r101-initdev\c++\tp 6 id\exo3\calcul.h
+
+1698218566 source:z:\r101-initdev\c++\tp 6 id\exo3\menu.cpp
+	<iostream>
+	"menu.h"
+
+1697703261 z:\r101-initdev\c++\tp 6 id\exo3\menu.h
+
+1697705289 source:z:\r101-initdev\c++\tp 6 id\exo3\main.cpp
+	<iostream>
+	"calcul.h"
+	"menu.h"
+

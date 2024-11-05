@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1702305827 source:z:\r101-initdev\c++\initdev2\tp3\apprangement\appartement.cpp
+	<vector>
+	<iostream>
+	"piece.h"
+	"appartement.h"
+	<string>
+
+1701791805 z:\r101-initdev\c++\initdev2\tp3\apprangement\piece.h
+	<string>
+
+1702305692 z:\r101-initdev\c++\initdev2\tp3\apprangement\appartement.h
+	<string>
+	<vector>
+	"piece.h"
+	<stdexcept>
+
+1701791804 source:z:\r101-initdev\c++\initdev2\tp3\apprangement\piece.cpp
+	"piece.h"
+	<iostream>
+
+1702305762 source:z:\r101-initdev\c++\initdev2\tp3\apprangement\main.cpp
+	<vector>
+	<iostream>
+	"piece.h"
+	"appartement.h"
+	<string>
+

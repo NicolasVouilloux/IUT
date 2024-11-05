@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1701189580 source:z:\r101-initdev\c++\initdev2\tp2\exo1\fonction.cpp
+	<string>
+	<vector>
+	<iostream>
+	<stdexcept>
+	"fonction.h"
+
+1701189708 z:\r101-initdev\c++\initdev2\tp2\exo1\fonction.h
+	<string>
+	<vector>
+	<iostream>
+
+1701189651 source:z:\r101-initdev\c++\initdev2\tp2\exo1\main.cpp
+	<iostream>
+	<vector>
+	<string>
+	"fonction.h"
+

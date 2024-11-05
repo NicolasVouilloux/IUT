@@ -1,0 +1,6 @@
+﻿  Assembling fact.asm...
+  main.cpp
+Z:\R204CBN\TP7\fact\main.cpp(6,15): warning C4101: 'b' : variable locale non référencée
+Z:\R204CBN\TP7\fact\main.cpp(6,18): warning C4101: 'c' : variable locale non référencée
+Z:\R204CBN\TP7\fact\main.cpp(6,21): warning C4101: 'n' : variable locale non référencée
+  fact.vcxproj -> Z:\R204CBN\TP7\fact\x64\Debug\fact.exe

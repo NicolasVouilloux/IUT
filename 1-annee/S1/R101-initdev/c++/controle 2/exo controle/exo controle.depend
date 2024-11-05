@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1700150462 source:z:\r101-initdev\c++\controle 2\exo controle\main.cpp
+	<iostream>
+	<string>
+	<vector>
+	"fonction.h"
+
+1700150830 z:\r101-initdev\c++\controle 2\exo controle\fonction.h
+	<vector>
+
+1700150885 source:z:\r101-initdev\c++\controle 2\exo controle\fonction.cpp
+	<iostream>
+	<string>
+	<vector>
+	"fonction.h"
+

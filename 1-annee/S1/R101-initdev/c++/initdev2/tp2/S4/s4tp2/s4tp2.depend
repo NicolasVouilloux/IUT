@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1701699100 source:z:\r101-initdev\c++\initdev2\tp2\s4\s4tp2\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

@@ -1,0 +1,78 @@
+porthos aramis athos config perenne
+
+pour faire le routage(ipforward)
+uncomment /etc/sysctl.conf line 
+
+
+equipe 1
+ip route add 10.144.0.0/14 via 10.0.73.2 dev eth1
+equipe 2
+ip route add 10.252.0.0/14 via 10.0.73.3 dev eth1
+equipe 3
+ip route add 10.164.0.0/14 via 10.0.73.4 dev eth1
+admin
+ip route add 10.0.19.0/24 via 10.0.19.1 dev eth1
+
+porthos /network/interfaces----------------------------------------------- 
+# interfaces(5) file used by ifup(8) and ifdown(8)
+# Include files from /etc/network/interfaces.d:
+source-directory /etc/network/interfaces.d
+
+auto eth0
+iface eth0 inet static
+address 10.144.0.1
+netmask 255.252.0.0
+
+auto eth1
+iface eth1 inet static
+address 10.0.73.2
+netmask 255.255.255.0
+ip route add 10.164.0.0/14 via 10.0.73.4 dev eth1
+ip route add 10.252.0.0/14 via 10.0.73.3 dev eth1
+ip route add 10.0.19.0/24 via 10.0.19.1 dev eth1
+
+gateway 10.0.73.1
+
+aramis /network/interfaces-----------------------------------------------
+# interfaces(5) file used by ifup(8) and ifdown(88))
+# Include files from /etc/network/interfaces.d:
+source-directory /etc/network/interfaces.d
+
+auto eth0
+iface eth0 inet static
+address 10.164.0.1
+netmask 255.255.255.0
+
+auto eth1
+iface eth1 inet static
+address 10.0.73.4
+netmask 255.255.255.0
+ip route add 10.144.0.0/14 via 10.0.73.2 dev eth1
+ip route add 10.252.0.0/14 via 10.0.73.3 dev eth1
+ip route add 10.0.19.0/24 via 10.0.19.1 dev eth1
+
+gateway 10.0.73.1
+
+athos /network/interfaces-----------------------------------------------
+# interfaces(5) file used by ifup(8) and ifdown(8)
+# Include files from /etc/network/interfaces.d:
+source-directory /etc/network/interfaces.d
+
+auto eth0
+iface eth0 inet static
+address 10.252.0.1
+netmask 255.252.0.0
+
+auto eth1
+iface eth1 inet static
+address 10.0.73.3
+netmask 255.255.255.0
+ip route add 10.164.0.0/14 via 10.0.73.4 dev eth1
+ip route add 10.144.0.0/14 via 10.0.73.2 dev eth1
+ip route add 10.0.19.0/24 via 10.0.19.1 dev eth1
+
+gateway 10.0.73.1
+
+
+
+

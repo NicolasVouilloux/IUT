@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1699440825 source:z:\r101-initdev\c++\tp 7 id\exo2tp7\mainfacebook.cpp
+	<iostream>
+	<string>
+	<vector>
+	"fonctionsFacebook.h"
+
+1700148757 z:\r101-initdev\c++\tp 7 id\exo2tp7\fonctionsfacebook.h
+	<vector>
+
+1699440760 source:z:\r101-initdev\c++\tp 7 id\exo2tp7\fonctionsfacebook.cpp
+	<iostream>
+	<string>
+	<vector>
+	"fonctionsFacebook.h"
+

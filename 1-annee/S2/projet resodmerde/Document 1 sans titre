@@ -1,0 +1,41 @@
+porthos aramis athos config perenne
+
+uncomment /etc/sysctl.conf line 
+
+ajout pour athos de :  
+
+/etc/network/interfaces
+
+auto eth0 --- pas fait au final
+iface eth0 inet static
+address 10.252.0.1
+netmask 255.252.0.0
+
+auto eth1
+iface eth1 inet static
+address 10.0.73.3
+netmask 255.255.255.0
+
+gateway 10.0.73.1
+
+ajout pour aramis :
+
+/etc/network/interfaces
+
+auto eth1
+iface eth1 inet static
+address 10.0.73.4
+netmask 255.255.255.0
+
+gateway 10.0.73.1
+
+ajout pour porthos
+
+/etc/networ/interfaces
+
+auto eth1
+iface eth1 inet static
+address 10.0.73.2
+netmask 255.255.255.0
+
+gateway 10.0.73.1

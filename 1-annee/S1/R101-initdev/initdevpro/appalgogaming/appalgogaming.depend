@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1704972182 source:z:\initdevpro\appalgogaming\main(1).cpp
+	"fonction.h"
+	<fstream>
+	<iostream>
+	<string>
+	<vector>
+
+1704972188 z:\initdevpro\appalgogaming\fonction.h
+	<iostream>
+	<string>
+	<vector>
+
+1704972434 source:z:\initdevpro\appalgogaming\fonction.cpp
+	"fonction.h"
+	<fstream>
+	<iostream>
+	<string>
+	<vector>
+

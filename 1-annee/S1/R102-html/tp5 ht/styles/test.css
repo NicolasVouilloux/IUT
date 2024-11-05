@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+*{
+	margin  : 0;
+	padding : 0;
+}
+nav a{
+	text-decoration : none;
+	display : inline-block;
+	width : 150px;
+	background-color: grey;
+	color: black;
+	text-align : center;
+	border-radius : 1rem;
+	margin-right: 5px;
+	font-weight : bold;
+	font-size : 1.6rem;
+}
+nav span span span a{
+	background-color: rgb(209, 207, 207);
+	color: rgb(31, 196, 59);
+}
+nav span span a{
+	background-color: rgb(172, 172, 172);
+	color: blue;
+}
+nav span span span span a{
+	color: yellow;
+	background-color: rgb(223, 220, 220);
+}
+nav a.ici{
+	color : black;
+}
+nav a:hover{
+	box-shadow: 2px 2px 10px black;
+	background-color: brown;
+	color: orange;
+}
+nav {
+	display: flex;
+	flex-direction: row;
+}
+nav span {
+	display: flex;
+	flex-direction: column;
+	padding-right: 8%;
+}
+nav span span{
+	padding-right: 0%;
+}

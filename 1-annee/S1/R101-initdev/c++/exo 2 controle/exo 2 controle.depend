@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1697183678 source:z:\r101-initdev\c++\exo 2 controle\main.cpp
+	<iostream>
+	<vector>
+

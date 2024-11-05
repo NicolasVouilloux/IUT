@@ -1,0 +1,79 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main()
+{
+    //question numero 1
+    vector<int>v1= {-2, 3, 7, 1, 2, 3, 7, 3, -2, 7, 0};
+    for (int i = 0;i<v1.size()-1; i++){
+        cout<<v1[i]<<",";
+    }
+    int k = v1.size()-1;
+    cout<<v1[k];
+    cout<<endl;
+    vector<int>v2={};
+    //question numero 2
+    for(int i=v1.size()-1;i>=0;i--){
+        v2.push_back(v1[i]);
+    }
+    for (int i = 0;i<v2.size(); i++){
+        cout<<v2[i]<<",";
+    }
+    //question numero 3
+    int maxi;
+    maxi = v1[0];
+    for (int i = 0;i<v1.size(); i++){
+        if(maxi<v1[i]){
+            maxi=v1[i];
+        }
+    }
+    cout<<endl<<"le maximum est "<<maxi<<endl;
+    //question numero 4
+    int val;
+    int n;
+    int j;
+    cout<<"saisir une valeur a chercher : ";
+    cin>>val;
+    cout<<"saisir un nombre de fois a chercher : ";
+    cin>>n;
+    j=n;
+    while (j>0){
+        for (int i = 0;i<v1.size()-1; i++){
+            if(val==v1[i])
+                j=j-1;
+        }
+    }
+    if(j==0){
+        cout<<"la valeur "<<val<< "n'apparait pas au moins "<<n<<" fois";
+    }
+    else{
+        cout<<"la valeur "<<val<<" apparait au moins "<<n<<" fois.";
+    }
+}
+//question 5
+/*valeur tester
+-2,3,7,1,2,3,7,3,-2,7,0
+0,7,-2,3,7,3,2,1,7,3,-2,
+le maximum est 7
+saisir une valeur a chercher :
+<<0
+saisir un nombre de fois a chercher :
+<<0
+la valeur 0n'apparait pas au moins 0 fois
+Process returned 0 (0x0)   execution time : 3.040 s
+Press any key to continue.
+*/
+/*
+-2,3,7,1,2,3,7,3,-2,7,0
+0,7,-2,3,7,3,2,1,7,3,-2,
+le maximum est 7
+saisir une valeur a chercher :
+<<3
+saisir un nombre de fois a chercher :
+<<2
+la valeur 3 apparait au moins 2 fois.
+Process returned 0 (0x0)   execution time : 1.853 s
+Press any key to continue.
+*/

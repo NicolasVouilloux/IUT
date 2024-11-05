@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1695893343 source:z:\r101-initdev\c++\tp 4\exo 1\main.cpp
+	<iostream>
+	<string>
+	<vector>
+

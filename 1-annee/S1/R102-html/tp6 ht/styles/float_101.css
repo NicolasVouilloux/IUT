@@ -1,0 +1,15 @@
+@charset = "utf-8";
+h1 div.U
+{
+	background: linear-gradient(to top, #cfc09f 1%, #634f2c 12%, #cfc09f 22%, #ffecb3 30%, #3a2c0f 50%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	position: relative;
+	text-transform: uppercase;
+	float:left;
+	border : solid black;
+	margin : bottom 0px;
+	font-size : 3rem;
+	text-decoration: underline goldenrod
+}
