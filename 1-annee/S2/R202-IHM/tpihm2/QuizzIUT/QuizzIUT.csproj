@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="moon-modified.png" />
+    <None Remove="moon.png" />
+    <None Remove="sun-modified.png" />
+    <None Remove="sun.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="moon-modified.png" />
+    <Resource Include="moon.png" />
+    <Resource Include="sun-modified.png" />
+    <Resource Include="sun.png" />
+  </ItemGroup>
+
+</Project>

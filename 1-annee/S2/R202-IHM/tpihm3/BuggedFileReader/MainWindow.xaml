@@ -1,0 +1,34 @@
+﻿<Window x:Name="WNDMainWindow" x:Class="BuggedFileReader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BuggedFileReader"
+        mc:Ignorable="d"
+        Title="File Reader" Height="344" Width="669">
+    <Grid>
+        <Label x:Name="LBLTitleContent" Content="File Content" HorizontalAlignment="Left" Margin="394,10,0,0" VerticalAlignment="Top" FontSize="36"/>
+        <ComboBox x:Name="CBXCase"  HorizontalAlignment="Left" Margin="435,71,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CBXCase_SelectionChanged" SelectedIndex="0">
+            <ComboBoxItem Content="Original"/>
+            <ComboBoxItem Content="UpperCase"/>
+            <ComboBoxItem Content="LowerCase"/>
+            
+        </ComboBox>
+
+
+        <ScrollViewer Margin="382,110,62,49" VerticalScrollBarVisibility="Auto">
+            <TextBlock x:Name="TBKContent" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="Black"/>
+        </ScrollViewer>
+
+
+        <TextBox x:Name="TBXFileName" HorizontalAlignment="Left" Margin="43,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151"/>
+        <Button x:Name="BTNOpenFile" Content="Open" HorizontalAlignment="Left" Margin="199,79,0,0" VerticalAlignment="Top" Height="27" Width="72" Click="BTNOpenFile_Click"/>
+        <Button x:Name="BTNOpenDialog" Content="Choose File..." HorizontalAlignment="Left" Margin="182,147,0,0" VerticalAlignment="Top" Height="28" Width="106" Click="BTNOpenDialog_Click"/>
+        <Label x:Name="LBLTitleOpener" Content="File Opener" HorizontalAlignment="Left" Margin="43,39,0,0" VerticalAlignment="Top" FontSize="22"/>
+        <Label x:Name="LBLTitleOpener_Copy" Content="File Selector" HorizontalAlignment="Left" Margin="43,141,0,0" VerticalAlignment="Top" FontSize="22" Width="134"/>
+        <GridSplitter HorizontalAlignment="Left" Height="289" Margin="306,0,0,0" VerticalAlignment="Center" Width="4"/>
+        <Label x:Name="LBLWordCount" Content="Word count : " HorizontalAlignment="Left" Margin="394,273,0,0" VerticalAlignment="Top" Width="81"/>
+        <Label x:Name="LBLWordCountValue" Content="0" HorizontalAlignment="Left" Margin="475,273,0,0" VerticalAlignment="Top" Width="67"/>
+
+    </Grid>
+</Window>

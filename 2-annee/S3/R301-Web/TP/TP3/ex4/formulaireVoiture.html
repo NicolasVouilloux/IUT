@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>TP3 - ex3</title>
+  </head>
+  <body>
+    <form action="afficherVoiture.php" method="get">
+      <div>
+        <label for="immatriculation">immatriculation</label>
+        <input type="text" name="immatriculation" placeholder="la plaque chef">
+      </div>
+      <div>
+        <label for="marque">marque</label>
+        <input type="text" name="marque" placeholder="la marque de la gova">
+      </div>
+      <div>
+        <label for="couleur">nom</label>
+        <input type="text" name="couleur" placeholder="la couleur tah le truc qui brille">
+      </div>
+      <button type="submit">envoyer</button>
+    </form>
+  </body>
+  <style>
+    form {
+        width: 60%;
+        margin : 25px auto;
+        display: flex;
+        flex-direction: column;
+        border : solid 1px black;
+        border-radius : 4px;
+        box-shadow: 4px 4px 4px grey;
+        padding: 10px;
+    }
+
+    form div {
+        display: flex;
+        justify-content: space-between;
+        margin:10px 0px;
+    }
+
+    button {
+        width: 40%;
+        margin: 10px auto;
+        height: 2em;
+    }
+
+    div input {
+        width : 50%;
+    }
+  </style>
+</html>

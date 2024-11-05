@@ -1,0 +1,20 @@
+﻿<Window x:Class="AlarmWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AlarmWPF"
+        mc:Ignorable="d"
+        Title="Alarme" Height="400" Width="600" Loaded="Window_Loaded">
+    <Grid Width="600" Height="384.04">
+        <ListBox Name="LSBHour" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="46,36,407,171" Height="NaN" Width="NaN"/>
+        <Label Content=":" HorizontalAlignment="Left" Margin="113,222,0,0" VerticalAlignment="Top"/>
+        <Button Name="BTNRemove" Content="Remove" Height="NaN" Margin="131,259,395,101" Width="NaN" Click="BTNRemove_Click"/>
+        <Button Name="BTNAdd" Content="Add" Height="NaN" Margin="34,259,492,101" Width="NaN" Click="ButtonAdd_Click"/>
+        <TextBox Name="TXBHour" HorizontalAlignment="Left" Margin="131,226,0,0" TextAlignment="Center" TextWrapping="Wrap" Text="00" VerticalAlignment="Top" Width="37"/>
+        <TextBox Name="TXBMin" HorizontalAlignment="Left" Margin="71,226,0,0" TextAlignment="Center" TextWrapping="Wrap" Text="00" VerticalAlignment="Top" Width="37"/>
+        <Canvas Name="CNVClock" Margin="234,10,57,88" Height="300" Width="300"/>
+        <Button Name="BTNStopAlarm" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Height="299" Width="307" Margin="236,11,0,0" RenderTransformOrigin="0.5,0.5" Opacity="0" Click="BTNStopAlarm_Click">
+  </Button>
+    </Grid>
+</Window>
