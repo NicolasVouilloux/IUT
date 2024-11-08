@@ -2,8 +2,8 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>TP6 - ex1 - Les répertoires config et modele</title>
-	<link rel="stylesheet" href="styleMenu.css">
+	<title>TP6 - ex3 - Le répertoire vue et quelques fichiers « vue »</title>
+	<link rel="stylesheet" href="css/styleMenu.css">
 </head>
 <body>
 	<?php
