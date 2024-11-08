@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>TP6 - ex1 - Les répertoires config et modele</title>
+	<title>toutes les voitures</title>
 	<link rel="stylesheet" href="styleMenu.css">
 </head>
 <body>

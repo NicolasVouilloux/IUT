@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>TP6 - ex2 - Un répertoire css</title>
+	<title>tous les utilisateurs</title>
 	<link rel="stylesheet" href="css/styleMenu.css">
 </head>
 <body>
