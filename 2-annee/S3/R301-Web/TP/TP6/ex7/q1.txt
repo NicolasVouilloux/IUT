@@ -1,0 +1,28 @@
+QUESTION 1:
+URL Passer :
+/ex6/routeur.php ?controleur=toto&action=lireVoitures
+
+MESSAGE erreur : 
+Warning: require_once(controleur/toto.php): Failed to open stream: No such file or directory in /home/nvouill/public_html/R301-Web/TP/TP6/ex6/routeur.php on line 19
+Fatal error: Uncaught Error: Failed opening required 'controleur/toto.php' (include_path='.:/usr/share/php') in /home/nvouill/public_html/R301-Web/TP/TP6/ex6/routeur.php:19 Stack trace: #0 {main} thrown in /home/nvouill/public_html/R301-Web/TP/TP6/ex6/routeur.php on line 19
+
+REPONSE :
+Il ne trouve pas le bon fichier car il execute directement la fonction  d'appel de fichier ( avec un fichier non existant (toto))
+
+URL Passer : 
+ex6/routeur.php?controleur=controleurVoiture&action=rien
+
+MESSAGE erreur :
+Fatal error: Uncaught Error: Call to undefined method ControleurVoiture::rien() in /home/nvouill/public_html/R301-Web/TP/TP6/ex6/routeur.php:21 Stack trace: #0 {main} thrown in /home/nvouill/public_html/R301-Web/TP/TP6/ex6/routeur.php on line 21
+
+REPONSE :
+encore une fois il essaye directement d'appeler la fonction de l'url qui est in inexistante dans ce cas present
+
+URL Passer : 
+/ex6/routeur.php?controleur=controleurUtilisateur&action=rien
+
+MESSAGE erreur :
+Fatal error: Uncaught Error: Call to undefined method ControleurUtilisateur::rien() in /home/nvouill/public_html/R301-Web/TP/TP6/ex6/routeur.php:21 Stack trace: #0 {main} thrown in /home/nvouill/public_html/R301-Web/TP/TP6/ex6/routeur.php on line 21
+
+REPONSE :
+encore une fois il essaye directement d'appeler la fonction de l'url qui est in inexistante dans ce cas present
