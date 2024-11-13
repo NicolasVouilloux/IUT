@@ -18,6 +18,6 @@
 	include("vue/voiture/lesVoitures.php");
 	
 	// insertion de la fin 
-	include("vue/fin.php");
+	include("vue/fin.html");
 
 ?>
