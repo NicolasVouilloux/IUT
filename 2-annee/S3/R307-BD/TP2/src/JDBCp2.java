@@ -109,22 +109,22 @@ public class JDBCp2 {
 			/
 		 */
 		System.out.println("--------Result Question 3---------");
-		co = openConnection(url);
-		try {
-			System.out.println("Entrez le nom d'un acteur :");
-			String nom = scanner.nextLine();
-			CallableStatement cst = co.prepareCall("{? =nbreFilms1(?)}");
-			String query2= ("SELECT *"
-					+ "FROM ens2004.individu i"
-					+ "WHERE i.nomindividu ="+nom);
-			ResultSet res = exec1Requete(query2,co,0);
-			while (res.next()) {
-				cst.setString(2,res.getString("NUMINDIVIDU"));
-				
-			}		
-		}finally {
-			scanner.close();
-		}
+//		co = openConnection(url);
+//		try {
+//			System.out.println("Entrez le nom d'un acteur :");
+//			String nom = scanner.nextLine();
+//			CallableStatement cst = co.prepareCall("{? =nbreFilms1(?)}");
+//			String query2= ("SELECT *"
+//					+ "FROM ens2004.individu i"
+//					+ "WHERE i.nomindividu ="+nom);
+//			ResultSet res = exec1Requete(query2,co,0);
+//			while (res.next()) {
+//				cst.setString(2,res.getString("NUMINDIVIDU"));
+//				
+//			}		
+//		}finally {
+//			scanner.close();
+//		}
 		
 	};
 }
