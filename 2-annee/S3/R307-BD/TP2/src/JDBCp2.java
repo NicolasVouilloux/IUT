@@ -19,7 +19,7 @@ public class JDBCp2 {
 		}
 		return co;
 	}
-	public static ResultSet exec1Requete (String requete, Connection co, int type){
+	public static ResultSet requeteEx (String requete, Connection co, int type){
 		ResultSet res=null;
 		try {
 			Statement st;
@@ -54,7 +54,7 @@ public class JDBCp2 {
 		String tableName = scanner.nextLine();
 		String query = "SELECT * FROM ens2004." + tableName + " WHERE ROWNUM = 1"; 
         try {
-            ResultSet rs = exec1Requete(query, co, 1); 
+            ResultSet rs = requeteEx(query, co, 1); 
             ResultSetMetaData rsMeta = rs.getMetaData();
             int columnCount = rsMeta.getColumnCount();
 
@@ -80,51 +80,70 @@ public class JDBCp2 {
 		try {
 			System.out.println("Entrez le nom d'un acteur :");
 			String nom = scanner.nextLine();
-			System.out.println("Choisissez parmis les acteurs suivants :");
+			// Prepared statement to get all movies
 			PreparedStatement psm = co.prepareStatement("SELECT *\r\n"
 					+ "FROM ens2004.Film \r\n"
 					+ "NATURAL JOIN ens2004.Acteur \r\n"
-					+ "NATURAL JOIN ens2004.Individu\r\n"
-					+ "WHERE ens2004.Individu.NomIndividu = ?");
-			psm.setString(1,nom);
-			ResultSet res = psm.executeQuery();
-			while (res.next()) {
-				System.out.println(res.getString("TITRE"));
+					+ "WHERE ens2004.Acteur.NumIndividu = ?");
+			//result to get all the actor of the same name
+			String requete="SELECT * \n"
+					+ "FROM ens2004.individu \n"
+					+ "WHERE nomindividu = '%s'";
+			requete = String.format(requete, nom);
+			
+			ResultSet prenom = requeteEx(requete,co,0);
+			prenom = requeteEx(requete,co,0);
+			while (prenom.next()) {
+				System.out.println(" ACTEUR : "+ prenom.getString("PRENOMINDIVIDU")+" "+prenom.getString("NOMINDIVIDU")+"\n");
+				String numIndividu = prenom.getString("NUMINDIVIDU");
+				psm.setString(1,numIndividu);
+				ResultSet listeFilm = psm.executeQuery();
+				while(listeFilm.next()) {
+					System.out.println(listeFilm.getString("TITRE"));
+				}
 			}
-		}finally {
-			scanner.close();
-		}
+		}catch (SQLException e) {
+            System.out.println("Erreur");
+        }
 		closeConnection(co);   
-//		Question N3---------------------------------------------------------------------
-		/*
-		 * CREATE OR REPLACE FUNCTION nbreFilms1(numActeur NUMBER)RETURN NUMBER  AS
-			    nbFilm NUMBER;
-			BEGIN
-			    SELECT COUNT(*)into nbFilm
-			    FROM ens2004.ACTEUR a
-			    NATURAL JOIN ens2004.FILM f
-			    WHERE a.numindividu = numActeur;
-			    RETURN nbFilm;
-			END;
-			/
-		 */
+		
 		System.out.println("--------Result Question 3---------");
-//		co = openConnection(url);
-//		try {
-//			System.out.println("Entrez le nom d'un acteur :");
-//			String nom = scanner.nextLine();
-//			CallableStatement cst = co.prepareCall("{? =nbreFilms1(?)}");
-//			String query2= ("SELECT *"
-//					+ "FROM ens2004.individu i"
-//					+ "WHERE i.nomindividu ="+nom);
-//			ResultSet res = exec1Requete(query2,co,0);
-//			while (res.next()) {
-//				cst.setString(2,res.getString("NUMINDIVIDU"));
-//				
-//			}		
-//		}finally {
-//			scanner.close();
-//		}
+		co = openConnection(url);
+		try {
+			System.out.println("Entrez le nom d'un acteur :");
+			String nom = scanner.nextLine();	
+			
+            String requeteQ3 = "SELECT * FROM ens2004.individu WHERE nomindividu = '" + nom + "'";
+			CallableStatement cst = co.prepareCall("{? = call nbreFilms1(?)}");
+			cst.registerOutParameter(1, java.sql.Types.DECIMAL);
+			
+			ResultSet res = requeteEx(requeteQ3,co,0);
+			while (res.next()) {
+				cst.setString(2,res.getString("NUMINDIVIDU"));
+				cst.execute();
+				int nbFilm = cst.getInt(1);
+				System.out.println("Acteur : "+res.getString("NOMINDIVIDU") +" "+res.getString("PRENOMINDIVIDU")+ " a realiser "+nbFilm+" Films");
+			}		
+		}catch (SQLException e) {
+            System.out.println("Erreur");
+        }
+		closeConnection(co); 
+		
+		System.out.println("--------Result Question 4---------");
+		co = openConnection(url);
+		try {
+			System.out.println("Entrez le nom d'un real :");
+			String nom = scanner.nextLine();	
+			CallableStatement cst = co.prepareCall("{? = call nbreFilms2(?)}");
+			cst.registerOutParameter(1, java.sql.Types.DECIMAL);
+			cst.setString(2,nom);
+			cst.execute();
+			int nbFilm = cst.getInt(1);
+			System.out.println("Realisateur : "+nom + " a realiser "+nbFilm+" Films");
+		}catch (SQLException e) {
+            System.out.println("Erreur");
+        }
+		closeConnection(co); 
 		
 	};
 }
