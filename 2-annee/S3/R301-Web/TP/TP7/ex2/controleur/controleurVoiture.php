@@ -7,10 +7,12 @@
 
         // La méthode de récupération et d'affichage de toutes Les voitures
         public static function lireVoitures(){
-            if (isset($_GET["immatriculation"]))
+            if (isset($_GET["immatriculation"])){
                 $i = $_GET["immatriculation"];
-        
-            $tab_v = Voiture::getVoitureByImmat($i);
+                $tab_v = Voiture::getVoitureByImmat($i);
+            }else {
+                $tab_v = Voiture::getAllVoitures();
+            }
 
             // titre de la page
             $titre = "la voiture";
