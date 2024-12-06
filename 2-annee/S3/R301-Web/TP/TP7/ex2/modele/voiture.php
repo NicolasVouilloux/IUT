@@ -42,8 +42,8 @@ class Voiture {
 	}
 
 	public static function getVoitureByImmat($i){
-		$requeteVoitureImmat = "SELECT * FROM voiture WHERE voiture.immatriculation = :i;";
-		$requetePreparee = Connection::pdo()->prepare($requeteVoitureImmat);
+		$requeteVoitureImmat = "SELECT * FROM voiture WHERE immatriculation = :i;";
+		$requetePreparee = Connexion::pdo()->prepare($requeteVoitureImmat);
 		
 		$value = array();
 		$value["i"] = $i;
@@ -52,7 +52,7 @@ class Voiture {
 		} catch(PDOException $e){
 			echo $e->getMessage();
 		}
-			$requetePreparee->setFetchmode(PDO::FETCH_CLASS,'Voiture');
+			$requetePreparee->setFetchmode(PDO::FETCH_CLASS,'voiture');
 			$voiture = $requetePreparee->fetchAll();
 			return $voiture;
 	}

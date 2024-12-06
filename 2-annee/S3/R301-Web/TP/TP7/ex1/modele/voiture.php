@@ -49,13 +49,12 @@ class Voiture {
 		$value["i"] = $i;
 		try {
 			$requetePreparee->execute($value);
-		} catch(PDOException $e){
+		}catch(PDOException $e){
 			echo $e->getMessage();
 		}
-			$requetePreparee->setFetchmode(PDO::FETCH_CLASS,'voiture');
-			$voiture = $requetePreparee->fetchAll();
-			return $voiture;
+		$requetePreparee->setFetchmode(PDO::FETCH_CLASS,'voiture');
+		$voiture = $requetePreparee->fetchAll();
+		return $voiture;
 	}
-
 }
 ?>

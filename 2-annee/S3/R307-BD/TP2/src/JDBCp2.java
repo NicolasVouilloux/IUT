@@ -122,7 +122,7 @@ public class JDBCp2 {
 				cst.setString(2,res.getString("NUMINDIVIDU"));
 				cst.execute();
 				int nbFilm = cst.getInt(1);
-				System.out.println("Acteur : "+res.getString("NOMINDIVIDU") +" "+res.getString("PRENOMINDIVIDU")+ " a realiser "+nbFilm+" Films");
+				System.out.println("Acteur : "+res.getString("PRENOMINDIVIDU") +" "+res.getString("NOMINDIVIDU")+ " a jouer dans "+nbFilm+" Films");
 			}		
 		}catch (SQLException e) {
             System.out.println("Erreur");
@@ -144,6 +144,47 @@ public class JDBCp2 {
             System.out.println("Erreur");
         }
 		closeConnection(co); 
+		
+		System.out.println("--------Result Question 5---------");
+		co = openConnection(url);
+		try {
+			System.out.println("Entrez le nom d'un real :");
+			String nom = scanner.nextLine();	
+			CallableStatement cst = co.prepareCall("{call unTitre(?,?,?)}");
+			cst.setString(1,nom);
+			cst.registerOutParameter(2, java.sql.Types.VARCHAR);
+			cst.registerOutParameter(3, java.sql.Types.VARCHAR);
+			cst.execute();
+			
+			String prenom = cst.getString (2);
+			String titre = cst.getString (3);
+			System.out.println("Acteur: "+prenom +" "+nom+  " a jouer dans "+ titre);
+		}catch (SQLException e) {
+            System.out.println("Erreur");
+        }
+		closeConnection(co); 
+		System.out.println("--------Result Question 6---------");
+		co = openConnection(url);
+		try {
+			System.out.println("Entrez le nom d'un real :");
+			String nom = scanner.nextLine();	
+			CallableStatement cst = co.prepareCall("{call unTitre(?,?,?)}");
+			cst.setString(1,nom);
+			cst.registerOutParameter(2, java.sql.Types.VARCHAR);
+			cst.registerOutParameter(3, java.sql.Types.VARCHAR);
+			cst.execute();
+			
+			String prenom = cst.getString (2);
+			String titre = cst.getString (3);
+			System.out.println("Acteur: "+prenom +" "+nom+  " a jouer dans "+ titre);
+		}catch (SQLException e) {
+            System.out.println("Erreur");
+        }
+		closeConnection(co); 
+		
+
+		
+		
 		
 	};
 }

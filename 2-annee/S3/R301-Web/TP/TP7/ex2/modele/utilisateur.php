@@ -36,7 +36,7 @@ class Utilisateur {
 	public function afficher() {
 		echo "<p>utilisateur $this->login ($this->prenom $this->nom), email = $this->email</p>";
 	}
-
+	
 	// méthode static qui retourne les voitures en un tableau d'objets
 	public static function getAllUtilisateurs() {
 		// écriture de la requête
@@ -44,8 +44,8 @@ class Utilisateur {
     // envoi de la requête et stockage de la réponse
 		$resultat = connexion::pdo()->query($requete);
     // traitement de la réponse
-    $resultat->setFetchmode(PDO::FETCH_CLASS,'Utilisateur');
-    $tableau = $resultat->fetchAll();
+		$resultat->setFetchmode(PDO::FETCH_CLASS,'Utilisateur');
+		$tableau = $resultat->fetchAll();
 		return $tableau;
 	}
 }
