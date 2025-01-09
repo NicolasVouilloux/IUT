@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BuggedFileReader")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bd682c143c342cb1f33e3daa8778e333bf3bb6e9")]
 [assembly: System.Reflection.AssemblyProductAttribute("BuggedFileReader")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BuggedFileReader")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

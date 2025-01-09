@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "Z:\\R202-IHM\\tpihm5\\AlarmWPF\\AlarmWPF.csproj": {}
+    "Z:\\IUT\\1-annee\\S2\\R202-IHM\\tpihm5\\AlarmWPF\\AlarmWPF.csproj": {}
   },
   "projects": {
-    "Z:\\R202-IHM\\tpihm5\\AlarmWPF\\AlarmWPF.csproj": {
+    "Z:\\IUT\\1-annee\\S2\\R202-IHM\\tpihm5\\AlarmWPF\\AlarmWPF.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "Z:\\R202-IHM\\tpihm5\\AlarmWPF\\AlarmWPF.csproj",
+        "projectUniqueName": "Z:\\IUT\\1-annee\\S2\\R202-IHM\\tpihm5\\AlarmWPF\\AlarmWPF.csproj",
         "projectName": "AlarmWPF",
-        "projectPath": "Z:\\R202-IHM\\tpihm5\\AlarmWPF\\AlarmWPF.csproj",
+        "projectPath": "Z:\\IUT\\1-annee\\S2\\R202-IHM\\tpihm5\\AlarmWPF\\AlarmWPF.csproj",
         "packagesPath": "C:\\Users\\nvouill\\.nuget\\packages\\",
-        "outputPath": "Z:\\R202-IHM\\tpihm5\\AlarmWPF\\obj\\",
+        "outputPath": "Z:\\IUT\\1-annee\\S2\\R202-IHM\\tpihm5\\AlarmWPF\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -22,15 +22,15 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0-windows"
+          "net8.0-windows7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0-windows7.0": {
-            "targetAlias": "net6.0-windows",
+          "net8.0-windows7.0": {
+            "targetAlias": "net8.0-windows7.0",
             "projectReferences": {}
           }
         },
@@ -38,11 +38,16 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
-        "net6.0-windows7.0": {
-          "targetAlias": "net6.0-windows",
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows7.0",
           "imports": [
             "net461",
             "net462",
@@ -62,7 +67,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

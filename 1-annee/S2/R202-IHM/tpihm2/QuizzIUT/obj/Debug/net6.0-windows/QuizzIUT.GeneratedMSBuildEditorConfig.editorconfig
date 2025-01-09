@@ -8,4 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = QuizzIUT
-build_property.ProjectDir = Z:\tpihm2\QuizzIUT\
+build_property.ProjectDir = Z:\IUT\1-annee\S2\R202-IHM\tpihm2\QuizzIUT\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
