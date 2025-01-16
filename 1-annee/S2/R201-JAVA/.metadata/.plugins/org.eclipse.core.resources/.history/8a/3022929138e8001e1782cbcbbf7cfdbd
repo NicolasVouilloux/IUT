@@ -1,8 +1,0 @@
-package volailler;
-
-public class Ferme {
-
-	Volailles[] sesVolailles;
-	private String nomFerme;
-
-}

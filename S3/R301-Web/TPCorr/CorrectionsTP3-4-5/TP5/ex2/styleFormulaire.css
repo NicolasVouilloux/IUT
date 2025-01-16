@@ -1,0 +1,26 @@
+form {
+  width: 60%;
+  margin : 25px auto;
+  display: flex;
+  flex-direction: column;
+  border : solid 1px black;
+  border-radius : 4px;
+  box-shadow: 4px 4px 4px grey;
+  padding: 10px;
+}
+
+form div {
+  display: flex;
+  justify-content: space-between;
+  margin:10px 0px;
+}
+
+button {
+  width: 40%;
+  margin: 10px auto;
+  height: 2em;
+}
+
+div input {
+  width : 50%;
+}

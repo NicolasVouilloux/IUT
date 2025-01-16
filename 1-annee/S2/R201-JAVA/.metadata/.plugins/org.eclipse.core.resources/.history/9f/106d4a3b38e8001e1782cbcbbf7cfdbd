@@ -1,9 +1,0 @@
-package volailler;
-
-public abstract class Volailles {
-
-	Ferme saFerme;
-	protected float poids;
-	protected int numVolaille;
-
-}

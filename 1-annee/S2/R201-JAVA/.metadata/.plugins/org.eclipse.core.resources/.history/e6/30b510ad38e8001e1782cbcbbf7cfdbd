@@ -1,7 +1,0 @@
-package volailler;
-
-public class canard extends Volailles {
-
-	protected float prixKg;
-	//getters and setters
-}

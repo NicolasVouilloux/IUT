@@ -1,7 +1,0 @@
-package volailler;
-
-public class poulet extends Volailles {
-
-	protected float prixKg;
-
-}
