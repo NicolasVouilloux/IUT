@@ -26,7 +26,7 @@ public class Grid extends JPanel {
 		g.fillRect(0, 0, 440, 440);
 
 		for (int i = 0; i < this.control.getGrid().length; i++) {
-			for (int j = 0; j < this.control.getGrid()[0].length; j++) {
+			for (int j = 0; j < this.control.getGrid()[i].length; j++) {
 				int value = this.control.getGrid()[j][i];
 
 				g.setColor(getCorrespondingColor(value));

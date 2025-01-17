@@ -2,6 +2,8 @@ package entity;
 
 import java.awt.Dimension;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Engine {
 	private Dimension dimension ;
@@ -11,9 +13,9 @@ public class Engine {
 		this.dimension = new Dimension(l,c);
 		this.grid = new Cell[l][c];
 		
-		for (int i = 0; i < l; i++) {
-			for (int j = 0; j < c; j++) {
-				this.grid[i][j] = new Cell(0);
+		for (int patate = 0; patate < l; patate++) {
+			for (int clavier = 0; clavier < c; clavier++) {
+				this.grid[patate][clavier] = new Cell(0);
 			}
 		}
 	}
@@ -25,9 +27,9 @@ public class Engine {
 
 
 		this.dimension = new Dimension(width,length);
-		for (int i =0;i< grid.length;i++){
-			for (int j=0; j<grid[i].length;j++){
-				this.grid[i][j] = new Cell (grid[i][j]);
+		for (int stylo =0;stylo< grid.length;stylo++){
+			for (int j=0; j<grid[stylo].length;j++){
+				this.grid[stylo][j] = new Cell (grid[stylo][j]);
 			}
 		}
 	}
@@ -48,4 +50,27 @@ public class Engine {
 		this.grid[i][j].setContent(v);
 	}
 
+	public ArrayList<Cell> getEmptyCell(){
+		ArrayList<Cell> pomme = new ArrayList<>();
+		for (int i =0;i< grid.length;i++){
+			for (int j=0; j<grid[i].length;j++){
+				if (this.grid[i][j].getContent() == 0 )
+					pomme.add(this.grid[i][j]);
+			}
+		}
+		return pomme;
+	}
+
+	public void addNewCell(){
+		if (!getEmptyCell().isEmpty()){
+			Random rn = new Random();
+			int answer = rn.nextInt(100);
+			if (answer<80){
+				getEmptyCell().get(answer%getEmptyCell().size()).setContent(2);
+			}
+			else
+				getEmptyCell().get(answer%getEmptyCell().size()).setContent(4);
+
+		}
+	}
 }

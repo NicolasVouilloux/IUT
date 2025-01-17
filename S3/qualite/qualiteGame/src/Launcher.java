@@ -1,3 +1,6 @@
+import boundary.MainWindow;
+import control.Jeu2048;
+
 import javax.swing.SwingUtilities;
 
 public class Launcher implements Runnable{
@@ -8,7 +11,7 @@ public class Launcher implements Runnable{
 
 	@Override
 	public void run() {
-		
+		new MainWindow(new Jeu2048());
 	}
 
 }
