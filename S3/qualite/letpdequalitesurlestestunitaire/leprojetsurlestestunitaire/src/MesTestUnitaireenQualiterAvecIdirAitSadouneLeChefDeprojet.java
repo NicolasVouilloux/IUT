@@ -1,0 +1,21 @@
+
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+class MesTestUnitaireenQualiterAvecIdirAitSadouneLeChefDeprojet {
+
+	static DoubleLinkedList pommeDAmour = new DoubleLinkedList(new int[] {1,2,3});
+	static DoubleLinkedList bananeFlambe = new DoubleLinkedList(new int[] {});
+	static DoubleLinkedList poireAuChocolat = new DoubleLinkedList(new int[] {1});
+
+	
+	@Test
+	void tstassertTrue() {
+		assertNotNull(pommeDAmour.size());
+		assertNotNull(bananeFlambe.size());
+		assertNotNull(poireAuChocolat.size());
+	}
+}
