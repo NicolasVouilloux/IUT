@@ -7,7 +7,7 @@
 
     //initialisation des variables par defaut
     $controleur = "controleurVoiture";
-    $action = "lireVoitures";
+    $action = "lireObjet";
 
     // initialisation du tableau de verification des controleurs
     $tableauControleurs = ["controleurVoiture","controleurUtilisateur"];
