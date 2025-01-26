@@ -16,7 +16,9 @@
             }
             // titre de la page
             $titre = "la voiture";
-        
+            $cle = Voiture::getCle();
+            $objet = Voiture::getObjet();
+
             // insertion du debut du html
             include("vue/debut.php");
         
@@ -24,10 +26,10 @@
             include("vue/menu.html");
             
             if(!$tab){
-                include("vue/voiture/erreur.php");    
+                include("vue/erreur.php");    
             }
             else if (sizeof($tab)==1){
-                include("vue/voiture/uneVoiture.php");
+                include("vue/unObjet.php");
             }
             else{
                 include("vue/lesObjets.php");

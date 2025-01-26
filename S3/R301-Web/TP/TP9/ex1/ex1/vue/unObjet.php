@@ -1,5 +1,5 @@
 <?php
-    foreach ($tab_v as $v) {
+    foreach ($tab as $v) {
         $v->afficher();
     }
 ?>

@@ -1,5 +1,8 @@
 <?php
-class Modele{
+class Modele {
+    protected static $cle;
+    protected static $objet;
+
     public function get($attribut){
         return $this->$attribut;    
     }
@@ -44,6 +47,9 @@ class Modele{
 			$res = $requetePreparee->fetchAll();
 			return $res;
 	}
+
+    public static function getCle() { return static::$cle; }
+    public static function getObjet() { return static::$objet; }
 
 }
 

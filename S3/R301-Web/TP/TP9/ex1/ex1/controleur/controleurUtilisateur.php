@@ -10,12 +10,14 @@
         public static function lireUtilisateurs(){
             if (isset($_GET["login"])){
                 $i = $_GET["login"];
-                $tab = utilisateur::getObjetById($i);
+                $tab = Utilisateur::getObjetById($i);
             }else {
                 $tab = Utilisateur::getAll();
             }
             // titre de la page
             $titre = "tous les utilisateurs";
+            $cle = Utilisateur::getCle();
+            $objet = Utilisateur::getObjet();
         
             // insertion du debut du html
             include("vue/debut.php");
@@ -24,10 +26,10 @@
             include("vue/menu.html");
             
             if(!$tab){
-                include("vue/utilisateur/erreur.php");    
+                include("vue/erreur.php");    
             }
             else if (sizeof($tab)==1){
-                include("vue/utilisateur/unUtilisateur.php");
+                include("vue/unObjet.php");
             }
             else{
                 include("vue/lesObjets.php");
