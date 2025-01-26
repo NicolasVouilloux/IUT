@@ -1,0 +1,6 @@
+BILAN : revenez sur la question a) de l’exercice 1. Que reste-t-il de nos contrôleurs d’origine ???
+Pourquoi peut-il être utile de les garder quand même ?
+
+Il peut etre utile de garder les fichiers controleurs car meme si le controleur general prend en majoriter 
+les informations et les generalises, cela reste a bas niveau, il serait donc judicieux de les garder au cas ou 
+des actions plus precise et plus avancer sont amené a faire.
