@@ -6,17 +6,21 @@
     class Controleur{
         //La méthode de récupération et d'affichage de tous les utilisateurs
         public static function lireObjets(){
-            if (isset($_GET["login"])){
-                $i = $_GET["login"];
-                $tab = Utilisateur::getObjetById($i);
-            }else {
-                $tab = Utilisateur::getAll();
-            }
+            // initialisation des vals
             $objetsTitre = static::$objet;
+            $table = ucfirst($objetsTitre);
             // titre de la page
             $titre = "les $objetsTitre";
-            $cle = Utilisateur::getCle();
-            $objet = Utilisateur::getObjet();
+            $cle = $table::getCle();
+            $objet = $table::getObjet();
+            
+            
+            if (isset($_GET["login"])){
+                $i = $_GET["login"];
+                $tab = $table::getObjetById($i);
+            }else {
+                $tab = $table::getAll();
+            }
         
             // insertion du debut du html
             include("vue/debut.php");
