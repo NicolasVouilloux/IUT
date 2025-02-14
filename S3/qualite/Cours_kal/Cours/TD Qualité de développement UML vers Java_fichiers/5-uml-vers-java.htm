@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html class="reveal-full-page"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>Qualité de développement : UML vers Java</title>
+
+	<link rel="stylesheet" href="5-uml-vers-java_data/reset.css">
+	<link rel="stylesheet" href="5-uml-vers-java_data/reveal.css">
+	<link rel="stylesheet" href="5-uml-vers-java_data/white.css" id="theme">
+	<link rel="stylesheet" href="5-uml-vers-java_data/presentation-theme.css">
+	<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />-->
+	<link rel="stylesheet" href="font-awesome.min.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<!--<link rel="stylesheet" href="../reveal-js-framework/plugin/highlight/monokai.css">-->
+	<link rel="stylesheet" href="vs2015.min.css">
+	<link rel="stylesheet" href="5-uml-vers-java_data/event-b-theme.css">
+
+	<script type="text/javascript" src="mathjax.js"></script>
+	<script type="text/javascript" id="MathJax-script" src="tex-mml-chtml.js"></script><script src="lazy.js" charset="UTF-8"></script>
+
+	<link rel="icon" href="https://idiraitsadoune.com/enseignement/resources/img/favicon.ico">
+<style type="text/css">.hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}</style><style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style><style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+</style></head>
+
+<body class="reveal-viewport" style="--slide-width: 1280px; --slide-height: 720px; --slide-scale: 0.9824999999999999; --viewport-width: 1310px; --viewport-height: 770px;">
+	<img id="logo" src="5-uml-vers-java_data/iut-logo.png" alt="">
+	<div class="reveal slide center focused has-horizontal-slides has-light-background ready" role="application" data-transition-speed="default" data-background-transition="fade">
+		<div class="slides" style="width: 1280px; height: 720px; inset: 50% auto auto 50%; transform: translate(-50%, -50%) scale(0.9825);">
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" data-background="#fff" style="top: 94.5px; display: block;" class="has-light-background present">
+
+	<div class="header-logo">
+		<div class="left-logo">
+			<a href="https://lmf.cnrs.fr/" target="_blank">
+				<img src="5-uml-vers-java_data/logo-aff.png" alt="">
+			</a>
+		</div>
+		<div class="right-logo">
+			<a href="https://www.iut-orsay.universite-paris-saclay.fr/" target="_blank">
+				<img src="5-uml-vers-java_data/iut-logo.png" alt="">
+			</a>
+		</div>
+	</div>
+	
+	<div style="text-align: left">
+		<h2>Qualité de développement</h2>
+		<h3>UML vers Java</h3>
+	</div>
+
+	<div class="description">
+		<span><span class="fa fa-graduation-cap">&nbsp;</span>2A - Bachelor Universitaire de Technologie</span><br>
+		<span><span class="fa fa-university">&nbsp;</span>IUT d'Orsay - Université Paris-Saclay - 2024/2025</span>
+	</div>
+
+	<div class="hero-card-id">
+		<a href="https://wdi.centralesupelec.fr/aitsadoune/" target="_blank">
+			<img src="5-uml-vers-java_data/idir.png" class="hero-user">
+		</a>
+		<div class="hero-desc">
+			<a href="https://wdi.centralesupelec.fr/aitsadoune/" target="_blank">
+				<span class="hero-name"><strong>Idir AIT SADOUNE </strong></span>
+			</a>
+			<br>
+			<a href="mailto:idir.ait-sadoune@universite-paris-saclay.fr" target="_blank">
+        <span class="hero-email">idir.ait-sadoune@universite-paris-saclay.fr</span>
+      </a>
+		</div>
+	</div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section id="plan" data-transition="fade-in fade-out" style="top: 155.5px; display: block;" aria-hidden="true" class="future" hidden=""><h2>Plan</h2><ul><div data-id="menu" class="outline"><div class="item"><a href="#/ch1">Transcription des classes</a></div><div class="item"><a href="#/ch2">Transcription des associations</a></div><div class="item"><a href="#/ch3">Transcription des collections</a></div></div></ul><p style="font-size: 25px !important  ;"><a href="#/plan">Retour au plan</a> - <a href="#">Retour à l'accueil</a></p></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section id="ch1" name="Transcription des classes" data-transition="fade-in fade-out" style="top: 155.5px; display: block;" aria-hidden="true" class="future" hidden=""><h2>Plan</h2><ul><div data-id="menu" class="outline"><div class="item actif-item"><a href="#/ch1">Transcription des classes</a></div><div class="item"><a href="#/ch2">Transcription des associations</a></div><div class="item"><a href="#/ch3">Transcription des collections</a></div></div></ul><p style="font-size: 25px !important  ;"><a href="#/plan">Retour au plan</a> - <a href="#">Retour à l'accueil</a></p></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Transcription des classes</h2>
+
+	<p>A chaque <b>classe UML</b> correspondra une <b>classe Java</b>.</p>
+    
+	<div class="fragment center-divs d-skip" data-fragment-index="0">
+		<div style="width:50%">
+				<img src="5-uml-vers-java_data/1-chap-1.svg" alt="" width="150px">
+		</div>
+		<div style="width:50%">
+				<pre class="code-wrapper"><code class="language-java hljs" data-trim="" data-line-numbers="" data-highlighted="yes"><table class="hljs-ln"><tbody><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="1"><div class="hljs-ln-n" data-line-number="1"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="1"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Point</span>{</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="2"><div class="hljs-ln-n" data-line-number="2"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="2">		...</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="3"><div class="hljs-ln-n" data-line-number="3"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="3">}                            </td></tr></tbody></table></code></pre>
+		</div>
+  </div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Transcription des classes</h2>
+
+	<div class="left-content">
+		<p>
+			A chaque <b>attribut</b> d'une <b>classe UML</b> correspondra un <b>attribut</b> <br>
+			d'une <b>classe Java</b>.  
+		</p>
+		<ul class="fragment" data-fragment-index="0">
+			<li>cardinalité <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="0"><mjx-lazy data-mjx-lazy="0" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> 1 <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="1"><mjx-lazy data-mjx-lazy="1" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> <cs-code>Type nomAttribut;</cs-code></li>
+			<li>cardinalité <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="2"><mjx-lazy data-mjx-lazy="2" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> 1 <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="3"><mjx-lazy data-mjx-lazy="3" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> <cs-code>Collection&lt;Type&gt; nomAttribut;</cs-code></li>
+		</ul>
+   
+	</div>
+
+	<div class="fragment center-divs d-skip" data-fragment-index="1">
+		<div style="width:50%">
+				<img src="5-uml-vers-java_data/1-chap-2.svg" alt="" width="150px">
+		</div>
+		<div style="width:50%">
+				<pre class="code-wrapper"><code class="language-java hljs" data-trim="" data-line-numbers="" data-highlighted="yes"><table class="hljs-ln"><tbody><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="1"><div class="hljs-ln-n" data-line-number="1"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="1"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Point</span>{</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="2"><div class="hljs-ln-n" data-line-number="2"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="2">		<span class="hljs-keyword">private</span> <span class="hljs-type">double</span> x;</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="3"><div class="hljs-ln-n" data-line-number="3"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="3">		<span class="hljs-keyword">private</span> <span class="hljs-type">double</span> y;</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="4"><div class="hljs-ln-n" data-line-number="4"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="4">}                            </td></tr></tbody></table></code></pre>
+		</div>
+	</div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Remarque</h2>
+
+	<div id="default-block" class="left-content">
+		Les <i>visibilités</i> des éléments de modélisation <b>UML</b> seront <br> les mêmes
+		dans leurs correspondants en <b>Java</b>.
+	</div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Transcription des classes</h2>
+
+	<p>
+		A chaque <b>operation</b> d'une <b>classe UML</b> correspondra  <br> une <b>méthode</b> 
+		d'une <b>classe Java</b>.
+	</p>
+
+	<div class="fragment center-divs d-skip" data-fragment-index="0">
+		<div style="width:40%">
+				<img src="5-uml-vers-java_data/1-chap-3.svg" alt="" width="350px">
+		</div>
+		<div style="width:60%">
+				<pre class="code-wrapper"><code class="language-java hljs" data-trim="" data-line-numbers="" data-highlighted="yes"><table class="hljs-ln"><tbody><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="1"><div class="hljs-ln-n" data-line-number="1"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="1"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Point</span>{</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="2"><div class="hljs-ln-n" data-line-number="2"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="2">		<span class="hljs-keyword">private</span> <span class="hljs-type">double</span> x;</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="3"><div class="hljs-ln-n" data-line-number="3"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="3">		<span class="hljs-keyword">private</span> <span class="hljs-type">double</span> y;</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="4"><div class="hljs-ln-n" data-line-number="4"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="4">		</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="5"><div class="hljs-ln-n" data-line-number="5"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="5">		<span class="hljs-keyword">public</span> <span class="hljs-type">double</span> <span class="hljs-title function_">distanceTo</span><span class="hljs-params">(Point autre)</span>{</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="6"><div class="hljs-ln-n" data-line-number="6"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="6">				<span class="hljs-comment">// TO DO</span></td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="7"><div class="hljs-ln-n" data-line-number="7"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="7">		}</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="8"><div class="hljs-ln-n" data-line-number="8"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="8">}                             </td></tr></tbody></table></code></pre>
+		</div>
+	</div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Transcription des classes</h2>
+
+	<p>
+		A chaque <b>classe UML abstraite</b> correspondra <br> une <b>classe Java abstraite</b>.
+	</p>
+
+	<div class="fragment center-divs d-skip" data-fragment-index="0">
+		<div style="width:50%">
+				<img src="5-uml-vers-java_data/1-chap-4.svg" alt="" width="150px">
+		</div>
+		<div style="width:50%">
+				<pre class="code-wrapper"><code class="language-java hljs" data-trim="" data-line-numbers="" data-highlighted="yes"><table class="hljs-ln"><tbody><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="1"><div class="hljs-ln-n" data-line-number="1"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="1"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Shape</span>{</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="2"><div class="hljs-ln-n" data-line-number="2"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="2">	...</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="3"><div class="hljs-ln-n" data-line-number="3"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="3">}                             </td></tr></tbody></table></code></pre>
+		</div>
+	</div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Transcription des classes</h2>
+
+	<p>A chaque <b>interface UML</b> correspondra 
+		une <b>interface Java</b>.</p>
+
+	<div class="fragment center-divs d-skip" data-fragment-index="0">
+		<div style="width:50%">
+			<img src="5-uml-vers-java_data/1-chap-5.svg" alt="" width="250px">
+		</div>
+		<div style="width:50%">
+			<pre class="code-wrapper"><code class="language-java hljs" data-trim="" data-line-numbers="" data-highlighted="yes"><table class="hljs-ln"><tbody><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="1"><div class="hljs-ln-n" data-line-number="1"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="1"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">ClosedShape</span>{</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="2"><div class="hljs-ln-n" data-line-number="2"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="2">	<span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-type">double</span> <span class="hljs-title function_">perimeter</span><span class="hljs-params">()</span>;</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="3"><div class="hljs-ln-n" data-line-number="3"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="3">}                            </td></tr></tbody></table></code></pre>
+		</div>
+	</div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section id="ch2" name="Transcription des associations" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden=""><h2>Plan</h2><ul><div data-id="menu" class="outline"><div class="item"><a href="#/ch1">Transcription des classes</a></div><div class="item actif-item"><a href="#/ch2">Transcription des associations</a></div><div class="item"><a href="#/ch3">Transcription des collections</a></div></div></ul><p style="font-size: 25px !important  ;"><a href="#/plan">Retour au plan</a> - <a href="#">Retour à l'accueil</a></p></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Transcription des associations</h2>
+	
+	<ul>
+		<li>A chaque <b>association UML</b> correspondra <b>un attribut</b> 
+			dans les <b>classes Java</b> participantes à l'association.</li>
+		<li class="fragment skip" data-fragment-index="0">L'<b>attribut</b> est ajouté uniquement si l'<i>association est navigable</i>.</li>
+		<li class="fragment skip" data-fragment-index="1">Le <b>nom de l'attribut</b> est le nom de l'<i>extrémité navigable</i>.
+			<ul class="fragment" data-fragment-index="2">
+				<li>cardinalité <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="4"><mjx-lazy data-mjx-lazy="4" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> 1 <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="5"><mjx-lazy data-mjx-lazy="5" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> <cs-code>Type nomExtremite;</cs-code></li>
+				<li>cardinalité <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="6"><mjx-lazy data-mjx-lazy="6" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> 1 <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="7"><mjx-lazy data-mjx-lazy="7" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> <cs-code>Collection&lt;Type&gt; nomExtremite;</cs-code></li>
+			</ul>
+		</li>
+	</ul>
+	
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Transcription des associations</h2>
+
+	<div class="center-divs">
+		<div style="width:50%">
+			<img src="5-uml-vers-java_data/1-chap-6.svg" alt="" width="450px">
+		</div>
+		<div style="width:50%">
+			<pre class="code-wrapper"><code class="language-java hljs" data-trim="" data-line-numbers="" data-highlighted="yes"><table class="hljs-ln"><tbody><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="1"><div class="hljs-ln-n" data-line-number="1"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="1"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Point</span>{</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="2"><div class="hljs-ln-n" data-line-number="2"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="2">	... </td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="3"><div class="hljs-ln-n" data-line-number="3"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="3">}                            </td></tr></tbody></table></code></pre>
+
+			<pre class="code-wrapper"><code class="language-java hljs" data-trim="" data-line-numbers="" data-highlighted="yes"><table class="hljs-ln"><tbody><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="1"><div class="hljs-ln-n" data-line-number="1"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="1"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Circle</span>{</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="2"><div class="hljs-ln-n" data-line-number="2"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="2">	<span class="hljs-keyword">private</span> Point center ;</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="3"><div class="hljs-ln-n" data-line-number="3"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="3">}                            </td></tr></tbody></table></code></pre>
+			<pre class="code-wrapper"><code class="language-java hljs" data-trim="" data-line-numbers="" data-highlighted="yes"><table class="hljs-ln"><tbody><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="1"><div class="hljs-ln-n" data-line-number="1"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="1"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Polygon</span>{</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="2"><div class="hljs-ln-n" data-line-number="2"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="2">	<span class="hljs-keyword">private</span> Collection&lt;Point&gt; vertex;</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="3"><div class="hljs-ln-n" data-line-number="3"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="3">}                            </td></tr></tbody></table></code></pre>
+		</div>
+	</div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Transcription des associations</h2>
+
+	<p>
+		La relation de <b>généralisation en UML</b> est traduite <br> par une relation d'<b>héritage en Java</b>.
+	</p>
+
+	<div class="fragment center-divs d-skip" data-fragment-index="0">
+		<div style="width:50%">
+			<img src="5-uml-vers-java_data/1-chap-7.svg" alt="" width="450px">
+		</div>
+		<div style="width:50%">
+			<pre class="code-wrapper"><code class="language-java hljs" data-trim="" data-line-numbers="" data-highlighted="yes"><table class="hljs-ln"><tbody><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="1"><div class="hljs-ln-n" data-line-number="1"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="1"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Shape</span>{</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="2"><div class="hljs-ln-n" data-line-number="2"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="2">	...</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="3"><div class="hljs-ln-n" data-line-number="3"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="3">}                             </td></tr></tbody></table></code></pre>
+
+			<pre class="code-wrapper"><code class="language-java hljs" data-trim="" data-line-numbers="" data-highlighted="yes"><table class="hljs-ln"><tbody><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="1"><div class="hljs-ln-n" data-line-number="1"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="1"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Circle</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Shape</span>{</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="2"><div class="hljs-ln-n" data-line-number="2"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="2">	...</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="3"><div class="hljs-ln-n" data-line-number="3"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="3">}                            </td></tr></tbody></table></code></pre>
+			<pre class="code-wrapper"><code class="language-java hljs" data-trim="" data-line-numbers="" data-highlighted="yes"><table class="hljs-ln"><tbody><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="1"><div class="hljs-ln-n" data-line-number="1"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="1"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Polygon</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Shape</span>{</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="2"><div class="hljs-ln-n" data-line-number="2"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="2">	...</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="3"><div class="hljs-ln-n" data-line-number="3"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="3">}                            </td></tr></tbody></table></code></pre>
+		</div>
+	</div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Transcription des associations</h2>
+
+	<p>
+		La relation de <b>réalisation en UML</b> est traduite <br> par une relation d'<b>implémentation en Java</b>.
+	</p>
+
+	<div class="fragment center-divs d-skip" data-fragment-index="0">
+		<div style="width:50%">
+			<img src="5-uml-vers-java_data/1-chap-8.svg" alt="" width="450px">
+		</div>
+		<div style="width:50%">
+			<pre class="code-wrapper"><code class="language-java hljs" data-trim="" data-line-numbers="" data-highlighted="yes"><table class="hljs-ln"><tbody><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="1"><div class="hljs-ln-n" data-line-number="1"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="1"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">ClosedShape</span>{</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="2"><div class="hljs-ln-n" data-line-number="2"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="2">	<span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-type">double</span> <span class="hljs-title function_">perimeter</span><span class="hljs-params">()</span>;</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="3"><div class="hljs-ln-n" data-line-number="3"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="3">}                            </td></tr></tbody></table></code></pre>
+			<pre class="code-wrapper"><code class="language-java hljs" data-trim="" data-line-numbers="" data-highlighted="yes"><table class="hljs-ln"><tbody><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="1"><div class="hljs-ln-n" data-line-number="1"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="1"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Circle</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">ClosedShape</span>{</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="2"><div class="hljs-ln-n" data-line-number="2"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="2">	<span class="hljs-keyword">public</span> <span class="hljs-type">double</span> <span class="hljs-title function_">perimeter</span><span class="hljs-params">()</span>{</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="3"><div class="hljs-ln-n" data-line-number="3"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="3">		<span class="hljs-comment">// TO DO</span></td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="4"><div class="hljs-ln-n" data-line-number="4"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="4">	}</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="5"><div class="hljs-ln-n" data-line-number="5"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="5">}                            </td></tr></tbody></table></code></pre>
+			<pre class="code-wrapper"><code class="language-java hljs" data-trim="" data-line-numbers="" data-highlighted="yes"><table class="hljs-ln"><tbody><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="1"><div class="hljs-ln-n" data-line-number="1"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="1"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Polygon</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">ClosedShape</span>{</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="2"><div class="hljs-ln-n" data-line-number="2"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="2">	<span class="hljs-keyword">public</span> <span class="hljs-type">double</span> <span class="hljs-title function_">perimeter</span><span class="hljs-params">()</span>{</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="3"><div class="hljs-ln-n" data-line-number="3"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="3">		<span class="hljs-comment">// TO DO</span></td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="4"><div class="hljs-ln-n" data-line-number="4"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="4">	}</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="5"><div class="hljs-ln-n" data-line-number="5"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="5">}                            </td></tr></tbody></table></code></pre>
+		</div>
+	</div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section id="ch3" name="Transcription des collections" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden=""><h2>Plan</h2><ul><div data-id="menu" class="outline"><div class="item"><a href="#/ch1">Transcription des classes</a></div><div class="item"><a href="#/ch2">Transcription des associations</a></div><div class="item actif-item"><a href="#/ch3">Transcription des collections</a></div></div></ul><p style="font-size: 25px !important  ;"><a href="#/plan">Retour au plan</a> - <a href="#">Retour à l'accueil</a></p></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Les collections en Java</h2>
+
+	<div>
+		<img data-id="collec" src="5-uml-vers-java_data/1-chap-9.svg" alt="" width="700px">
+	</div>
+
+	<ul>
+		<li class="skip"><cs-code>Collection</cs-code> <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="8"><mjx-lazy data-mjx-lazy="8" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> interface qui gèrent toutes
+			les <i>collections</i> dynamiques.</li>
+
+		<li class="fragment" data-fragment-index="0"><cs-code>Set</cs-code> <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="9"><mjx-lazy data-mjx-lazy="9" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> interface pour
+			des <i>collections</i> qui n'autorisent <i>pas de doublons</i>.</li>
+
+		<li class="fragment" data-fragment-index="1"><cs-code>List</cs-code> <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="10"><mjx-lazy data-mjx-lazy="10" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> interface pour
+			des <i>collections</i> qui <i>autorisent des doublons</i> <br>
+			et un <i>accès direct</i> à un élément.</li>
+
+		<li class="fragment" data-fragment-index="2">...</li>
+	</ul>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Les collections en Java</h2>
+
+	<div>
+		<img data-id="collec" src="5-uml-vers-java_data/1-chap-10.svg" alt="" width="700px">
+	</div>
+	
+	<ul>
+		<li class="fragment skip" data-fragment-index="0"><cs-code>Vector</cs-code> <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="11"><mjx-lazy data-mjx-lazy="11" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> implémente l'interface <cs-code>List</cs-code> (synchronisé)</li>
+		<li class="fragment" data-fragment-index="1"><cs-code>ArrayList</cs-code> <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="12"><mjx-lazy data-mjx-lazy="12" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> implémente l'interface  <cs-code>List</cs-code> (non synchronisé)</li>
+		<li class="fragment" data-fragment-index="2"><cs-code>LinkedList</cs-code> <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="13"><mjx-lazy data-mjx-lazy="13" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> implémente l'interface  <cs-code>List</cs-code> (doublement chaînée)</li>
+		<li class="fragment" data-fragment-index="3"><cs-code>HashSet</cs-code> <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="14"><mjx-lazy data-mjx-lazy="14" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> implémente l'interface  <cs-code>Set</cs-code></li>
+		<li class="fragment" data-fragment-index="4"><cs-code>SortedSet</cs-code> <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="15"><mjx-lazy data-mjx-lazy="15" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> implémente l'interface  <cs-code>Set</cs-code> (ordonné)</li>
+	</ul>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Transcription des collections</h2>
+
+	<div class="left-content">
+		<p>
+		Le type de la <cs-code>Collection</cs-code> affecté à un <i>attribut</i>
+		en <b>Java</b>, dépend <br> des <i>propriétés</i> 
+		de l'<i>attribut/association</i> <b>UML</b>:
+		</p><ul>
+			<li class="fragment skip" data-fragment-index="0">aucune propriété <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="16"><mjx-lazy data-mjx-lazy="16" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> à configurer manuellement.</li>
+			<li class="fragment skip" data-fragment-index="1"><i>ordered</i> <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="17"><mjx-lazy data-mjx-lazy="17" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> traduit en <cs-code>ArrayList</cs-code> ou <cs-code>LinkedList</cs-code>.</li>
+			<li class="fragment skip" data-fragment-index="2"><i>unique</i> <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="18"><mjx-lazy data-mjx-lazy="18" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> traduit en <cs-code>HashSet</cs-code>.</li>
+			<li class="fragment skip" data-fragment-index="3"><i>ordered</i>  et <i>unique</i> <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="19"><mjx-lazy data-mjx-lazy="19" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> traduit en <cs-code>SortedSet</cs-code>.</li>
+		</ul>
+		<p></p>
+	</div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Transcription des collections</h2>
+  <h3>Exemple</h3>
+
+	<div class="center-divs">
+		<div style="width:50%">
+			<img src="5-uml-vers-java_data/1-chap-11.svg" alt="" width="450px">
+		</div>
+		<div style="width:50%">
+			<pre class="code-wrapper"><code class="language-java hljs" data-trim="" data-line-numbers="" data-highlighted="yes"><table class="hljs-ln"><tbody><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="1"><div class="hljs-ln-n" data-line-number="1"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="1"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Point</span>{</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="2"><div class="hljs-ln-n" data-line-number="2"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="2">	... </td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="3"><div class="hljs-ln-n" data-line-number="3"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="3">}                            </td></tr></tbody></table></code></pre>
+
+			<pre class="code-wrapper"><code class="language-java hljs" data-trim="" data-line-numbers="" data-highlighted="yes"><table class="hljs-ln"><tbody><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="1"><div class="hljs-ln-n" data-line-number="1"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="1"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Circle</span>{</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="2"><div class="hljs-ln-n" data-line-number="2"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="2">	<span class="hljs-keyword">private</span> Point center ;</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="3"><div class="hljs-ln-n" data-line-number="3"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="3">}                            </td></tr></tbody></table></code></pre>
+			<pre class="code-wrapper"><code class="language-java hljs" data-trim="" data-line-numbers="" data-highlighted="yes"><table class="hljs-ln"><tbody><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="1"><div class="hljs-ln-n" data-line-number="1"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="1"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Polygon</span>{</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="2"><div class="hljs-ln-n" data-line-number="2"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="2">	<span class="hljs-keyword">private</span> SortedSet&lt;Point&gt; vertex;</td></tr><tr><td class="hljs-ln-line hljs-ln-numbers" data-line-number="3"><div class="hljs-ln-n" data-line-number="3"></div></td><td class="hljs-ln-line hljs-ln-code" data-line-number="3">}                            </td></tr></tbody></table></code></pre>
+		</div>
+	</div>
+	
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h1>Merci</h1>
+	<p>
+		<a href="https://idiraitsadoune.com/enseignement/UPS-IUT-2A-QD/5-uml-vers-java.pdf" target="_blank">Version PDF des slides</a>
+	</p>
+	<p>
+		<a href="#">Retour à l'accueil</a>
+		- <a href="#/plan">Retour au plan</a>
+	</p>	
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+		</div>
+	<div class="backgrounds"><div class="slide-background present" style="background: rgb(255, 255, 255); display: block;" data-background-hash="#fffnullnullnullnullnullnullnullnullnullnull" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-number" style="display: block;"><a href="#/">
+					<span class="slide-number-a">1</span>
+					<span class="slide-number-delimiter">/</span>
+					<span class="slide-number-b">20</span>
+					</a></div><aside class="controls" style="display: block;" data-controls-layout="bottom-right" data-controls-back-arrows="faded"><button class="navigate-left" aria-label="previous slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-right enabled highlight" aria-label="next slide"><div class="controls-arrow"></div></button>
+			<button class="navigate-up" aria-label="above slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-down" aria-label="below slide" disabled="disabled"><div class="controls-arrow"></div></button></aside><div class="progress" style="display: block;"><span style="transform: scaleX(0);"></span></div><div class="speaker-notes" data-prevent-swipe="" tabindex="0"></div><div class="pause-overlay"><button class="resume-button">Resume presentation</button></div><div style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px);" class="aria-status" aria-live="polite" aria-atomic="true">Qualité
+ de développement UML vers Java 2A - Bachelor Universitaire de 
+Technologie IUT d'Orsay - Université Paris-Saclay - 2024/2025 Idir AIT 
+SADOUNE idir.ait-sadoune@universite-paris-saclay.fr </div></div>
+
+	<script src="5-uml-vers-java_data/plan.js"></script>
+	<script src="5-uml-vers-java_data/reveal.js"></script>
+	<script src="5-uml-vers-java_data/notes.js"></script>
+	<script src="5-uml-vers-java_data/highlight.js"></script>
+
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			// Display presentation control arrows
+			controls: true,
+			// Display a presentation progress bar
+			progress: true,
+
+			// Vertical centering of slides
+			center: true,
+			// The "normal" size of the presentation, aspect ratio will
+			// be preserved when the presentation is scaled to fit different
+			// resolutions. Can be specified using percentage units.
+			width: 1280,
+			height: 720,
+
+			// Add the current slide number to the URL hash so that reloading the
+			// page/copying the URL will return you to the same slide
+			hash: true,
+
+			slideNumber: 'c/t',
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealHighlight, RevealNotes]
+		});
+
+		Reveal.configure({ pdfSeparateFragments: false });
+	</script>
+
+
+
+</body></html>

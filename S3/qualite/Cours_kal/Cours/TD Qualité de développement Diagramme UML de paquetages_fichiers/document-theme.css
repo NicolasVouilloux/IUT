@@ -1,0 +1,106 @@
+@charset "UTF-8";
+/* BASIC STYLE */
+@import url(../../../CSS/main-style.css);
+
+@font-face {
+	font-family: 'Monaco';
+	font-style: normal;
+	font-weight: normal;
+	src: url('./monaco-font/Monaco.woff') format('woff');
+}
+
+pre code{
+	font-family: 'Monaco' !important; 
+  font-size: 0.95em !important;
+  tab-size: 3;
+	box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+	padding-bottom: 5px !important;
+	padding-top: 8px !important;
+	padding-left: 10px !important;
+	margin-top: 5px !important;
+	margin-bottom: 5px !important;
+}
+
+mjx-math{
+	margin: -15px 0 !important;
+}
+
+.listing{
+	font-family: 'Monaco' !important; 
+  font-size: 0.95em !important;
+	color:coral !important;
+}
+
+cs-code{
+	margin:0;
+	padding:0;
+	border:0;
+	font-family: 'Monaco' !important; 
+	font-size: 0.95em !important;
+  color:coral !important;
+	text-transform: none !important;
+}
+
+#default-block {
+	border: solid;
+	border-width: 3px;
+	border-color: navy;
+	background-color: rgb(218, 228, 250);
+	padding: 15px 20px 10px 20px;
+	border-radius: 10px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	text-align: left;
+}
+
+#alert-block {
+	border: solid;
+	border-width: 3px;
+	border-color: red;
+	background-color: rgb(250, 237, 237);
+	padding: 15px 20px 10px 20px;
+	border-radius: 10px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	text-align: left;
+}
+
+#green-block {
+	border: solid;
+	border-width: 3px;
+	border-color: green;
+	background-color: rgb(220, 245, 220);
+	padding: 15px 20px 10px 20px;
+	border-radius: 10px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	text-align: left;
+}
+
+#orange-block{
+	border: solid;
+	border-width: 5px;
+	border-color: orangered;
+	background-color: orange;
+	padding: 10px;
+	border-radius: 10px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding-left: 20px;
+	text-align: left;
+	font-weight: normal;
+	font-size: 32px;
+	font-family: 'Inter Semi Bold' !important;
+	font-size: 32px;
+}
+
+.button_display{
+	border: solid;
+	border-width: 0px;
+	background-color: green;
+	padding: 5px 10px 5px 10px;
+	border-radius: 10px;
+	color:  rgb(220, 245, 220);
+	font-weight:bold !important;
+	font-size: 0.95em !important;
+}

@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html class="reveal-full-page"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>Qualité de développement : Diagramme UML de paquetages</title>
+
+	<link rel="stylesheet" href="4-uml-diagramme-package_data/reset.css">
+	<link rel="stylesheet" href="4-uml-diagramme-package_data/reveal.css">
+	<link rel="stylesheet" href="4-uml-diagramme-package_data/white.css" id="theme">
+	<link rel="stylesheet" href="4-uml-diagramme-package_data/presentation-theme.css">
+	<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />-->
+	<link rel="stylesheet" href="font-awesome.min.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<!--<link rel="stylesheet" href="../reveal-js-framework/plugin/highlight/monokai.css">-->
+	<link rel="stylesheet" href="vs2015.min.css">
+	<link rel="stylesheet" href="4-uml-diagramme-package_data/event-b-theme.css">
+
+	<script type="text/javascript" src="mathjax.js"></script>
+	<script type="text/javascript" id="MathJax-script" src="tex-mml-chtml.js"></script><script src="lazy.js" charset="UTF-8"></script>
+
+	<link rel="icon" href="https://idiraitsadoune.com/enseignement/resources/img/favicon.ico">
+<style type="text/css">.hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}</style><style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style><style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+</style></head>
+
+<body class="reveal-viewport" style="--slide-width: 1280px; --slide-height: 720px; --slide-scale: 0.9824999999999999; --viewport-width: 1310px; --viewport-height: 770px;">
+	<img id="logo" src="4-uml-diagramme-package_data/iut-logo.png" alt="">
+	<div class="reveal slide center focused has-horizontal-slides has-light-background ready" role="application" data-transition-speed="default" data-background-transition="fade">
+		<div class="slides" style="width: 1280px; height: 720px; inset: 50% auto auto 50%; transform: translate(-50%, -50%) scale(0.9825);">
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" data-background="#fff" style="top: 94.5px; display: block;" class="has-light-background present">
+
+	<div class="header-logo">
+		<div class="left-logo">
+			<a href="https://lmf.cnrs.fr/" target="_blank">
+				<img src="4-uml-diagramme-package_data/logo-aff.png" alt="">
+			</a>
+		</div>
+		<div class="right-logo">
+			<a href="https://www.iut-orsay.universite-paris-saclay.fr/" target="_blank">
+				<img src="4-uml-diagramme-package_data/iut-logo.png" alt="">
+			</a>
+		</div>
+	</div>
+	
+	<div style="text-align: left">
+		<h2>Qualité de développement</h2>
+		<h3>Diagramme UML de paquetages</h3>
+	</div>
+
+	<div class="description">
+		<span><span class="fa fa-graduation-cap">&nbsp;</span>2A - Bachelor Universitaire de Technologie</span><br>
+		<span><span class="fa fa-university">&nbsp;</span>IUT d'Orsay - Université Paris-Saclay - 2024/2025</span>
+	</div>
+
+	<div class="hero-card-id">
+		<a href="https://wdi.centralesupelec.fr/aitsadoune/" target="_blank">
+			<img src="4-uml-diagramme-package_data/idir.png" class="hero-user">
+		</a>
+		<div class="hero-desc">
+			<a href="https://wdi.centralesupelec.fr/aitsadoune/" target="_blank">
+				<span class="hero-name"><strong>Idir AIT SADOUNE </strong></span>
+			</a>
+			<br>
+			<a href="mailto:idir.ait-sadoune@universite-paris-saclay.fr" target="_blank">
+        <span class="hero-email">idir.ait-sadoune@universite-paris-saclay.fr</span>
+      </a>
+		</div>
+	</div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section id="plan" data-transition="fade-in fade-out" style="top: 120px; display: block;" aria-hidden="true" class="future" hidden=""><h2>Plan</h2><ul><div data-id="menu" class="outline"><div class="item"><a href="#/ch1">Les éléments de base</a></div><div class="item"><a href="#/ch2">Les relations entre paquetages</a></div><div class="item"><a href="#/ch3">Les principes de cohérence et d'indépendance</a></div><div class="item"><a href="#/ch4">Réduction de couplage entre paquetages</a></div></div></ul><p style="font-size: 25px !important  ;"><a href="#/plan">Retour au plan</a> - <a href="#">Retour à l'accueil</a></p></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 40.5px; display: block;" aria-hidden="true" class="future" hidden="">
+  <h2>Cycle de développement</h2>
+
+  <div class="r-stack">
+    <img class="fragment fade-in-then-out" src="4-uml-diagramme-package_data/cycle_v_1.svg" alt="" data-fragment-index="0" width="900px" height="auto">
+    <img class="fragment fade-in-then-out" src="4-uml-diagramme-package_data/cycle_v_2.svg" alt="" data-fragment-index="1" width="900px" height="auto">
+    <img class="fragment fade-in-then-out" src="4-uml-diagramme-package_data/cycle_v_3.svg" alt="" data-fragment-index="2" width="900px" height="auto">
+    <img class="fragment fade-in-then-out" src="4-uml-diagramme-package_data/cycle_v_4.svg" alt="" data-fragment-index="3" width="900px" height="auto">
+    <img class="fragment fade-in" src="4-uml-diagramme-package_data/cycle_v_5.svg" alt="" data-fragment-index="4" width="900px" height="auto">
+  </div>
+
+  <div class="fragment" data-fragment-index="5">
+    Ce cours se positionne dans les étapes <b>Conception</b> et <b>Conception détaillée</b>.
+  </div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section id="ch1" name="Les éléments de base" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden=""><h2>Plan</h2><ul><div data-id="menu" class="outline"><div class="item actif-item"><a href="#/ch1">Les éléments de base</a></div><div class="item"><a href="#/ch2">Les relations entre paquetages</a></div><div class="item"><a href="#/ch3">Les principes de cohérence et d'indépendance</a></div><div class="item"><a href="#/ch4">Réduction de couplage entre paquetages</a></div></div></ul><p style="font-size: 25px !important  ;"><a href="#/plan">Retour au plan</a> - <a href="#">Retour à l'accueil</a></p></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Exemple d'introduction</h2>
+
+  <div>
+    <img src="4-uml-diagramme-package_data/15-uml-01.svg">
+  </div>
+	
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Définitions</h2>
+
+  <ul>
+    <li>
+        Un <b>paquetage</b> regroupe des éléments de la modélisation appelés <br> <i>membres</i>,
+        portant sur <b>un sous-ensemble du système</b>.
+    </li>
+    <li class="fragment skip" data-fragment-index="0">
+        <i>Le découpage en paquetage</i> doit traduire <b>un découpage logique</b> <br>
+        du système correspondant à <i>des espaces de nommage homogènes</i>.
+    </li>
+    <li class="fragment skip" data-fragment-index="1">
+        Un <b>paquetage</b> permet de grouper <i>n'importe quelle éléments d'UML</i> <br>
+        dans des unités de plus haut niveau. 
+      <ul>
+        <li class="fragment" data-fragment-index="2">classes, composants, cas d'utilisation, ..., et d'autres paquetages.</li>
+      </ul>
+    </li>
+  </ul>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Présentation d'un paquetage</h2>
+
+  <div>
+    <img src="4-uml-diagramme-package_data/15-uml-02.svg">
+  </div>
+    
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Nom d'un paquetage</h2>
+
+  <ul>
+    <li>
+        Chaque <i>paquetage</i> doit avoir 
+        un <i>nom différent</i> (<b>espace de nommage</b>).
+    </li>
+
+    <li class="fragment skip" data-fragment-index="0">
+        Les éléments contenus dans un paquetage se distinguent 
+        par leur <i>appartenance</i> au <i>paquetage englobant</i>.
+      <ul id="fleche">
+        <li class="fragment" data-fragment-index="1"><i>deux éléments</i> dans <i>deux paquetages</i> 
+            peuvent porter <i>le même nom</i>.
+        </li>
+        <li class="fragment" data-fragment-index="2"><i>deux éléments</i> dans <i>le même paquetage</i> 
+            doivent porter <i>des noms différents</i>.
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Nom d'un paquetage</h2>
+  <h3>Exemple</h3>
+
+  <div>
+    <img src="4-uml-diagramme-package_data/15-uml-03.svg" height="400px">
+  </div>
+    
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Nom d'un élément</h2>
+
+  <div>
+    <img src="4-uml-diagramme-package_data/15-uml-04.svg">
+  </div>
+  
+  <ul>
+    <li class="fragment" data-fragment-index="0">
+      Le <i>nom</i> d'un élément est dit <b>simple</b> s'il est utilisé <i>seul</i>. 
+      <ul id="fleche">
+        <li>la classe <cs-code>Roue</cs-code></li>
+      </ul>
+    </li>
+
+    <li class="fragment skip" data-fragment-index="1">
+        Le <i>nom</i> d'un élément est dit <b>complet</b> s'il est précédé par <i>les noms <br>
+            des paquetages englobants</i> (<b>name space</b>). 
+      <ul id="fleche">
+        <li>la classe <cs-code>voiture::systeme-acceleration::Roue</cs-code></li>
+      </ul>
+    </li>
+  </ul>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>La visibilité</h2>
+
+  <ul>
+    <li>Les éléments d'un <i>paquetage</i> peuvent avoir une <i>visibilité</i> déclarée:
+      <ul>
+        <li class="fragment" data-fragment-index="0">de type <b>public</b> (par défaut) <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="0"><mjx-lazy data-mjx-lazy="0" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> visible dans tout le modèle.</li>
+        <li class="fragment" data-fragment-index="1">de type <b>privé</b> (<cs-code>private</cs-code>) <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="1"><mjx-lazy data-mjx-lazy="1" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> non visible 
+            à l'extérieur du paquetage.</li>
+      </ul>
+    </li>
+  </ul>
+  
+  <div>
+    <img class="skip fragment" src="4-uml-diagramme-package_data/15-uml-05.svg" data-fragment-index="2">
+  </div>
+    
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section id="ch2" name="Les relations entre paquetages" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden=""><h2>Plan</h2><ul><div data-id="menu" class="outline"><div class="item"><a href="#/ch1">Les éléments de base</a></div><div class="item actif-item"><a href="#/ch2">Les relations entre paquetages</a></div><div class="item"><a href="#/ch3">Les principes de cohérence et d'indépendance</a></div><div class="item"><a href="#/ch4">Réduction de couplage entre paquetages</a></div></div></ul><p style="font-size: 25px !important  ;"><a href="#/plan">Retour au plan</a> - <a href="#">Retour à l'accueil</a></p></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Relation de dépendances</h2>
+
+  <ul>
+    <li><b>Une relation de dépendance</b> doit exister dès que 
+        <i>deux éléments issus <br> de deux paquetages sont associés</i>.
+        <ul id="fleche"><li>hormis les cas de dépendances implicites (<i>emboîtement de paquetages</i>)</li></ul>
+    </li>
+
+    <li class="fragment skip" data-fragment-index="0">C'est une <i>relation unidirectionnelle</i> entre <i>paquetages</i>. 
+      <ul id="fleche"><li>une modification de la cible peut impliquer une modification de la source</li></ul>
+    </li>
+
+    <li class="fragment skip" data-fragment-index="1">Une relation de dépendance se représente par <i>une flèche en pointillé</i>.</li>
+  </ul>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Relation de dépendances</h2>
+  <h3>Exemple</h3>
+
+  <div>
+    <img src="4-uml-diagramme-package_data/package-ex1.svg">
+  </div>
+    
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Importation de paquetage</h2>
+    
+  <ul>
+    <li>Pour <i>simplifier l'utilisation des éléments</i> contenus dans un autre <br> paquetage, 
+        on peut utiliser l'<b>importation</b>.
+      <ul id="fleche"><li class="fragment" data-fragment-index="0">permet d'<i>importer l'espace de nommage</i> d'un autre paquetage.</li></ul>
+    </li>
+    <li class="fragment skip" data-fragment-index="1">
+        Tous les membres d'un paquetage ont <i>accès à tous les membres <br> du paquetage importé</i>. 
+      <ul id="fleche"><li>sans utiliser explicitement le nom du paquetage importé.</li></ul>
+    </li>
+  </ul>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Importation de paquetage</h2>
+  <h3>Exemple 1</h3>
+
+  <div>
+    <img src="4-uml-diagramme-package_data/package-ex2.svg" height="400px">
+  </div>
+    
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Importation de paquetage</h2>
+  <h3>Exemple 2</h3>
+    
+  <div>
+    <img class="skip" src="4-uml-diagramme-package_data/package-ex3.svg" height="300px">
+  </div>
+    
+  <div class="fragment" data-fragment-index="0">
+      Le paquetage <cs-code>C</cs-code> a accès aux classes <cs-code>C1</cs-code>,<cs-code>C3</cs-code> et <cs-code>C4</cs-code>.
+  </div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Accès à un paquetage</h2>
+
+  <ul>
+    <li>Pour <i>accéder</i> aux éléments d'un paquetage à partir d'un autre 
+          paquetage, <br>il faut <i>utiliser le nom complet</i>.
+      <ul id="fleche"><li>permet à un paquetage d'avoir <i>accès à l'espace de nommage 
+          d'un autre paquetage</i>
+      </li></ul>
+    </li>
+    <li class="fragment skip" data-fragment-index="0">
+        L'espace de nommage n'est <i>pas importé et ne peut être transmis 
+            à d'autres paquetages</i> par transitivité. 
+    </li>
+  </ul>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Accès à un paquetage</h2>
+  <h3>Exemple 1</h3>
+
+  <div>
+    <img src="4-uml-diagramme-package_data/package-ex4.svg" height="400px">
+  </div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Accès à un paquetage</h2>
+  <h3>Exemple 2</h3>
+
+  <div>
+    <img class="skip" src="4-uml-diagramme-package_data/package-ex5.svg" height="300px">
+  </div>
+    
+  <div class="fragment" data-fragment-index="0">
+      Le paquetage <cs-code>C</cs-code>  a accès à la classe <cs-code>C4</cs-code> seulement.
+  </div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section id="ch3" name="Les principes de cohérence et d'indépendance" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden=""><h2>Plan</h2><ul><div data-id="menu" class="outline"><div class="item"><a href="#/ch1">Les éléments de base</a></div><div class="item"><a href="#/ch2">Les relations entre paquetages</a></div><div class="item actif-item"><a href="#/ch3">Les principes de cohérence et d'indépendance</a></div><div class="item"><a href="#/ch4">Réduction de couplage entre paquetages</a></div></div></ul><p style="font-size: 25px !important  ;"><a href="#/plan">Retour au plan</a> - <a href="#">Retour à l'accueil</a></p></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>La cohérence et l'indépendance</h2>
+
+  <ul>
+    <li><i>Le découpage en paquetages</i> doit traduire un <i>découpage logique</i>
+        du système <br> à construire (des <i>espaces de nommage homogènes</i>)
+    </li>
+    
+    <li class="fragment skip" data-fragment-index="0"><i>La structuration</i> d'un modèle dans un <i>diagramme de paquetages</i> 
+        s'appuie <br> sur <i>deux principes</i> fondamentaux : 
+    
+      <ol>
+        <li class="fragment" data-fragment-index="1"><b>La cohérence</b> <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="2"><mjx-lazy data-mjx-lazy="2" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> <i>regrouper</i> les éléments <i>proches sémantiquement</i>.</li>
+        <li class="fragment" data-fragment-index="2"><b>L'indépendance</b> <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="3"><mjx-lazy data-mjx-lazy="3" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> <i>minimiser les dépendances</i> entre les paquetages. </li>
+      </ol>
+    </li>
+  </ul>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Le principe de cohérence</h2>
+
+  <div class="left-content">
+    <b>La cohérence</b> consiste à <i>regrouper</i> les éléments   
+    <i>proches d'un point de vue sémantique</i> en suivant les critères suivants: <br>
+    <ul>
+      <li class="fragment skip" data-fragment-index="0"><b>finalité</b> <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="4"><mjx-lazy data-mjx-lazy="4" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> les classes doivent rendre des <i>services de même nature</i>.</li>
+      <li class="fragment skip" data-fragment-index="1"><b>évolution</b> <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="5"><mjx-lazy data-mjx-lazy="5" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> les <i>classes stables</i> doivent être isolées de celles qui vont évoluer 
+          <br> (<i>les classes métiers</i> et <i>les classes applicatives</i>).</li>
+      <li class="fragment skip" data-fragment-index="2"><b>cycle de vie des objets</b> <mjx-container style="position: relative;" class="CtxtMenu_Attached_0" tabindex="0" ctxtmenu_counter="6"><mjx-lazy data-mjx-lazy="6" aria-hidden="true"></mjx-lazy><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></mjx-assistive-mml></mjx-container> les classes doivent être distinguées 
+          selon que leurs <i>objets</i> ont une <i>durée de vie</i> identique ou pas.</li>
+    </ul>
+  </div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Quel découpage ?</h2>
+
+  <div>
+    <img data-id="decoupe" src="4-uml-diagramme-package_data/compagnie-aerienne.svg" alt="" width="100%">
+  </div>
+    
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Avantager la finalité</h2>
+
+  <div>
+    <img data-id="decoupe" src="4-uml-diagramme-package_data/decoupe1.svg" alt="" width="100%">
+  </div>
+    
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Avantager l'évolution</h2>
+
+  <div>
+    <img data-id="decoupe" src="4-uml-diagramme-package_data/decoupe2.svg" alt="" width="100%">
+  </div>
+    
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Un découpage qui avantage <br> l'indépendance</h2>
+
+  <div id="default-block" class="left-content" style="text-align: center;">
+      Est ce qu'on peut faire mieux que le résultat obtenu à partir <br> des découpages précédents ?
+  </div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section id="ch4" name="Réduction de couplage entre paquetages" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden=""><h2>Plan</h2><ul><div data-id="menu" class="outline"><div class="item"><a href="#/ch1">Les éléments de base</a></div><div class="item"><a href="#/ch2">Les relations entre paquetages</a></div><div class="item"><a href="#/ch3">Les principes de cohérence et d'indépendance</a></div><div class="item actif-item"><a href="#/ch4">Réduction de couplage entre paquetages</a></div></div></ul><p style="font-size: 25px !important  ;"><a href="#/plan">Retour au plan</a> - <a href="#">Retour à l'accueil</a></p></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Réduction de couplage</h2>
+
+  <div>
+    <img data-id="decoupe" src="4-uml-diagramme-package_data/red-coup.svg" alt="" width="50%">
+  </div>
+    
+  <ul>
+    <li class="skip fragment" data-fragment-index="0">Les associations qui traversent deux paquetages peuvent induire <br>
+        <i>des dépendances mutuelles</i>, si elles sont <i>bidirectionnelles</i>. 
+    </li>
+    <li class="skip fragment" data-fragment-index="1">
+        Le concepteur doit <i>réduire les dépendances mutuelles</i>, 
+        afin <br> <i>d'augmenter la modularité et l'évolutivité</i> de son application.
+    </li>
+  </ul>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Privilégier un sens de navigation</h2>
+
+  <div>
+    <img data-id="decoupe" src="4-uml-diagramme-package_data/red-coup-s1.svg" alt="" width="50%">
+  </div>
+    
+  <p class="left-content">
+    On fait un choix en <i>privilégiant un sens
+      de navigation</i>  afin d'éliminer <br> une des deux dépendances
+  </p>
+  
+  <p class="fragment" data-fragment-index="0"> <em>"il est certain qu'une réservation est en relation forte avec 
+      le vol <br> concerné, alors que le vol existe par lui-même, indépendamment <br> de toute réservation"</em> </p>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Inverser une dépendance</h2>
+
+  <p>
+      <i>L'inversion d'une dépendance</i> s'effectue, en <i>introduisant une classe <br> abstraite</i> 
+      (ou une interface), de la façon suivante : 
+  </p>
+
+  <div class="skip">
+    <img class="fragment" src="4-uml-diagramme-package_data/inv1.svg" alt="" data-fragment-index="0" width="500px" height="auto"> <br>
+    <img class="fragment" src="4-uml-diagramme-package_data/inv2.svg" alt="" data-fragment-index="1" width="700px" height="auto">
+  </div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Inverser une dépendance</h2>
+	<h3>Exemple</h3>
+
+	<div class="skip">
+    <img class="fragment" src="4-uml-diagramme-package_data/red-coup.svg" alt="" data-fragment-index="0" width="500px" height="auto"> <br>
+    <img class="fragment" src="4-uml-diagramme-package_data/red-coup-s2.svg" alt="" data-fragment-index="1" width="700px" height="auto">
+  </div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h1>Merci</h1>
+	<p>
+		<a href="https://idiraitsadoune.com/enseignement/UPS-IUT-2A-QD/4-uml-diagramme-package.pdf" target="_blank">Version PDF des slides</a>
+	</p>
+	<p>
+		<a href="#">Retour à l'accueil</a>
+		- <a href="#/plan">Retour au plan</a>
+	</p>	
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+		</div>
+	<div class="backgrounds"><div class="slide-background present" style="background: rgb(255, 255, 255); display: block;" data-background-hash="#fffnullnullnullnullnullnullnullnullnullnull" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-number" style="display: block;"><a href="#/">
+					<span class="slide-number-a">1</span>
+					<span class="slide-number-delimiter">/</span>
+					<span class="slide-number-b">33</span>
+					</a></div><aside class="controls" style="display: block;" data-controls-layout="bottom-right" data-controls-back-arrows="faded"><button class="navigate-left" aria-label="previous slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-right enabled highlight" aria-label="next slide"><div class="controls-arrow"></div></button>
+			<button class="navigate-up" aria-label="above slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-down" aria-label="below slide" disabled="disabled"><div class="controls-arrow"></div></button></aside><div class="progress" style="display: block;"><span style="transform: scaleX(0);"></span></div><div class="speaker-notes" data-prevent-swipe="" tabindex="0"></div><div class="pause-overlay"><button class="resume-button">Resume presentation</button></div><div style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px);" class="aria-status" aria-live="polite" aria-atomic="true">Qualité
+ de développement Diagramme UML de paquetages 2A - Bachelor 
+Universitaire de Technologie IUT d'Orsay - Université Paris-Saclay - 
+2024/2025 Idir AIT SADOUNE idir.ait-sadoune@universite-paris-saclay.fr </div></div>
+
+	<script src="4-uml-diagramme-package_data/plan.js"></script>
+	<script src="4-uml-diagramme-package_data/reveal.js"></script>
+	<script src="4-uml-diagramme-package_data/notes.js"></script>
+	<script src="4-uml-diagramme-package_data/markdown.js"></script>
+	<script src="4-uml-diagramme-package_data/highlight.js"></script>
+
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			// Display presentation control arrows
+			controls: true,
+			// Display a presentation progress bar
+			progress: true,
+
+			// Vertical centering of slides
+			center: true,
+			// The "normal" size of the presentation, aspect ratio will
+			// be preserved when the presentation is scaled to fit different
+			// resolutions. Can be specified using percentage units.
+			width: 1280,
+			height: 720,
+
+			// Add the current slide number to the URL hash so that reloading the
+			// page/copying the URL will return you to the same slide
+			hash: true,
+
+			slideNumber: 'c/t',
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+
+		Reveal.configure({ pdfSeparateFragments: false });
+	</script>
+
+
+</body></html>

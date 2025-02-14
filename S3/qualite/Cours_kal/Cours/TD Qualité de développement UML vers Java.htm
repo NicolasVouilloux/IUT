@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>TD Qualité de développement : UML vers Java</title>
+
+	<link rel="stylesheet" href="TD%20Qualit%C3%A9%20de%20d%C3%A9veloppement%20UML%20vers%20Java_fichiers/document-theme.css">
+	<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />-->
+	<link rel="stylesheet" href="TD%20Qualit%C3%A9%20de%20d%C3%A9veloppement%20UML%20vers%20Java_fichiers/font-awesome.min.css">
+	<link rel="stylesheet" href="TD%20Qualit%C3%A9%20de%20d%C3%A9veloppement%20UML%20vers%20Java_fichiers/vs2015.min.css">
+
+	<script type="text/JavaScript" src="TD%20Qualit%C3%A9%20de%20d%C3%A9veloppement%20UML%20vers%20Java_fichiers/highlight.min.js"></script>
+	<script>hljs.highlightAll();</script>
+	<script type="text/javascript" src="TD%20Qualit%C3%A9%20de%20d%C3%A9veloppement%20UML%20vers%20Java_fichiers/mathjax.js"></script>
+	<script type="text/javascript" id="MathJax-script" src="TD%20Qualit%C3%A9%20de%20d%C3%A9veloppement%20UML%20vers%20Java_fichiers/tex-mml-chtml.js"></script><script src="TD%20Qualit%C3%A9%20de%20d%C3%A9veloppement%20UML%20vers%20Java_fichiers/lazy.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="TD%20Qualit%C3%A9%20de%20d%C3%A9veloppement%20UML%20vers%20Java_fichiers/correction.js"></script>
+
+	<link rel="icon" href="https://idiraitsadoune.com/enseignement/resources/img/favicon.ico">
+<style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style><style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+</style></head>
+
+<body>
+<div class="container">
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<div style="padding: 0.5em;">
+    2A BUT - IUT d'Orsay <span style="text-align: right;float: right;">Qualité de développement - 2024/2025</span>
+</div>
+<hr>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<div class="section-form">
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<h1>
+    UML vers Java
+</h1>
+<!-- #################################################### -->
+<!-- #################################################### -->
+<h2>Le support de cours</h2>
+<div>
+  <iframe style="width: 100%; height: 770px; box-shadow: 0 15px 25px rgba(0,0, 0, 0.4);" src="TD%20Qualit%C3%A9%20de%20d%C3%A9veloppement%20UML%20vers%20Java_fichiers/5-uml-vers-java.htm" frameborder="0"></iframe>
+</div>
+<!-- #################################################### -->
+<!-- #################################################### -->
+<h2>L'exercice</h2>
+<!-- #################################################### -->
+<!-- #################################################### -->
+<div id="orange-block">Un mini langage de programmation</div>
+
+<p class="text-justify">
+    Nous allons dans cet exercice envisager la construction d'un petit langage de programmation. 
+    Notre langage sera impératif, et ne contiendra que des instructions d'affectation d'une expression dans une variable. 
+    Les variables seront toutes du type <cs-code>double</cs-code>, et les expressions seront constituées uniquement de nombres, 
+    de variables et d'opérations arithmétiques simples.
+</p>
+
+<pre><code class="language-shell hljs">x = 2;
+y = x + 5;
+z = x * x / y;
+x = x - 1;                             
+</code></pre>
+
+<p class="text-justify">
+L'analyse syntaxique de telles expressions est un sujet à part entière, aussi nous construirons pour l'instant ces 
+instructions par l'intermédiaire de code Java. Une solution pourrait être :  
+</p>
+
+<pre><code class="language-java hljs"><span class="hljs-type">Variable</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Variable</span>( <span class="hljs-string">"x"</span> );
+x.setExpression( <span class="hljs-keyword">new</span> <span class="hljs-title class_">Number</span>( <span class="hljs-number">2</span> ));
+<span class="hljs-type">Variable</span> <span class="hljs-variable">y</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Variable</span>( <span class="hljs-string">"y"</span> );
+y.setExpression( <span class="hljs-keyword">new</span> <span class="hljs-title class_">Plus</span>( x, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Number</span>( <span class="hljs-number">5</span> ));
+<span class="hljs-type">Variable</span> <span class="hljs-variable">z</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Variable</span>( <span class="hljs-string">"z"</span> );
+z.setExpression( <span class="hljs-keyword">new</span> <span class="hljs-title class_">Divide</span>( <span class="hljs-keyword">new</span> <span class="hljs-title class_">Multiply</span>( x, x ), y ));
+x.setExpression( <span class="hljs-keyword">new</span> <span class="hljs-title class_">Minus</span>( x, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Number</span>( <span class="hljs-number">1</span> )));                             
+</code></pre>
+
+<p class="text-justify">
+Mais nous n'avons pas ici de représentation de la notion de programme 
+possédant des variables et une suite ordonnée d'instructions.
+ Pour expliciter ces concepts, notre programme de test sera écrit ainsi :
+</p>
+
+<pre><code class="language-java hljs"><span class="hljs-type">Program</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Program</span>();
+<span class="hljs-comment">// getVariable() cree la variable si elle n'existe pas encore.</span>
+p.addAssignment( p.getVariable( <span class="hljs-string">"x"</span> ),  <span class="hljs-keyword">new</span> <span class="hljs-title class_">Number</span>( <span class="hljs-number">2</span> ));
+p.addAssignment( p.getVariable( <span class="hljs-string">"y"</span> ),  <span class="hljs-keyword">new</span> <span class="hljs-title class_">Plus</span>( p.getVariable( <span class="hljs-string">"x"</span> ), <span class="hljs-keyword">new</span> <span class="hljs-title class_">Number</span>( <span class="hljs-number">5</span> )));
+p.addAssignment( p.getVariable( <span class="hljs-string">"z"</span> ),  <span class="hljs-keyword">new</span> <span class="hljs-title class_">Divide</span>( 
+                                            <span class="hljs-keyword">new</span> <span class="hljs-title class_">Multiply</span>( p.getVariable( <span class="hljs-string">"x"</span> ), p.getVariable( <span class="hljs-string">"x"</span> )),
+                                            p.getVariable( <span class="hljs-string">"y"</span> )));
+p.addAssignment( p.getVariable( <span class="hljs-string">"x"</span> ), <span class="hljs-keyword">new</span> <span class="hljs-title class_">Minus</span>( p.getVariable( <span class="hljs-string">"x"</span> ), <span class="hljs-keyword">new</span> <span class="hljs-title class_">Number</span>( <span class="hljs-number">1</span> ))); 
+<span class="hljs-comment">// Affiche les instructions</span>
+System.out.println( p.toString() );
+<span class="hljs-comment">// Une ligne blanche</span>
+System.out.println();
+<span class="hljs-comment">// Execute chaque instruction l'une apres l'autre, puis affiche les variables et leurs valeurs</span>
+p.run();                            
+</code></pre>
+
+<p class="text-justify">
+    Le résultat attendu est donc :
+</p>
+
+<pre><code class="language-shell hljs">x = 2.0
+y = ( x + 5.0 )
+z = ( ( x * x ) / y )
+x = ( x - 1.0 )
+
+x = 1.0
+y = 7.0
+z = 0.5714285714285714                            
+</code></pre>
+
+<p class="text-justify">
+    Nous allons dans la suite concevoir en UML une solution à ce 
+problème, puis la réaliser en Java. Nous allons utiliser 
+    une approche incrémentale pour réaliser cet exercice : dans un 
+premier temps, les expressions ne contiendront pas d'opérateurs, 
+    mais uniquement un nombre ou une variable. La version complète sera 
+développée après avoir obtenu une version fonctionnelle 
+    de cette première itération. 
+</p>
+
+<!-- #################################################### -->
+<div id="orange-block">
+    Première itération : uniquement des nombres et des variables
+</div>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<h2>
+    Exercice 1 : modélisation UML
+</h2>
+
+<p class="text-justify">
+    </p><ul>
+        <li>
+            Créez une classe <cs-code>Program</cs-code> et une classe <cs-code>Variable</cs-code> sur votre diagramme.
+        </li>
+        <li>Les variables sont contenues dans le programme : 
+            créez un lien de composition en ajustant les multiplicités ; 
+            corrigez aussi le nom de l'extrémité côté <cs-code>Variable</cs-code> en ajoutant un <cs-code>s</cs-code> 
+            pour que le nom de rôle devienne <cs-code>variables</cs-code> et soit donc cohérent avec la multiplicité choisie.
+        </li>
+        <li>
+            Ajoutez un attribut <cs-code>name</cs-code> dans <cs-code>Variable</cs-code>, de type <cs-code>String</cs-code>. 
+Une variable a une certaine valeur qui peut changer au cours du temps : créez un attribut <cs-code>value</cs-code> 
+de type <cs-code>double</cs-code> dans <cs-code>Variable</cs-code>. 
+Ajoutez une méthode <cs-code>setValue(v : double)</cs-code> pour pouvoir modifier le contenu d'une variable.
+        </li>
+        <li>
+            Un programme contient aussi des affectations. Créez une classe <cs-code>Assignment</cs-code> 
+    et le lien de composition avec <cs-code>Program</cs-code>. L'ordre des affectations dans un 
+    programme est important : précisez cette caractéristique sur l'extrémité du côté <cs-code>Assignment</cs-code>. 
+    Plusieurs affectations identiques peuvent par contre figurer dans un programme : 
+    décochez la propriété d'unicité.
+        </li>
+        <li>
+            Une affectation permet de modifier la valeur d'une variable : 
+    faites une association de la classe <cs-code>Assignment</cs-code> vers la classe <cs-code>Variable</cs-code> 
+    navigable uniquement sur cette extrémité, corrigez la multiplicité.
+        </li>
+        <li>
+            À droite d'une affectation, on trouve de manière générale une expression, 
+    qui peut être pour cette itération soit un nombre, soit une variable.
+        </li>
+        <li>
+            Créez une classe abstraite <cs-code>Expression</cs-code> et un lien de composition avec <cs-code>Assignment</cs-code>, 
+    corrigez la multiplicité. Créez une sous-classe <cs-code>Number</cs-code> (avec un attribut <cs-code>value</cs-code>) ; 
+    Expression est aussi super-classe de <cs-code>Variable</cs-code>.
+        </li>
+        <li>
+            Tous nos objets doivent savoir s'afficher via <cs-code>toString() : String</cs-code>. 
+    Ajoutez cette opération aux différentes classes.
+        </li>
+        <li>
+            On peut demander la valeur d'une expression. 
+    Ajoutez les méthodes <cs-code>getValue() : double</cs-code> aux classes concernées.
+        </li>
+        <li>
+            Ajoutez les opérations suivantes à la classe <cs-code>Program</cs-code> :
+            <ul>
+                <li>
+                    Un programme est une suite ordonnée d'affectations, ces affectations seront ajoutées par l'opération <br> 
+                    <cs-code>addAssignment( v : Variable, e : Expression )</cs-code>. 
+                </li>
+                <li>
+                    Un programme mémorise des variables identifiées par 
+un nom, ces variables seront accessibles via l'opération <br> 
+                    <cs-code>getVariable( name : String ) : Variable</cs-code>.
+                </li>
+                <li>
+                    Un programme s'exécute (évalue chaque affectation dans l'ordre puis affiche la valeur de ses variables : 
+                    ajoutez l'opération <cs-code>run()</cs-code>.
+                </li>
+                <li>
+                    La méthode <cs-code>run()</cs-code> de <cs-code>Program</cs-code> devra exécuter chaque affectation l'une après l'autre : 
+                    ajoutez l'opération <cs-code>execute()</cs-code> à la classe <cs-code>Assignment</cs-code>.
+                </li>
+            </ul>
+        </li>
+        <li>
+            Ajoutez les constructeurs avec leurs arguments : le constructeur de <cs-code>Assignment</cs-code> 
+    aura pour arguments une variable et une expression.
+        </li>
+        <li>
+            Sauvegardez votre modèle.
+        </li>
+    </ul>
+<p></p>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<h3>
+    Un peu de Git
+</h3>
+
+<p class="text-justify">
+    Commencez d'abord par configurer votre profil <cs-code>git</cs-code>.
+</p>
+
+<pre><code class="language-shell hljs"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git config --global user.name <span class="hljs-string">"Prénom Nom"</span></span>
+<span class="hljs-meta prompt_">$ </span><span class="language-bash">git config --global user.email <span class="hljs-string">"prenom.nom@universite-paris-saclay.fr"</span></span>                            
+</code></pre>
+
+<p class="text-justify">
+    Pour récupérer la solution de cette partie, vous devriez cloner le dépôt de l'enseignant.
+</p>
+
+<pre><code class="language-shell hljs"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git <span class="hljs-built_in">clone</span> https://git.iut-orsay.fr/idir.ait-sadoune/td1-mini-langage-de-programmation.git</span> 
+<span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">cd</span> td1-mini-langage-de-programmation</span>                           
+</code></pre>
+
+<p class="text-justify">
+    Créez une nouvelle branche sur votre machine locale et basculez dans cette branche.
+    Nommez cette branche en suivant la convention <cs-code>prenom_nom</cs-code> :
+</p>
+
+<pre><code class="language-shell hljs"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git checkout -b prenom_nom</span>
+</code></pre>
+
+<br>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<h2>
+    Exercice 2 : réalisation en Java
+</h2>
+
+<p class="text-justify">
+    Les variables sont identifiées par leur nom, et nous souhaitons accéder directement à une variable à partir de ce nom. 
+    La structure de données classique utilisée dans ce cas est le dictionnaire (<cs-code>Map</cs-code> en java), 
+    nous choisirons l'implémentation <cs-code>HashMap</cs-code> (<cs-code>String</cs-code> pour <cs-code>keyType</cs-code>). 
+    Cette implémentation permettra à la méthode <cs-code>getVariable</cs-code> de renvoyer un objet de type <cs-code>Variable</cs-code>
+    à partir de son nom. Si la variable n'existe pas, la méthode <cs-code>getVariable</cs-code> va créer une nouvelle <cs-code>Variable</cs-code>
+    avec le nom reçu en argument.
+</p>
+
+<p class="text-justify">
+    Le programme de test sera dans le <cs-code>main()</cs-code> de <cs-code>Program</cs-code>. Ajoutez cette méthode dans votre modèle UML 
+    en la déclarant statique, ajoutez un paramètre <cs-code>args</cs-code> de type <cs-code>String</cs-code> et de multiplicité <cs-code>*</cs-code>. 
+    Après régénération du code, copiez/collez le programme de test suivant :   
+</p>
+
+<pre><code class="language-java hljs"><span class="hljs-type">Program</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Program</span>();
+<span class="hljs-comment">// x = 2</span>
+p.addAssignment( p.getVariable( <span class="hljs-string">"x"</span> ), <span class="hljs-keyword">new</span> <span class="hljs-title class_">Number</span>( <span class="hljs-number">2</span> ));
+<span class="hljs-comment">// y = x</span>
+p.addAssignment( p.getVariable( <span class="hljs-string">"y"</span> ), p.getVariable( <span class="hljs-string">"x"</span> ));
+<span class="hljs-comment">// x = -5.26</span>
+p.addAssignment( p.getVariable( <span class="hljs-string">"x"</span> ), <span class="hljs-keyword">new</span> <span class="hljs-title class_">Number</span>( -<span class="hljs-number">5.26</span> ));
+<span class="hljs-comment">// Affiche les instructions</span>
+System.out.println( p.toString() );
+<span class="hljs-comment">// Une ligne blanche</span>
+System.out.println();
+<span class="hljs-comment">// Execute chaque instruction l'une apres l'autre, puis affiche les variables et leurs valeurs</span>
+<span class="hljs-comment">// Resultat attendu (pas obligatoirement dans cet ordre) :</span>
+<span class="hljs-comment">// x = -5.26</span>
+<span class="hljs-comment">// y = 2.0</span>
+p.run();                           
+</code></pre>
+
+<p class="text-justify">
+    Vous allez incrémentalement compléter le code pour obtenir le comportement global souhaité. 
+    Commencez par écrire la méthode <cs-code>toString() : String</cs-code> de <cs-code>Program</cs-code>, 
+    puis celle d'<cs-code>Assignment</cs-code>, 
+    celle de <cs-code>Variable</cs-code>...  
+</p>
+
+<p class="text-justify">
+    Complétez le reste du code pour obtenir le comportement souhaité.
+</p>
+
+<p class="text-justify">
+    Pour enregistrer votre travail dans le dépôt local, utilisez les commandes suivantes :
+</p>
+
+<pre><code class="language-shell hljs"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git add --all</span>
+<span class="hljs-meta prompt_">$ </span><span class="language-bash">git commit -m <span class="hljs-string">"Solution de l'exercice 2"</span></span>
+</code></pre>
+
+<p class="text-justify">
+    Pour envoyer votre branches sur le dépôt distant, utilisez la commande suivante :
+</p>
+
+<pre><code class="language-shell hljs"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git push origin prenom_nom</span>
+</code></pre>
+
+<br>
+<!-- #################################################### -->
+<div id="orange-block">
+    Seconde itération : ajout des opérateurs
+</div>
+
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<h2>
+    Exercice 3 : ajouts dans le modèle UML
+</h2>
+
+<p class="text-justify">
+    </p><ul>
+        <li>
+            Nous nous limiterons aux opérateurs arithmétiques binaires. Créez une classe abstraite
+         <cs-code>BinaryOperator</cs-code>, sous classes de <cs-code>Expression</cs-code>, 
+         et 4 sous-classes <cs-code>Plus</cs-code>, <cs-code>Minus</cs-code>, 
+         <cs-code>Multiply</cs-code> et <cs-code>Divide</cs-code>.
+        </li>
+
+        <li>
+            Un opérateur binaire a deux opérandes qui sont des expressions. Créez deux liens de composition 
+            de <cs-code>BinaryOperator</cs-code> 
+        vers <cs-code>Expression</cs-code> avec une multiplicité 
+        de <cs-code>1</cs-code>, nommez les extrémités <cs-code>leftOperand</cs-code> 
+        et <cs-code>rightOperand</cs-code>.
+        </li>
+
+        <li>
+            L'accès aux opérandes par les sous-classes de <cs-code>BinaryOperator</cs-code> 
+            est nécessaire : modifiez la protection des deux extrémités.
+        </li>
+
+        <li>
+            Pour les opérations, le comportement <cs-code>toString() : String</cs-code> 
+            sera défini au niveau de <cs-code>BinaryOperator</cs-code> qui fera 
+    appel à une méthode abstraite <cs-code>getOperator()</cs-code> qui sera redéfinie 
+    dans les 4 sous-classes.
+        </li>
+
+        <li>
+            Plus et les autres opérateurs sont des sous-classes d'<cs-code>Expression</cs-code>, 
+            et doivent donc être capable de s'évaluer : 
+        ajoutez l'opération <cs-code>getValue() : double</cs-code> aux 4 opérateurs.
+        </li>
+
+        <li>
+            Ajoutez les constructeurs avec leurs arguments : le constructeur 
+            de <cs-code>BinaryOperator</cs-code> aura 2 arguments 
+        de type <cs-code>Expression</cs-code>, de même pour ses sous-classes.
+        </li>
+
+        <li>
+            Sauvegardez votre modèle.
+        </li>
+    </ul>
+<p></p>
+
+<p class="text-justify">
+    Pour enregistrer votre travail dans le dépôt local, utilisez les commandes suivantes :
+</p>
+
+<pre><code class="language-shell hljs"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git add --all</span>
+<span class="hljs-meta prompt_">$ </span><span class="language-bash">git commit -m <span class="hljs-string">"Solution de l'exercice 3"</span></span>
+</code></pre>
+
+<p class="text-justify">
+    Pour envoyer votre branches sur le dépôt distant, utilisez la commande suivante :
+</p>
+
+<pre><code class="language-shell hljs"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git push origin prenom_nom</span>
+</code></pre>
+
+<br>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<h2>
+    Exercice 4 : Mise à jour du code Java et tests
+</h2>
+
+<p class="text-justify">
+  </p><ul>
+    <li>
+        Re-générez le code Java, puis complétez-le.
+    </li>
+
+    <li>
+        Modifiez votre programme de test en reprenant, par exemple, celui donné au début du sujet.
+    </li>
+
+    <li>
+        Corrigez votre modèle UML et/ou votre code Java pour obtenir le résultat souhaité.
+    </li>
+  </ul>
+<p></p>
+
+<p class="text-justify">
+    Pour enregistrer votre travail dans le dépôt local, utilisez les commandes suivantes :
+</p>
+
+<pre><code class="language-shell hljs"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git add --all</span>
+<span class="hljs-meta prompt_">$ </span><span class="language-bash">git commit -m <span class="hljs-string">"Solution de l'exercice 4"</span></span>
+</code></pre>
+
+<p class="text-justify">
+    Pour envoyer votre branches sur le dépôt distant, utilisez la commande suivante :
+</p>
+
+<pre><code class="language-shell hljs"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git push origin prenom_nom</span>
+</code></pre>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+</div>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<hr>
+<div style="padding: 0.5em;">
+	2A BUT - IUT d'Orsay <span style="text-align: right;float: right;">Qualité de développement - 2024/2025</span>
+</div>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+</div>
+
+</body></html>

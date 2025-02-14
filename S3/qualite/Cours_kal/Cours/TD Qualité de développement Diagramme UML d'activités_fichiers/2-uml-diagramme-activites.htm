@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html class="reveal-full-page"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>Qualité de développement : Diagramme UML d'activités</title>
+
+	<link rel="stylesheet" href="2-uml-diagramme-activites_data/reset.css">
+	<link rel="stylesheet" href="2-uml-diagramme-activites_data/reveal.css">
+	<link rel="stylesheet" href="2-uml-diagramme-activites_data/white.css" id="theme">
+	<link rel="stylesheet" href="2-uml-diagramme-activites_data/presentation-theme.css">
+	<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />-->
+	<link rel="stylesheet" href="font-awesome.min.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<!--<link rel="stylesheet" href="../reveal-js-framework/plugin/highlight/monokai.css">-->
+	<link rel="stylesheet" href="vs2015.min.css">
+	<link rel="stylesheet" href="2-uml-diagramme-activites_data/event-b-theme.css">
+
+	<link rel="icon" href="https://idiraitsadoune.com/enseignement/resources/img/favicon.ico">
+<style type="text/css">.hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}</style><script type="text/javascript" id="MathJax-script" src="2-uml-diagramme-activites_data/tex-mml-chtml.js" async=""></script><style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style><style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+</style></head>
+
+<body class="reveal-viewport" style="--slide-width: 1280px; --slide-height: 720px; --slide-scale: 0.9824999999999999; --viewport-width: 1310px; --viewport-height: 770px;">
+	<img id="logo" src="2-uml-diagramme-activites_data/iut-logo.png" alt="">
+	<div class="reveal slide center focused has-horizontal-slides has-light-background ready" role="application" data-transition-speed="default" data-background-transition="fade">
+		<div class="slides" style="width: 1280px; height: 720px; inset: 50% auto auto 50%; transform: translate(-50%, -50%) scale(0.9825);">
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" data-background="#fff" style="top: 94.5px; display: block;" class="has-light-background present">
+    
+  <div class="header-logo">
+    <div class="left-logo">
+      <a href="https://lmf.cnrs.fr/" target="_blank">
+        <img src="2-uml-diagramme-activites_data/logo-aff.png" alt="">
+      </a>
+    </div>
+    <div class="right-logo">
+      <a href="https://www.iut-orsay.universite-paris-saclay.fr/" target="_blank">
+        <img src="2-uml-diagramme-activites_data/iut-logo.png" alt="">
+      </a>
+    </div>
+  </div>
+
+  <div style="text-align: left">
+    <h2>Qualité de développement</h2>
+    <h3>Diagramme UML d'activités</h3>
+  </div>
+
+  <div class="description">
+    <span><span class="fa fa-graduation-cap">&nbsp;</span>2A - Bachelor Universitaire de Technologie</span><br>
+    <span><span class="fa fa-university">&nbsp;</span>IUT d'Orsay - Université Paris-Saclay - 2024/2025</span>
+  </div>
+      
+  <div class="hero-card-id">
+    <a href="https://wdi.centralesupelec.fr/aitsadoune/" target="_blank">
+      <img src="2-uml-diagramme-activites_data/idir.png" class="hero-user">
+    </a>
+    <div class="hero-desc">
+      <a href="https://wdi.centralesupelec.fr/aitsadoune/" target="_blank">
+        <span class="hero-name"><strong>Idir AIT SADOUNE </strong></span>
+      </a>
+      <br>
+      <a href="mailto:idir.ait-sadoune@universite-paris-saclay.fr" target="_blank">
+        <span class="hero-email">idir.ait-sadoune@universite-paris-saclay.fr</span>
+      </a>
+    </div>
+  </div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 40.5px; display: block;" aria-hidden="true" class="future" hidden="">
+  <h2>Cycle de développement</h2>
+
+	<div class="r-stack">
+		<img class="fragment fade-in-then-out" src="2-uml-diagramme-activites_data/cycle_v_1.svg" alt="" data-fragment-index="0" width="900px" height="auto">
+		<img class="fragment fade-in-then-out" src="2-uml-diagramme-activites_data/cycle_v_2.svg" alt="" data-fragment-index="1" width="900px" height="auto">
+		<img class="fragment fade-in-then-out" src="2-uml-diagramme-activites_data/cycle_v_3.svg" alt="" data-fragment-index="2" width="900px" height="auto">
+		<img class="fragment fade-in-then-out" src="2-uml-diagramme-activites_data/cycle_v_4.svg" alt="" data-fragment-index="3" width="900px" height="auto">
+		<img class="fragment fade-in" src="2-uml-diagramme-activites_data/cycle_v_5.svg" alt="" data-fragment-index="4" width="900px" height="auto">
+	</div>
+
+	<div class="fragment" data-fragment-index="5">
+		Ce cours se positionne dans les étapes <b>Analyse</b> et <b>Spécification</b>.
+	</div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 51.5px; display: block;" aria-hidden="true" class="future" hidden="">
+  <h2>Pourquoi un diagramme d'activité ?</h2>
+  
+  <ul>
+    <li class="fragment" data-fragment-index="0"><b>Diagrammes de cas d'utilisation</b>
+      <ul id="ok"><li class="fragment" data-fragment-index="1"><b style="color: green; ">Utiles</b> pour la discussion avec le client (intuitifs et concis)</li></ul>
+      <ul id="ko"><li class="fragment" data-fragment-index="2"><b style="color: red;">Pas suffisant</b> pour l'équipe de développement</li></ul>
+    </li>
+    
+    <li class="fragment skip" data-fragment-index="3"><b>Descriptions textuelles</b>
+      <ul id="ko">
+        <li class="fragment" data-fragment-index="4">
+          <b style="color:red; ">Absence de  vision globale</b> des actions décrites dans 
+          <u>les scénarios</u> 
+        </li>
+      </ul>
+    </li>
+
+    <li class="fragment skip" data-fragment-index="5"><b>Que faire ?</b>
+      <ul>
+          <li class="fragment" data-fragment-index="6"><b>Les diagrammes d'activité</b> représentent une <i>alternative visuelle</i>. 
+      </li></ul>
+    </li>
+  </ul>
+
+  <div id="default-block" class="left-content fragment d-skip" data-fragment-index="7">
+    L'objectif du <b>diagramme d'activité</b> est de <i>décrire graphiquement</i> <br>
+    le <i>comportement d'un système</i> sous formes d'<i>actions ordonnées</i>.
+  </div>
+  
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Activité et actions</h2>
+
+  <ul>
+    <li class="fragment" data-fragment-index="0"><b>Une activité</b> représente un <i>scénario</i> qui peut être décrit <br>
+        par un <i>ensemble d'actions</i>.</li>
+    <li class="fragment" data-fragment-index="1"><b>Une action</b> représente une <i>étape simple</i> de l'activité. </li>
+  </ul>
+
+  <div>
+    <img class="skip" src="2-uml-diagramme-activites_data/12-uml-01.svg">	
+  </div>
+    
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Interfaces d'activité</h2>
+
+  <p class="left-content">
+    Les <b>interfaces d'activité</b> représentent les différents <br>
+    <i>flux traversant une activité</i> 
+  </p>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Interfaces d'activité</h2>
+  <h3>Flux de contrôle</h3>
+
+  <p class="left-content">
+    <b>Flux de contrôle</b> : représente explicitement 
+    un <i>contrôle</i> 
+    passant <br>d'une activité (ou d'une action) à la suivante (<i>définition d'un ordre</i>). 
+  </p>
+      
+  <img src="2-uml-diagramme-activites_data/12-uml-02.svg">
+    
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Interfaces d'activité</h2>
+  <h3>Flux d'objets</h3>
+
+  <ul><li><b>Flux d'objets</b> modélise :</li> 
+      <ul>
+          <li class="fragment" data-fragment-index="0">l'<i>envoie de données</i> (objets) à plusieurs destinataires (multicast),</li>
+          <li class="fragment" data-fragment-index="1">la <i>selection</i> (satisfaire un test),</li>
+          <li class="fragment" data-fragment-index="2">la <i>transformation</i> (extraire une partie de la donnée).</li>
+      </ul>
+  </ul>
+
+  <div>
+    <img src="2-uml-diagramme-activites_data/12-uml-03.svg">
+  </div>
+         
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Nœuds d'activité</h2>
+  <h3>Nœud initial</h3>
+
+  <p class="left-content">
+    <b>Nœud initial</b> : constitue le <i>point de départ</i> d'une activité <br>
+    (une activité peut posséder plusieurs nœuds initiaux). 
+  </p>
+
+  <div>
+    <img src="2-uml-diagramme-activites_data/12-uml-04.svg">
+  </div>
+   
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Nœuds d'activité</h2>
+  <h3>Nœuds d'objets</h3>
+
+  <p class="left-content">
+    <b>Nœuds d'objets</b> : représentent 
+    les <i>données complexes</i> parcourant<br> un diagramme d'activités. 
+  </p>
+
+  <div>
+    <img src="2-uml-diagramme-activites_data/12-uml-05.svg">
+  </div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Nœuds d'activité</h2>
+  <h3>Nœud final</h3>
+
+  <p class="left-content">
+    <b>Nœud final</b> : 
+    permet de <i>mettre fin à toute l'activité</i> <br> 
+    (une activité peut posséder plusieurs nœuds finaux). 
+  </p>
+
+  <div>
+    <img src="2-uml-diagramme-activites_data/12-uml-06.svg">
+  </div>
+    
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Nœuds d'activité</h2>
+  <h3>Nœud décisionnel et Nœud de confluence</h3>
+
+  <ul>
+    <li class="fragment" data-fragment-index="0"><b>Nœud décisionnel</b> : 
+      permet de <i>choisir un flux de sortie</i> en fonction <br> d'une expression booléenne. 
+    </li>
+    <li class="fragment" data-fragment-index="1"><b>Nœud de confluence</b> : 
+      permet de <i>rassembler différents flux</i> au sein <br> d'un même flux de sortie 
+    </li>
+  </ul>
+
+  <div>
+    <img src="2-uml-diagramme-activites_data/12-uml-07.svg">
+  </div>
+    
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Nœuds d'activité</h2>
+  <h3>Nœud fourches et Nœud de jonction</h3>
+
+  <ul>
+    <li class="fragment" data-fragment-index="0"><b>Nœud fourches</b> : 
+      permet de <i>scinder le flux courant</i> au sein<br> d'une activité
+        en plusieurs flux concurrentiels. 
+    </li>
+    <li class="fragment" data-fragment-index="1"><b>Nœud de jonction</b> : 
+      permet de <i>synchroniser plusieurs flots</i> <br>
+      d'une activité et de les réunir au sein d'un même flot. 
+    </li>
+  </ul>
+
+  <div>
+    <img src="2-uml-diagramme-activites_data/12-uml-08.svg">
+  </div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Nœuds d'activité</h2>
+  <h3>Nœud final de flux</h3>
+
+  <p class="left-content">
+    <b>Nœud final de flux</b> : 
+    permet de <i>mettre fin à un chemin partiel d'exécution</i><br> dans une activité. 
+  </p>
+
+  <div>
+    <img src="2-uml-diagramme-activites_data/12-uml-09.svg">
+  </div>
+    
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Modélisation avancée d'une activité</h2>
+
+  <p class="left-content">
+    <b>Partitions d'activité</b> : permet d'indiquer qui est
+    <i>responsable</i><br> d'une ou d'un ensemble d'actions dans une activité. 
+  </p>
+    
+  <div>
+    <img src="2-uml-diagramme-activites_data/12-uml-10.svg">
+  </div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Exemple</h2>
+
+  <div>
+    <img src="2-uml-diagramme-activites_data/11-uml-09.svg">
+  </div>
+    
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" data-markdown="" data-markdown-parsed="true" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden=""><h2 id="le-scénario-nominal">Le scénario nominal</h2>
+<ol>
+<li>Le <strong>système</strong> vérifie le type d'utilisateur connecté</li>
+<li>Le <strong>système</strong> affiche des informations concernant le client</li>
+<li>Le <strong>système</strong> fait appel au cas d'utilisation interne<br>"Constituer panier"</li>
+<li>Le <strong>système</strong> fait appel au cas d'utilisation interne<br>"Saisir information pour livraison"</li>
+<li>Le <strong>système</strong> fait appel au cas d'utilisation interne<br>"Enregistrer le règlement"</li>
+<li>Le <strong>système</strong> enregistre définitivement l'achat</li>
+<li>Le <strong>système</strong> affiche le récapitulatif de l'achat.</li>
+</ol>
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" data-markdown="" data-markdown-parsed="true" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden=""><h2 id="le-scénario-alternatif">Le scénario alternatif</h2>
+<ul>
+<li><strong>2.a</strong> Si l'utilisateur est le commercial,<br>le <strong>système</strong> fait appel au cas d'utilisation interne "sélectionner un client"</li>
+</ul>
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" data-markdown="" data-markdown-parsed="true" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden=""><h2 id="les-scénarios-dexception">Les scénarios d'exception</h2>
+<ul>
+<li><strong>2.b</strong> Le <strong>système</strong> n'affiche aucun utilisateur sélectionné : <ul>
+<li>Le <strong>système</strong> affiche "Veuillez sélectionner le client concerné<br>par l'achat" (<em>retour à l'étape 2</em>).</li>
+</ul>
+</li>
+<li><strong>5.a</strong> L'enregistrement du règlement échoue : <ul>
+<li>Le <strong>système</strong> récapitule les informations dans un message envoyé<br>au département commercial (<em>arrêt du cas d'utilisation</em>).</li>
+</ul>
+</li>
+<li><strong>6.a</strong> L'enregistrement définitif de l'achat échoue : <ul>
+<li>Le <strong>système</strong> récapitule les informations dans un message envoyé<br>au département commercial (<em>arrêt du cas d'utilisation</em>).</li>
+</ul>
+</li>
+</ul>
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Diagramme d'activité</h2>
+
+  <div>
+    <img src="2-uml-diagramme-activites_data/12-uml-11.svg">
+  </div>
+    
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h1>Merci</h1>
+	<p>
+		<a href="https://idiraitsadoune.com/enseignement/UPS-IUT-2A-QD/2-uml-diagramme-activites.pdf" target="_blank">Version PDF des slides</a>
+	</p>
+	<p>
+		<a href="#">Retour à l'accueil</a>
+		- <a href="#/plan">Retour au plan</a>
+	</p>
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+		</div>
+	<div class="backgrounds"><div class="slide-background present" style="background: rgb(255, 255, 255); display: block;" data-background-hash="#fffnullnullnullnullnullnullnullnullnullnull" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-number" style="display: block;"><a href="#/">
+					<span class="slide-number-a">1</span>
+					<span class="slide-number-delimiter">/</span>
+					<span class="slide-number-b">20</span>
+					</a></div><aside class="controls" style="display: block;" data-controls-layout="bottom-right" data-controls-back-arrows="faded"><button class="navigate-left" aria-label="previous slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-right enabled highlight" aria-label="next slide"><div class="controls-arrow"></div></button>
+			<button class="navigate-up" aria-label="above slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-down" aria-label="below slide" disabled="disabled"><div class="controls-arrow"></div></button></aside><div class="progress" style="display: block;"><span style="transform: scaleX(0);"></span></div><div class="speaker-notes" data-prevent-swipe="" tabindex="0"></div><div class="pause-overlay"><button class="resume-button">Resume presentation</button></div><div style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px);" class="aria-status" aria-live="polite" aria-atomic="true">Qualité
+ de développement Diagramme UML d'activités 2A - Bachelor Universitaire 
+de Technologie IUT d'Orsay - Université Paris-Saclay - 2024/2025 Idir 
+AIT SADOUNE idir.ait-sadoune@universite-paris-saclay.fr </div></div>
+
+	<script src="2-uml-diagramme-activites_data/plan.js"></script>
+	<script src="2-uml-diagramme-activites_data/reveal.js"></script>
+	<script src="2-uml-diagramme-activites_data/highlight.js"></script>
+  <script src="2-uml-diagramme-activites_data/markdown.js"></script>
+	<script src="2-uml-diagramme-activites_data/math.js"></script>
+
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			// Display presentation control arrows
+			controls: true,
+			// Display a presentation progress bar
+			progress: true,
+
+			// Vertical centering of slides
+			center: true,
+			// The "normal" size of the presentation, aspect ratio will
+			// be preserved when the presentation is scaled to fit different
+			// resolutions. Can be specified using percentage units.
+			width: 1280,
+			height: 720,
+
+			// Add the current slide number to the URL hash so that reloading the
+			// page/copying the URL will return you to the same slide
+			hash: true,
+
+			slideNumber: 'c/t',
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMath.MathJax3, RevealMarkdown, RevealHighlight]
+		});
+
+		Reveal.configure({ pdfSeparateFragments: false });
+	</script>
+
+
+</body></html>

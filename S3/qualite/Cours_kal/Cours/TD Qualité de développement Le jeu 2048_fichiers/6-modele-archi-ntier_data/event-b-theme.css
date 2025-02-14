@@ -1,0 +1,58 @@
+@font-face {
+    font-family: 'Monaco';
+    font-style: normal;
+    font-weight: normal;
+    src: url('./monaco-font/Monaco.woff') format('woff');
+}
+
+.reveal pre.math-code{
+	font-size: 0.8em !important;
+	tab-size: 2 !important ;
+	box-shadow:none !important;
+	margin: auto !important; 
+	padding: 10px !important;
+}
+
+.reveal pre.eb-code{
+	display: block !important;
+	position: relative !important;
+	width: 90% !important;
+	text-align: left !important;
+	line-height: 1.4em !important;
+	tab-size: 2 !important ;
+	word-wrap: break-word !important;
+	box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15) !important;
+	margin-left: auto !important; 
+	margin-right: auto !important;
+	padding : 7px 10px 3px 10px !important;
+	background-color: white;
+	white-space: pre !important; 
+}
+
+#eb li{
+	font-family: 'Monaco' !important;  
+	list-style: none !important; 
+	font-size: 0.9em !important;
+}
+
+.eb-cl, #eb b{
+	color:red;
+	font-weight: bold;
+}
+
+.eb-kw, #eb i{
+	color:blue;
+	font-weight: bold;
+	font-style: normal !important;
+}
+
+.eb-cm, #eb u{
+	color:green;
+	text-decoration: none;
+}
+
+.eb-ev{
+	color:green;
+	font-weight: bold;
+}
+

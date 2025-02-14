@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>Les tests Unitaires avec JUnit</title>
+
+	<link rel="stylesheet" href="Les%20tests%20Unitaires%20avec%20JUnit_fichiers/document-theme.css">
+	<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />-->
+	<link rel="stylesheet" href="Les%20tests%20Unitaires%20avec%20JUnit_fichiers/font-awesome.min.css">
+	<link rel="stylesheet" href="Les%20tests%20Unitaires%20avec%20JUnit_fichiers/vs2015.min.css">
+
+	<script type="text/JavaScript" src="Les%20tests%20Unitaires%20avec%20JUnit_fichiers/highlight.min.js"></script>
+	<script>hljs.highlightAll();</script>
+	<script type="text/javascript" src="Les%20tests%20Unitaires%20avec%20JUnit_fichiers/mathjax.js"></script>
+	<script type="text/javascript" id="MathJax-script" src="Les%20tests%20Unitaires%20avec%20JUnit_fichiers/tex-mml-chtml.js"></script><script src="Les%20tests%20Unitaires%20avec%20JUnit_fichiers/lazy.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="Les%20tests%20Unitaires%20avec%20JUnit_fichiers/correction.js"></script>
+
+	<link rel="icon" href="https://idiraitsadoune.com/enseignement/resources/img/favicon.ico">
+<style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style><style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+</style></head>
+
+<body>
+<div class="container">
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<div style="padding: 0.5em;">
+    2A BUT - IUT d'Orsay <span style="text-align: right;float: right;">Qualité de développement - 2024/2025</span>
+</div>
+<hr>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<div class="section-form">
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<h1>
+  Les tests Unitaires avec JUnit
+</h1>
+<!-- #################################################### -->
+<!-- #################################################### -->
+<h2>Le support de cours</h2>
+
+<div>
+  <iframe style="width: 100%; height: 770px; box-shadow: 0 15px 25px rgba(0,0, 0, 0.4);" src="Les%20tests%20Unitaires%20avec%20JUnit_fichiers/7-tests-avec-junit.htm" frameborder="0"></iframe>
+</div>
+<!-- #################################################### -->
+<!-- #################################################### -->
+<h2>L'exercice</h2>
+<!-- #################################################### -->
+<!-- #################################################### -->
+<div id="orange-block">
+  La liste doublement chaînée
+</div>
+
+<p class="text-justify">
+  Dans le cadre de ce TD, nous souhaitons créer et manipuler une structure de données gérant les collections sous la forme 
+  d'<b>une liste doublement chaînée</b> en <b>Java</b>. 
+  La liste doublement chaînée offre la possibilité de parcourir la liste dans les 2 sens et facilite ainsi la manipulation.
+  Cette caractéristique impose d'utiliser des pointeurs supplémentaires dans les manipulations. 
+  Le chaînage utilise 2 pointeurs, <cs-code>previous</cs-code> et <cs-code>next</cs-code>, qui pointent respectivement sur l'élément précédent ou l'élément suivant, s'ils existent. 
+  Dans le cas contraire, la valeur sera <cs-code>null</cs-code>.
+  </p>
+  <p class="text-justify">
+  Nous commençons d'abord par définir la structure de l'élément stocké 
+dans notre nouvelle collection. Elle est définie par la classe
+  <cs-code>Element</cs-code> possédant la structure suivante:
+</p>
+<pre><code class="language-java hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Element</span> {
+  <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> value;
+  <span class="hljs-keyword">private</span> Element next;
+  <span class="hljs-keyword">private</span> Element previous;
+
+  <span class="hljs-keyword">public</span> <span class="hljs-title function_">Element</span> <span class="hljs-params">(<span class="hljs-type">int</span> v, Element p, Element n)</span>{
+    <span class="hljs-built_in">this</span>.value = v;
+    <span class="hljs-built_in">this</span>.previous = p;
+    <span class="hljs-built_in">this</span>.next = n;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getValue</span><span class="hljs-params">()</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.value;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setValue</span><span class="hljs-params">(<span class="hljs-type">int</span> v)</span> {
+    <span class="hljs-built_in">this</span>.value = v;
+  }
+
+  <span class="hljs-keyword">public</span> Element <span class="hljs-title function_">getNext</span><span class="hljs-params">()</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.next;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setNext</span><span class="hljs-params">(Element n)</span> {
+    <span class="hljs-built_in">this</span>.next = n;
+  }
+
+  <span class="hljs-keyword">public</span> Element <span class="hljs-title function_">getPrevious</span><span class="hljs-params">()</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.previous;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setPrevious</span><span class="hljs-params">(Element p)</span> {
+    <span class="hljs-built_in">this</span>.previous = p;
+  }
+}                             
+</code></pre>
+
+<p class="text-justify">
+  Notre liste doublement chaînée est définie par la classe <cs-code>DoubleLinkedList</cs-code> contenant deux attributs <cs-code>begin</cs-code> et <cs-code>end</cs-code> 
+  de type <cs-code>Element</cs-code> qui pointent respectivement sur le premier élément de la liste ou le dernier élément de la liste, s'ils existent. 
+  Dans le cas contraire (liste vide), la valeur sera <cs-code>null</cs-code>. La classe
+  <cs-code>DoubleLinkedList</cs-code> possède la structure suivante:
+</p>
+
+<pre><code class="language-java hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DoubleLinkedList</span> {
+  <span class="hljs-keyword">private</span> Element begin ;
+  <span class="hljs-keyword">private</span> Element end ;
+
+  <span class="hljs-keyword">public</span> <span class="hljs-title function_">DoubleLinkedList</span><span class="hljs-params">()</span> {
+    <span class="hljs-built_in">this</span>.begin = <span class="hljs-literal">null</span> ;
+    <span class="hljs-built_in">this</span>.end = <span class="hljs-literal">null</span>;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-title function_">DoubleLinkedList</span><span class="hljs-params">(<span class="hljs-type">int</span> v)</span> {
+    <span class="hljs-built_in">this</span>.begin = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Element</span>(v, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>);
+    <span class="hljs-built_in">this</span>.end = <span class="hljs-built_in">this</span>.begin ;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-title function_">DoubleLinkedList</span><span class="hljs-params">(<span class="hljs-type">int</span>[] array)</span> {
+    <span class="hljs-keyword">if</span>(array.length == <span class="hljs-number">0</span> || array == <span class="hljs-literal">null</span>) {
+      <span class="hljs-built_in">this</span>.begin = <span class="hljs-literal">null</span> ;
+      <span class="hljs-built_in">this</span>.end = <span class="hljs-literal">null</span>;
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(array.length == <span class="hljs-number">1</span>) {
+      <span class="hljs-built_in">this</span>.begin = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Element</span>(array[<span class="hljs-number">0</span>], <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>);
+      <span class="hljs-built_in">this</span>.end = <span class="hljs-built_in">this</span>.begin ;
+    }
+    <span class="hljs-keyword">else</span> {
+      <span class="hljs-built_in">this</span>.begin = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Element</span>(array[<span class="hljs-number">0</span>], <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>);
+      <span class="hljs-built_in">this</span>.end = <span class="hljs-built_in">this</span>.begin ;
+      
+      <span class="hljs-type">Element</span> <span class="hljs-variable">previous</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.begin;
+      <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;array.length;i++) {
+        <span class="hljs-built_in">this</span>.end = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Element</span>(array[i],previous,<span class="hljs-literal">null</span>);
+        previous.setNext(<span class="hljs-built_in">this</span>.end);
+        previous = <span class="hljs-built_in">this</span>.end ;
+      }
+    }
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">size</span><span class="hljs-params">()</span> {
+    <span class="hljs-comment">// TODO </span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isEmpty</span><span class="hljs-params">()</span> {
+    <span class="hljs-comment">// TODO </span>
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">contains</span><span class="hljs-params">(<span class="hljs-type">int</span> o)</span> {
+    <span class="hljs-comment">// TODO </span>
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">add</span><span class="hljs-params">(<span class="hljs-type">int</span> e)</span> {
+    <span class="hljs-comment">// TODO </span>
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">remove</span><span class="hljs-params">(<span class="hljs-type">int</span> o)</span> {
+    <span class="hljs-comment">// TODO </span>
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">clear</span><span class="hljs-params">()</span> {
+    <span class="hljs-comment">// TODO 	</span>
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-type">int</span>[] getArray() {
+    <span class="hljs-comment">// TODO</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-type">int</span>[] getReverseArray() {
+    <span class="hljs-comment">// TODO</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+  }
+}                             
+</code></pre>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->	
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->		
+<div class="subsection-title">
+Développement à faire
+</div>
+<p class="text-justify">
+</p><ul>
+  <li>Complétez le code <b>Java</b> des deux classes (les parties marquées <cs-code>// TODO</cs-code>) pour garantir 
+      une construction et une manipulation de listes ordonnées du plus petit élément au plus grand.
+      Les doublons sont également interdits dans notre liste doublement chaînée. 
+  </li>
+  <li>Pour valider les deux classes, nous souhaitons effectuer des tests unitaires avec le framework <b>JUnit</b>. Complétez le code <b>Java</b>
+  des deux classes avec les méthodes manquantes pour garantir un comportement correcte des méthodes de comparaison de la classe <cs-code>Assertions</cs-code>.</li>
+</ul>
+<p></p>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->	
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->		
+<div class="subsection-title">
+Tests à faire
+</div>
+<p class="text-justify">
+On souhaite tester l'ensemble des fonctions de la classe <cs-code>DoubleLinkedList</cs-code> à l'aide du framework <b>JUnit</b>. 
+Créez des méthodes dans la classe <cs-code>DoubleLinkedListTest</cs-code> afin de tester les cas suivants :
+</p><ul>
+  <li>La taille de la liste [] renvoie bien 0</li>
+  <li>La taille de la liste [1] renvoie bien 1</li>
+  <li>La taille de la liste [1, 4, 5] renvoie bien 3</li>
+
+  <li>Le test de liste vide de la liste [] renvoie bien <cs-code>true</cs-code></li>
+  <li>Le test de liste vide de la liste [1, 4, 5] renvoie bien <cs-code>false</cs-code></li>
+
+  <li>Le test de l'existence de l'élément 1 dans la liste [] renvoie bien <cs-code>false</cs-code></li>
+  <li>Le test de l'existence de l'élément 1 dans la liste [1, 4, 5] renvoie bien <cs-code>true</cs-code></li>
+  <li>Le test de l'existence de l'élément 8 dans la liste [1, 4, 5] renvoie bien <cs-code>false</cs-code></li>
+
+<li>l'insertion de l'élément 4 dans la liste [] renvoie bien la liste [4]. </li>
+<li>l'insertion de l'élément 4 dans la liste [1,5] renvoie bien la liste [1, 4, 5].</li>
+<li>l'insertion de l'élément 1 dans la liste [4,5] renvoie bien la liste [1, 4, 5].</li>
+<li>l'insertion de l'élément 5 dans la liste [1,4] renvoie bien la liste [1, 4, 5].</li>
+
+  <li>La suppression de l'élément 1 dans la liste [] renvoie bien la liste []</li>
+  <li>La suppression de l'élément 4 dans la liste [1, 4, 5] renvoie bien la liste [1,5]</li>
+  <li>La suppression de l'élément 1 dans la liste [1, 4, 5] renvoie bien la liste [4,5]</li>
+  <li>La suppression de l'élément 5 dans la liste [1, 4, 5] renvoie bien la liste [1,4]</li>
+
+  <li>Vider la liste la liste [] renvoie bien la liste []</li>
+  <li>Vider la liste la liste [1, 4, 5] renvoie bien la liste []</li>
+
+  <li>Lister le contenu de la liste [1, 4, 5] renvoie bien le tableau [1, 4, 5]</li>
+  <li>Lister en inverse le contenu de la liste [1, 4, 5] renvoie bien le tableau [5, 4, 1]</li>
+</ul>
+<p></p>
+
+<div id="green-block">
+	<button class="button_display" onclick="display_correction('exo')">Click here to display or hide the correction</button>
+	<div id="exo" style="display: none; margin-top: 20px;">
+    <pre><code class="language-java hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DoubleLinkedList</span> {
+  <span class="hljs-keyword">private</span> Element begin ;
+  <span class="hljs-keyword">private</span> Element end ;
+
+  <span class="hljs-keyword">public</span> <span class="hljs-title function_">DoubleLinkedList</span><span class="hljs-params">()</span> {
+    <span class="hljs-built_in">this</span>.begin = <span class="hljs-literal">null</span> ;
+    <span class="hljs-built_in">this</span>.end = <span class="hljs-literal">null</span>;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-title function_">DoubleLinkedList</span><span class="hljs-params">(<span class="hljs-type">int</span> v)</span> {
+    <span class="hljs-built_in">this</span>.begin = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Element</span>(v, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>);
+    <span class="hljs-built_in">this</span>.end = <span class="hljs-built_in">this</span>.begin ;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-title function_">DoubleLinkedList</span><span class="hljs-params">(<span class="hljs-type">int</span>[] array)</span> {
+    <span class="hljs-keyword">if</span>(array.length == <span class="hljs-number">0</span> || array == <span class="hljs-literal">null</span>) {
+      <span class="hljs-built_in">this</span>.begin = <span class="hljs-literal">null</span> ;
+      <span class="hljs-built_in">this</span>.end = <span class="hljs-literal">null</span>;
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(array.length == <span class="hljs-number">1</span>) {
+      <span class="hljs-built_in">this</span>.begin = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Element</span>(array[<span class="hljs-number">0</span>], <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>);
+      <span class="hljs-built_in">this</span>.end = <span class="hljs-built_in">this</span>.begin ;
+    }
+    <span class="hljs-keyword">else</span> {
+      <span class="hljs-built_in">this</span>.begin = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Element</span>(array[<span class="hljs-number">0</span>], <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>);
+      <span class="hljs-built_in">this</span>.end = <span class="hljs-built_in">this</span>.begin ;
+      
+      <span class="hljs-type">Element</span> <span class="hljs-variable">previous</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.begin;
+      <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;array.length;i++) {
+        <span class="hljs-built_in">this</span>.end = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Element</span>(array[i],previous,<span class="hljs-literal">null</span>);
+        previous.setNext(<span class="hljs-built_in">this</span>.end);
+        previous = <span class="hljs-built_in">this</span>.end ;
+      }
+    }
+    
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">size</span><span class="hljs-params">()</span> {
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.begin == <span class="hljs-literal">null</span> || <span class="hljs-built_in">this</span>.end == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.begin == <span class="hljs-built_in">this</span>.end) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    
+    <span class="hljs-type">int</span> <span class="hljs-variable">size</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;
+    <span class="hljs-type">Element</span> <span class="hljs-variable">e</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.begin;
+    <span class="hljs-keyword">while</span>(e != <span class="hljs-built_in">this</span>.end) {
+      e = e.getNext();
+      size++;
+    }
+    <span class="hljs-keyword">return</span> size;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isEmpty</span><span class="hljs-params">()</span> {
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.begin == <span class="hljs-literal">null</span> || <span class="hljs-built_in">this</span>.end == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>; 
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">contains</span><span class="hljs-params">(<span class="hljs-type">int</span> o)</span> {
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.begin == <span class="hljs-literal">null</span> || <span class="hljs-built_in">this</span>.end == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>; 
+    
+    <span class="hljs-type">Element</span> <span class="hljs-variable">e</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.begin;
+    <span class="hljs-keyword">while</span>(e != <span class="hljs-literal">null</span>) {
+      <span class="hljs-keyword">if</span>(e.getValue() == o) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span> ;
+      e = e.getNext();
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span> ;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">add</span><span class="hljs-params">(<span class="hljs-type">int</span> e)</span> {
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.contains(e)) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span> ;
+    
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.begin == <span class="hljs-literal">null</span> || <span class="hljs-built_in">this</span>.end == <span class="hljs-literal">null</span>) {
+      <span class="hljs-built_in">this</span>.begin = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Element</span>(e, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>);
+      <span class="hljs-built_in">this</span>.end = <span class="hljs-built_in">this</span>.begin ;
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+    
+    <span class="hljs-type">Element</span> <span class="hljs-variable">l</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.begin;
+    <span class="hljs-keyword">while</span>(l != <span class="hljs-literal">null</span> &amp;&amp; e &gt; l.getValue()) {
+      l = l.getNext();
+    }
+    
+    <span class="hljs-keyword">if</span>(l == <span class="hljs-literal">null</span>) {
+      <span class="hljs-type">Element</span> <span class="hljs-variable">new_e</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Element</span>(e,<span class="hljs-built_in">this</span>.end,<span class="hljs-literal">null</span>);
+      <span class="hljs-built_in">this</span>.end.setNext(new_e);
+      <span class="hljs-built_in">this</span>.end = new_e ;
+      
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(l == <span class="hljs-built_in">this</span>.begin) {
+      <span class="hljs-type">Element</span> <span class="hljs-variable">new_e</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Element</span>(e,<span class="hljs-literal">null</span>,<span class="hljs-built_in">this</span>.begin);
+      <span class="hljs-built_in">this</span>.begin = new_e;
+    }
+    <span class="hljs-keyword">else</span> {
+      <span class="hljs-type">Element</span> <span class="hljs-variable">new_e</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Element</span>(e,l.getPrevious(),l);
+      l.getPrevious().setNext(new_e);
+    }	 
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">remove</span><span class="hljs-params">(<span class="hljs-type">int</span> o)</span> {
+    <span class="hljs-keyword">if</span>(! <span class="hljs-built_in">this</span>.contains(o)) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span> ;
+    
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.size() == <span class="hljs-number">1</span>) {
+      <span class="hljs-built_in">this</span>.begin = <span class="hljs-literal">null</span> ;
+      <span class="hljs-built_in">this</span>.end = <span class="hljs-literal">null</span> ;
+    }
+    <span class="hljs-keyword">else</span> {
+      <span class="hljs-type">Element</span> <span class="hljs-variable">l</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.begin;
+      <span class="hljs-keyword">while</span>(o != l.getValue()) {
+        l = l.getNext();
+      }
+      <span class="hljs-keyword">if</span>(l.getPrevious() != <span class="hljs-literal">null</span>) {
+        l.getPrevious().setNext(l.getNext());
+      }
+      <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">this</span>.begin = l.getNext();
+      }
+      <span class="hljs-keyword">if</span>(l.getNext() != <span class="hljs-literal">null</span>) {
+        l.getNext().setPrevious(l.getPrevious());
+      } 
+      <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">this</span>.end = l.getPrevious();
+      }
+    }
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">clear</span><span class="hljs-params">()</span> {
+    <span class="hljs-built_in">this</span>.begin = <span class="hljs-literal">null</span> ;
+    <span class="hljs-built_in">this</span>.end = <span class="hljs-literal">null</span> ; 	
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-type">int</span>[] getArray() {
+    <span class="hljs-type">int</span>[] array = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-built_in">this</span>.size()] ;
+    
+    <span class="hljs-type">Element</span> <span class="hljs-variable">l</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.begin;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>; i&lt; array.length;i++){
+      array[i] = l.getValue();
+      l = l.getNext();
+    }
+    <span class="hljs-keyword">return</span> array;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-type">int</span>[] getReverseArray() {
+    <span class="hljs-type">int</span>[] array = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-built_in">this</span>.size()] ;
+    
+    <span class="hljs-type">Element</span> <span class="hljs-variable">l</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.end;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>; i&lt; array.length;i++){
+      array[i] = l.getValue();
+      l = l.getPrevious();
+    }
+    <span class="hljs-keyword">return</span> array;
+  }
+
+  <span class="hljs-meta">@Override</span>
+  <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">equals</span><span class="hljs-params">(Object obj)</span> {
+    <span class="hljs-keyword">if</span>(obj == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span> ;
+    <span class="hljs-keyword">if</span>(obj.getClass() != <span class="hljs-built_in">this</span>.getClass()) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span> ;
+    
+    <span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">other</span> <span class="hljs-operator">=</span> (DoubleLinkedList) obj ;
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.size() == <span class="hljs-number">0</span> &amp;&amp; other.size() == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span> ;
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.size() != other.size()) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span> ;
+    
+    <span class="hljs-type">Element</span> <span class="hljs-variable">e1</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.begin ;
+    <span class="hljs-type">Element</span> <span class="hljs-variable">e2</span> <span class="hljs-operator">=</span> other.begin ;
+    <span class="hljs-keyword">while</span> (e1 != <span class="hljs-literal">null</span> &amp;&amp; e2 !=<span class="hljs-literal">null</span>) {
+      <span class="hljs-keyword">if</span>(e1.getValue() != e2.getValue()) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span> ;
+      e1 = e1.getNext();
+      e2 = e2.getNext();
+    }
+    <span class="hljs-keyword">if</span> (e1 == <span class="hljs-literal">null</span> &amp;&amp; e2 == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span> ;
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  }
+
+  <span class="hljs-meta">@Override</span>
+  <span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span> {
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.begin == <span class="hljs-literal">null</span> || <span class="hljs-built_in">this</span>.end == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">"[]"</span>; 
+    <span class="hljs-type">String</span> <span class="hljs-variable">array</span> <span class="hljs-operator">=</span> <span class="hljs-string">"["</span> ;
+    <span class="hljs-type">Element</span> <span class="hljs-variable">e</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.begin ;
+    <span class="hljs-keyword">while</span>(e != <span class="hljs-literal">null</span>) {
+      array = array + <span class="hljs-string">" "</span> + e.getValue() + <span class="hljs-string">" "</span> ;
+      e = e.getNext();
+    }
+    <span class="hljs-keyword">return</span> array + <span class="hljs-string">"]"</span>;
+  }
+}                            
+</code></pre>
+<br>
+<pre><code class="language-java hljs"><span class="hljs-keyword">class</span> <span class="hljs-title class_">DoubleLinkedListTests</span> {
+  
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@DisplayName("La taille de la liste [] renvoie bien 0")</span>
+	<span class="hljs-keyword">void</span> <span class="hljs-title function_">test1</span><span class="hljs-params">()</span> {
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>();
+		assertEquals(<span class="hljs-number">0</span>, list.size());
+	}
+	
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@DisplayName("La taille de la liste [1] renvoie bien 1")</span>
+	<span class="hljs-keyword">void</span> <span class="hljs-title function_">test2</span><span class="hljs-params">()</span> {
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>(<span class="hljs-number">1</span>);
+		assertEquals(<span class="hljs-number">1</span>, list.size());
+	}
+	
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@DisplayName("La taille de la liste [1, 4, 5] renvoie bien 3")</span>
+	<span class="hljs-keyword">void</span> <span class="hljs-title function_">test3</span><span class="hljs-params">()</span> {
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] {<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>});
+		assertEquals(<span class="hljs-number">3</span>, list.size());
+	}
+	
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@DisplayName("Le test de liste vide de la liste [] renvoie bien true")</span>
+	<span class="hljs-keyword">void</span> <span class="hljs-title function_">test4</span><span class="hljs-params">()</span> {
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>();
+		assertTrue(list.isEmpty());
+	}
+
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@DisplayName("Le test de liste vide de la liste [1, 4, 5] renvoie bien false")</span>
+	<span class="hljs-keyword">void</span> <span class="hljs-title function_">test5</span><span class="hljs-params">()</span> {
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] {<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>});
+		assertFalse(list.isEmpty());
+	}
+	
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@DisplayName("Le test de l’existence de l'élément 1 dans la liste [] renvoie bien false")</span>
+	<span class="hljs-keyword">void</span> <span class="hljs-title function_">test6</span><span class="hljs-params">()</span> {
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>();
+		assertFalse(list.contains(<span class="hljs-number">1</span>));
+	}
+	
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@DisplayName("Le test de l’existence de l'élément 1 dans la liste [1, 4, 5] renvoie bien true")</span>
+	<span class="hljs-keyword">void</span> <span class="hljs-title function_">test7</span><span class="hljs-params">()</span> {
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] {<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>});
+		assertTrue(list.contains(<span class="hljs-number">1</span>));
+		assertTrue(list.contains(<span class="hljs-number">4</span>));
+		assertTrue(list.contains(<span class="hljs-number">5</span>));
+	}
+	
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@DisplayName("Le test de l’existence de l'élément 8 dans la liste [1, 4, 5] renvoie bien false")</span>
+	<span class="hljs-keyword">void</span> <span class="hljs-title function_">test8</span><span class="hljs-params">()</span> {
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] {<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>});
+		assertFalse(list.contains(<span class="hljs-number">8</span>));
+	}
+	
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@DisplayName("l’insertion de l’élément 4 dans la liste [] renvoie bien la liste [4].")</span>
+	<span class="hljs-keyword">void</span> <span class="hljs-title function_">test9</span><span class="hljs-params">()</span> {
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>();
+		list1.add(<span class="hljs-number">4</span>);
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] {<span class="hljs-number">4</span>});
+		assertEquals(list2, list1);
+	}
+	
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@DisplayName("l’insertion de l’élément 4 dans la liste [1,5] renvoie bien la liste [1, 4, 5].")</span>
+	<span class="hljs-keyword">void</span> <span class="hljs-title function_">test10</span><span class="hljs-params">()</span> {
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] {<span class="hljs-number">1</span>, <span class="hljs-number">5</span>});
+		list1.add(<span class="hljs-number">4</span>);
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] {<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>});
+		assertEquals(list2, list1);
+	}
+	
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@DisplayName("l’insertion de l’élément 1 dans la liste [4,5] renvoie bien la liste [1, 4, 5].")</span>
+	<span class="hljs-keyword">void</span> <span class="hljs-title function_">test11</span><span class="hljs-params">()</span> {
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] {<span class="hljs-number">4</span>, <span class="hljs-number">5</span>});
+		list1.add(<span class="hljs-number">1</span>);
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] {<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>});
+		assertEquals(list2, list1);
+	}
+	
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@DisplayName("l’insertion de l’élément 5 dans la liste [1,4] renvoie bien la liste [1, 4, 5].")</span>
+	<span class="hljs-keyword">void</span> <span class="hljs-title function_">test12</span><span class="hljs-params">()</span> {
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] {<span class="hljs-number">1</span>, <span class="hljs-number">4</span>});
+		list1.add(<span class="hljs-number">5</span>);
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] {<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>});
+		assertEquals(list2, list1);
+	}
+	
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@DisplayName("La suppression de l'élément 1 dans la liste [] renvoie bien la liste []")</span>
+	<span class="hljs-keyword">void</span> <span class="hljs-title function_">test13</span><span class="hljs-params">()</span> {
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>();
+		list1.remove(<span class="hljs-number">1</span>);
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>();
+		assertEquals(list2, list1);
+	}
+	
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@DisplayName("La suppression de l'élément 4 dans la liste [1, 4, 5] renvoie bien la liste [1,5]")</span>
+	<span class="hljs-keyword">void</span> <span class="hljs-title function_">test14</span><span class="hljs-params">()</span> {
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] {<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>});
+		list1.remove(<span class="hljs-number">4</span>);
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] {<span class="hljs-number">1</span>, <span class="hljs-number">5</span>});
+		assertEquals(list2, list1);
+	}
+	
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@DisplayName("La suppression de l'élément 1 dans la liste [1, 4, 5] renvoie bien la liste [4,5]")</span>
+	<span class="hljs-keyword">void</span> <span class="hljs-title function_">test15</span><span class="hljs-params">()</span> {
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] {<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>});
+		list1.remove(<span class="hljs-number">1</span>);
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] {<span class="hljs-number">4</span>, <span class="hljs-number">5</span>});
+		assertEquals(list2, list1);
+	}
+	
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@DisplayName("La suppression de l'élément 5 dans la liste [1, 4, 5] renvoie bien la liste [1,4]")</span>
+	<span class="hljs-keyword">void</span> <span class="hljs-title function_">test16</span><span class="hljs-params">()</span> {
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] {<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>});
+		list1.remove(<span class="hljs-number">5</span>);
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] {<span class="hljs-number">1</span>, <span class="hljs-number">4</span>});
+		assertEquals(list2, list1);
+	}
+	
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@DisplayName("Vider la liste la liste [] renvoie bien la liste []")</span>
+	<span class="hljs-keyword">void</span> <span class="hljs-title function_">test17</span><span class="hljs-params">()</span> {
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>();
+		list1.clear();
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>();
+		assertEquals(list2, list1);
+	}
+	
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@DisplayName("Vider la liste la liste [1, 4, 5] renvoie bien la liste []")</span>
+	<span class="hljs-keyword">void</span> <span class="hljs-title function_">test18</span><span class="hljs-params">()</span> {
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] {<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>});
+		list1.clear();
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>();
+		assertEquals(list2, list1);
+	}
+	
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@DisplayName("Lister le contenu de la liste [1, 4, 5] renvoie bien le tableau [1, 4, 5]")</span>
+	<span class="hljs-keyword">void</span> <span class="hljs-title function_">test19</span><span class="hljs-params">()</span> {
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] {<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>});
+		<span class="hljs-type">int</span>[] array = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] {<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>};
+		assertArrayEquals(array, list1.getArray());
+	}
+	
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@DisplayName("Lister en inverse le contenu de la liste [1, 4, 5] renvoie bien le tableau [5, 4, 1]")</span>
+	<span class="hljs-keyword">void</span> <span class="hljs-title function_">test20</span><span class="hljs-params">()</span> {
+		<span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">list1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] {<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>});
+		<span class="hljs-type">int</span>[] array = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] {<span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>};
+		assertArrayEquals(array, list1.getReverseArray());
+	}
+}
+</code></pre>
+	</div>
+</div>
+
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+</div>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<hr>
+<div style="padding: 0.5em;">
+	2A BUT - IUT d'Orsay <span style="text-align: right;float: right;">Qualité de développement - 2024/2025</span>
+</div>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+</div>
+
+
+</body></html>

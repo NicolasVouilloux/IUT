@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html class="reveal-full-page"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>Qualité de développement : Diagramme UML de séquence</title>
+
+	<link rel="stylesheet" href="3-uml-diagramme-sequence_data/reset.css">
+	<link rel="stylesheet" href="3-uml-diagramme-sequence_data/reveal.css">
+	<link rel="stylesheet" href="3-uml-diagramme-sequence_data/white.css" id="theme">
+	<link rel="stylesheet" href="3-uml-diagramme-sequence_data/presentation-theme.css">
+	<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />-->
+	<link rel="stylesheet" href="font-awesome.min.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<!--<link rel="stylesheet" href="../reveal-js-framework/plugin/highlight/monokai.css">-->
+	<link rel="stylesheet" href="vs2015.min.css">
+
+	<link rel="icon" href="https://idiraitsadoune.com/enseignement/resources/img/favicon.ico">
+<style type="text/css">.hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}</style><script type="text/javascript" id="MathJax-script" src="3-uml-diagramme-sequence_data/tex-mml-chtml.js" async=""></script><style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style><style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-math {
+  display: inline-block;
+  text-align: left;
+  line-height: 0;
+  text-indent: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 100%;
+  font-size-adjust: none;
+  letter-spacing: normal;
+  border-collapse: collapse;
+  word-wrap: normal;
+  word-spacing: normal;
+  white-space: nowrap;
+  direction: ltr;
+  padding: 1px 0;
+}
+
+mjx-container[jax="CHTML"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="CHTML"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="CHTML"][display="true"] mjx-math {
+  padding: 0;
+}
+
+mjx-container[jax="CHTML"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="CHTML"][justify="right"] {
+  text-align: right;
+}
+
+mjx-mo {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-stretchy-h {
+  display: inline-table;
+  width: 100%;
+}
+
+mjx-stretchy-h > * {
+  display: table-cell;
+  width: 0;
+}
+
+mjx-stretchy-h > * > mjx-c {
+  display: inline-block;
+  transform: scalex(1.0000001);
+}
+
+mjx-stretchy-h > * > mjx-c::before {
+  display: inline-block;
+  width: initial;
+}
+
+mjx-stretchy-h > mjx-ext {
+  /* IE */ overflow: hidden;
+  /* others */ overflow: clip visible;
+  width: 100%;
+}
+
+mjx-stretchy-h > mjx-ext > mjx-c::before {
+  transform: scalex(500);
+}
+
+mjx-stretchy-h > mjx-ext > mjx-c {
+  width: 0;
+}
+
+mjx-stretchy-h > mjx-beg > mjx-c {
+  margin-right: -.1em;
+}
+
+mjx-stretchy-h > mjx-end > mjx-c {
+  margin-left: -.1em;
+}
+
+mjx-stretchy-v {
+  display: inline-block;
+}
+
+mjx-stretchy-v > * {
+  display: block;
+}
+
+mjx-stretchy-v > mjx-beg {
+  height: 0;
+}
+
+mjx-stretchy-v > mjx-end > mjx-c {
+  display: block;
+}
+
+mjx-stretchy-v > * > mjx-c {
+  transform: scaley(1.0000001);
+  transform-origin: left center;
+  overflow: hidden;
+}
+
+mjx-stretchy-v > mjx-ext {
+  display: block;
+  height: 100%;
+  box-sizing: border-box;
+  border: 0px solid transparent;
+  /* IE */ overflow: hidden;
+  /* others */ overflow: visible clip;
+}
+
+mjx-stretchy-v > mjx-ext > mjx-c::before {
+  width: initial;
+  box-sizing: border-box;
+}
+
+mjx-stretchy-v > mjx-ext > mjx-c {
+  transform: scaleY(500) translateY(.075em);
+  overflow: visible;
+}
+
+mjx-mark {
+  display: inline-block;
+  height: 0px;
+}
+
+mjx-c {
+  display: inline-block;
+}
+
+mjx-utext {
+  display: inline-block;
+  padding: .75em 0 .2em 0;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+
+mjx-c.mjx-c2192::before {
+  padding: 0.511em 1em 0.011em 0;
+  content: "\2192";
+}
+</style></head>
+
+<body class="reveal-viewport" style="--slide-width: 1280px; --slide-height: 720px; --slide-scale: 0.9824999999999999; --viewport-width: 1310px; --viewport-height: 770px;">
+	<img id="logo" src="3-uml-diagramme-sequence_data/iut-logo.png" alt="">
+	<div class="reveal slide center focused has-horizontal-slides has-light-background ready" role="application" data-transition-speed="default" data-background-transition="fade">
+		<div class="slides" style="width: 1280px; height: 720px; inset: 50% auto auto 50%; transform: translate(-50%, -50%) scale(0.9825);">
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" data-background="#fff" style="top: 94.5px; display: block;" class="has-light-background present">
+
+	<div class="header-logo">
+		<div class="left-logo">
+			<a href="https://lmf.cnrs.fr/" target="_blank">
+				<img src="3-uml-diagramme-sequence_data/logo-aff.png" alt="">
+			</a>
+		</div>
+		<div class="right-logo">
+			<a href="https://www.iut-orsay.universite-paris-saclay.fr/" target="_blank">
+				<img src="3-uml-diagramme-sequence_data/iut-logo.png" alt="">
+			</a>
+		</div>
+	</div>
+	
+	<div style="text-align: left">
+		<h2>Qualité de développement</h2>
+		<h3>Diagramme UML de séquence</h3>
+	</div>
+
+	<div class="description">
+		<span><span class="fa fa-graduation-cap">&nbsp;</span>2A - Bachelor Universitaire de Technologie</span><br>
+		<span><span class="fa fa-university">&nbsp;</span>IUT d'Orsay - Université Paris-Saclay - 2024/2025</span>
+	</div>
+
+	<div class="hero-card-id">
+		<a href="https://wdi.centralesupelec.fr/aitsadoune/" target="_blank">
+			<img src="3-uml-diagramme-sequence_data/idir.png" class="hero-user">
+		</a>
+		<div class="hero-desc">
+			<a href="https://wdi.centralesupelec.fr/aitsadoune/" target="_blank">
+				<span class="hero-name"><strong>Idir AIT SADOUNE </strong></span>
+			</a>
+			<br>
+      <a href="mailto:idir.ait-sadoune@universite-paris-saclay.fr" target="_blank">
+        <span class="hero-email">idir.ait-sadoune@universite-paris-saclay.fr</span>
+      </a>
+		</div>
+	</div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section id="plan" data-transition="fade-in fade-out" style="top: 155.5px; display: block;" aria-hidden="true" class="future" hidden=""><h2>Plan</h2><ul><div data-id="menu" class="outline"><div class="item"><a href="#/ch1">Eléments de base</a></div><div class="item"><a href="#/ch2">Fragments combinés</a></div><div class="item"><a href="#/ch3">Utilisation du diagramme</a></div></div></ul><p style="font-size: 25px !important  ;"><a href="#/plan">Retour au plan</a> - <a href="#">Retour à l'accueil</a></p></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 40.5px; display: block;" aria-hidden="true" class="future" hidden="">
+  <h2>Cycle de développement</h2>
+
+	<div class="r-stack">
+		<img class="fragment fade-in-then-out" src="3-uml-diagramme-sequence_data/cycle_v_1.svg" alt="" data-fragment-index="0" width="900px" height="auto">
+		<img class="fragment fade-in-then-out" src="3-uml-diagramme-sequence_data/cycle_v_2.svg" alt="" data-fragment-index="1" width="900px" height="auto">
+		<img class="fragment fade-in-then-out" src="3-uml-diagramme-sequence_data/cycle_v_3.svg" alt="" data-fragment-index="2" width="900px" height="auto">
+		<img class="fragment fade-in-then-out" src="3-uml-diagramme-sequence_data/cycle_v_4.svg" alt="" data-fragment-index="3" width="900px" height="auto">
+		<img class="fragment fade-in" src="3-uml-diagramme-sequence_data/cycle_v_5.svg" alt="" data-fragment-index="4" width="900px" height="auto">
+	</div>
+
+	<div class="fragment" data-fragment-index="5">
+		Ce cours se positionne dans les étapes <b>Spécification</b> et <b>Conception</b>.
+	</div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section id="ch1" name="Eléments de base" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden=""><h2>Plan</h2><ul><div data-id="menu" class="outline"><div class="item actif-item"><a href="#/ch1">Eléments de base</a></div><div class="item"><a href="#/ch2">Fragments combinés</a></div><div class="item"><a href="#/ch3">Utilisation du diagramme</a></div></div></ul><p style="font-size: 25px !important  ;"><a href="#/plan">Retour au plan</a> - <a href="#">Retour à l'accueil</a></p></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Définitions</h2>
+    
+  <div class="left-content">
+
+    <ul>
+      <li>
+        Les <b>diagrammes de séquence</b> ont été introduits pour permettre de décrire <br> 
+        les <i>scénarios de communications entre objets</i>.
+        <ul id="fleche">
+            <li class="fragment" data-fragment-index="0">décrire les <i>messages échangés</i> pour la <i>réalisation 
+                d'une fonctionnalité</i>.
+            </li>
+            <li class="fragment" data-fragment-index="1">identifier <i>les liens</i> et <i>les méthodes</i> nécessaires pour les objets. </li>
+        </ul> 
+      </li>
+    </ul>
+
+    <div class="fragment d-skip" data-fragment-index="2">
+      <div style="float: right; width: 300px;">
+        <img src="3-uml-diagramme-sequence_data/13-uml-02.svg">
+      </div>
+
+      <ul style="display: block;">
+        <li>
+          Un <b>diagramme de séquence</b> représente :
+          <ul>
+            <li class="fragment" data-fragment-index="3">les <b>entités</b> (objets/acteurs) <i>verticalement</i> <br> par des <i>lignes de vie</i></li>
+            <li class="fragment" data-fragment-index="4">les <b>messages</b> <i>horizontalement</i> par <i>des flèches</i></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Les entités</h2>
+
+  <div class="fragment" style="display: flex; align-items: center;" data-fragment-index="0">
+
+    <ul style="width: 55%;">
+      <li>Un <b>diagramme de séquence</b> décrit des interactions entre deux <b>entités</b> principales : 
+        <ol>
+          <li class="fragment" data-fragment-index="1">un <b>acteur</b> <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" style="font-size: 113.1%; position: relative;" tabindex="0" ctxtmenu_counter="0"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mo class="mjx-n"><mjx-c class="mjx-c2192"></mjx-c></mjx-mo></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo accent="false" stretchy="false">→</mo></math></mjx-assistive-mml></mjx-container> <i>une entité extérieur au système</i></li>
+          <li class="fragment" data-fragment-index="2">un <b>objet</b> <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" style="font-size: 113.1%; position: relative;" tabindex="0" ctxtmenu_counter="1"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mo class="mjx-n"><mjx-c class="mjx-c2192"></mjx-c></mjx-mo></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo accent="false" stretchy="false">→</mo></math></mjx-assistive-mml></mjx-container> <i>une entité du système</i></li>
+        </ol>
+      </li>
+      <li class="fragment skip" data-fragment-index="3">
+        Chaque <b>entité</b> a une <i>ligne de vie</i> représentée par une <i>ligne verticale</i> 
+        <ul id="fleche">
+          <li class="fragment" data-fragment-index="4">en <i>pointillée</i> lorsque l'entité est <i>inactive</i></li>
+          <li class="fragment" data-fragment-index="5">en <i>bloc</i> lorsque l'entité est <i>active</i></li>
+        </ul>
+      </li>
+    </ul>
+
+    <div style="width: 45%;">
+      <img src="3-uml-diagramme-sequence_data/13-uml-03.svg">
+    </div>
+  </div>
+    
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Les messages </h2>
+
+  <div class="fragment" style="display: flex; align-items: center;" data-fragment-index="0">
+    <ul style="width: 60%;">
+      <li>Un <b>diagramme de séquence</b> permet de spécifier différents <b>types de communications</b> :
+        <ul>
+          <li class="fragment skip" data-fragment-index="1">création d'un objet</li>
+          <li class="fragment skip" data-fragment-index="2">appels de méthodes</li>  
+          <li class="fragment skip" data-fragment-index="3">envoi d'un signal</li>  
+          <li class="fragment skip" data-fragment-index="4">destruction d'un objet ...</li> 
+        </ul>
+      </li>
+    </ul>
+
+    <div style="width: 40%;">
+        <img src="3-uml-diagramme-sequence_data/13-uml-07.svg">
+    </div>
+  </div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Les messages </h2>
+  
+  <div style="display: flex; align-items: center;">
+    <ul style="width: 60%;">
+      <li>Un <b>diagramme de séquence</b> utilise <br> <i>trois types de messages</i> pour spécifier <br> une communication :
+        <ol>
+          <li class="fragment" data-fragment-index="0"> <b>message synchrone</b> : <br> l'entité attend la réponse avant de continuer</li>
+          <li class="fragment" data-fragment-index="1"> <b>message de retour</b> : <br> la réponse d'une entité à un message</li>
+          <li class="fragment" data-fragment-index="2"> <b>message asynchrone</b> : <br> l'entité n'attend pas la réponse pour continuer</li>	
+        </ol> 
+      </li>
+    </ul>
+
+    <div style="width: 40%;">
+      <img src="3-uml-diagramme-sequence_data/13-uml-04.svg">
+    </div>
+  </div>
+    
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Exemple</h2>
+
+  <div>
+    <img src="3-uml-diagramme-sequence_data/13-uml-05.svg">
+  </div>
+    
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section id="ch2" name="Fragments combinés" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden=""><h2>Plan</h2><ul><div data-id="menu" class="outline"><div class="item"><a href="#/ch1">Eléments de base</a></div><div class="item actif-item"><a href="#/ch2">Fragments combinés</a></div><div class="item"><a href="#/ch3">Utilisation du diagramme</a></div></div></ul><p style="font-size: 25px !important  ;"><a href="#/plan">Retour au plan</a> - <a href="#">Retour à l'accueil</a></p></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+    <h2>Les fragments combinés</h2>
+
+    <ul>
+      <li>Dans un <b>diagramme de séquence</b>, il est possible :
+        <ul>
+          <li class="fragment" data-fragment-index="0">de représenter des <i>contraintes</i> ou des <i>propriétés</i> 
+              particulières <br> (exécution atomique, répétition, ...).</li> 
+          <li class="fragment" data-fragment-index="1">de <i>décomposer une interaction complexe</i> en fragments simples. </li>
+        </ul>
+      </li>
+
+      <li class="fragment skip" data-fragment-index="2">
+        <b>Le fragment combiné</b> est l'élément graphique permettant <br> de <i>représenter ce type d'information</i>.
+      </li>
+    </ul>
+ 
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Les fragments combinés</h2>
+
+  <div style="display: flex; align-items: center;">
+    <ul style="width: 60%;">
+      <li><b>Un fragment combiné</b> est constitué de :
+        <ul>
+          <li class="fragment" data-fragment-index="0"> <i>un opérateur d'interaction</i> <br> (type de la combinaison) </li>
+          <li class="fragment" data-fragment-index="1"> un ou plusieurs <i>fragments d'interaction</i> <br> (une partie du diagramme)</li>
+        </ul>
+      </li>
+      <li class="skip fragment" data-fragment-index="2">
+          <b>L'opérateur d'interaction</b> est indiqué <br> dans le coin supérieur gauche <br>
+          dans un <i>rectangle</i>.
+      </li>
+    </ul>
+    
+    <div>
+        <img src="3-uml-diagramme-sequence_data/13-uml-06.svg">
+    </div>
+  </div>
+    
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Les fragments combinés</h2>
+  <h3>Alternative</h3>
+
+  <div style="display: flex; align-items: center;">
+    <div style="width: 50%; text-align: left;">
+        <b>Alternative - alt</b> : <br> 
+        <i>sélectionner</i> un comportement en fonction
+         d'<i>une condition</i>.
+    </div> 
+
+    <div>
+      <img src="3-uml-diagramme-sequence_data/13-uml-08.svg">
+    </div>
+  </div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Les fragments combinés</h2>
+  <h3>Option</h3>
+
+  <div style="display: flex; align-items: center;">
+    <div style="width: 50%; text-align: left;">
+      <b>Option - opt</b> : <br> 
+      exécuter un comportement <i>si la condition</i> de garde <i>est vérifiée</i>. 
+    </div>
+
+    <div>
+      <img src="3-uml-diagramme-sequence_data/13-uml-09.svg">
+    </div>
+  </div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Les fragments combinés</h2>
+  <h3>Boucle</h3>
+
+  <div style="display: flex; align-items: center;">
+    <div style="width: 50%; text-align: left;">
+      <b>Boucle - loop</b> : <br> 
+      exécuter une interaction <i>tant qu'une condition  est satisfaite</i>. 
+    </div>
+
+    <div>
+      <img src="3-uml-diagramme-sequence_data/13-uml-10.svg">
+    </div>
+  </div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Les fragments combinés</h2>
+  <h3>Rupture</h3>
+
+  <div style="display: flex; align-items: center;">
+    <div style="width: 60%; text-align: left;">
+      <b>Rupture - break</b> : <br>  
+      exécuter le fragment associé puis <i>mettre fin <br> à l'interaction englobante</i>. 
+    </div>
+
+    <div>
+      <img src="3-uml-diagramme-sequence_data/13-uml-11.svg" style="width: 85%;">
+    </div>
+  </div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Les fragments combinés</h2>
+  <h3>Parallèle</h3>
+
+  <div style="display: flex; align-items: center;">
+    <div style="width: 50%; text-align: left; margin-right: 30px;">
+      <b>Parallèle - par</b> : <br> 
+      les fragments d'interaction associés sont <i>exécutés  en parallèle</i>. 
+    </div>
+
+    <div>
+      <img src="3-uml-diagramme-sequence_data/13-uml-12.svg">
+    </div>
+  </div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Les fragments combinés</h2>
+  <h3>Quelques opérateurs supplémentaires</h3>
+
+  <ul>
+    <li class="fragment skip" data-fragment-index="0">  <b>ref</b> : appeler une interaction décrite par ailleurs.</li>
+    <li class="fragment skip" data-fragment-index="1"> <b>strict</b> : l'ordre d'exécution doit être strictement respecté. </li>
+    <li class="fragment skip" data-fragment-index="2"> <b>weak</b> : l'ordre d'exécution des opérations n'a pas d'importance. </li>
+    <li class="fragment skip" data-fragment-index="3"> <b>ignore</b> : certains messages peuvent être absents sans incidence. </li>
+    <li class="fragment skip" data-fragment-index="4"> <b>consider</b> : certains messages doivent être obligatoirement présents. </li>
+    <li class="fragment skip" data-fragment-index="5"> <b>critical</b> : une séquence d'interactions ne peut être interrompue  <br>
+    (<i>séquence critique est atomique</i>).</li>
+  </ul>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section id="ch3" name="Utilisation du diagramme" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden=""><h2>Plan</h2><ul><div data-id="menu" class="outline"><div class="item"><a href="#/ch1">Eléments de base</a></div><div class="item"><a href="#/ch2">Fragments combinés</a></div><div class="item actif-item"><a href="#/ch3">Utilisation du diagramme</a></div></div></ul><p style="font-size: 25px !important  ;"><a href="#/plan">Retour au plan</a> - <a href="#">Retour à l'accueil</a></p></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>En complément <br> du diagramme de cas d'utilisation</h2>
+  <h3>Spécification</h3>
+
+  <ul>
+    <li class="fragment" data-fragment-index="0">à la place de <i>la description textuelle</i> ou du <i>diagramme d'activité</i> <br>
+      décrivant les scénarios du diagramme de cas d'utilisation.</li>
+    <li class="fragment skip" data-fragment-index="1">pour décrire les <i>flux d'informations échangés</i> 
+        pour la <i>réalisation <br> d'un cas d'utilisation</i>.</li>
+  </ul>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>En complément <br> du diagramme de cas d'utilisation</h2>
+  <h3>Exemple</h3>
+
+  <div>
+    <img data-id="box1" src="3-uml-diagramme-sequence_data/13-uml-13.svg">
+  </div>
+    
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>En complément <br> du diagramme de cas d'utilisation</h2>
+  <h3>Exemple</h3>
+
+  <div>
+    <img data-id="box1" style="height: 250px" src="3-uml-diagramme-sequence_data/13-uml-13.svg">
+    <img style="height: 450px;margin-left: 50px;" src="3-uml-diagramme-sequence_data/13-uml-14.svg">
+  </div>
+    
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>En complément <br> du diagramme de classe</h2>
+  <h3>Conception</h3>
+
+  <ul>
+    <li class="fragment" data-fragment-index="0">identifier <i>les liens</i> entre les objets (les classes).</li>
+    <li class="fragment skip" data-fragment-index="1">identifier <i>les méthodes</i> nécessaires pour les objets (les classes).</li>
+  </ul>
+   
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>En complément <br> du diagramme de classe</h2>
+  <h3>Exemple</h3>
+
+  <div>
+    <img data-id="box2" style="height: 450px" src="3-uml-diagramme-sequence_data/13-uml-05.svg">
+  </div>
+    
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>En complément <br> du diagramme de classe</h2>
+  <h3>Exemple</h3>
+
+  <div>
+    <img data-id="box2" style="height: 450px" src="3-uml-diagramme-sequence_data/13-uml-05.svg">
+    <img style="height: 400px;margin-left: 100px;" src="3-uml-diagramme-sequence_data/13-uml-15.svg">
+  </div>
+    
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h1>Merci</h1>
+	<p>
+		<a href="https://idiraitsadoune.com/enseignement/UPS-IUT-2A-QD/3-uml-diagramme-sequence.pdf" target="_blank">Version PDF des slides</a>
+	</p>
+	<p>
+		<a href="#">Retour à l'accueil</a>
+		- <a href="#/plan">Retour au plan</a>
+	</p>
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+		</div>
+	<div class="backgrounds"><div class="slide-background present" style="background: rgb(255, 255, 255); display: block;" data-background-hash="#fffnullnullnullnullnullnullnullnullnullnull" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-number" style="display: block;"><a href="#/">
+					<span class="slide-number-a">1</span>
+					<span class="slide-number-delimiter">/</span>
+					<span class="slide-number-b">26</span>
+					</a></div><aside class="controls" style="display: block;" data-controls-layout="bottom-right" data-controls-back-arrows="faded"><button class="navigate-left" aria-label="previous slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-right enabled highlight" aria-label="next slide"><div class="controls-arrow"></div></button>
+			<button class="navigate-up" aria-label="above slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-down" aria-label="below slide" disabled="disabled"><div class="controls-arrow"></div></button></aside><div class="progress" style="display: block;"><span style="transform: scaleX(0);"></span></div><div class="speaker-notes" data-prevent-swipe="" tabindex="0"></div><div class="pause-overlay"><button class="resume-button">Resume presentation</button></div><div style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px);" class="aria-status" aria-live="polite" aria-atomic="true">Qualité
+ de développement Diagramme UML de séquence 2A - Bachelor Universitaire 
+de Technologie IUT d'Orsay - Université Paris-Saclay - 2024/2025 Idir 
+AIT SADOUNE idir.ait-sadoune@universite-paris-saclay.fr </div></div>
+
+	<script src="3-uml-diagramme-sequence_data/plan.js"></script>
+	<script src="3-uml-diagramme-sequence_data/reveal.js"></script>
+	<script src="3-uml-diagramme-sequence_data/highlight.js"></script>
+	<script src="3-uml-diagramme-sequence_data/math.js"></script>
+
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			// Display presentation control arrows
+			controls: true,
+			// Display a presentation progress bar
+			progress: true,
+
+			// Vertical centering of slides
+			center: true,
+			// The "normal" size of the presentation, aspect ratio will
+			// be preserved when the presentation is scaled to fit different
+			// resolutions. Can be specified using percentage units.
+			width: 1280,
+			height: 720,
+
+			// Add the current slide number to the URL hash so that reloading the
+			// page/copying the URL will return you to the same slide
+			hash: true,
+
+			slideNumber: 'c/t',
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMath.MathJax3,RevealHighlight]
+		});
+
+		Reveal.configure({ pdfSeparateFragments: false });
+	</script>
+
+
+
+</body></html>

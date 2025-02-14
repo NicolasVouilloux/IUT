@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html class="reveal-full-page"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>Qualité de développement : Modèle d'architecture ''n-tier''</title>
+
+	<link rel="stylesheet" href="6-modele-archi-ntier_data/reset.css">
+	<link rel="stylesheet" href="6-modele-archi-ntier_data/reveal.css">
+	<link rel="stylesheet" href="6-modele-archi-ntier_data/white.css" id="theme">
+	<link rel="stylesheet" href="6-modele-archi-ntier_data/presentation-theme.css">
+	<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />-->
+	<link rel="stylesheet" href="font-awesome.min.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<!--<link rel="stylesheet" href="../reveal-js-framework/plugin/highlight/monokai.css">-->
+	<link rel="stylesheet" href="vs2015.min.css">
+	<link rel="stylesheet" href="6-modele-archi-ntier_data/event-b-theme.css">
+
+	<script type="text/javascript" src="mathjax.js"></script>
+	<script type="text/javascript" id="MathJax-script" src="tex-mml-chtml.js"></script><script src="lazy.js" charset="UTF-8"></script>
+
+	<link rel="icon" href="https://idiraitsadoune.com/enseignement/resources/img/favicon.ico">
+<style type="text/css">.hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}</style><style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style><style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+</style></head>
+
+<body class="reveal-viewport" style="--slide-width: 1280px; --slide-height: 720px; --slide-scale: 0.9824999999999999; --viewport-width: 1310px; --viewport-height: 770px;">
+	<img id="logo" src="6-modele-archi-ntier_data/iut-logo.png" alt="">
+	<div class="reveal slide center focused has-horizontal-slides has-light-background ready" role="application" data-transition-speed="default" data-background-transition="fade">
+		<div class="slides" style="width: 1280px; height: 720px; inset: 50% auto auto 50%; transform: translate(-50%, -50%) scale(0.9825);">
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" data-background="#fff" style="top: 94.5px; display: block;" class="has-light-background present">
+
+	<div class="header-logo">
+		<div class="left-logo">
+			<a href="https://lmf.cnrs.fr/" target="_blank">
+				<img src="6-modele-archi-ntier_data/logo-aff.png" alt="">
+			</a>
+		</div>
+		<div class="right-logo">
+			<a href="https://www.iut-orsay.universite-paris-saclay.fr/" target="_blank">
+				<img src="6-modele-archi-ntier_data/iut-logo.png" alt="">
+			</a>
+		</div>
+	</div>
+	
+	<div style="text-align: left">
+		<h2>Qualité de développement</h2>
+		<h3>Modèle d'architecture ''n-tier''</h3>
+	</div>
+
+	<div class="description">
+		<span><span class="fa fa-graduation-cap">&nbsp;</span>2A - Bachelor Universitaire de Technologie</span><br>
+		<span><span class="fa fa-university">&nbsp;</span>IUT d'Orsay - Université Paris-Saclay - 2024/2025</span>
+	</div>
+
+	<div class="hero-card-id">
+		<a href="https://wdi.centralesupelec.fr/aitsadoune/" target="_blank">
+			<img src="6-modele-archi-ntier_data/idir.png" class="hero-user">
+		</a>
+		<div class="hero-desc">
+			<a href="https://wdi.centralesupelec.fr/aitsadoune/" target="_blank">
+				<span class="hero-name"><strong>Idir AIT SADOUNE </strong></span>
+			</a>
+			<br>
+			<a href="mailto:idir.ait-sadoune@universite-paris-saclay.fr" target="_blank">
+        <span class="hero-email">idir.ait-sadoune@universite-paris-saclay.fr</span>
+      </a>
+		</div>
+	</div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section id="plan" data-transition="fade-in fade-out" style="top: 120px; display: block;" aria-hidden="true" class="future" hidden=""><h2>Plan</h2><ul><div data-id="menu" class="outline"><div class="item"><a href="#/ch1">Introduction</a></div><div class="item"><a href="#/ch2">Architectures multi-couches</a></div><div class="item"><a href="#/ch3">Typologie des classes de conception</a></div><div class="item"><a href="#/ch4">Exemples d'application</a></div></div></ul><p style="font-size: 25px !important  ;"><a href="#/plan">Retour au plan</a> - <a href="#">Retour à l'accueil</a></p></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section id="ch1" name="Introduction" data-transition="fade-in fade-out" style="top: 120px; display: block;" aria-hidden="true" class="future" hidden=""><h2>Plan</h2><ul><div data-id="menu" class="outline"><div class="item actif-item"><a href="#/ch1">Introduction</a></div><div class="item"><a href="#/ch2">Architectures multi-couches</a></div><div class="item"><a href="#/ch3">Typologie des classes de conception</a></div><div class="item"><a href="#/ch4">Exemples d'application</a></div></div></ul><p style="font-size: 25px !important  ;"><a href="#/plan">Retour au plan</a> - <a href="#">Retour à l'accueil</a></p></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Introduction</h2>
+
+	<ul>
+		<li>Une pratique de base dans la <i>conception de logiciels</i> consiste <br> à <i>décomposer le système en sous-systèmes</i>.
+				<ul id="fleche"><li>séparer les responsabilités.</li></ul>
+		</li>
+
+		<li class="fragment skip" data-fragment-index="0">D'un manière général, le modèle décrivant <i>l'architecture d'un logiciel</i> 
+				se compose de <i>plusieurs packages</i> :
+			<ul>
+					<li>un package pour l'interface utilisateur,</li>
+					<li>un package pour l'accès aux bases de données,</li>
+					<li>etc.</li>
+			</ul>
+		</li>
+	</ul>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+  <h2>Introduction</h2>
+    
+	<ul>
+		<li>
+				Les systèmes informatiques modernes sont organisés en <i>couches horizontales</i>, 
+				elles-mêmes découpées en <i>partitions verticales</i>.
+		</li>
+
+		<li class="fragment skip" data-fragment-index="0">
+				Cette découpe est d'abord <i>logique</i>, puis éventuellement <i>physique</i> <br>
+					en termes de machines.
+		</li>
+
+		<li class="fragment skip" data-fragment-index="1">
+				<b>Objectif du cours</b> : faire passer quelques idées fondamentales <br>
+					sur les <i>architectures en couches</i> dites <b>''n-tier''</b>.
+		</li>
+  </ul>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section id="ch2" name="Architectures multi-couches" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden=""><h2>Plan</h2><ul><div data-id="menu" class="outline"><div class="item"><a href="#/ch1">Introduction</a></div><div class="item actif-item"><a href="#/ch2">Architectures multi-couches</a></div><div class="item"><a href="#/ch3">Typologie des classes de conception</a></div><div class="item"><a href="#/ch4">Exemples d'application</a></div></div></ul><p style="font-size: 25px !important  ;"><a href="#/plan">Retour au plan</a> - <a href="#">Retour à l'accueil</a></p></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Couches applicatives</h2>
+
+	<div class="left-content">
+		<p>Principe de conception = <i>séparation des responsabilités</i></p>
+		<ul>
+			<li class="fragment" data-fragment-index="0">3 types de responsabilités = <i>3 couches principales</i></li>
+			<img class="fragment center-content" src="6-modele-archi-ntier_data/archiCouches.png" alt="" data-fragment-index="1" height="200px">
+			<li class="fragment" data-fragment-index="2"><b>Présentation</b> : envoie les requêtes utilisateurs à la couche métier <br>
+				et présente les informations renvoyées par les traitements</li>
+			<li class="fragment" data-fragment-index="3"><b>Traitement/logique applicative</b> : décrit les services disponibles <br> dans l'application</li>
+			<li class="fragment" data-fragment-index="4"><b>Ressources/stockage</b> : gère l'accès aux données du système</li>
+		</ul>
+  </div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Couches applicatives</h2>
+
+	<div>
+		<img src="6-modele-archi-ntier_data/archiExemple.png" alt="" width="70%">
+	</div>
+	
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Une architecture multi-couches</h2>
+
+	<ul>
+		<li>Le principe de l'architecture <b>3-tier</b> est d'<i>isoler la logique métier</i> 
+			en <i>interdisant l'accès direct</i> aux données par <i>les classes de présentation</i>.</li>
+		
+		<li class="fragment skip" data-fragment-index="0">
+			Challenges des architectures multi-couches :
+			<ul>
+				<li class="fragment" data-fragment-index="1"><i>Performance</i> : temps de réponse moyen</li>
+				<li class="fragment" data-fragment-index="2"><i>Fiabilité, disponibilité</i> : résistance à la charge, la qualité de service</li>
+				<li class="fragment" data-fragment-index="3"><i>Utilisabilité, interopérabilité</i> : compatibilité avec d'autres applications</li>
+				<li class="fragment" data-fragment-index="4"><i>Sécurité</i> : authentification, intégrité, confidentialité, non-répudiation</li>
+				<li class="fragment" data-fragment-index="5"><i>Évolutivité</i> : facilité de maintenance, d’ajout de fonctionnalités</li>
+			</ul>
+		</li>
+	</ul>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Architecture 3-tier</h2>
+
+	<ul>
+		<li>L'architecture <b>3-tier</b> présente <i>les couches standards d’un SI</i><br>(<b>système d’information</b>).
+			<ul>
+				<li class="fragment" data-fragment-index="0">une <i>décomposition logique et non physique</i>.</li>
+				<li class="fragment" data-fragment-index="1">peut être déployée dans un même processus <i>sur le même nœud</i> <br>
+					<span class="fragment" data-fragment-index="2"><b>ou</b> être réparties entre plusieurs processus et <i>plusieurs machines</i>.</span></li>
+			</ul>
+		</li>
+	</ul>
+
+	<div>
+		<img class="fragment" src="6-modele-archi-ntier_data/diffArchi.png" alt="" data-fragment-index="3">
+	</div>
+	
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Architecture 3-tier</h2>
+	
+	<div>
+		<img class="fragment" src="6-modele-archi-ntier_data/diffArchi.png" alt="" data-fragment-index="0">
+	</div>
+
+	<ul>
+		<li>La raison d'être des couches et leur nombre <i>varient d'une application à l'autre</i> <br>
+			et <i>d'un domaine à l'autre</i>.</li>
+		<li class="fragment" data-fragment-index="1">Le choix des <i>plateformes matérielles</i> et <i>logicielles</i>, et des <i>frameworks</i> 
+			associés (<b>J2EE</b>, <b>.NET</b>, ...), influe sur l'architecture de déploiement.</li>
+	</ul>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section id="ch3" name="Typologie des classes de conception" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden=""><h2>Plan</h2><ul><div data-id="menu" class="outline"><div class="item"><a href="#/ch1">Introduction</a></div><div class="item"><a href="#/ch2">Architectures multi-couches</a></div><div class="item actif-item"><a href="#/ch3">Typologie des classes de conception</a></div><div class="item"><a href="#/ch4">Exemples d'application</a></div></div></ul><p style="font-size: 25px !important  ;"><a href="#/plan">Retour au plan</a> - <a href="#">Retour à l'accueil</a></p></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Les stéréotypes de Jacobson</h2>
+
+	<ul>
+		<li>Pour rendre les modèles plus précis et plus lisibles, <a href="https://fr.wikipedia.org/wiki/Ivar_Jacobson" target="_blank">Ivar Jacobson</a>, <br>
+			a proposé <i>de catégoriser les classes d'analyse/conception</i>.</li>
+		<img class="fragment center-content" src="6-modele-archi-ntier_data/archiCouches.png" alt="" data-fragment-index="0" height="200px">
+		<li class="fragment" data-fragment-index="1">Trois catégories de classes ont été proposées  :
+			<ul>
+				<li class="fragment" data-fragment-index="2"><b>boundary</b> (frontière) : modélise les interactions entre un acteur externe <br> avec le système modélisé </li>
+				<li class="fragment" data-fragment-index="3"><b>control</b> (contrôle) : modélise la coordination, l'enchaînement et le contrôle <br> des  objets métier 
+					(reliés à un cas d'utilisation particulier).</li>
+				<li class="fragment" data-fragment-index="4"><b>entity</b> (entité) : modélise les concepts métier manipulés</li>
+			</ul>
+		</li>
+	</ul>
+ 
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Les classes boundary</h2>
+
+	<div>
+		<img src="6-modele-archi-ntier_data/boundary.png" alt=""> 
+	</div>
+	
+	<p>
+		Les classes <b>boundary</b> sont identifiées lors de la
+		spécification <br> des <i>interfaces utilisateurs/IHM</i> (maquettes écran, ...).
+	</p>
+	
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Les classes control</h2>
+
+	<div>
+		<img src="6-modele-archi-ntier_data/control.png" alt=""> 
+	</div>
+	
+	<p>
+		Les classes <b>control</b> sont chargées de la coordination <br>
+		entre les <b>classes Boundary</b> et les <b>classes Entity</b>.
+	</p>
+	
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Les classes entity</h2>
+
+	<div>
+		<img src="6-modele-archi-ntier_data/entity.png" alt=""> 
+	</div>
+
+	<p>
+		Les classes <b>entity</b>  représentent <i>les concepts métier</i> <br>
+		ou <i>les classes du domaine</i>.
+	</p>
+	
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Les Règles d'interactions</h2>
+
+	<div>
+		<img src="6-modele-archi-ntier_data/schema.png" alt=""> 
+	</div>
+	
+	<ul>
+		<li class="fragment" data-fragment-index="0">Les classes <b>boundary</b> ne peuvent être reliées qu'aux classes <b>control</b>,</li>
+		<li class="skip fragment" data-fragment-index="1">Les classes <b>control</b> ont accès aux classes <b>boundary</b>, aux classes <b>entity</b> <br>
+			et aux autres contrôles,</li>
+		<li class="skip fragment" data-fragment-index="2">Les classes <b>entity</b> ont accès aux autres classes <b>entity</b> seulement <br> (parfois aux classes <b>control</b>).</li>
+	</ul>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section id="ch4" name="Exemples d'application" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden=""><h2>Plan</h2><ul><div data-id="menu" class="outline"><div class="item"><a href="#/ch1">Introduction</a></div><div class="item"><a href="#/ch2">Architectures multi-couches</a></div><div class="item"><a href="#/ch3">Typologie des classes de conception</a></div><div class="item actif-item"><a href="#/ch4">Exemples d'application</a></div></div></ul><p style="font-size: 25px !important  ;"><a href="#/plan">Retour au plan</a> - <a href="#">Retour à l'accueil</a></p></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Gestion d'une bibliothèque</h2>
+
+	<div>
+		Le cas : saisie d'un nouveau livre
+	</div>
+
+	<div>
+		<img src="6-modele-archi-ntier_data/cl1.png" alt="">
+	</div>
+	
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Gestion d'une bibliothèque</h2>
+
+	<div>
+		Le cas : saisie d'un nouveau livre
+	</div>
+
+	<div>
+		<img src="6-modele-archi-ntier_data/sq1.png" alt="">
+	</div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Gestion d'une bibliothèque</h2>
+
+	<div>
+		Le cas : afficher l'auteur d'un livre
+	</div>
+
+	<div>
+		<img src="6-modele-archi-ntier_data/cl2.png" alt="">
+	</div>
+
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h2>Gestion d'une bibliothèque</h2>
+
+	<div>
+		Le cas : afficher l'auteur d'un livre
+	</div>
+
+	<div>
+		<img src="6-modele-archi-ntier_data/sq2.png" alt="">
+	</div>
+	
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<section data-auto-animate="" data-transition="fade-in fade-out" style="top: 360px; display: none;" aria-hidden="true" class="future" hidden="">
+	<h1>Merci</h1>
+	<p>
+		<a href="https://idiraitsadoune.com/enseignement/UPS-IUT-2A-QD/6-modele-archi-ntier.pdf" target="_blank">Version PDF des slides</a>
+	</p>
+	<p>
+		<a href="#">Retour à l'accueil</a>
+		- <a href="#/plan">Retour au plan</a>
+	</p>	
+</section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+		</div>
+	<div class="backgrounds"><div class="slide-background present" style="background: rgb(255, 255, 255); display: block;" data-background-hash="#fffnullnullnullnullnullnullnullnullnullnull" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-number" style="display: block;"><a href="#/">
+					<span class="slide-number-a">1</span>
+					<span class="slide-number-delimiter">/</span>
+					<span class="slide-number-b">23</span>
+					</a></div><aside class="controls" style="display: block;" data-controls-layout="bottom-right" data-controls-back-arrows="faded"><button class="navigate-left" aria-label="previous slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-right enabled highlight" aria-label="next slide"><div class="controls-arrow"></div></button>
+			<button class="navigate-up" aria-label="above slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-down" aria-label="below slide" disabled="disabled"><div class="controls-arrow"></div></button></aside><div class="progress" style="display: block;"><span style="transform: scaleX(0);"></span></div><div class="speaker-notes" data-prevent-swipe="" tabindex="0"></div><div class="pause-overlay"><button class="resume-button">Resume presentation</button></div><div style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px);" class="aria-status" aria-live="polite" aria-atomic="true">Qualité
+ de développement Modèle d'architecture ''n-tier'' 2A - Bachelor 
+Universitaire de Technologie IUT d'Orsay - Université Paris-Saclay - 
+2024/2025 Idir AIT SADOUNE idir.ait-sadoune@universite-paris-saclay.fr </div></div>
+
+	<script src="6-modele-archi-ntier_data/plan.js"></script>
+	<script src="6-modele-archi-ntier_data/reveal.js"></script>
+	<script src="6-modele-archi-ntier_data/notes.js"></script>
+	<script src="6-modele-archi-ntier_data/markdown.js"></script>
+	<script src="6-modele-archi-ntier_data/highlight.js"></script>
+
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			// Display presentation control arrows
+			controls: true,
+			// Display a presentation progress bar
+			progress: true,
+
+			// Vertical centering of slides
+			center: true,
+			// The "normal" size of the presentation, aspect ratio will
+			// be preserved when the presentation is scaled to fit different
+			// resolutions. Can be specified using percentage units.
+			width: 1280,
+			height: 720,
+
+			// Add the current slide number to the URL hash so that reloading the
+			// page/copying the URL will return you to the same slide
+			hash: true,
+
+			slideNumber: 'c/t',
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+
+		Reveal.configure({ pdfSeparateFragments: false });
+	</script>
+
+
+</body></html>

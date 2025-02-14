@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="605px" preserveAspectRatio="none" style="width:415px;height:605px;background:#FFFFFF;" version="1.1" viewBox="0 0 415 605" width="415px" zoomAndPan="magnify"><defs><filter height="300%" id="fm0nxzg1fmn8w" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FFFFFF" filter="url(#fm0nxzg1fmn8w)" height="130.6953" style="stroke:#A80036;stroke-width:1.0;" width="10" x="168.5" y="129.4297"/><rect fill="#FFFFFF" filter="url(#fm0nxzg1fmn8w)" height="174.3359" style="stroke:#A80036;stroke-width:1.0;" width="10" x="168.5" y="337.5234"/><rect fill="#FFFFFF" filter="url(#fm0nxzg1fmn8w)" height="150.4688" style="stroke:#A80036;stroke-width:1.0;" width="10" x="321.5" y="260.125"/><rect fill="#FFFFFF" filter="url(#fm0nxzg1fmn8w)" height="311.1328" style="stroke:#000000;stroke-width:2.0;" width="391.5" x="10" y="192.7266"/><rect fill="#FFFFFF" filter="url(#fm0nxzg1fmn8w)" height="221.7344" style="stroke:#000000;stroke-width:2.0;" width="371.5" x="20" y="275.125"/><rect fill="#FFFFFF" filter="url(#fm0nxzg1fmn8w)" height="190.6016" style="stroke:#000000;stroke-width:2.0;" width="351.5" x="30" y="299.2578"/><rect fill="#FFFFFF" height="115.2031" style="stroke:none;stroke-width:1.0;" width="351.5" x="30" y="374.6563"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="58" x2="58" y1="88.2969" y2="520.8594"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="173.5" x2="173.5" y1="130.9453" y2="520.8594"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="326.5" x2="326.5" y1="88.2969" y2="520.8594"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="31" x="40" y="84.9951">User</text><ellipse cx="58.5" cy="15" fill="#FEFECE" filter="url(#fm0nxzg1fmn8w)" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M58.5,23 L58.5,50 M45.5,31 L71.5,31 M58.5,50 L45.5,65 M58.5,50 L71.5,65 " fill="none" filter="url(#fm0nxzg1fmn8w)" style="stroke:#A80036;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="31" x="40" y="532.8545">User</text><ellipse cx="58.5" cy="546.1563" fill="#FEFECE" filter="url(#fm0nxzg1fmn8w)" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M58.5,554.1563 L58.5,581.1563 M45.5,562.1563 L71.5,562.1563 M58.5,581.1563 L45.5,596.1563 M58.5,581.1563 L71.5,596.1563 " fill="none" filter="url(#fm0nxzg1fmn8w)" style="stroke:#A80036;stroke-width:2.0;"/><rect fill="#FEFECE" filter="url(#fm0nxzg1fmn8w)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="80" x="131.5" y="519.8594"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="66" x="138.5" y="539.8545">s:Session</text><rect fill="#FEFECE" filter="url(#fm0nxzg1fmn8w)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="86" x="281.5" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="72" x="288.5" y="72.9951">a:Account</text><rect fill="#FEFECE" filter="url(#fm0nxzg1fmn8w)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="86" x="281.5" y="519.8594"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="72" x="288.5" y="539.8545">a:Account</text><rect fill="#FFFFFF" filter="url(#fm0nxzg1fmn8w)" height="130.6953" style="stroke:#A80036;stroke-width:1.0;" width="10" x="168.5" y="129.4297"/><rect fill="#FFFFFF" filter="url(#fm0nxzg1fmn8w)" height="174.3359" style="stroke:#A80036;stroke-width:1.0;" width="10" x="168.5" y="337.5234"/><rect fill="#FFFFFF" filter="url(#fm0nxzg1fmn8w)" height="150.4688" style="stroke:#A80036;stroke-width:1.0;" width="10" x="321.5" y="260.125"/><polygon fill="#A80036" points="119.5,115.4297,129.5,119.4297,119.5,123.4297,123.5,119.4297" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="58.5" x2="125.5" y1="119.4297" y2="119.4297"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="49" x="65.5" y="114.3638">open(s)</text><rect fill="#FEFECE" filter="url(#fm0nxzg1fmn8w)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="80" x="131.5" y="98.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="66" x="138.5" y="118.292">s:Session</text><line style="stroke:#A80036;stroke-width:1.0;" x1="178.5" x2="220.5" y1="164.7266" y2="164.7266"/><line style="stroke:#A80036;stroke-width:1.0;" x1="220.5" x2="220.5" y1="164.7266" y2="177.7266"/><line style="stroke:#A80036;stroke-width:1.0;" x1="179.5" x2="220.5" y1="177.7266" y2="177.7266"/><polygon fill="#A80036" points="189.5,173.7266,179.5,177.7266,189.5,181.7266,185.5,177.7266" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="64" x="185.5" y="159.6606">errors = 0</text><path d="M10,192.7266 L88,192.7266 L88,199.7266 L78,209.7266 L10,209.7266 L10,192.7266 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.0;"/><rect fill="none" height="311.1328" style="stroke:#000000;stroke-width:2.0;" width="391.5" x="10" y="192.7266"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="33" x="25" y="205.7935">loop</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="115" x="103" y="204.937">[while errors &lt; 3]</text><polygon fill="#A80036" points="156.5,226.9922,166.5,230.9922,156.5,234.9922,160.5,230.9922" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="58.5" x2="162.5" y1="230.9922" y2="230.9922"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="71" x="65.5" y="225.9263">login(u,pw)</text><polygon fill="#A80036" points="309.5,256.125,319.5,260.125,309.5,264.125,313.5,260.125" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="173.5" x2="315.5" y1="260.125" y2="260.125"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="71" x="180.5" y="255.0591">login(u,pw)</text><path d="M20,275.125 L108,275.125 L108,282.125 L98,292.125 L20,292.125 L20,275.125 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.0;"/><rect fill="none" height="221.7344" style="stroke:#000000;stroke-width:2.0;" width="371.5" x="20" y="275.125"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="43" x="35" y="288.1919">break</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="62" x="123" y="287.3354">[u exists]</text><path d="M30,299.2578 L96,299.2578 L96,306.2578 L86,316.2578 L30,316.2578 L30,299.2578 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.0;"/><rect fill="none" height="190.6016" style="stroke:#000000;stroke-width:2.0;" width="351.5" x="30" y="299.2578"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="21" x="45" y="312.3247">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="62" x="111" y="311.4683">[u exists]</text><polygon fill="#A80036" points="189.5,333.5234,179.5,337.5234,189.5,341.5234,185.5,337.5234" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="183.5" x2="320.5" y1="337.5234" y2="337.5234"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="124" x="195.5" y="332.4575">display(homePage)</text><polygon fill="#A80036" points="69.5,362.6563,59.5,366.6563,69.5,370.6563,65.5,366.6563" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="63.5" x2="167.5" y1="366.6563" y2="366.6563"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="69" x="75.5" y="361.5903">homePage</text><line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="30" x2="381.5" y1="375.6563" y2="375.6563"/><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="109" x="35" y="385.8667">[u doesn't exist]</text><polygon fill="#A80036" points="189.5,406.5938,179.5,410.5938,189.5,414.5938,185.5,410.5938" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="183.5" x2="325.5" y1="410.5938" y2="410.5938"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="117" x="195.5" y="405.5278">display(loginPage)</text><line style="stroke:#A80036;stroke-width:1.0;" x1="178.5" x2="220.5" y1="439.7266" y2="439.7266"/><line style="stroke:#A80036;stroke-width:1.0;" x1="220.5" x2="220.5" y1="439.7266" y2="452.7266"/><line style="stroke:#A80036;stroke-width:1.0;" x1="179.5" x2="220.5" y1="452.7266" y2="452.7266"/><polygon fill="#A80036" points="189.5,448.7266,179.5,452.7266,189.5,456.7266,185.5,452.7266" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="62" x="185.5" y="434.6606">errors ++</text><polygon fill="#A80036" points="69.5,477.8594,59.5,481.8594,69.5,485.8594,65.5,481.8594" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="63.5" x2="167.5" y1="481.8594" y2="481.8594"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="62" x="75.5" y="476.7935">loginPage</text><!--MD5=[504d6f627c0ce1a650e1fe1d5e6116f7]
+@startuml
+actor       User       as u
+
+participant "s:Session" as s
+
+participant "a:Account" as a
+
+
+u -> s ** : open(s)
+activate s
+
+s -> s : errors = 0
+
+loop while errors < 3
+
+u -> s : login(u,pw)
+
+s -> a : login(u,pw)
+deactivate s
+activate a
+
+break u exists
+alt u exists
+
+a - -> s : display(homePage)
+
+activate s
+
+s - -> u : homePage
+
+
+else u doesn't exist
+
+a - -> s : display(loginPage)
+deactivate a
+
+
+s -> s : errors ++
+s - -> u : loginPage
+
+end
+end
+
+end
+@enduml
+
+PlantUML version 1.2021.13beta8(Unknown compile time)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

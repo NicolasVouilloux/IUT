@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>La programmation réseau</title>
+
+	<link rel="stylesheet" href="La%20programmation%20r%C3%A9seau_fichiers/document-theme.css">
+	<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />-->
+	<link rel="stylesheet" href="La%20programmation%20r%C3%A9seau_fichiers/font-awesome.min.css">
+	<link rel="stylesheet" href="La%20programmation%20r%C3%A9seau_fichiers/vs2015.min.css">
+
+	<script type="text/JavaScript" src="La%20programmation%20r%C3%A9seau_fichiers/highlight.min.js"></script>
+	<script>hljs.highlightAll();</script>
+	<script type="text/javascript" src="La%20programmation%20r%C3%A9seau_fichiers/mathjax.js"></script>
+	<script type="text/javascript" id="MathJax-script" src="La%20programmation%20r%C3%A9seau_fichiers/tex-mml-chtml.js"></script><script src="La%20programmation%20r%C3%A9seau_fichiers/lazy.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="La%20programmation%20r%C3%A9seau_fichiers/correction.js"></script>
+
+	<link rel="icon" href="https://idiraitsadoune.com/enseignement/resources/img/favicon.ico">
+<style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style><style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://idiraitsadoune.com/enseignement/resources/MathJax/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+</style></head>
+
+<body>
+<div class="container">
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<div style="padding: 0.5em;">
+    2A BUT - IUT d'Orsay <span style="text-align: right;float: right;">Qualité de développement - 2024/2025</span>
+</div>
+<hr>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<div class="section-form">
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<h1>
+    Le multithreading <br> et La programmation réseau
+</h1>
+<!-- #################################################### -->
+<!-- #################################################### -->
+<h2>Les supports de cours</h2>
+
+<div>
+  <iframe style="width: 100%; height: 770px; box-shadow: 0 15px 25px rgba(0,0, 0, 0.4);" src="La%20programmation%20r%C3%A9seau_fichiers/8-java-prog-para.htm" frameborder="0"></iframe>
+</div>
+<br>
+<div>
+  <iframe style="width: 100%; height: 770px; box-shadow: 0 15px 25px rgba(0,0, 0, 0.4);" src="./9-java-reseau.html" frameborder="0"></iframe>
+</div>
+<!-- #################################################### -->
+<div id="orange-block">
+    Exercice 1 : Le nombre secret
+</div>
+
+<p>
+    Nous souhaitons développer avec <b>Java</b> un jeu sur réseau basé sur une architecture <b>Client/Serveur</b>.  
+    Le but du jeu est de permettre à deux joueurs de s'affronter en ligne.
+</p>
+<h2>
+	Déroulement d'un partie du jeu
+</h2>
+<ul>
+    <li>Le <cs-code>Serveur</cs-code> commence par générer un nombre aléatoire entre <cs-code>0</cs-code> et <cs-code>100</cs-code>.</li>
+
+    <li>Le <cs-code>Serveur</cs-code> attend que deux joueurs (<cs-code>Clients</cs-code>) se connectent.</li>
+
+    <li>Une fois que les deux joueurs sont connectés, le serveur leurs envoie un message <cs-code>"GO"</cs-code> pour leur permettre de commencer le jeu.</li>
+
+    <li>Chaque joueur va essayer de trouver le nombre aléatoire généré par le <cs-code>Serveur</cs-code>.
+        <ul>
+            <li>Le joueur envoie un nombre au serveur</li>
+            <li>Le serveur répond par : <cs-code>"plus grand"</cs-code>, <cs-code>"plus petit"</cs-code>, ou <cs-code>"trouvé"</cs-code>.</li>
+        </ul>
+	</li>
+
+    <li>
+        A la fin du jeu (les deux joueurs ont réussi à trouver le nombre aléatoire généré par le serveur), 
+        les deux joueurs reçoivent un message de la part du serveur contenant le nombre de tentatives et <cs-code>"Vous avez gagné"</cs-code> 
+        si le joueur a réussi à trouver le nombre caché avec moins de tentatives que son adversaire, <cs-code>"Vous avez perdu"</cs-code> sinon.
+    </li>
+</ul>
+<h2>
+	Travail à faire.
+</h2>
+<p>
+    Proposez une solution en utilisant le langage <b>Java</b> et en faisant appel aux différentes notions 
+    vues en cours (La programmation concurrente, La programmation de protocoles Clients/Serveurs, ...)
+</p>
+
+<!-- un élément non visible -->
+<!-- <div id="green-block" hidden> -->
+	<div id="green-block">
+		<button class="button_display" onclick="display_correction('exo1')">Click here to display or hide the correction</button>
+		<div id="exo1" style="display: none; margin-top: 20px;">
+<pre><code class="language-java hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Server</span> {
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span>[] nb_etapes = {<span class="hljs-number">0</span>,<span class="hljs-number">0</span>} ;
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">boolean</span>[] est_fini = {<span class="hljs-literal">false</span>,<span class="hljs-literal">false</span>} ;
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> nb_secret ;
+	
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+		<span class="hljs-keyword">try</span> {
+			<span class="hljs-type">ServerSocket</span> <span class="hljs-variable">server</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ServerSocket</span>(<span class="hljs-number">5555</span>);
+			Server.nb_secret = (<span class="hljs-type">int</span>) (Math.random()*<span class="hljs-number">100</span>);
+			
+			System.out.println(<span class="hljs-string">"Server lancé"</span>);
+			
+			<span class="hljs-type">Socket</span> <span class="hljs-variable">s1</span> <span class="hljs-operator">=</span> server.accept();
+			<span class="hljs-type">ServerThread</span> <span class="hljs-variable">th1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ServerThread</span>(<span class="hljs-number">0</span>,s1);
+			System.out.println(<span class="hljs-string">"Client 1 connecté"</span>);
+			
+			<span class="hljs-type">Socket</span> <span class="hljs-variable">s2</span> <span class="hljs-operator">=</span> server.accept();
+			<span class="hljs-type">ServerThread</span> <span class="hljs-variable">th2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ServerThread</span>(<span class="hljs-number">1</span>, s2);
+			System.out.println(<span class="hljs-string">"Client 2 connecté"</span>);
+			
+			th1.start();
+			th2.start();
+			
+			th1.join();
+			th2.join();
+			server.close();
+			System.out.println(<span class="hljs-string">"Server arrêté"</span>);
+			
+		} <span class="hljs-keyword">catch</span> (IOException | InterruptedException e) {
+			e.printStackTrace();
+			System.out.println(<span class="hljs-string">"Probème sur le Server"</span>);
+		}
+	}
+}                             
+</code></pre>
+			
+<pre><code class="language-java hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ServerThread</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span> {
+	<span class="hljs-type">int</span> id ;
+	Socket socket ;
+	
+	<span class="hljs-keyword">public</span> <span class="hljs-title function_">ServerThread</span><span class="hljs-params">(<span class="hljs-type">int</span> i, Socket socket)</span> {
+		<span class="hljs-built_in">this</span>.id = i;
+		<span class="hljs-built_in">this</span>.socket = socket;
+	}
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> {
+		<span class="hljs-keyword">try</span> {
+			<span class="hljs-type">int</span> readValue;
+			
+			<span class="hljs-type">BufferedReader</span> <span class="hljs-variable">inputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(<span class="hljs-built_in">this</span>.socket.getInputStream()));
+			<span class="hljs-type">PrintWriter</span> <span class="hljs-variable">outputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PrintWriter</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">OutputStreamWriter</span>(<span class="hljs-built_in">this</span>.socket.getOutputStream()));
+			
+			outputStream.println(<span class="hljs-string">"Go"</span>);
+			outputStream.flush();
+			
+			<span class="hljs-keyword">do</span> {
+				readValue = Integer.valueOf(inputStream.readLine());
+				Server.nb_etapes[<span class="hljs-built_in">this</span>.id]++ ;
+				
+				<span class="hljs-keyword">if</span>(readValue &gt; Server.nb_secret) {
+					outputStream.println(<span class="hljs-string">"Plus petit"</span>);
+					outputStream.flush();
+				}
+				<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(readValue &lt; Server.nb_secret) {
+					outputStream.println(<span class="hljs-string">"Plus grand"</span>);
+					outputStream.flush();
+				}
+				<span class="hljs-keyword">else</span> {
+					outputStream.println(<span class="hljs-string">"Trouve"</span>);
+					outputStream.flush();
+					Server.est_fini[<span class="hljs-built_in">this</span>.id] = <span class="hljs-literal">true</span> ;
+				}
+			}<span class="hljs-keyword">while</span>(readValue != Server.nb_secret);
+			
+			System.out.println(<span class="hljs-string">"Annonce du résultat coté "</span> + <span class="hljs-built_in">this</span>.id);
+			
+			<span class="hljs-keyword">while</span>(Server.est_fini[<span class="hljs-number">1</span>-<span class="hljs-built_in">this</span>.id]==<span class="hljs-literal">false</span>) {<span class="hljs-built_in">this</span>.sleep(<span class="hljs-number">500</span>);};
+			
+			<span class="hljs-keyword">if</span>(Server.nb_etapes[<span class="hljs-built_in">this</span>.id] &lt;= Server.nb_etapes[<span class="hljs-number">1</span>-<span class="hljs-built_in">this</span>.id]) {
+				outputStream.println(<span class="hljs-string">"Gagne"</span>);
+				outputStream.flush();
+				System.out.println(<span class="hljs-string">"Le joueur "</span> + <span class="hljs-built_in">this</span>.id + <span class="hljs-string">" a gagne"</span> );
+			}
+			<span class="hljs-keyword">else</span> {
+				outputStream.println(<span class="hljs-string">"Perdu"</span>);
+				outputStream.flush();
+				System.out.println(<span class="hljs-string">"Le joueur "</span> + <span class="hljs-built_in">this</span>.id + <span class="hljs-string">" a perdu"</span> );
+			}
+			
+			inputStream.close();
+			outputStream.close();
+			<span class="hljs-built_in">this</span>.socket.close();
+			
+		} <span class="hljs-keyword">catch</span> (IOException | InterruptedException e) {
+			
+			e.printStackTrace();
+		}	
+	}
+}                             
+</code></pre>
+			
+<pre><code class="language-java hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Client</span> {
+
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+		<span class="hljs-keyword">try</span> {
+			<span class="hljs-type">Socket</span> <span class="hljs-variable">socket</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Socket</span>(<span class="hljs-string">"localhost"</span>, <span class="hljs-number">5555</span>);
+			System.out.println(<span class="hljs-string">"Connecté en attente de Go"</span>);
+			
+			<span class="hljs-type">PrintWriter</span> <span class="hljs-variable">outputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PrintWriter</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">OutputStreamWriter</span>(socket.getOutputStream()));
+			<span class="hljs-type">BufferedReader</span> <span class="hljs-variable">inputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(socket.getInputStream()));
+			
+			<span class="hljs-type">Scanner</span> <span class="hljs-variable">sc</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);
+			String input ;
+			
+			<span class="hljs-comment">// réception de GO</span>
+			input = inputStream.readLine();
+			System.out.println(input);
+			
+			<span class="hljs-keyword">do</span> {
+				System.out.print(<span class="hljs-string">"Prochaine valeur : "</span>);
+				<span class="hljs-type">int</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> sc.nextInt();
+				
+				<span class="hljs-type">String</span> <span class="hljs-variable">data</span> <span class="hljs-operator">=</span> String.valueOf(result);
+				outputStream.println(data);
+				outputStream.flush();
+				
+				input = inputStream.readLine();
+				System.out.println(input);
+				
+			}<span class="hljs-keyword">while</span>(! <span class="hljs-string">"Trouve"</span>.equals(input));
+
+			System.out.println(<span class="hljs-string">"Le resultat du jeux : "</span>);
+			input = inputStream.readLine();
+			System.out.println(input);
+			
+			inputStream.close();
+			outputStream.close();
+			socket.close();
+			
+		} <span class="hljs-keyword">catch</span> (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}                             
+</code></pre>			
+	</div>
+</div>
+<!-- #################################################### -->
+<div id="orange-block">
+    Exercice 2 : Gestion des profiles des clients
+</div>
+<p>
+    Une entreprise souhaite sauvegarder les profiles des clients qui se connectent sur son serveur. Pour cela,
+le protocole suivant a été implémenté : 
+</p>
+<ul>
+    <li>
+        A chaque connexion sur le serveur, le client envoie les informations suivantes au serveur :
+        <ul>
+           <li>Le nom du client</li>  
+           <li>L'adresse IP du client</li>
+        </ul>
+    </li>
+</ul>
+
+<p>
+Le code <cs-code>Java</cs-code> suivant permet de collecter le nom et l'adresse IP d'une machine :
+</p>
+<pre><code class="language-java hljs"><span class="hljs-keyword">import</span> java.net.*;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span> {
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+		<span class="hljs-keyword">try</span> {
+			<span class="hljs-type">InetAddress</span> <span class="hljs-variable">localMachine</span> <span class="hljs-operator">=</span> InetAddress.getLocalHost();
+			System.out.println(localMachine.getHostName());
+			System.out.println(localMachine.getHostAddress());
+		} 
+		<span class="hljs-keyword">catch</span> (UnknownHostException e) {e.printStackTrace();}
+	}
+}                             
+</code></pre>
+<p>
+	</p><ul>
+		<li>A chaque connexion d'un client, un thread est lancé pour collecter les informations envoyées.</li>
+		<li>Après reception des informations, elles sont stockées dans une liste gérée par le serveur et un message <cs-code>"ACK"</cs-code> est envoyé au client.</li>
+		<li>Après la réception du message <cs-code>"ACK"</cs-code> par le client, il renvoie à son tour un message <cs-code>"ACK"</cs-code> au Thread du Serveur qui peut s'arrêter.</li>
+		</ul>
+<p></p>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<h2>
+	Travail demandé
+</h2>
+<p>
+
+</p><ul>
+    <li>
+        Proposez en <cs-code>Java</cs-code> un protocole client/serveur pour réaliser ce service. 
+    </li>
+</ul>
+<p></p>
+
+<!-- un élément non visible -->
+<!-- <div id="green-block" hidden> -->
+	<div id="green-block">
+		<button class="button_display" onclick="display_correction('exo2')">Click here to display or hide the correction</button>
+		<div id="exo2" style="display: block; margin-top: 20px;">
+
+<pre><code class="language-java hljs"><span class="hljs-keyword">package</span> Client;
+<span class="hljs-keyword">import</span> java.io.Serializable;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">InfosClient</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span>{
+	<span class="hljs-keyword">private</span> String hostName ;
+	<span class="hljs-keyword">private</span> String hostAdress ;
+	
+	<span class="hljs-keyword">public</span> <span class="hljs-title function_">InfosClient</span><span class="hljs-params">(String hostName, String hostAdress )</span> {
+		<span class="hljs-built_in">this</span>.hostName = hostName;
+		<span class="hljs-built_in">this</span>.hostAdress = hostAdress;
+	}
+
+	<span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span> {
+		<span class="hljs-keyword">return</span> <span class="hljs-string">"InfosClient [hostName="</span> + hostName + <span class="hljs-string">", hostAdress="</span> + hostAdress + <span class="hljs-string">"]"</span>;
+	}	
+}															 
+</code></pre>
+
+<pre><code class="language-java hljs"><span class="hljs-keyword">package</span> Client;
+
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.io.ObjectInputStream;
+<span class="hljs-keyword">import</span> java.io.ObjectOutputStream;
+<span class="hljs-keyword">import</span> java.net.*;
+<span class="hljs-keyword">import</span> java.time.LocalDateTime;
+<span class="hljs-keyword">import</span> java.time.format.DateTimeFormatter;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Client</span> {
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+		<span class="hljs-keyword">try</span> {
+			<span class="hljs-type">Socket</span> <span class="hljs-variable">socket</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Socket</span>(<span class="hljs-string">"localhost"</span>, <span class="hljs-number">8765</span>);
+			<span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">out</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(socket.getOutputStream());
+			<span class="hljs-type">ObjectInputStream</span> <span class="hljs-variable">in</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectInputStream</span>(socket.getInputStream());
+			
+			<span class="hljs-type">InetAddress</span> <span class="hljs-variable">localMachine</span> <span class="hljs-operator">=</span> InetAddress.getLocalHost(); 
+			<span class="hljs-type">InfosClient</span> <span class="hljs-variable">infos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">InfosClient</span>(localMachine.getHostName(),localMachine.getHostAddress());
+			
+			out.flush();
+			out.writeObject(infos);
+			out.flush();
+			
+			<span class="hljs-type">String</span> <span class="hljs-variable">msg</span> <span class="hljs-operator">=</span> <span class="hljs-string">""</span>;
+			
+			<span class="hljs-keyword">do</span> {
+				msg = (String) in.readObject();			
+			} <span class="hljs-keyword">while</span> (msg.compareTo(<span class="hljs-string">"ACK"</span>)!=<span class="hljs-number">0</span>);
+			
+			out.flush();
+			out.writeObject(<span class="hljs-string">"ACK"</span>);
+			out.flush();
+			
+		} <span class="hljs-keyword">catch</span> (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+}															 
+</code></pre>
+
+<pre><code class="language-java hljs"><span class="hljs-keyword">package</span> Serveur;
+
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.net.ServerSocket;
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+<span class="hljs-keyword">import</span> java.util.Vector;
+<span class="hljs-keyword">import</span> java.util.concurrent.Semaphore;
+
+<span class="hljs-keyword">import</span> Client.InfosClient;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Serveur</span> {
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Vector&lt;InfosClient&gt; data = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vector</span>&lt;InfosClient&gt;();
+	
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+		<span class="hljs-keyword">try</span> {
+			<span class="hljs-type">ServerSocket</span> <span class="hljs-variable">server</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ServerSocket</span>(<span class="hljs-number">8765</span>);
+			<span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>) {(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ServeurThread</span>(server.accept())).start();}
+		} <span class="hljs-keyword">catch</span> (IOException e) {e.printStackTrace();}
+	}
+}															 
+</code></pre>
+
+<pre><code class="language-java hljs"><span class="hljs-keyword">package</span> Serveur;
+
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.io.ObjectInputStream;
+<span class="hljs-keyword">import</span> java.io.ObjectOutputStream;
+<span class="hljs-keyword">import</span> java.net.Socket;
+<span class="hljs-keyword">import</span> Client.InfosClient;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ServeurThread</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span> {
+	<span class="hljs-keyword">private</span> Socket s ;
+
+	<span class="hljs-keyword">public</span> <span class="hljs-title function_">ServeurThread</span><span class="hljs-params">(Socket s)</span> {
+		<span class="hljs-built_in">this</span>.s = s;
+	}
+	
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> {
+		<span class="hljs-keyword">try</span> {
+			<span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">out</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(s.getOutputStream());
+			<span class="hljs-type">ObjectInputStream</span> <span class="hljs-variable">in</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectInputStream</span>(s.getInputStream());
+			
+			<span class="hljs-type">InfosClient</span> <span class="hljs-variable">objetRecu</span> <span class="hljs-operator">=</span> (InfosClient) in.readObject();
+			Serveur.data.add(objetRecu);
+			System.out.println(objetRecu);
+			
+			<span class="hljs-type">String</span> <span class="hljs-variable">msg</span> <span class="hljs-operator">=</span> <span class="hljs-string">""</span>;
+			<span class="hljs-keyword">do</span> {
+				out.flush();
+				out.writeObject(<span class="hljs-string">"ACK"</span>);
+				out.flush();
+				msg = (String) in.readObject();
+				
+			} <span class="hljs-keyword">while</span> (msg.compareTo(<span class="hljs-string">"ACK"</span>)!=<span class="hljs-number">0</span>);
+			
+			System.out.println(<span class="hljs-string">"ACK"</span>);
+			
+		} <span class="hljs-keyword">catch</span> (IOException | ClassNotFoundException e) {e.printStackTrace();}	
+	}
+}															 
+</code></pre>
+		</div>
+	</div>
+
+<!-- #################################################### -->
+<div id="orange-block">
+	Exercice 3 : Serveur de messages
+</div>
+
+<p class="text-justify">
+	On souhaite proposer un service de synchronisation en ligne avec le fonctionnement suivant :
+
+</p><ol>
+<li>Un client se connecte à ce service en s'adressant au port <cs-code>8765</cs-code>.</li> 
+<li>S'il est le premier ou le deuxième à se connecter, alors il sera mis en attente.</li> 
+<li>S'il est le troisième client à se connecter, alors le serveur envoie un message <cs-code>"start"</cs-code> aux trois clients.</li> 
+<li>Une fois lancé, un client doit produire <cs-code>10</cs-code> entiers aléatoires qu'il transmettra au serveur. La transmission se fait entier par entier.</li> 
+<li>Les messages reçus par le serveurs doivent être stockés dans un seul tableau en respectant ordre de réception.</li> 
+<li>A la fin, le serveur envoie un message <cs-code>"end"</cs-code> pour signifier la fin de la transmission aux trois
+	clients.</li> 
+</ol>
+
+<p></p>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<h2>
+	Travail demandé
+</h2>
+<p>
+
+</p><ul>
+    <li>
+        Proposez en <cs-code>Java</cs-code> un protocole client/serveur pour réaliser ce service. 
+    </li>
+</ul>
+<p></p>
+
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+</div>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<hr>
+<div style="padding: 0.5em;">
+	2A BUT - IUT d'Orsay <span style="text-align: right;float: right;">Qualité de développement - 2024/2025</span>
+</div>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+</div>
+
+</body></html>
