@@ -1,0 +1,4 @@
+INDEX VERSION 1.134+Z:\IUT\S3\qualite\Partiel\.metadata\.plugins\org.eclipse.jdt.core
+2244463335.index
+1865797976.index
+4278259549.index

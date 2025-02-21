@@ -1,0 +1,20 @@
+INDEX VERSION 1.134+Z:\IUT\S3\qualite\letpdequalitesurlestestunitaire\.metadata\.plugins\org.eclipse.jdt.core
+2485735022.index
+3156776714.index
+3868897263.index
+1484898240.index
+3384729972.index
+2244463335.index
+1822777597.index
+1865797976.index
+308040932.index
+1659290250.index
+1110234531.index
+362128014.index
+2385805034.index
+362859361.index
+2942906625.index
+2947728032.index
+551927.index
+385833499.index
+2188344706.index

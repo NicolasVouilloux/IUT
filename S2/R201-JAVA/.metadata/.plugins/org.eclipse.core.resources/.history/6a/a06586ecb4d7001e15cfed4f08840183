@@ -1,0 +1,83 @@
+public class Table {
+
+	int nbPieds;
+	String couleur;
+	float prix;
+	static String NOIR = "Noir"; //attribut static qui permet de donner une couleur par default
+	static String COULEUR_DEFAUT = "Marron";
+	static int NOMBRE_PIEDS_DEFAUT = 4;
+	static float PRIX_DEFAUT = 0.0f;//f pour float sinon conversion
+	
+	//-----------------------------------Constructeurs--------------------------------
+	
+	public Table() { //constructeur vide
+		couleur = COULEUR_DEFAUT;
+		this.nbPieds = NOMBRE_PIEDS_DEFAUT;
+		prix = PRIX_DEFAUT;
+	}
+	
+	public Table(int nbPieds) {//constructeur avec int
+		couleur = COULEUR_DEFAUT;
+		this.nbPieds = nbPieds;
+		prix = Table.PRIX_DEFAUT;
+	}
+	
+	public Table(int nbPieds, String couleur) {//constructeur avec int et string
+		this.couleur = couleur;
+		this.nbPieds = nbPieds;
+		prix = PRIX_DEFAUT;
+	}
+	public Table(int nbPieds, String couleur,float prix) {//constructeur avec int, string et float
+		this.couleur = couleur;
+		this.nbPieds = nbPieds;
+		this.prix = prix;
+	}
+	public void afficherTable() {
+		System.out.println (nbPieds);
+		System.out.println (couleur);
+		System.out.println (prix);
+		System.out.println ();
+	}
+	//-------------------------------------Main-------------------------------
+	
+	public static void main(String args []) {
+		System.out.println ("-----------------affichage tables constructeur");
+		System.out.println ();
+		
+		Table t = new Table ();
+		t.afficherTable();
+	
+		Table t2 = new Table (3);
+		t2.afficherTable();
+		
+		Table t3 = new Table (6,Table.NOIR);
+		t3.afficherTable();
+	
+		Table t5 = new Table (6,Table.NOIR,30.40f);
+		t5.afficherTable();
+		
+		
+		Table t4;
+		t4 = t3;
+		t3.prix = 80f;
+		t4.afficherTable();
+		
+		System.out.println ("-----------------affichage tableaux tables prix");
+		System.out.println ();
+		
+		Table tabDeTables[];
+		tabDeTables = new Table[4];
+		tabDeTables[0] = t;
+		tabDeTables[1] = t2;
+		tabDeTables[2] = t3;
+	
+		for (int i = 0 ; i<tabDeTables.length;i++) {
+			if (tabDeTables[i] != null) {
+				System.out.println(tabDeTables[i].prix);
+				System.out.println ();
+			}
+		}
+	}
+	
+	
+}

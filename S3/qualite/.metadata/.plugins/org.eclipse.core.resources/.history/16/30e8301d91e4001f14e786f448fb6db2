@@ -1,0 +1,34 @@
+public class Server {
+	public static int[] nb_etapes = {0,0} ;
+	public static boolean[] est_fini = {false,false} ;
+	public static int nb_secret ;
+	
+	public static void main(String[] args) {
+		try {
+			ServerSocket server = new ServerSocket(5555);
+			Server.nb_secret = (int) (Math.random()*100);
+			
+			System.out.println("Server lancé");
+			
+			Socket s1 = server.accept();
+			ServerThread th1 = new ServerThread(0,s1);
+			System.out.println("Client 1 connecté");
+			
+			Socket s2 = server.accept();
+			ServerThread th2 = new ServerThread(1, s2);
+			System.out.println("Client 2 connecté");
+			
+			th1.start();
+			th2.start();
+			
+			th1.join();
+			th2.join();
+			server.close();
+			System.out.println("Server arrêté");
+			
+		} catch (IOException | InterruptedException e) {
+			e.printStackTrace();
+			System.out.println("Probème sur le Server");
+		}
+	}
+}  

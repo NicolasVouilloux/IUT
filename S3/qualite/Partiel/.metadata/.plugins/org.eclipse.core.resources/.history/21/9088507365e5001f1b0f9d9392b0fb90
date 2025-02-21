@@ -1,0 +1,34 @@
+package client;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class Client {
+	public static void main(String[] args) {
+		try {
+			Socket socket = new Socket("localhost", 8765);
+			ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+			
+			
+	
+			String x= "";
+			String y= "";
+			
+			do {
+				x = (String) in.readObject();
+				y = (String) in.readObject();
+			} while (x.compareTo("")!=0);
+			
+			out.flush();
+			out.flush();
+			
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+}	

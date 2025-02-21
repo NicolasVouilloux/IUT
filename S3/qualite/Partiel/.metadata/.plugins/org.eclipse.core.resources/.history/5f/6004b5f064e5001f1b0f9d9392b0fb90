@@ -1,0 +1,85 @@
+package serveur;
+
+import java.io.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
+import java.net.Socket;
+
+
+public class ServeurThread extends Thread {
+	int id ;
+	Socket socket ;
+	
+	
+	public ServeurThread(int i, Socket socket,Grid grid) {
+		this.id = i;
+		this.socket = socket;
+	}
+
+	@Override
+	public void run() {
+		try {
+			int gridVal = 0;
+			String playType;
+			if (this.id == 0) {
+				gridVal = 1;
+				playType = "O";
+			}
+			else {
+				gridVal = 2;
+				playType = "X";
+			}
+			
+			BufferedReader inputStream = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
+			PrintWriter outputStream = new PrintWriter(new OutputStreamWriter(this.socket.getOutputStream()));
+			
+			outputStream.println("Go you play the "+ playType);
+			outputStream.flush();
+			
+			do {
+				while(Serveur.lastPlayed == this.id) {
+					//fait attendre que l'autre joueur joue
+				}
+				int x = 0;
+				int y = 0;
+				x= Integer.valueOf(inputStream.readLine());
+				y= Integer.valueOf(inputStream.readLine());
+				
+				if(x > 3 || x < 1 || y > 3 || y < 1 || Serveur.grid.alreadyPlayed(x, y)) {
+					outputStream.println("invalid-position ");
+					outputStream.flush();
+				}
+				else {
+					outputStream.println(Serveur.grid.printGrid());
+					Serveur.lastPlayed = id;
+					outputStream.flush();
+				}
+			}while(!Serveur.check_aligned_symbols()||!Serveur.grid.isTie());
+			
+			System.out.println("Annonce du résultat coté " + this.id);
+			
+			while(Server.est_fini[1-this.id]==false) {this.sleep(500);};
+			
+			if(Server.nb_etapes[this.id] <= Server.nb_etapes[1-this.id]) {
+				outputStream.println("Gagne");
+				outputStream.flush();
+				System.out.println("Le joueur " + this.id + " a gagne" );
+			}
+			else {
+				outputStream.println("Perdu");
+				outputStream.flush();
+				System.out.println("Le joueur " + this.id + " a perdu" );
+			}
+			
+			inputStream.close();
+			outputStream.close();
+			this.socket.close();
+			
+		} catch (IOException | InterruptedException e) {
+			
+			e.printStackTrace();
+		}	
+	}
+}           		

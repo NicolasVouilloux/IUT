@@ -1,0 +1,10 @@
+package serveur;
+
+public class Grid {
+	public int[][] grid;
+	
+	public void init() {
+		this.grid = new int[3][3];
+		
+	}
+}

@@ -1,0 +1,13 @@
+import java.net.Socket;
+
+public class ServerThread extends Thread{
+    private Socket slipDeBanane;
+
+    public ServerThread(Socket pommeDeTerre){
+        this.slipDeBanane = pommeDeTerre;
+    }
+
+    public void run(){
+
+    }
+}

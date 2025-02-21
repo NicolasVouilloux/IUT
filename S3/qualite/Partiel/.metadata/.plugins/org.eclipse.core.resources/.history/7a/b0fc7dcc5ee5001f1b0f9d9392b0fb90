@@ -1,0 +1,18 @@
+package serveur;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.util.ArrayList;
+import java.util.Vector;
+import java.util.concurrent.Semaphore;
+
+
+public class Serveur {
+	
+	public static void main(String[] args) {
+		try {
+			ServerSocket server = new ServerSocket(8765);
+			while(true) {(new ServeurThread(server.accept())).start();}
+		} catch (IOException e) {e.printStackTrace();}
+	}
+}			

@@ -1,0 +1,9 @@
+package serveur;
+
+public class Grid {
+	public boolean[][] grid;
+	
+	public void init() {
+		this.grid = new boolean[3][3];
+	}
+}

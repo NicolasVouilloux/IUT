@@ -1,0 +1,65 @@
+
+public class Magasin {
+	
+	final int NB_MAX ;
+	String nomMagasin ;
+	Table tableauDeTables[];
+	int nbTables;
+	
+	//constructeur d'un magasin avec nom de magasin et nombre max de table du magasin en parametre
+	Magasin(String nomMagasin,int nbMax){
+		this.NB_MAX = nbMax;
+		this.nomMagasin = nomMagasin;
+		this.nbTables = 0;
+		this.tableauDeTables = new Table[NB_MAX];
+	}
+	
+	//fonction qui permet de rajouter une table passer en parametre
+	public void add(Table t) {
+		if (this.tableauDeTables.length <this.NB_MAX )
+			this.tableauDeTables[nbTables] = t;
+			this.nbTables++;
+	}
+	
+	// fonction qui retourne la valeur du stock du magasin
+	public float getValeurStock() {
+		float valeurStock = 0f;
+		for ( int i=0; i<nbTables;i++) {
+			valeurStock += this.tableauDeTables[i].prix ;
+		}
+		return valeurStock;
+	}
+	
+
+	//fonction afficher magasin qui permet de donner les informations du magasin 
+	// le nom , le nb max , le nombre de table , la valeur de stock, les tables presente
+	public void afficherMagasin() {
+		System.out.println("Le nom de votre magasin est : "+ this.nomMagasin+ " ;");
+		System.out.println("Le nombre de table max de votre magasin est : "+ this.NB_MAX+ " ;");
+		System.out.println("Le nombre de table présente dans le magasin est : "+ this.nbTables+ " ;");
+		System.out.println("La valeur de stock est de : "+ this.getValeurStock() +  " ;");
+		System.out.println("les tables présentes sont :");
+		for ( int i=0; i<this.tableauDeTables.length;i++) {
+			this.tableauDeTables[i].afficherTable();
+		}
+	}
+	
+	//fonction main
+	public static void main(String[] args) {
+		
+		Table t1 = new Table (4,"Marron");
+		Table t2 = new Table (3,"Blanc");
+		Table t3 = new Table (2,"Vert");
+		Table t4 = new Table (6,"Rouge");
+		Table t5 = new Table (8,"Noir");
+		Table t6 = new Table (1,"Gris");
+		Table t7 = new Table (3,"Bleue");
+		Table t8 = new Table (7,"DoubleMix");
+		Table t9 = new Table (3,"ChevreFeuille");
+		Table t10 = new Table (4,"Rgb",30,99f);
+		Magasin m1 = new Magasin ("ikeaEvry",10);
+		m1.add(t);
+
+	}
+
+}

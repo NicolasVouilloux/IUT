@@ -1,0 +1,22 @@
+
+public class Magasin {
+	
+	final int NB_MAX ;
+	String nomMagasin ;
+	Table tableauDeTables[];
+	int nbTables;
+	
+	Magasin(String nomMagasin,int nbMax){
+		this.NB_MAX = nbMax;
+		this.nomMagasin = nomMagasin;
+		this.nbTables = 0;
+		this.tableauDeTables = new Table[NB_MAX];
+	}
+	
+	
+	public static void main(String[] args) {
+		
+
+	}
+
+}

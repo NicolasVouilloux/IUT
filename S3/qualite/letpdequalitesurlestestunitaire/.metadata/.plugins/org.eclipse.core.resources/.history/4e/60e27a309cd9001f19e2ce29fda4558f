@@ -1,0 +1,80 @@
+public class DoubleLinkedList {
+    private Element begin ;
+    private Element end ;
+
+    public DoubleLinkedList() {
+        this.begin = null ;
+        this.end = null;
+    }
+
+    public DoubleLinkedList(int v) {
+        this.begin = new Element(v, null, null);
+        this.end = this.begin ;
+    }
+
+    public DoubleLinkedList(int[] array) {
+        if(array.length == 0 || array == null) {
+            this.begin = null ;
+            this.end = null;
+        }
+        else if(array.length == 1) {
+            this.begin = new Element(array[0], null, null);
+            this.end = this.begin ;
+        }
+        else {
+            this.begin = new Element(array[0], null, null);
+            this.end = this.begin ;
+
+            Element previous = this.begin;
+            for(int i=1;i<array.length;i++) {
+                this.end = new Element(array[i],previous,null);
+                previous.setNext(this.end);
+                previous = this.end ;
+            }
+        }
+    }
+
+    public int size() {
+        int size = 0;
+        Element element = begin;
+        while (element.getNext()!= this.end){
+            size++;
+            element = element.getNext();
+        }
+        return size;
+    }
+
+    public boolean isEmpty() {
+        // TODO
+        return false;
+    }
+
+    public boolean contains(int o) {
+        // TODO
+        return false;
+    }
+
+    public boolean add(int e) {
+        // TODO
+        return false;
+    }
+
+    public boolean remove(int o) {
+        // TODO
+        return false;
+    }
+
+    public void clear() {
+        // TODO
+    }
+
+    public int[] getArray() {
+        // TODO
+        return null;
+    }
+
+    public int[] getReverseArray() {
+        // TODO
+        return null;
+    }
+}

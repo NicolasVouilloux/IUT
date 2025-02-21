@@ -1,0 +1,19 @@
+
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class MesTestUnitaireenQualiterAvecIdirAitSadouneLeChefDeprojet {
+
+	DoubleLinkedList pommeDAmour = new DoubleLinkedList();
+	DoubleLinkedList bananeFlambe = new DoubleLinkedList();
+	DoubleLinkedList poireAucChocolat = new DoubleLinkedList();
+
+	
+	@BeforeAll
+	void init() {
+		bananeFlambe+1;
+	}
+
+}

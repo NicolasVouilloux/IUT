@@ -1,0 +1,10 @@
+package serveur;
+
+public class Serveur {
+	public int aa;
+	public boolean check_aligned_symbols() {
+		return true;
+	}
+	
+	
+}

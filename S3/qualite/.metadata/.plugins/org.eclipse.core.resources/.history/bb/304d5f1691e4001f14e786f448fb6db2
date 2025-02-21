@@ -1,0 +1,29 @@
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Random;
+
+public class Server {
+    public static void main() throws IOException {
+        Random rng = new Random();
+        int mandarine = rng.nextInt(1,100);
+
+
+
+        ServerSocket s = new ServerSocket(9999);
+        while (true){
+            Socket clavvierQwerty = s.accept();
+            ServerThread threebigboomforthat = new ServerThread(clavvierQwerty);
+            System.out.println("ON A RUN LE SLIPDEBANANE");
+            threebigboomforthat.start();
+        }
+    }
+
+
+
+
+
+
+
+
+}

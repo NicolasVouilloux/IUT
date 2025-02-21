@@ -1,0 +1,42 @@
+package serveur;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Vector;
+import java.util.concurrent.Semaphore;
+
+
+public class Serveur {
+
+	Grid grid;
+	// the x in the code are the value 2 in the grid and the O is the value 1 
+	public static void main(String[] args) {
+		try {
+			ServerSocket server = new ServerSocket(5555);
+			this.grid = new Grid();
+			System.out.println("Server lancé");
+			
+			Socket s1 = server.accept();
+			ServeurThread th1 = new ServeurThread(0,s1,grid);
+			System.out.println("Client 1 connecté");
+			
+			Socket s2 = server.accept();
+			ServeurThread th2 = new ServeurThread(1, s2,grid);
+			System.out.println("Client 2 connecté");
+			
+			th1.start();
+			th2.start();
+			
+			th1.join();
+			th2.join();
+			server.close();
+			System.out.println("Server arrêté");
+			
+		} catch (IOException | InterruptedException e) {
+			e.printStackTrace();
+			System.out.println("Probème sur le Server");
+		}
+	}
+}  
