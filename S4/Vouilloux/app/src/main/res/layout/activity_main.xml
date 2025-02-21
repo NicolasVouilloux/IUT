@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/BTN_Napolitaine"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Napolitaine"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/BTN_Royale"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TXTB_NomPizza" />
+
+    <Button
+        android:id="@+id/BTN_Royale"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Royale"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/BTN_QuatreFromages"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BTN_Napolitaine" />
+
+    <Button
+        android:id="@+id/BTN_QuatreFromages"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Quatre Fromages"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/BTN_Montagnarde"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BTN_Royale" />
+
+    <Button
+        android:id="@+id/BTN_Montagnarde"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Montagnarde"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/BTN_Raclette"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BTN_QuatreFromages" />
+
+    <Button
+        android:id="@+id/BTN_Raclette"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Raclette"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toTopOf="@id/BTN_Hawai"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/BTN_Montagnarde" />
+
+    <Button
+        android:id="@+id/BTN_Hawai"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Hawai"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toTopOf="@id/BTN_PannaCota"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/BTN_Raclette" />
+
+    <Button
+        android:id="@+id/BTN_PannaCota"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Panna Cota"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/BTN_Tiramisu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/BTN_Hawai" />
+
+    <Button
+        android:id="@+id/BTN_Tiramisu"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Tiramisu"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/BTN_PannaCota"
+        app:layout_constraintTop_toBottomOf="@id/BTN_Hawai" />
+
+    <TextView
+        android:id="@+id/TXTB_NomPizza"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#03A9F4"
+        android:text="Oui c'est la pizza"
+        app:layout_constraintBottom_toTopOf="@+id/BTN_Napolitaine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
