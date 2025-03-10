@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Pizza App</string>
+    <string name="nom_pizza">Yes, it s the pizza</string>
+    <string name="napolitaine">Napolitana</string>
+    <string name="royale">Royal</string>
+    <string name="quatre_fromages">Four Cheeses</string>
+    <string name="montagnarde">Mountain</string>
+    <string name="raclette">Raclette</string>
+    <string name="hawai">Hawaiian</string>
+    <string name="panna_cota">Panna Cotta</string>
+    <string name="tiramisu">Tiramisu</string>
 </resources>

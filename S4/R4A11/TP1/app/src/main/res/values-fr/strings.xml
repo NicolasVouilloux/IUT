@@ -1,3 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Application Pizza</string>
+    <string name="nom_pizza">Oui, c est la pizza</string>
+    <string name="napolitaine">Napolitaine</string>
+    <string name="royale">Royale</string>
+    <string name="quatre_fromages">Quatre Fromages</string>
+    <string name="montagnarde">Montagnarde</string>
+    <string name="raclette">Raclette</string>
+    <string name="hawai">Hawaï</string>
+    <string name="panna_cota">Panna Cota</string>
+    <string name="tiramisu">Tiramisu</string>
 </resources>
