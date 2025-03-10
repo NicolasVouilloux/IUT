@@ -27,7 +27,7 @@
         app:layout_constraintBottom_toTopOf="@+id/BTN_Montagnarde"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/BTN_Napolitaine"
-        app:layout_constraintTop_toBottomOf="@+id/TXTB_NomPizza" />
+        app:layout_constraintTop_toBottomOf="@id/BTN_Reset" />
 
     <Button
         android:id="@+id/BTN_QuatreFromages"
@@ -94,6 +94,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/BTN_PannaCota"
         app:layout_constraintTop_toBottomOf="@+id/BTN_Hawai" />
+    <Button
+        android:id="@+id/BTN_Reset"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/reset"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toTopOf="@id/BTN_Royale"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/TXTB_NomPizza"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/TXTB_NomPizza"
@@ -102,7 +112,7 @@
         android:background="#03A9F4"
         android:text="@string/app_name"
         app:layout_constraintBottom_toTopOf="@+id/BTN_Napolitaine"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/BTN_Reset"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread" />

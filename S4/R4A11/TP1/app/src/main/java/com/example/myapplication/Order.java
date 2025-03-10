@@ -14,5 +14,7 @@ public class Order {
     }
 
     public int getNb_Order() { return nb_Order; }
+    public void setNb_Order(int nb_Order){ this.nb_Order=nb_Order; }
     public Product getProduct() { return product; }
+
 }
