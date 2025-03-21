@@ -10,4 +10,5 @@
     <string name="panna_cota">Panna Cotta</string>
     <string name="tiramisu">Tiramisu</string>
     <string name="reset">Reset All</string>
+    <string name="nb_table">Table n°</string>
 </resources>

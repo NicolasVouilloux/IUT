@@ -23,23 +23,23 @@
         android:layout_width="94dp"
         android:layout_height="37dp"
         android:text="Table Number"
-        app:layout_constraintBottom_toTopOf="@+id/textInputEditText"
+        app:layout_constraintBottom_toTopOf="@+id/InputTable"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TXTB_NomPizza" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/textInputEditText"
+        android:id="@+id/InputTable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="...."
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/BTN_Validate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TXTB_NomPizza" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/BTN_Validate"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:text="Validate"

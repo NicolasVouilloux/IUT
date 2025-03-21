@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ArrayList<Button> buttons = new ArrayList<>();
     private ArrayList<Order> Orders = new ArrayList<>();
     private Button btn_Reset;
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,13 +62,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         }
+        Intent intent = getIntent();
+        int nbTable = intent.getIntExtra(TableCommande.CLE_TABLE,1);
+        TextView txtViewName = findViewById(R.id.TXTB_NumTable);
+        String actualTxt = txtViewName.getText().toString();
+        actualTxt+=nbTable;
+        txtViewName.setText(actualTxt);
+
+        Log.i(TAG, "onCreate() appelé");
 
     }
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        // Save order count as an array
         int[] orderCounts = new int[Orders.size()];
         for (int i = 0; i < Orders.size(); i++) {
             orderCounts[i] = Orders.get(i).getNb_Order();
@@ -101,5 +111,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (Order o : Orders){
             o.setNb_Order(0);
         }
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(TAG, "onStart() appelé");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(TAG, "onResume() appelé");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i(TAG, "onPause() appelé");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i(TAG, "onStop() appelé");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.i(TAG, "onRestart() appelé");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG, "onDestroy() appelé");
     }
 }
