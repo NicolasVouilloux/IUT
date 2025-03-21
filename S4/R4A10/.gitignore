@@ -4,3 +4,5 @@
 *.webp
 *.jpeg
 *.avif
+
+**/images/
