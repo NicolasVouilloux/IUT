@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ArrayList<Order> Orders = new ArrayList<>();
     private Button btn_Reset;
     private static final String TAG = "MainActivity";
-
+    private String formatTableNumber = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +69,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         actualTxt+=nbTable;
         txtViewName.setText(actualTxt);
 
+        if (nbTable<10){
+            formatTableNumber = "0"+nbTable;
+        }
+        else formatTableNumber += nbTable;
+
         Log.i(TAG, "onCreate() appelé");
 
     }
@@ -94,7 +99,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
         for (int i = 0;i<buttons.size();i++){
+
             if (buttons.get(i).getId() == v.getId()){
+                ClientServ client = new ClientServ(Orders.get(i).getProduct(),this);
+                client.start();
                 System.out.println(buttons.get(i));
                 Orders.get(i).addOrder();
                 updateTXT_BTN(i);
@@ -148,5 +156,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onDestroy() {
         super.onDestroy();
         Log.i(TAG, "onDestroy() appelé");
+    }
+
+    public String getFormatTableNumber() {
+        return formatTableNumber;
+    }
+
+    public void setFormatTableNumber(String formatTableNumber) {
+        this.formatTableNumber = formatTableNumber;
     }
 }
