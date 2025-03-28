@@ -1,0 +1,34 @@
+@charset "utf-8";
+
+.titre {
+	margin-left : 5px; 
+}
+
+main section div {
+	margin-left : 1rem;
+}
+main section div img {
+	float : left;
+	border : 3px solid GoldenRod;
+}
+main section div h1 {
+	font-size       : 3rem;
+	text-decoration : underline;
+}
+
+main section h1{
+	border-bottom : 2px solid GoldenRod;
+	overflow : hidden;
+}
+
+main article img {
+	float : right;
+	border : 3px solid DarkGoldenRod;
+}
+
+main article h2 {
+	font-size       : 1.8rem;
+	text-decoration : underline;
+	border-bottom : 2px solid DarkGoldenRod;
+	overflow : hidden;                
+}
