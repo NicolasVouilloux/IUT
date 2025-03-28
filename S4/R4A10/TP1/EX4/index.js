@@ -38,18 +38,16 @@ let paragraphOriginal = document.querySelectorAll("p");
 
 function recherche_surligne(event) {
     let input = document.getElementById("site-search").value;
-    
-    // On enlève les anciennes surlignages en réinitialisant le contenu
+
     paragraphOriginal.forEach(p => {
-        // On garde le texte original sans balises
         p.innerHTML = p.textContent;
     });
 
-    // Si l'input n'est pas vide
+   
     if (input.length > 0) {
         paragraphOriginal.forEach(p => {
             let regex = new RegExp(`(${input})`, 'gi');
-            p.classList.add("highlight")
+            p.innerHTML = p.textContent.replace(regex, '<span class="highlight">$1</span>');
         });
     }
 }
