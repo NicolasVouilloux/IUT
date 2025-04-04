@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_Reset;
     private static final String TAG = "MainActivity";
     private String formatTableNumber = "";
+    private TextView tableCommande;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        tableCommande = findViewById(R.id.TXTB_NumTable);
 
         buttons.add(findViewById(R.id.BTN_Napolitaine));
         buttons.add(findViewById(R.id.BTN_Royale));
@@ -164,5 +168,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void setFormatTableNumber(String formatTableNumber) {
         this.formatTableNumber = formatTableNumber;
+    }
+
+    public TextView getTableCommande() {
+        return tableCommande;
+    }
+
+    public void setTableCommande(TextView tableCommande) {
+        this.tableCommande = tableCommande;
     }
 }
