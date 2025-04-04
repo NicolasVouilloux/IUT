@@ -1,0 +1,49 @@
+#cadre1 {
+	background-image: url("../images/filtres_et_cadres/cadre_01.png");
+	height: 264px;
+	width: 200px;
+	background-size: contain;
+	position:relative;
+	top: 1px;
+	left: 1px;
+}
+
+#cadre2 {
+	background-image: url("../images/filtres_et_cadres/cadre_02.png");
+	height: 264px;
+	width: 176px;
+	background-size: contain;
+	position:relative;
+	top: 1px;
+	left: 1px;
+}
+
+#cadre3 {
+	background-image: url("../images/filtres_et_cadres/cadre_03.png");
+	height: 250px;
+	width: 176px;
+	background-size: contain;
+	position:relative;
+	top: 1px;
+	left: 1px;
+}
+
+#cadre4 {
+	background-image: url("../images/filtres_et_cadres/filtre_01.png");
+	height: 250px;
+	width: 250px;
+	background-size: contain;
+	position:relative;
+	top: 1px;
+	left: 1px;
+	
+}
+
+
+aside{
+	border  : 2px solid black;
+		margin  : 1rem;
+		padding : 1rem;
+		background-size : cover;
+}
+
