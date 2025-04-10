@@ -1,0 +1,33 @@
+@charset "utf-8";
+
+section{
+	display : grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+section > div{
+	grid-column-start: span 4;
+}
+
+
+/* ------------------------------------- */
+
+@media (max-width: 1200px) {
+	section{
+		grid-template-columns: 1fr 1fr;
+	}
+	section > div{
+		grid-column-start: span 2;
+	}
+}
+
+@media (max-width: 600px) {
+	section{
+		grid-template-columns: 1fr;
+	}
+	section > div{
+		grid-column-start: span 1;
+	}
+}
+
+/* ----------------------------------------- */

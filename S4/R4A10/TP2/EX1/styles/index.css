@@ -19,7 +19,7 @@ header h2{
 	font-size : 2rem;
 }
 
-aside{
+#asideIndex{
 	border  : 2px solid black;
 	margin  : 1rem;
 	padding : 1rem;

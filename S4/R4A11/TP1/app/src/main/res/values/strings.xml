@@ -10,4 +10,7 @@
     <string name="panna_cota">Panna Cotta</string>
     <string name="tiramisu">Tiramisu</string>
     <string name="reset">Reset All</string>
+    <string name="nb_table">Table n°</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
