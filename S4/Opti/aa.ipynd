@@ -1,0 +1,1411 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "# Méthodes d'optimisation - TP 1\n",
+    "## Plus court chemin dans un graphe : Dijkstra et A\\*"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "## Préambule\n",
+    "\n",
+    "On va commencer par charger les différentes bibliothèques utilisées dans ce TP :\n",
+    "\n",
+    "  - `json` pour lire les fichiers\n",
+    "  - `inf` pour représenter un coût infini ; `pi`, `sin`, `cos`, `acos` pour certains calculs\n",
+    "  - `defaultdict` pour faire des dictionnaires plus économes en mémoire\n",
+    "  - `heapq` pour améliorer nos algorithmes\n",
+    "  - quelques fonctions qui vous sont données (que vous pouvez regarder pour comprendre leur fonctionnement)\n",
+    "  - des informations de typage pour aider l'IDE à vous guider"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "import json\n",
+    "from math import inf, pi, sin, cos, acos\n",
+    "from collections import defaultdict\n",
+    "import heapq\n",
+    "from utilitaires_tp1 import convertir_graphe, sommet_adresse, visualisation_route, visualisation_rails\n",
+    "from typing import Dict, List, Callable, Tuple"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "On va ensuite charger les données. Il y aura cinq jeux de données :\n",
+    "\n",
+    "  - un petit graphe (celui donné en exemple dans le sujet PDF)\n",
+    "  - un graphe plus grand (300 sommets) avec peu d'arêtes par sommet\n",
+    "  - un autre avec cette fois plus d'arêtes par sommet\n",
+    "  - un grand graphe (le réseau ferré d'Ile-de-France)\n",
+    "  - un très grand graphe (les routes et rues d'Ile-de-France)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "# Petit graphe\n",
+    "with open('../data/TP1/petit_graphe.json', 'r') as f:\n",
+    "    petit_graphe = json.load(f)\n",
+    "\n",
+    "# Grand graphe (peu d'arêtes)\n",
+    "with open('../data/TP1/graphe_creux.json', 'r') as f:\n",
+    "    graphe_creux = json.load(f)\n",
+    "\n",
+    "# Grand graphe (nombreuses arêtes)\n",
+    "with open('../data/TP1/graphe_dense.json', 'r') as f:\n",
+    "    graphe_dense = json.load(f)\n",
+    "\n",
+    "# Réseau ferré d'Ile-de-France\n",
+    "with open('../data/TP1/reseau_ferre_idf/graphe.json', 'r') as f:\n",
+    "    graphe_rfidf = json.load(f)\n",
+    "# Pour la visualisation, on va charger deux autres fichiers d'information : les sommets et les gares\n",
+    "with open('../data/TP1/reseau_ferre_idf/sommets.json', 'r') as f:\n",
+    "    sommets_graphe_rfidf = json.load(f)\n",
+    "with open('../data/TP1/reseau_ferre_idf/gares.json', 'r') as f:\n",
+    "    gares_rfidf = json.load(f)\n",
+    "\n",
+    "# Grand graphe\n",
+    "with open('../data/TP1/reseau_routier_idf/graphe_idf.json', 'r') as f:\n",
+    "    graphe_idf = json.load(f)\n",
+    "# Pour la visualisation et la recherche, on va charger d'autres informations : les sommets et les adresses connues\n",
+    "with open('../data/TP1/reseau_routier_idf/graphe_idf_sommets.json', 'r') as f:\n",
+    "    sommets_idf = json.load(f)\n",
+    "with open('../data/TP1/reseau_routier_idf/graphe_idf_annuaire.json', 'r') as f:\n",
+    "    annuaire_idf = json.load(f)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "#### Remarque sur la structure des graphes dans ce TP\n",
+    "\n",
+    "Les graphes donnés sont sous forme de dictionnaires d'adjacence : `graphe[a]` renvoie un dictionnaire des voisins de `a`, et si `b` est un voisin, `graphe[a][b]` renvoie l'arête de `a` vers `b`."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "## Une première approche, par programmation dynamique\n",
+    "\n",
+    "Voici une première approche qui calcule la distance la plus courte dans le graphe entre **tous** les couples de points. Pour cela, on va considérer les trajets entre deux sommets en autorisant de plus en plus de sommets _intermédiaires_.\n",
+    "\n",
+    "On note $d_k(i, j)$ la plus petite distance d'un chemin allant du sommet $i$ au sommet $j$ où **tous** les sommets intermédiaires, où l'on passe, ont un identifiant **strictement inférieur** à $k$. S'il n'existe pas de tel chemin, on a $d_k(i, j) = + \\infty$.\n",
+    "\n",
+    "Notons que pour $k = 0$, on ne prend en compte que les chemins directs et, en notant $N$ le nombre total de sommets, on cherche à calculer les $d_N(i, j)$.\n",
+    "\n",
+    "On admettra les deux propriétés suivantes :\n",
+    "  - Pour tout $i, j, k$, on a $d_{k + 1}(i, j) \\leq d_k(i, j)$.\n",
+    "  - Pour tout $i, j, k$, on a $ d_{k + 1}(i, j) = \\min\\bigl(d_k(i, j), d_k(i, k) + d_k(k, j)\\bigr) $.\n",
+    "\n",
+    "Nous allons utiliser ces relations pour calculer les $d_k(i, j)$ efficacement, c'est l'algorithme de Floyd-Warshall. Il s'agit d'un algorithme de _programmation dynamique_. On suppose que le graphe est représenté par un dictionnaire d'adjacences"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "def floyd_warshall(graphe: Dict[str, Dict[str, float | int]]) -> Dict[str, Dict[str, float | int]]:\n",
+    "    # Comme on travaille avec un dictionnaire de dictionnaires, il faut extraire la liste des sommets\n",
+    "    sommets = set()\n",
+    "    for s in graphe.keys():\n",
+    "        sommets.add(s)\n",
+    "        for v in graphe[s].keys():\n",
+    "            sommets.add(v)\n",
+    "    # On crée la matrice à la bonne taille, avec des infinis partout.\n",
+    "    mat = {}\n",
+    "    for i in sommets:\n",
+    "        mat[i] = {}\n",
+    "        for j in sommets:\n",
+    "            mat[i][j] = inf\n",
+    "    # On remplit initialement la matrice avec les poids des arcs existants\n",
+    "    # On met des 0 sur la diagonale pour indiquer que la distance d'un nœud à lui-même est 0\n",
+    "    for i in sommets:\n",
+    "        mat[i][i] = 0\n",
+    "        for j in graphe[i]:\n",
+    "            mat[i][j] = graphe[i][j]\n",
+    "    # On calcule les d_{k + 1}(i, j)\n",
+    "    for k in sommets:\n",
+    "        for i in sommets:\n",
+    "            for j in sommets:\n",
+    "                dij = mat[i][j]\n",
+    "                dik = mat[i][k]\n",
+    "                dkj = mat[k][j]\n",
+    "                mat[i][j] = min(dij, dik + dkj)\n",
+    "    # On a fini\n",
+    "    return mat"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "Nous allons tester cette fonction sur le petit graphe"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "fwd = floyd_warshall(petit_graphe)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "On vérifie qu'on trouve que le plus court chemin entre A et F est 21 :"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "assert fwd['A']['F'] == 21"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "On peut tester sur un plus gros graphe, mais le temps de calcul est rapidement prohibitif. Pour le graphe creux ou le graphe dense, ça prend un petit peu de temps (il y a $300$ sommets, et $300^3 = 27\\,000\\,000$).\n",
+    "\n",
+    "\n",
+    "Pour le réseau ferré d'Ile-de-France, il faut compter un peu plus de 2 h de calcul sur une machine puissante (il y a $1689$ sommets, soit plus de $4.8$ milliards d'itérations). Pour le réseau des routes et rues d'Ile-de-France, comptez à peu près $225\\,800\\,000\\,000\\,000$ *années*."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "fwd_gr_creux = floyd_warshall(graphe_creux)\n",
+    "fwd_gr_dense = floyd_warshall(graphe_dense)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "On vérifie que le plus court chemin entre S001 et S300 est 3746 (graphe dense), et qu'entre S011 et S295, il est de 4296 (graphe dense), et qu'entre S006 et S014, il est de 34175 (graphe creux) :"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "assert fwd_gr_dense['S001']['S300'] == 3746\n",
+    "assert fwd_gr_dense['S011']['S295'] == 4296\n",
+    "assert fwd_gr_creux['S006']['S014'] == 34175"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "On vérifie aussi que les propriétés attendues sont vérifiées :\n",
+    "\n",
+    "  - le coût d'un sommet vers lui-même est nul\n",
+    "  - les coûts sont symétriques (graphe non orienté uniquement)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "assert all([fwd_gr_dense[s][s] == 0 for s in fwd_gr_dense.keys()])\n",
+    "assert all([fwd_gr_dense[s1][s2] == fwd_gr_dense[s2][s1] for s1 in fwd_gr_dense.keys() for s2 in fwd_gr_dense.keys()])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "## Seconde approche, algorithme de Dijkstra\n",
+    "\n",
+    "Nous allons maintenant fixer un sommet de départ (la _source_) et tester tous les plus courts chemins entre celui-ci et tous les autres sommets."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "### Rappel\n",
+    "\n",
+    "On rappelle la structure générale du parcours d'un graphe :\n",
+    "\n",
+    "```python\n",
+    "def parcours_depuis(graphe, source, destination):\n",
+    "    vus = [False] * len(n)\n",
+    "    sac = [source]\n",
+    "    while len(sac) > 0:\n",
+    "        sommet = sac.pop() # on extrait un sommet du sac\n",
+    "        if sommet == destination:\n",
+    "            return True # on est arrivé\n",
+    "        if not vus[sommet]: # si c'est la première fois qu'on le voit\n",
+    "            vus[sommet] = True # on le marque comme vu\n",
+    "            for voisin in graphe[sommet]:\n",
+    "                sac.append(voisin) # on met ses voisins dans le sac\n",
+    "    return False # on n'a pas réussi à atteindre la destination\n",
+    "```\n",
+    "\n",
+    "Dans cette approche simple, on indique simplement s'il est possible de relier une _destination_ à partir d'une _source_ donnée.\n",
+    "\n",
+    "Différents types de parcours sont obtenus en modifiant le comportement du _sac_, pour lequel on doit pouvoir faire trois choses (en plus de créer un nouveau sac vide) :\n",
+    "1. déterminer s'il est vide ou non,\n",
+    "2. extraire un élément du sac,\n",
+    "3. ajouter un élément dans le sac.\n",
+    "\n",
+    "Dans l'exemple précédent, on utilise une liste avec extraction de l'élément le plus à droite et ajout à droite des éléments (c'est une _pile_), cela réalise un parcours _en profondeur_. Si l'on ajoute à droite les éléments et que l'extraction se fait sur l'élément le plus à gauche (c'est une _file_), cela réalise un parcours _en largeur_.\n",
+    "\n",
+    "### Algorithme de Dijkstra\n",
+    "\n",
+    "Pour obtenir l'algorithme de Dijkstra, l'idée est d'avoir un sac dont tous les éléments ont une valeur associée (ici, la longueur d'un chemin depuis la source) et d'extraire les éléments par distance croissante. Cela assure, lorsque l'on extrait un élément, que le chemin correspondant est le plus court.\n",
+    "\n",
+    "Il faut donc être capable de gérer efficacement l'extraction du minimum.\n",
+    "\n",
+    "#### Extraction du minimum\n",
+    "\n",
+    "Nous allons tout d'abord écrire une fonction `extraire_minimum` qui, comme son nom l'indique, extrait et retourne une valeur minimale du tableau (non vide) passé en argument. Nous allons pour cela procéder en deux temps :\n",
+    "1. déterminer la position du minimum, à l'aide d'une fonction `position_minimum`,\n",
+    "2. puis extraire ce minimum _de façon efficace_, en limitant les manipulations de tableau.\n",
+    "\n",
+    "**Exercice**\n",
+    "\n",
+    "Écrire une fonction `position_minimum` qui renvoie la position du plus petit élément du tableau non vide passé en argument. Si le plus petit élément apparaît plusieurs fois, on renverra la position de sa première occurrence."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "def position_minimum(tab: list) -> int:\n",
+    "    assert len(tab) > 0\n",
+    "    min = 0\n",
+    "    for i in range(len(tab)):\n",
+    "        val = tab[min]\n",
+    "        if (tab[i] < tab[min]):\n",
+    "            min = i\n",
+    "    return min\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "assert position_minimum([24, 32, 11, 23]) == 2\n",
+    "assert position_minimum([24, 12, 23, 42]) == 1\n",
+    "assert position_minimum([21, 22, 23, 24]) == 0\n",
+    "assert position_minimum([34, 33, 32, 31]) == 3\n",
+    "assert position_minimum([21, 20, 20, 21]) == 1"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "Pour l'extraction du minimum, il faut tenir compte du fait qu'il est en général couteux de supprimer un élément _au milieu_ d'un tableau, alors que supprimer le dernier élément se fait en temps constant. Nous allons donc procéder ainsi :\n",
+    "1. on récupère la position p du plus petit élément,\n",
+    "2. on stocke la valeur correspondante, c'est ce que nous renverrons à la fin,\n",
+    "3. on met à la position p la dernière valeur du tableau,\n",
+    "4. on supprime la dernière case du tableau à l'aide d'un `tab.pop()`,\n",
+    "5. on renvoie la valeur stockée à l'étape 2.\n",
+    "\n",
+    "**Exercice**\n",
+    "\n",
+    "Écrire une fonction `extraire_minimum` qui met cette méthode en œuvre."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "def extraire_minimum(tab: list) -> int:\n",
+    "    p = position_minimum(tab)\n",
+    "    min = tab[p]\n",
+    "    if p < len(tab) - 1:\n",
+    "        tab[p] = tab.pop()\n",
+    "    else:\n",
+    "        tab.pop()\n",
+    "    return min"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "tableau = [4, 3, 0, 9, 7, 1, 6, 5, 2, 8]\n",
+    "assert extraire_minimum(tableau) == 0\n",
+    "assert tableau == [4, 3, 8, 9, 7, 1, 6, 5, 2]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "#### Organisation du sac\n",
+    "\n",
+    "Comme expliqué plus haut, les éléments du sac se verront tous associés une valeur (ici une distance), et le choix de l'élément à extraire du sac se fera en minimisant cette valeur. Pour éviter de modifier la fonction d'extraction du minimum (afin d'indiquer qu'il faut comparer non pas les identifiants, mais la distance associée), on peut utiliser le truc suivant :\n",
+    "\n",
+    "<center>\n",
+    "    C'est l'ordre lexicographique qui est utilisé pour comparer des tuples.\n",
+    "</center>\n",
+    "\n",
+    "Ainsi, pour comparer deux tuples, on commence par comparer leurs premières composantes, et ce n'est qu'en cas d'égalité que l'on regarde la suite."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "tableau = [(4, \"a\"), (2, \"c\"), (8, \"d\"), (5, \"b\")]\n",
+    "assert extraire_minimum(tableau) == (2, \"c\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "Ainsi, pour l'algorithme de Dijkstra, il suffit de mettre dans les sacs des couples `(distance, sommet)`.\n",
+    "Notons que lors de l'extraction d'un élément, on pourra écrire, par exemple :\n",
+    "```python\n",
+    "distance, sommet = extraire_minimum(sac)\n",
+    "```\n",
+    "\n",
+    "**Exercice**\n",
+    "Écrire la fonction `dijkstra` implémentant l'algorithme de Dijkstra."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "def dijkstra(graphe: Dict[str, Dict[str, float | int]], src: str, dst: str) -> float | int:\n",
+    "    # Comme on travaille avec un dictionnaire de dictionnaires, il faut extraire la liste des sommets\n",
+    "    sommets = set()\n",
+    "    for s in graphe.keys():\n",
+    "        sommets.add(s)\n",
+    "        for v in graphe[s].keys():\n",
+    "            sommets.add(v)\n",
+    "\n",
+    "    # On initialise le dictionnaire des sommets vus\n",
+    "    vus = dict()\n",
+    "    for s in sommets : vus[s] = False\n",
+    "\n",
+    "    # On initialise le sac\n",
+    "    sac = [(0, src)]  # (distance, sommet)\n",
+    "\n",
+    "    # On cherche le plus court chemin\n",
+    "    distances = {s: inf for s in sommets}\n",
+    "    distances[src] = 0\n",
+    "\n",
+    "    while len(sac) > 0:\n",
+    "        # On extrait le chemin de distance minimale\n",
+    "        (chemin, smt) = extraire_minimum(sac)\n",
+    "\n",
+    "        # On a trouvé le sommet de destination\n",
+    "        if smt == dst: return chemin\n",
+    "        \n",
+    "        # On marque le sommet comme vu\n",
+    "        if vus[smt]: continue\n",
+    "        else: vus[smt] = True\n",
+    "\n",
+    "        # On met à jour les distances des voisins\n",
+    "        for voisin, poids in graphe[smt].items():\n",
+    "            if not vus[voisin]:\n",
+    "                # On calcule la nouvelle distance\n",
+    "                nouvelle_distance = chemin + poids\n",
+    "                \n",
+    "                # On met à jour le sac\n",
+    "                distances[voisin] = nouvelle_distance\n",
+    "                sac.append((nouvelle_distance, voisin))\n",
+    "\n",
+    "    return -1  # On n'a pas trouvé de chemin"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "assert dijkstra(petit_graphe, 'A', 'F') == 21\n",
+    "assert dijkstra(graphe_creux, 'S001', 'S300') == 8302\n",
+    "assert dijkstra(graphe_dense, 'S001', 'S300') == 3746"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "### Une première amélioration\n",
+    "\n",
+    "Sur un graphe dense, on peut voir que cette implémentation est assez lente. Par exemple, pour aller de S001 à S300, l'algorithme va examiner dans l'ordre de distance tous les sommets jusqu'à atteindre la destination, et surtout cela va entraîner l'examen d'environ 37000 arêtes.\n",
+    "\n",
+    "**Question**\n",
+    "\n",
+    "Pouvez-vous retrouver ce nombre d'arêtes en modifiant un peu l'algorithme de Dijkstra précédent ? Il est **vivement** recommandé de faire une copie de la fonction dans une nouvelle cellule (voir le menu `Insérer` ci-dessus) avant de faire des modifications."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "def dijkstra(graphe: Dict[str, Dict[str, float | int]], src: str, dst: str, compte=False) -> float | int:\n",
+    "    # Comme on travaille avec un dictionnaire de dictionnaires, il faut extraire la liste des sommets\n",
+    "    sommets = set()\n",
+    "    for s in graphe.keys():\n",
+    "        sommets.add(s)\n",
+    "        for v in graphe[s].keys():\n",
+    "            sommets.add(v)\n",
+    "    # On initialise notre compteur\n",
+    "    cpt = 0\n",
+    "    \n",
+    "    # On initialise le dictionnaire des sommets vus\n",
+    "    vus = dict()\n",
+    "    for s in sommets : vus[s] = False\n",
+    "    \n",
+    "    # On initialise le sac\n",
+    "    sac = [(0, src)]  # (distance, sommet)\n",
+    "    \n",
+    "    # On cherche le plus court chemin\n",
+    "    distances = {s: inf for s in sommets}\n",
+    "    distances[src] = 0\n",
+    "\n",
+    "    while len(sac) > 0:\n",
+    "        # On extrait le chemin de distance minimale\n",
+    "        (chemin, smt) = extraire_minimum(sac)\n",
+    "\n",
+    "        # On a trouvé le sommet de destination\n",
+    "        if smt == dst:\n",
+    "            print(f\"Nombre d'arêtes explorées : {cpt}\")\n",
+    "            return chemin\n",
+    "        \n",
+    "        # On marque le sommet comme vu\n",
+    "        if vus[smt]: continue\n",
+    "        else: vus[smt] = True\n",
+    "\n",
+    "        # On met à jour les distances des voisins\n",
+    "        for voisin, poids in graphe[smt].items():\n",
+    "            if not vus[voisin]:\n",
+    "                # On calcule la nouvelle distance\n",
+    "                nouvelle_distance = chemin + poids\n",
+    "                \n",
+    "                # On met à jour le sac\n",
+    "                distances[voisin] = nouvelle_distance\n",
+    "                sac.append((nouvelle_distance, voisin))\n",
+    "                cpt += 1\n",
+    "\n",
+    "    return -1  # On n'a pas trouvé de chemin"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Nombre d'itérations : 23296\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "3746"
+      ]
+     },
+     "execution_count": 30,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# Doit afficher \"Nombre d'arêtes explorées : <nb>\"\n",
+    "dijkstra(graphe_dense, 'S001', 'S300', True)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "La raison est que la fonction de recherche de la position du minimum dans une liste se fait en temps linéaire et l'exemple ci-dessus montre les limites d'une telle complexité.\n",
+    "\n",
+    "Il existe des manières d'organiser les données pour que la recherche et l'extraction du minimum soit plus efficace, c'est ce que l'on appelle une _file de priorité_. Sans entrer dans les détails, on peut faire en sorte que l'extraction du minimum et l'ajout d'une valeur se fassent en temps _logarithmique_ et non plus linéaire. Cela donne un _sac_ bien plus efficace.\n",
+    "\n",
+    "Pour voir cela, on peut utiliser la bibliothèque [`heapq`](https://docs.python.org/3/library/heapq.html) de Python. On crée un sac vide à l'aide d'une liste vide, comme précédemment. Les modifications à effectuer sont :\n",
+    "1. pour extraire le minimum du sac, on écrit `heapq.heappop(sac)`,\n",
+    "2. pour ajouter un élément `elt` au sac, on écrit `heapq.heappush(sac, elt)`.\n",
+    "\n",
+    "\n",
+    "**Exercice**\n",
+    "\n",
+    "Reprendre votre fonction _dijkstra_ et la modifier pour utiliser une file de priorité du module `heapq`. On va également remplacer le dictionnaire des sommets vus par un `defaultdict`, ce qui permet de se passer d'énumérer les sommets à l'initialisation."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "def dijkstra_rapide(graphe: Dict[str, Dict[str, float | int]], src: str, dst: str, compte=False) -> float | int:\n",
+    "    # On initialise avec un defaultdict\n",
+    "    vus = defaultdict(lambda: False)\n",
+    "\n",
+    "    # On initialise le sac\n",
+    "    sac = []\n",
+    "\n",
+    "    # On garde la possibilité de compter les arêtes\n",
+    "    it = 0\n",
+    "\n",
+    "    # On utilise heapq pour le sac à priorité\n",
+    "    heapq.heappush(sac, (0, src))\n",
+    "\n",
+    "    # Puis, on procède de manière similaire, avec heapq au lieu de nos listes simples et retrait d'élément manuels\n",
+    "    vus[src] = 0\n",
+    "\n",
+    "    while len(sac) > 0:\n",
+    "        # On extrait le chemin de distance minimale\n",
+    "        (chemin, smt) = heapq.heappop(sac)\n",
+    "\n",
+    "        # On a trouvé le sommet de destination\n",
+    "        if smt == dst:\n",
+    "            print(f\"Nombre d'arêtes explorées : {it}\")\n",
+    "            return chemin\n",
+    "        \n",
+    "        # On marque le sommet comme vu\n",
+    "        if vus[smt]: continue\n",
+    "        else: vus[smt] = True\n",
+    "\n",
+    "        # On met à jour les distances des voisins\n",
+    "        for voisin, poids in graphe[smt].items():\n",
+    "            if not vus[voisin]:\n",
+    "                # On calcule la nouvelle distance\n",
+    "                nouvelle_distance = chemin + poids\n",
+    "                \n",
+    "                # On met à jour le sac\n",
+    "                heapq.heappush(sac, (nouvelle_distance, voisin))\n",
+    "                it += 1\n",
+    "\n",
+    "    return -1  # On n'a pas trouvé de chemin\n",
+    "    "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 33,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Nombre d'arêtes explorées : 23296\n"
+     ]
+    }
+   ],
+   "source": [
+    "assert dijkstra_rapide(graphe_dense, 'S001', 'S300', True) == 3746"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "#### Données réelles : le réseau ferré d'IdF et le réseau routier d'IdF\n",
+    "\n",
+    "Nous allons maintenant regarder deux réseaux réels :\n",
+    "  - le premier est celui du réseau ferré en Ile-de-France (trains, métro, trams, TER, grandes lignes, orlyval...), il comporte 1689 sommets (gares et fourches sur les voies) et 1930 arêtes.\n",
+    "  - le second est celui du réseau routier en Ile-De-France. Il y a 233223 sommets (intersection entre au moins deux chemins/rues/routes ou la fin d'une impasse) et 256586 arêtes.\n",
+    "\n",
+    "Pour ces deux graphes, nous avons deux poids par arêtes : le temps et la distance, pour les extraire, nous avons un utilitaire : `convertir_graphe` afin d'obtenir nos structures habituelles."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 96,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "graphe_ferroviaire_temps = convertir_graphe(graphe_rfidf, 'temps')\n",
+    "graphe_ferroviaire_distance = convertir_graphe(graphe_rfidf, 'distance')\n",
+    "graphe_routier_temps = convertir_graphe(graphe_idf, 'temps')\n",
+    "graphe_routier_distance = convertir_graphe(graphe_idf, 'distance')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "Dans ces fichiers, les sommets sont identifiés par un code (une chaine de caractères) unique qui ne donne pas d'information sur ce qu'il représente réellement. Nous allons utiliser des fonctions qui vont nous aider à travailler avec les données que nous connaissons (nom de gares, noms de villes/rues).\n",
+    "\n",
+    "Pour le réseau ferroviaire, on a deux dictionnaires :\n",
+    "  - `sommets_graphe_rfidf` dit pour chaque sommet ses coordonnées géographique (\\[longitude, latitude\\]) et l'identifiant de la gare qui lui correspond quand il y en a une\n",
+    "  - `gares_rfidf` dit pour chaque identifiant de gare son nom (avec les informations affichées au-dessus/au-dessous sur les panneaux), sa ligne et l'exploitant. Attention, une gare au sens physique a autant de sommets qu'il y a de lignes. Ainsi, la gare `Bastille` a trois identifiants, et donc trois sommets.\n",
+    "\n",
+    "**Exercice**\n",
+    "\n",
+    "Écrire une fonction `id_gare` qui étant donné un dictionnaire de gares et nom de gare, renvoie le ou les identifiants correspondants (et une liste vide si la gare n'est pas trouvée)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 34,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "def id_gare(dico_gares: Dict[str, Dict[str, any]], nom_gare: str) -> List[str]:\n",
+    "    identifiants = []\n",
+    "    \n",
+    "    for id_gare, info in dico_gares.items():\n",
+    "        if info['nom'].lower() == nom_gare.lower():\n",
+    "            identifiants.append(id_gare)\n",
+    "\n",
+    "    return identifiants"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 35,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "assert id_gare(gares_rfidf, 'Bastille') == ['325', '1172', '324']\n",
+    "assert id_gare(gares_rfidf, 'Pastille') == []\n",
+    "assert id_gare(gares_rfidf, 'Le Guichet') == ['31']"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "**Exercice**\n",
+    "\n",
+    "Écrire une fonction `sommet_gare` qui, étant donné un dictionnaire de sommets, trouve le sommet correspondant à un identifiant donné, et `None` sinon."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 42,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "def sommet_gare(dico_sommets: Dict[str, Dict[str, any]], code_gare: str) -> None|str:\n",
+    "    \n",
+    "    for id_sommet, info in dico_sommets.items():\n",
+    "        if info['gare'] == code_gare:\n",
+    "            return id_sommet\n",
+    "\n",
+    "    return None"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 43,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "assert sommet_gare(sommets_graphe_rfidf, '325') == 'S000915'\n",
+    "assert sommet_gare(sommets_graphe_rfidf, '2325') is None"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "**Exercice**\n",
+    "\n",
+    "Écrire la fonction `gare_sommet` qui fait le travail inverse : avec le code du sommet, renvoyer les informations sur la gare (informations depuis le dictionnaire des gares plus ses coordonnées géographiques)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 75,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "def gare_sommet(dico_gares: Dict[str, Dict[str, any]], dico_sommets: Dict[str, Dict[str, any]], sommet: str) -> None | Dict[str, None|str|List[int|float]]:\n",
+    "    if sommet not in dico_sommets.keys(): return None\n",
+    "    \n",
+    "    info_sommet = dico_sommets[sommet]\n",
+    "    gare = info_sommet['gare']\n",
+    "\n",
+    "    info_gare = dico_gares[gare]\n",
+    "    info_gare['coordonnees'] = info_sommet['coordonnees']\n",
+    "    return info_gare"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 76,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "assert gare_sommet(gares_rfidf, sommets_graphe_rfidf, 'S000915') == {'nom': 'Bastille', 'nom_sous': None,\n",
+    "                                                                     'nom_sur': None, 'ligne': 'METRO 8',\n",
+    "                                                                     'exploitant': 'RATP',\n",
+    "                                                                     'coordonnees': [2.369513568156525,\n",
+    "                                                                                     48.85343942664758]}\n",
+    "assert gare_sommet(gares_rfidf, sommets_graphe_rfidf, 'S999915') is None"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "Les distances sont en mètres et les temps en secondes (c'est très approximatif) pour le réseau ferroviaire. Quel est le plus court chemin en temps et en distance entre `Le Guichet` et `Vélizy 2` ?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 115,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Gare de départ : Le Guichet\n",
+      "Gare d'arrivée : Vélizy 2\n",
+      "\n",
+      "Sommet de départ : S000127\n",
+      "Sommet d'arrivée : S001546\n",
+      "\n",
+      "Nombre d'arêtes explorées : 713\n",
+      "Nombre d'arêtes explorées : 764\n",
+      "\n",
+      "Temps entre Le Guichet et Vélizy 2 :\t33.08 minutes\n",
+      "Distance entre Le Guichet et Vélizy 2 :\t28.54 km\n"
+     ]
+    }
+   ],
+   "source": [
+    "gare_depart = 'Le Guichet'\n",
+    "gare_arrivee = 'Vélizy 2'\n",
+    "\n",
+    "print(f'Gare de départ : {gare_depart}')\n",
+    "print(f'Gare d\\'arrivée : {gare_arrivee}\\n')\n",
+    "\n",
+    "src = id_gare(gares_rfidf, gare_depart)[0]\n",
+    "src = sommet_gare(sommets_graphe_rfidf, src)\n",
+    "\n",
+    "dst = id_gare(gares_rfidf, gare_arrivee)[0]\n",
+    "dst = sommet_gare(sommets_graphe_rfidf, dst)\n",
+    "\n",
+    "print(f'Sommet de départ : {src}')\n",
+    "print(f'Sommet d\\'arrivée : {dst}\\n')\n",
+    "\n",
+    "temps = dijkstra_rapide(graphe_ferroviaire_temps, src, dst)\n",
+    "distance = dijkstra_rapide(graphe_ferroviaire_distance, src, dst)\n",
+    "\n",
+    "print(f'\\nTemps entre {gare_depart} et {gare_arrivee} :\\t{round(temps/60, 2)} minutes')\n",
+    "print(f'Distance entre {gare_depart} et {gare_arrivee} :\\t{round(distance/1000, 2)} km')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "On vous donne une fonction `sommet_adresse` qui prend en entrée un annuaire et un dictionnaire représentant l'adresse et qui vous renvoie un dictionnaire de toutes les adresses trouvées avec le sommet correspondant.\n",
+    "\n",
+    "Exemples :"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 116,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "{' Avenue des Sciences,  Gif-sur-Yvette': '1442397072'}\n",
+      "{' Rue de Grenelle,  Paris': '6308595999', '36 Rue de Grenelle,  Paris': '25253719', '29 Rue de Grenelle,  Paris': '25253720', '65 Rue de Grenelle,  Paris': '25253725', '113 Rue de Grenelle,  Paris': '25580313', '105 Rue de Grenelle,  Paris': '25580316', '201 Rue de Grenelle,  Paris': '34845783', '187 Rue de Grenelle,  Paris': '34845786'}\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(sommet_adresse(annuaire_idf, {'ville': 'Gif-sur-Yvette', 'rue': 'Avenue des Sciences'}))\n",
+    "print(sommet_adresse(annuaire_idf, {'ville': 'Paris', 'rue': 'Rue de Grenelle'}))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "Avec ces adresses, on trouve ainsi :"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 117,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Nombre d'arêtes explorées : 109840\n",
+      "22.588 km\n",
+      "Nombre d'arêtes explorées : 108227\n",
+      "26 minutes\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(round(dijkstra_rapide(graphe_routier_distance, '25580313', '1442397072') / 1000, 3), 'km')\n",
+    "print(round(dijkstra_rapide(graphe_routier_temps, '25580313', '1442397072') / 60), 'minutes')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "On peut aussi tester sur le réseau ferré, et vérifier combien d'arêtes sont visitées :"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 118,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Nombre d'arêtes explorées : 1490\n",
+      "86.33333333333333 minutes\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(dijkstra_rapide(graphe_ferroviaire_temps, 'S000110', 'S000590', True) / 60, 'minutes')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "<details>\n",
+    "    <summary>Remarque de complexité</summary>\n",
+    "    <blockquote>\n",
+    "Avec une fonction d'extraction de minimum, on peut imager un algorithme de tri : on ajoute un à un tous les éléments d'une liste, puis on les extrait un par un en prenant à chaque fois le minimum.\n",
+    "\n",
+    "La méthode naïve d'extraction du minimum, de complexité linéaire, conduit à un algorithme de tri de complexité quadratique, comme le tri par sélection ou le tri par insertion.\n",
+    "\n",
+    "L'usage d'une file de priorité plus performante, de complexité linéaire, conduit à un algorithme de tri de complexité optimale, en <i>n</i> ln(<i>n</i>). C'est ce que l'on appelle le <i>tri par tas</i>.\n",
+    "\n",
+    "Notons que c'est un algorithme de tri de complexité optimale, ce qui signifie que l'on ne peut pas faire mieux qu'une complexité logarithme en moyenne pour traiter un élément dans une file de priorité.\n",
+    "    </blockquote>\n",
+    "</details>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "## Une seconde amélioration, l'algorithme A*\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "Dans certaines situations, on peut grandement améliorer l'efficacité de l'algorithme de Dijkstra pour calculer la longueur du plus court chemin entre deux points, en ajoutant à la distance des sommets du sac une autre valeur, une _heuristique_ qui va modifier l'ordre d'évaluation des sommets.\n",
+    "\n",
+    "Un cadre où cela fonctionne particulièrement bien est lorsque l'on est dans un contexte géométrique, que les sommets sont des points et les poids des arêtes sont des distances. On peut alors utiliser comme heuristique la distance d'un sommet au sommet destination.\n",
+    "\n",
+    "Ainsi, pour chaque élément du sac, en plus du sommet en question et de la distance (qui correspond à la longueur d'un chemin de la source jusqu'à ce sommet), on va utiliser cette distance augmentée de la distance du sommet à la destination, et c'est cette distance augmentée que l'on va prendre en compte pour extraire le minimum.\n",
+    "\n",
+    "Intuitivement, cela revient à consider les chemins par \"distance croissante\" par rapport à la trajectoire directe, _à vol d'oiseau_. Si le chemin n'est pas trop compliqué, l'algorithme le trouvera très vite (mais il n'est pas magique, et dans un contexte type labyrinthe, A* risque d'être moins efficace (ne pas trouver le chemin le plus court) que la version de base de l'algorithme de Dijkstra). Pour aider, nous allons modifier notre algorithme : désormais, on s'autorisera à revisiter un sommet pour mettre à jour sa distance au point de départ si on l'améliore.\n",
+    "\n",
+    "<br/>\n",
+    "\n",
+    "Dans notre approche, nous allons devoir calculer la distance entre deux points de la surface du globe, que l'on appelle _distance orthodromique_.\n",
+    "\n",
+    "On donne la fonction suivante, qui calcule cette distance orthodromique entre deux points du globe spécifiés par leurs coordonnées en degrés."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "def distance_orthodromique(lat1: float, lng1: float, lat2: float, lng2: float) -> float:\n",
+    "    # angles en degrés\n",
+    "    lat1 *= pi / 180\n",
+    "    lng1 *= pi / 180\n",
+    "    lat2 *= pi / 180\n",
+    "    lng2 *= pi / 180\n",
+    "    v = sin(lat1) * sin(lat2) + cos(lat1) * cos(lat2) * cos(lng1 - lng2)\n",
+    "    # Gestion des dépassements de flottants\n",
+    "    if v > 1:\n",
+    "        v = 1\n",
+    "    elif v < -1:\n",
+    "        v = -1\n",
+    "    return 6371000 * acos(v)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "On vous donne la fonction `distance_sommets` qui calcule la distance orthodromique entre les sommets dont on a précisé les identifiants. On rappelle que la latitude et la longitude d'un sommet figurent parmi les informations présentes dans le dictionnaire `sommets_idf`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "def distance_sommets_routes(id1: str, id2:str) -> float:\n",
+    "    s1 = sommets_idf[id1]\n",
+    "    s2 = sommets_idf[id2]\n",
+    "    return distance_orthodromique(s1['latitude'], s1['longitude'], s2['latitude'], s2['longitude'])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "De même pour les gares et le dictionnaire `sommets_graphe_rfidf`:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "def distance_sommets_gares(id1: str, id2: str) -> float:\n",
+    "    s1 = sommets_graphe_rfidf[id1]['coordonnees']\n",
+    "    s2 = sommets_graphe_rfidf[id2]['coordonnees']\n",
+    "    return distance_orthodromique(s1[1], s1[0], s2[1], s2[0])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "Comme indiqué précédemment, dans le sac, nous allons devoir stocker, en plus de la donnée d'un sommet et d'une distance (correspondant à la longueur d'un chemin de la source à ce sommet), la distance augmentée de la distance orthodromique de ce sommet à la destination. Les sacs devront donc contenir des triplets, constitués de telle sorte que c'est la distance augmentée qui est utilisée pour l'extraction du minimum.\n",
+    "\n",
+    "**Exercice**\n",
+    "\n",
+    "Mettre en œuvre l'algorithme A* en reprenant et modifiant l'algorithme de Dijkstra précédent. Pour gérer le calcul de distance de manière flexible, votre fonction utilisera un appel à `heuristique(sommet1, sommet2)` avec `heuristique` la fonction passée en paramètre à A\\*. Exemple d'appel de `astar`: `astar(mon_graphe, source, destination, distance_sommets_routes)`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "def astar(graphe: Dict[str, Dict[str, float | int]], src: str, dst: str, heuristique: Callable[[str, str], float|int], compte=False) -> int|float:\n",
+    "    # Initialisation : comme Dijkstra\n",
+    "    vus = ...\n",
+    "    sac = ...\n",
+    "    it = 0\n",
+    "    ...\n",
+    "    # Résolution : il faut maintenant utiliser l'heuristique comme pour calculer la priorité\n",
+    "    ..."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "**Exercice**\n",
+    "\n",
+    "Comparez l'efficacité de l'algorithme A* avec celui de Dijkstra en comptant dans chaque cas le nombre d'arêtes et de sommets traités sur un long trajet, par exemple de la Rue de Grenelle (25580313) à l'Avenue des Sciences (1442397072) comme ci-dessus."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "d1 = dijkstra_rapide(graphe_routier_distance, '21378248', '1442397072', True)\n",
+    "d2 = astar(graphe_routier_distance, '21378248', '1442397072', distance_sommets_routes, True)\n",
+    "print(d1, d2)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "**Question**\n",
+    "\n",
+    "Combien d'arêtes l'algorithme A* va-t-il traiter s'il existe un trajet direct (sans sommet intermédiaire) entre deux destinations ?\n",
+    "\n",
+    "#### Limites de l'algorithme A\\*\n",
+    "\n",
+    "Regardons maintenant le cas de la recherche du plus court chemin *en temps*. En prenant les mêmes sommets et la même heuristique, que donnent les deux algorithmes Dijkstra et A\\* sur le graphe du réseau routier en temps ?\n",
+    "\n",
+    "Que constatez-vous ? Comment expliquez-vous ce résultat ?\n",
+    "\n",
+    "**Exercice**\n",
+    "\n",
+    "Proposez une autre heuristique pour estimer le *temps à vol d'oiseau*"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "d1 = dijkstra_rapide(graphe_routier_temps, '21378248', '1442397072', True)\n",
+    "d2 = astar(graphe_routier_temps, '21378248', '1442397072', distance_sommets_routes, True)\n",
+    "print(d1, d2)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "**Exercice**\n",
+    "\n",
+    "Modifier les heuristiques de distance pour adapter au temps."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "def temps_sommets_routes(id1: str, id2:str) -> float:\n",
+    "    ...\n",
+    "\n",
+    "def temps_sommets_gares(id1: str, id2:str) -> float:\n",
+    "    ..."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "## Récupération du trajet le plus court et visualisation\n",
+    "\n",
+    "Une fois que l'on a déterminé le plus court chemin entre deux gares ou adresses, encore faut-il pouvoir récupérer la liste des sommets de ce trajet le plus court. Cela se fait très simplement, en indiquant pour chaque sommet, d'où l'on vient lorsqu'on l'a découvert.\n",
+    "\n",
+    "Une façon de faire cela suppose deux modifications de l'algorithme précédent (Dijkstra ou A*) :\n",
+    "1. le tableau `vus`, plutôt que de contenir une valeur booléenne, contiendra des entiers, avec une valeur `None` à l'initialisation et tant que l'on n'a pas découvert le sommet et une valeur autre si le sommet a déjà été découvert, la valeur étant alors l'identifiant du sommet d'où l'on venait lors de la découverte.\n",
+    "2. le sac contiendra des _tuples_ avec une composante supplémentaire, correspondant au sommet de provenance.\n",
+    "\n",
+    "**Exercice**\n",
+    "\n",
+    "Modifier l'algorithme précédent pour traiter les informations de provenance pour chaque gare/sommet."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "def dijkstra_rapide_chemin(graphe: Dict[str, Dict[str, float | int]], src: str, dst: str, compte=False) -> Tuple[int|float, Dict[str, str]]:\n",
+    "    ..."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "def astar_chemin(graphe: Dict[str, Dict[str, float | int]], src: str, dst: str, heuristique: Callable[[str, str], float|int], compte=False) -> Tuple[int|float, Dict[str, str]]:\n",
+    "    ..."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "#### Reconstitution du chemin\n",
+    "\n",
+    "Faire ensuite une fonction `reconstruire_chemin` qui prend le dictionnaire reçu en entrée, une source et une destination et renvoie une liste de nœuds dans le bon ordre."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "def reconstruire_chemin(parents: Dict[str, str], src: str, dest: str) -> List[str]:\n",
+    "    ..."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "### Visualisation\n",
+    "\n",
+    "Dans les utilitaires fournis pour ce TP, il y a une fonction qui à partir du graphe complet (avec les données géographiques, le chemin et le départ/arrivée, va vous générer une carte qui peut être affichée dans le classeur. Celle-ci peut également prendre un second chemin de même départ/arrivée pour comparer deux algorithmes."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "depart = '25580313'\n",
+    "arrivee = '1442397072'\n",
+    "_, ch = astar_chemin(graphe_routier_distance, depart, arrivee, distance_sommets_routes)\n",
+    "chemin_plus_court = reconstruire_chemin(ch, depart, arrivee)\n",
+    "_, ch = astar_chemin(graphe_routier_temps, depart, arrivee, temps_sommets_routes)\n",
+    "chemin_plus_rapide = reconstruire_chemin(ch, depart, arrivee)\n",
+    "visualisation_route(graphe_idf, sommets_idf, chemin_plus_court, chemin_plus_rapide)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": false
+   },
+   "source": [
+    "Faites de même pour un trajet sur le réseau ferré."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "gare_depart = 'Le Guichet'\n",
+    "gare_arrivee = 'Vélizy 2'\n",
+    "..."
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.12.1"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 0
+}

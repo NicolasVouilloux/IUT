@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Pizzeria</string>
+
+    <string name="napolitaine">Napolitaine</string>
+    <string name="royale">Royale</string>
+    <string name="quatreFromages">Quatre fromages</string>
+    <string name="montagnarde">Montagnarde</string>
+    <string name="raclette">Raclette</string>
+    <string name="hawai">Hawai</string>
+    <string name="personnalisee">Personnalisée</string>
+    <string name="pannaCotta">Panna Cotta</string>
+    <string name="tiramisu">Tiramisu</string>
+
+    <string name="mozzarella">Mozzarella</string>
+    <string name="gorgonzola">Gorgonzola</string>
+    <string name="anchois">Anchois</string>
+    <string name="capres">Câpres</string>
+    <string name="olives">Olives</string>
+    <string name="artichauts">Artichauts</string>
+    <string name="jambonCru">Jambon cru</string>
+    <string name="jambonCuit">Jambon cuit</string>
+
+    <string name="num_table">Numéro de table :</string>
+    <string name="valider">Valider</string>
+    <string name="commande">Commande de la table n°%s</string>
+
+    <string name="preferences">Préférences</string>
+    <string name="couleurBoutons">Couleur des boutons</string>
+    <string name="boutonsChoixCouleur">Choisir une couleur pour les pizzas...</string>
+    <string-array name="couleurs">
+        <item>violet</item>
+        <item>rouge</item>
+        <item>vert</item>
+        <item>bleu</item>
+    </string-array>
+</resources>

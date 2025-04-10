@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".IngredientsFragment">
+
+
+    <Button
+        android:id="@+id/boutonMozzarella"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintVertical_weight="1"
+        android:text="@string/mozzarella"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/boutonGorgonzola"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/boutonAnchois"/>
+
+
+    <Button
+        android:id="@+id/boutonGorgonzola"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintVertical_weight="1"
+        android:text="@string/gorgonzola"
+        app:layout_constraintStart_toEndOf="@+id/boutonMozzarella"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/boutonCapres"/>
+
+
+    <Button
+        android:id="@+id/boutonAnchois"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintVertical_weight="1"
+        android:text="@string/anchois"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/boutonCapres"
+        app:layout_constraintTop_toBottomOf="@+id/boutonMozzarella"
+        app:layout_constraintBottom_toTopOf="@id/boutonOlives"/>
+
+    <Button
+        android:id="@+id/boutonCapres"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintVertical_weight="1"
+        android:text="@string/capres"
+        app:layout_constraintStart_toEndOf="@+id/boutonAnchois"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boutonGorgonzola"
+        app:layout_constraintBottom_toTopOf="@id/boutonArtichauts"/>
+
+    <Button
+        android:id="@+id/boutonOlives"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintVertical_weight="1"
+        android:text="@string/olives"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/boutonArtichauts"
+        app:layout_constraintTop_toBottomOf="@+id/boutonAnchois"
+        app:layout_constraintBottom_toTopOf="@id/boutonJambonCru"/>
+
+    <Button
+        android:id="@+id/boutonArtichauts"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintVertical_weight="1"
+        android:text="@string/artichauts"
+        app:layout_constraintStart_toEndOf="@+id/boutonOlives"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boutonCapres"
+        app:layout_constraintBottom_toTopOf="@id/boutonJambonCuit"/>
+
+    <Button
+        android:id="@+id/boutonJambonCru"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintVertical_weight="1"
+        android:text="@string/jambonCru"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/boutonJambonCuit"
+        app:layout_constraintTop_toBottomOf="@+id/boutonOlives"
+        app:layout_constraintBottom_toTopOf="@id/boutonValider"/>
+
+    <Button
+        android:id="@+id/boutonJambonCuit"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintVertical_weight="1"
+        android:text="@string/jambonCuit"
+        app:layout_constraintStart_toEndOf="@+id/boutonJambonCru"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boutonArtichauts"
+        app:layout_constraintBottom_toTopOf="@id/boutonValider"/>
+
+    <Button
+        android:id="@+id/boutonValider"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_weight="1"
+        android:text="@string/valider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boutonJambonCru"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

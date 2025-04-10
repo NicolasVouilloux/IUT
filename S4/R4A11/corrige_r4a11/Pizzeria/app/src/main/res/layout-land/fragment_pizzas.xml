@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PizzasFragment">
+
+    <Button
+        android:id="@+id/boutonQuatreFromages"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintVertical_weight="1"
+        android:text="@string/quatreFromages"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/boutonRaclette"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/boutonMontagnarde"
+        app:layout_constraintHorizontal_bias="0.5"
+        />
+
+    <Button
+        android:id="@+id/boutonMontagnarde"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintVertical_weight="1"
+        android:text="@string/montagnarde"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/boutonHawai"
+        app:layout_constraintStart_toEndOf="@+id/boutonQuatreFromages"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        />
+
+    <Button
+        android:id="@+id/boutonRaclette"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintVertical_weight="1"
+        android:text="@string/raclette"
+        app:layout_constraintTop_toBottomOf="@+id/boutonQuatreFromages"
+        app:layout_constraintBottom_toTopOf="@+id/boutonNapolitaine"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/boutonHawai"
+        app:layout_constraintHorizontal_bias="0.5"
+        />
+
+    <Button
+        android:id="@+id/boutonHawai"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintVertical_weight="1"
+        android:text="@string/hawai"
+        app:layout_constraintTop_toBottomOf="@+id/boutonMontagnarde"
+        app:layout_constraintBottom_toTopOf="@id/boutonRoyale"
+        app:layout_constraintStart_toEndOf="@+id/boutonRaclette"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        />
+
+    <Button
+        android:id="@+id/boutonNapolitaine"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintVertical_weight="1"
+        android:text="@string/napolitaine"
+        app:layout_constraintTop_toBottomOf="@+id/boutonRaclette"
+        app:layout_constraintBottom_toTopOf="@+id/boutonPannaCotta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/boutonRoyale"
+        app:layout_constraintHorizontal_bias="0.5"
+        />
+
+    <Button
+        android:id="@+id/boutonRoyale"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintVertical_weight="1"
+        android:text="@string/royale"
+        app:layout_constraintTop_toBottomOf="@+id/boutonHawai"
+        app:layout_constraintBottom_toTopOf="@id/boutonTiramisu"
+        app:layout_constraintStart_toEndOf="@+id/boutonNapolitaine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        />
+
+    <Button
+        android:id="@+id/boutonPannaCotta"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintVertical_weight="1"
+        android:text="@string/pannaCotta"
+        app:layout_constraintTop_toBottomOf="@+id/boutonNapolitaine"
+        app:layout_constraintBottom_toTopOf="@id/boutonPersonalisee"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/boutonTiramisu"
+        app:layout_constraintHorizontal_bias="0.5"
+        />
+
+    <Button
+        android:id="@+id/boutonTiramisu"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintVertical_weight="1"
+        android:text="@string/tiramisu"
+        app:layout_constraintTop_toBottomOf="@+id/boutonRoyale"
+        app:layout_constraintBottom_toTopOf="@id/boutonPersonalisee"
+        app:layout_constraintStart_toEndOf="@+id/boutonPannaCotta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        />
+
+    <Button
+        android:id="@+id/boutonPersonalisee"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/personnalisee"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/boutonTiramisu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
