@@ -1,0 +1,63 @@
+@base <http://example.com/base/> .
+@prefix rcw: <https://cours.iut-orsay.fr/rcw/> .
+@prefix reg: <https://cours.iut-orsay.fr/rcw/region/> .
+@prefix dep: <https://cours.iut-orsay.fr/rcw/departement/> .
+@prefix circo: <https://cours.iut-orsay.fr/rcw/circonscription/> .
+@prefix depu: <https://cours.iut-orsay.fr/rcw/depute/> .
+@prefix cat: <https://cours.iut-orsay.fr/rcw/categorie/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+reg:1 a reg:Region;
+  rdfs:label "Guadeloupe"@fr .
+
+reg:2 a reg:Region;
+  rdfs:label "Martinique"@fr .
+
+reg:3 a reg:Region;
+  rdfs:label "Guyane"@fr .
+
+reg:4 a reg:Region;
+  rdfs:label "La Réunion"@fr .
+
+reg:6 a reg:Region;
+  rdfs:label "Mayotte"@fr .
+
+reg:11 a reg:Region;
+  rdfs:label "Île-de-France"@fr .
+
+reg:24 a reg:Region;
+  rdfs:label "Centre-Val de Loire"@fr .
+
+reg:27 a reg:Region;
+  rdfs:label "Bourgogne-Franche-Comté"@fr .
+
+reg:28 a reg:Region;
+  rdfs:label "Normandie"@fr .
+
+reg:32 a reg:Region;
+  rdfs:label "Hauts-de-France"@fr .
+
+reg:44 a reg:Region;
+  rdfs:label "Grand Est"@fr .
+
+reg:52 a reg:Region;
+  rdfs:label "Pays de la Loire"@fr .
+
+reg:53 a reg:Region;
+  rdfs:label "Bretagne"@fr .
+
+reg:75 a reg:Region;
+  rdfs:label "Nouvelle-Aquitaine"@fr .
+
+reg:76 a reg:Region;
+  rdfs:label "Occitanie"@fr .
+
+reg:84 a reg:Region;
+  rdfs:label "Auvergne-Rhône-Alpes"@fr .
+
+reg:93 a reg:Region;
+  rdfs:label "Provence-Alpes-Côte d'Azur"@fr .
+
+reg:94 a reg:Region;
+  rdfs:label "Corse"@fr .

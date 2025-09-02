@@ -1,28 +1,31 @@
-@prefix rcw: <https://cours.iut-orsay.fr/rcw/> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+PREFIX rcw: <https://cours.iut-orsay.fr/rcw/> 
+PREFIX reg: <https://cours.iut-orsay.fr/rcw/region/> 
+PREFIX dep: <https://cours.iut-orsay.fr/rcw/departement/> 
+PREFIX circo: <https://cours.iut-orsay.fr/rcw/circonscription/> 
+PREFIX depu: <https://cours.iut-orsay.fr/rcw/depute/> 
+PREFIX cat: <https://cours.iut-orsay.fr/rcw/categorie/> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
 
-@prefix dep: <https://cours.iut-orsay.fr/rcw/departement/> .
-@prefix pcs: <https://cours.iut-orsay.fr/rcw/PCS/> .
-@prefix reg: <https://cours.iut-orsay.fr/rcw/region/> .
-@prefix elu: <https://cours.iut-orsay.fr/rcw/elu/> .
-@prefix cir: <https://cours.iut-orsay.fr/rcw/circonsrciption/> .
+reg:11 a rcw:Région ;
+		rdfs:label "Île-de-France"@fr ;
+		rcw:comprend dep:91 .
 
+dep:91 a rcw:Département ;
+		rdfs:label "Essonne"@fr ;
+		rcw:comprend circo:9105 .
 
+circo:9105 a rcw:Circonscription ;
+		rdfs:label "5ème Circonscription"@fr ;
+		rcw:député depu:488 .
 
-cir:0105 rdfs:label "1Ere Circonscriotion"@fr .
+depu:488 a rcw:Député ;
+		rcw:nom "MIDY" ;
+		rcw:prénom "Paul" ;
+		rcw:sexe "M" ;
+		rcw:dateNaissance "1983/01/25"^^xsd:date ;
+		rcw:dateDébutMandat "2024/07/08"^^xsd:date ;
+		rcw:catégorie cat:85 .
 
-pcs:37 rdfs:label "Cadre administratif et commercial"@fr .
-
-elu:3 a rcw:dirige cir:11 ;
-    rcw:prenom "Guillaume" ;
-    rcw:nom "KASBARIAN" ;
-    rcw:sexe "M" ;
-    rcw:dateNaissance "1987/02/28" ;
-    rcw:pcs pcs:37;
-    rcw:dep dep:1; 
-
-dep:1 label:"Ain"
-
-reg:84 label:"Ain"
+cat:85 a rcw:CatégorieSocioProfessionnelle ;
+		rdfs:label "Personne diverse sans activité professionnelle de moins de 60 ans (sauf retraité)"@fr .

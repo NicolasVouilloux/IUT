@@ -1,0 +1,413 @@
+@base <http://example.com/base/> .
+@prefix rcw: <https://cours.iut-orsay.fr/rcw/> .
+@prefix reg: <https://cours.iut-orsay.fr/rcw/region/> .
+@prefix dep: <https://cours.iut-orsay.fr/rcw/departement/> .
+@prefix circo: <https://cours.iut-orsay.fr/rcw/circonscription/> .
+@prefix depu: <https://cours.iut-orsay.fr/rcw/depute/> .
+@prefix cat: <https://cours.iut-orsay.fr/rcw/categorie/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+dep:1 a <departement>;
+  rdfs:label "Ain"@fr;
+  rcw:Region reg:84 .
+
+dep:2 a <departement>;
+  rdfs:label "Aisne"@fr;
+  rcw:Region reg:32 .
+
+dep:3 a <departement>;
+  rdfs:label "Allier"@fr;
+  rcw:Region reg:84 .
+
+dep:4 a <departement>;
+  rdfs:label "Alpes-de-Haute-Provence"@fr;
+  rcw:Region reg:93 .
+
+dep:5 a <departement>;
+  rdfs:label "Hautes-Alpes"@fr;
+  rcw:Region reg:93 .
+
+dep:6 a <departement>;
+  rdfs:label "Alpes-Maritimes"@fr;
+  rcw:Region reg:93 .
+
+dep:7 a <departement>;
+  rdfs:label "Ardèche"@fr;
+  rcw:Region reg:84 .
+
+dep:8 a <departement>;
+  rdfs:label "Ardennes"@fr;
+  rcw:Region reg:44 .
+
+dep:9 a <departement>;
+  rdfs:label "Ariège"@fr;
+  rcw:Region reg:76 .
+
+dep:10 a <departement>;
+  rdfs:label "Aube"@fr;
+  rcw:Region reg:44 .
+
+dep:11 a <departement>;
+  rdfs:label "Aude"@fr;
+  rcw:Region reg:76 .
+
+dep:12 a <departement>;
+  rdfs:label "Aveyron"@fr;
+  rcw:Region reg:76 .
+
+dep:13 a <departement>;
+  rdfs:label "Bouches-du-Rhône"@fr;
+  rcw:Region reg:93 .
+
+dep:14 a <departement>;
+  rdfs:label "Calvados"@fr;
+  rcw:Region reg:28 .
+
+dep:15 a <departement>;
+  rdfs:label "Cantal"@fr;
+  rcw:Region reg:84 .
+
+dep:16 a <departement>;
+  rdfs:label "Charente"@fr;
+  rcw:Region reg:75 .
+
+dep:17 a <departement>;
+  rdfs:label "Charente-Maritime"@fr;
+  rcw:Region reg:75 .
+
+dep:18 a <departement>;
+  rdfs:label "Cher"@fr;
+  rcw:Region reg:24 .
+
+dep:19 a <departement>;
+  rdfs:label "Corrèze"@fr;
+  rcw:Region reg:75 .
+
+dep:21 a <departement>;
+  rdfs:label "Côte-d'Or"@fr;
+  rcw:Region reg:27 .
+
+dep:22 a <departement>;
+  rdfs:label "Côtes-d'Armor"@fr;
+  rcw:Region reg:53 .
+
+dep:23 a <departement>;
+  rdfs:label "Creuse"@fr;
+  rcw:Region reg:75 .
+
+dep:24 a <departement>;
+  rdfs:label "Dordogne"@fr;
+  rcw:Region reg:75 .
+
+dep:25 a <departement>;
+  rdfs:label "Doubs"@fr;
+  rcw:Region reg:27 .
+
+dep:26 a <departement>;
+  rdfs:label "Drôme"@fr;
+  rcw:Region reg:84 .
+
+dep:27 a <departement>;
+  rdfs:label "Eure"@fr;
+  rcw:Region reg:28 .
+
+dep:28 a <departement>;
+  rdfs:label "Eure-et-Loir"@fr;
+  rcw:Region reg:24 .
+
+dep:29 a <departement>;
+  rdfs:label "Finistère"@fr;
+  rcw:Region reg:53 .
+
+dep:2A a <departement>;
+  rdfs:label "Corse-du-Sud"@fr;
+  rcw:Region reg:94 .
+
+dep:2B a <departement>;
+  rdfs:label "Haute-Corse"@fr;
+  rcw:Region reg:94 .
+
+dep:30 a <departement>;
+  rdfs:label "Gard"@fr;
+  rcw:Region reg:76 .
+
+dep:31 a <departement>;
+  rdfs:label "Haute-Garonne"@fr;
+  rcw:Region reg:76 .
+
+dep:32 a <departement>;
+  rdfs:label "Gers"@fr;
+  rcw:Region reg:76 .
+
+dep:33 a <departement>;
+  rdfs:label "Gironde"@fr;
+  rcw:Region reg:75 .
+
+dep:34 a <departement>;
+  rdfs:label "Hérault"@fr;
+  rcw:Region reg:76 .
+
+dep:35 a <departement>;
+  rdfs:label "Ille-et-Vilaine"@fr;
+  rcw:Region reg:53 .
+
+dep:36 a <departement>;
+  rdfs:label "Indre"@fr;
+  rcw:Region reg:24 .
+
+dep:37 a <departement>;
+  rdfs:label "Indre-et-Loire"@fr;
+  rcw:Region reg:24 .
+
+dep:38 a <departement>;
+  rdfs:label "Isère"@fr;
+  rcw:Region reg:84 .
+
+dep:39 a <departement>;
+  rdfs:label "Jura"@fr;
+  rcw:Region reg:27 .
+
+dep:40 a <departement>;
+  rdfs:label "Landes"@fr;
+  rcw:Region reg:75 .
+
+dep:41 a <departement>;
+  rdfs:label "Loir-et-Cher"@fr;
+  rcw:Region reg:24 .
+
+dep:42 a <departement>;
+  rdfs:label "Loire"@fr;
+  rcw:Region reg:84 .
+
+dep:43 a <departement>;
+  rdfs:label "Haute-Loire"@fr;
+  rcw:Region reg:84 .
+
+dep:44 a <departement>;
+  rdfs:label "Loire-Atlantique"@fr;
+  rcw:Region reg:52 .
+
+dep:45 a <departement>;
+  rdfs:label "Loiret"@fr;
+  rcw:Region reg:24 .
+
+dep:46 a <departement>;
+  rdfs:label "Lot"@fr;
+  rcw:Region reg:76 .
+
+dep:47 a <departement>;
+  rdfs:label "Lot-et-Garonne"@fr;
+  rcw:Region reg:75 .
+
+dep:48 a <departement>;
+  rdfs:label "Lozère"@fr;
+  rcw:Region reg:76 .
+
+dep:49 a <departement>;
+  rdfs:label "Maine-et-Loire"@fr;
+  rcw:Region reg:52 .
+
+dep:50 a <departement>;
+  rdfs:label "Manche"@fr;
+  rcw:Region reg:28 .
+
+dep:51 a <departement>;
+  rdfs:label "Marne"@fr;
+  rcw:Region reg:44 .
+
+dep:52 a <departement>;
+  rdfs:label "Haute-Marne"@fr;
+  rcw:Region reg:44 .
+
+dep:53 a <departement>;
+  rdfs:label "Mayenne"@fr;
+  rcw:Region reg:52 .
+
+dep:54 a <departement>;
+  rdfs:label "Meurthe-et-Moselle"@fr;
+  rcw:Region reg:44 .
+
+dep:55 a <departement>;
+  rdfs:label "Meuse"@fr;
+  rcw:Region reg:44 .
+
+dep:56 a <departement>;
+  rdfs:label "Morbihan"@fr;
+  rcw:Region reg:53 .
+
+dep:57 a <departement>;
+  rdfs:label "Moselle"@fr;
+  rcw:Region reg:44 .
+
+dep:58 a <departement>;
+  rdfs:label "Nièvre"@fr;
+  rcw:Region reg:27 .
+
+dep:59 a <departement>;
+  rdfs:label "Nord"@fr;
+  rcw:Region reg:32 .
+
+dep:60 a <departement>;
+  rdfs:label "Oise"@fr;
+  rcw:Region reg:32 .
+
+dep:61 a <departement>;
+  rdfs:label "Orne"@fr;
+  rcw:Region reg:28 .
+
+dep:62 a <departement>;
+  rdfs:label "Pas-de-Calais"@fr;
+  rcw:Region reg:32 .
+
+dep:63 a <departement>;
+  rdfs:label "Puy-de-Dôme"@fr;
+  rcw:Region reg:84 .
+
+dep:64 a <departement>;
+  rdfs:label "Pyrénées-Atlantiques"@fr;
+  rcw:Region reg:75 .
+
+dep:65 a <departement>;
+  rdfs:label "Hautes-Pyrénées"@fr;
+  rcw:Region reg:76 .
+
+dep:66 a <departement>;
+  rdfs:label "Pyrénées-Orientales"@fr;
+  rcw:Region reg:76 .
+
+dep:67 a <departement>;
+  rdfs:label "Bas-Rhin"@fr;
+  rcw:Region reg:44 .
+
+dep:68 a <departement>;
+  rdfs:label "Haut-Rhin"@fr;
+  rcw:Region reg:44 .
+
+dep:69 a <departement>;
+  rdfs:label "Rhône"@fr;
+  rcw:Region reg:84 .
+
+dep:70 a <departement>;
+  rdfs:label "Haute-Saône"@fr;
+  rcw:Region reg:27 .
+
+dep:71 a <departement>;
+  rdfs:label "Saône-et-Loire"@fr;
+  rcw:Region reg:27 .
+
+dep:72 a <departement>;
+  rdfs:label "Sarthe"@fr;
+  rcw:Region reg:52 .
+
+dep:73 a <departement>;
+  rdfs:label "Savoie"@fr;
+  rcw:Region reg:84 .
+
+dep:74 a <departement>;
+  rdfs:label "Haute-Savoie"@fr;
+  rcw:Region reg:84 .
+
+dep:75 a <departement>;
+  rdfs:label "Paris"@fr;
+  rcw:Region reg:11 .
+
+dep:76 a <departement>;
+  rdfs:label "Seine-Maritime"@fr;
+  rcw:Region reg:28 .
+
+dep:77 a <departement>;
+  rdfs:label "Seine-et-Marne"@fr;
+  rcw:Region reg:11 .
+
+dep:78 a <departement>;
+  rdfs:label "Yvelines"@fr;
+  rcw:Region reg:11 .
+
+dep:79 a <departement>;
+  rdfs:label "Deux-Sèvres"@fr;
+  rcw:Region reg:75 .
+
+dep:80 a <departement>;
+  rdfs:label "Somme"@fr;
+  rcw:Region reg:32 .
+
+dep:81 a <departement>;
+  rdfs:label "Tarn"@fr;
+  rcw:Region reg:76 .
+
+dep:82 a <departement>;
+  rdfs:label "Tarn-et-Garonne"@fr;
+  rcw:Region reg:76 .
+
+dep:83 a <departement>;
+  rdfs:label "Var"@fr;
+  rcw:Region reg:93 .
+
+dep:84 a <departement>;
+  rdfs:label "Vaucluse"@fr;
+  rcw:Region reg:93 .
+
+dep:85 a <departement>;
+  rdfs:label "Vendée"@fr;
+  rcw:Region reg:52 .
+
+dep:86 a <departement>;
+  rdfs:label "Vienne"@fr;
+  rcw:Region reg:75 .
+
+dep:87 a <departement>;
+  rdfs:label "Haute-Vienne"@fr;
+  rcw:Region reg:75 .
+
+dep:88 a <departement>;
+  rdfs:label "Vosges"@fr;
+  rcw:Region reg:44 .
+
+dep:89 a <departement>;
+  rdfs:label "Yonne"@fr;
+  rcw:Region reg:27 .
+
+dep:90 a <departement>;
+  rdfs:label "Territoire de Belfort"@fr;
+  rcw:Region reg:27 .
+
+dep:91 a <departement>;
+  rdfs:label "Essonne"@fr;
+  rcw:Region reg:11 .
+
+dep:92 a <departement>;
+  rdfs:label "Hauts-de-Seine"@fr;
+  rcw:Region reg:11 .
+
+dep:93 a <departement>;
+  rdfs:label "Seine-Saint-Denis"@fr;
+  rcw:Region reg:11 .
+
+dep:94 a <departement>;
+  rdfs:label "Val-de-Marne"@fr;
+  rcw:Region reg:11 .
+
+dep:95 a <departement>;
+  rdfs:label "Val-d'Oise"@fr;
+  rcw:Region reg:11 .
+
+dep:971 a <departement>;
+  rdfs:label "Guadeloupe"@fr;
+  rcw:Region reg:1 .
+
+dep:972 a <departement>;
+  rdfs:label "Martinique"@fr;
+  rcw:Region reg:2 .
+
+dep:973 a <departement>;
+  rdfs:label "Guyane"@fr;
+  rcw:Region reg:3 .
+
+dep:974 a <departement>;
+  rdfs:label "La Réunion"@fr;
+  rcw:Region reg:4 .
+
+dep:976 a <departement>;
+  rdfs:label "Mayotte"@fr;
+  rcw:Region reg:6 .
