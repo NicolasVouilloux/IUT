@@ -1,0 +1,106 @@
+Q1. a.
+
+<https://cours.iut-orsay.fr/iws/cours1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://cours.iut-orsay.fr/iws/Module> .
+<https://cours.iut-orsay.fr/iws/cours1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#label> "Introduction au Web Sémantique"@fr .
+<https://cours.iut-orsay.fr/iws/cours1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#label> "Knowledge Graphs"@en .
+<https://cours.iut-orsay.fr/iws/cours1> <https://cours.iut-orsay.fr/iws/enseignéA> <https://cours.iut-orsay.fr/iws/uni1> .
+<https://cours.iut-orsay.fr/iws/uni1> <https://cours.iut-orsay.fr/iws/enseignéA> <https://cours.iut-orsay.fr/iws/uni1> .
+
+
+--------
+
+Q1. b.
+
+@prefix iut: <https://cours.iut-orsay.fr/iws/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+iut:module1 a iut:Module ;
+    iut:enseignéA a iut:uni1 ;
+    rdfs:label "Introduction au Web Sémantique"@fr , "Knowledge Graphs"@en .
+
+iut:uni1 a iut:Université ;
+    rdfs:label "IUT Orsay"@fr .
+
+# dans la syntaxe turtle chaque triplet doit finir par un point (.)
+# quand le sujet du triplet suivant ne change pas, on peut remplacer le point (.) par un point-virgule (;) pour éviter d'écrire le même sujet
+# quand le sujet et le prédicat du triplet suivant ne changent pas, on peut remplacer le point (.) par une virgule (,) pour éviter d'écrire le même sujet et le même prédicat
+# convention de nommage des IRIs : le nom des classes commencent par une lettre majuscule, et le nom des instances et propriétés commencent par une lettre miniscule 
+
+--------
+
+Q2. a.
+
+@prefix iut: <https://cours.iut-orsay.fr/iws/tp1/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+iut:obama rdfs:label "Barack Obama" ;
+    rdf:type iut:PoliticianUSA;
+    iut:prénom "Barack";
+    iut:nom "Obama";
+    iut:dateDeNaissance "1961-08-04"^^xsd:date ;
+    iut:placeDeNaissance iut:honolulu ;
+	iut:aFonction iut:fonction1, iut:fonction2 .
+
+iut:honolulu rdfs:label "Honolulu" ;
+    rdf:type iut:Ville ;
+    iut:capitaleDe iut:hawaii .
+
+iut:hawaii rdfs:label "Hawaii" ;
+    rdf:type iut:ÉtatUSA .
+
+iut:fonction1 rdf:type iut:SénateurUSA ;
+	rdfs:label "mandat de sénateur"	;
+	iut:dateDébut "2005-01-04"^^xsd:date ;
+	iut:dateFin "2008-11-16"^^xsd:date .
+
+iut:fonction2 rdf:type iut:PrésidentUSA ;
+	rdfs:label "mandat de président"	;
+	iut:dateDébut "2009-01-20"^^xsd:date ;
+	iut:dateFin "2017-01-20"^^xsd:date .   
+
+# on pourra aussi ajouter le triplet suivant pour indiquer tous les politiciens américains sont des politiciens 
+
+iut:PoliticienUSA rdfs:subClassOf iut:Politicien .
+
+--------
+
+Q2. b.
+
+- Les classes sont : iut:PoliticienUSA, iut:Ville, iut:ÉtatUSA, iut:SénateurUSA, iut:PrésidentUSA
+- Les instances sont : iut:obama, iut:usa, iut:honolulu, iut:hawaii, iut:fonction1, iut:fonction2
+- Les propriétés sont : rdfs:label, rdf:type, iut:nationalité, iut:prénom, iut:nom, iut:dateDeNaissance, iut:placeDeNaissance, iut:aFonction, iut:capitaleDe, iut:dateDébut, iut:dateFin
+
+--------
+
+Q3. a.
+
+iut:tabmasterPro12 a iut:Produit ;
+    rdfs:label "TabMaster Pro 12" ;
+    iut:prix "499.99"^^xsd:decimal ;
+    iut:dateMiseEnVente "2025-01-15"^^xsd:date ;
+    iut:disponibilité "en stock" ;
+    iut:nombreVendu "10452"^^xsd:integer .
+
+
+Q3. b.
+#Il est important de spécifier le type d’un littéral en RDF (par exemple ^^xsd:decimal ou ^^xsd:date) pour permettre une interprétation correcte des données par les systèmes RDF. Cela permet :
+#de distinguer un nombre d’une chaîne de caractères (ex. "42"^^xsd:integer vs. "42"),
+#d’effectuer des comparaisons, calculs ou tris logiques sur les données numériques ou temporelles,
+#d’assurer l’interopérabilité entre différents systèmes qui consomment ou manipulent les données RDF.
+
+Q4 
+
+iut:lisn a iut:laboratoireDeRecherche;
+    rdfs:label "Laboratoire Interdisciplinaire des Sciences du Numérique";
+    iut:accronyme "LISN";
+    rdfs:subClassOf iut:uni1
+    iut:directeur iut:rosset
+
+
+
+iut:rosset rdfs:label "Sophie Rosset";
+    iut:prénom "Sophie";
+    iut:nom "Rosset";

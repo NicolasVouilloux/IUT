@@ -1,0 +1,260 @@
+﻿id_universite;nom_universite;nom_court;date_creation;dep_id
+1;Centre de formation des journalistes;CFJ;1946;75
+2;École nationale supérieure de création industrielle - Les Ateliers;Ensci-Les Ateliers;1982;75
+3;École supérieure de journalisme de Lille;ESJ;;59
+4;École supérieure d'ingénieurs en génie électrique;ESIGELEC;1901;76
+5;Sciences Po Lille;IEP de Lille;1991;59
+6;Institut national supérieur de formation et de recherche pour l'éducation des jeunes handicapés et les enseignements adaptés;INS HEA;2006;92
+7;Institut national universitaire Jean-François Champollion;INU Albi;2002;81
+8;Institut supérieur du bâtiment et des travaux publics;ISBA-TP MARS;1952;13
+9;Le Mans Université;;1977;72
+10;Neoma Business School;;2013;76
+11;Centrale Lille Institut;;1854;59
+12;École nationale supérieure des métiers de l'image et du son;La Fémis;;75
+13;École nationale supérieure d'ingénieurs de Caen;ENSICAEN;1976;14
+14;École supérieure d'informatique électronique automatique;;1958;75
+15;École supérieure du bois;ESB Nantes;1934;44
+16;Institut catholique de Lyon;UCLY;1875;69
+17;Institut catholique de Paris;;1875;75
+18;Sciences Po Toulouse;IEP de Toulouse;1948;31
+19;Institut national du patrimoine;;1990;75
+20;Université Sorbonne Nouvelle - Paris 3;;1971;75
+21;Université Toulouse Capitole;UT1;1971;31
+22;Audencia;Audencia;1900;44
+23;École nationale supérieure de chimie de Rennes;ENS Chimie Rennes;1959;35
+24;École nationale vétérinaire d'Alfort;;1765;94
+25;École normale supérieure de Rennes;ENS de Rennes;2013;35
+26;Institut national des sciences appliquées de Rennes;INSA de Rennes;1966;35
+27;Skema Business School;Skema;2009;59
+28;Université Paris sciences et lettres;Université PSL;2019;75
+29;Centre national des arts du cirque;CNAC;;51
+30;Edhec Business School;;1906;59
+31;École nationale d'ingénieurs de Tarbes;ENI Tarbes;1963;65
+32;École nationale supérieure d'architecture de Toulouse;ENSA Toulouse;;31
+33;École nationale supérieure des arts décoratifs;ÉnsAD-Paris;;75
+34;Institut catholique de Lille;;1973;59
+35;Sciences Po Rennes;IEP de Rennes;1991;35
+36;Institut d'ingénierie informatique de Limoges;3IL;1987;87
+37;Institut national des sciences appliquées de Lyon;INSA de Lyon;1957;69
+38;Institut national des sciences appliquées de Strasbourg;INSA de Strasbourg;2003;67
+39;Toulouse INP;Toulouse INP;1969;31
+40;Institut protestant de théologie;IPT;;75
+41;Université de Rouen Normandie;;1971;76
+42;Université de technologie de Belfort-Montbéliard;;1999;90
+43;Université Paris-Est Créteil;;1971;94
+44;Centre des hautes études de la construction;;;94
+45;Centrale Nantes;;1991;44
+46;École de biologie industrielle;EBI;1992;95
+47;École supérieure de fonderie et de forge;ESFF;1923;92
+48;Institut national d'enseignement supérieur pour l'agriculture, l'alimentation et l'environnement;Institut Agro;2019;75
+49;Institut supérieur des arts de Toulouse;ISDAT;;31
+50;KEDGE Business School;KEDGE BS;2013;33
+51;Université de Nîmes;UNÎMES;2007;30
+52;Université Sorbonne Paris Nord;;1971;93
+53;Collège de France;;1530;75
+54;École des hautes études commerciales de Paris;HEC Paris;1881;78
+55;École normale supérieure de Lyon;ENS de Lyon;2010;69
+56;École supérieure des sciences commerciales d'Angers;;;49
+57;École supérieure d'ingénieurs des travaux de la construction de Metz;ESITC de Metz;1992;57
+58;Institut polytechnique des sciences avancées;IPSA;1963;94
+59;Institut supérieur d'électronique de Paris;;1955;75
+60;Université de Rennes 1;;1971;35
+61;École nationale des sciences géographiques;ENSG-Géomatique;1941;77
+62;École nationale du génie de l'eau et de l'environnement de Strasbourg;;1952;67
+63;École nationale supérieure de l'électronique et de ses applications de Cergy;;1975;95
+64;Institut Sup'Biotech de Paris;Sup'Biotech;2003;94
+65;Institut supérieur du commerce de Paris;ISC Paris Business School;;75
+66;Rennes School of Business;Rennes SB;1990;35
+67;Université Bordeaux Montaigne;UBM;1971;33
+68;Université Paul-Valéry - Montpellier 3;;1971;34
+69;Junia;;2013;59
+70;École des hautes études en sciences sociales;EHESS;1975;75
+71;École nationale supérieure de formation de l’enseignement agricole;;;31
+72;École nationale supérieure de paysage;ENSP;1976;78
+73;Sciences Po Aix;IEP d'Aix-en-Provence;1956;13
+74;Sciences Po Bordeaux;IEP de Bordeaux;1948;33
+75;Institut national des sciences et techniques nucléaires;INSTN;1956;91
+76;Institut polytechnique de Paris;IP Paris;2019;91
+77;Toulouse Business School;TBS;;31
+78;Université de Paris;;2019;75
+79;Université de Pau et des Pays de l'Adour;;1971;64
+80;Université de technologie de Compiègne;UTC;1972;60
+81;Aix-Marseille Université;AMU;2012;13
+82;Centre universitaire de Mayotte;CU de Mayotte;2011;976
+83;École du Louvre;EDL;1882;75
+84;École nationale d'ingénieurs de Brest;;1961;29
+85;École nationale supérieure des beaux-arts;ENSBA;;75
+86;École nationale vétérinaire, agroalimentaire et de l'alimentation, Nantes-Atlantique;;2010;44
+87;Excelia Group;;1988;17
+88;Haute école des arts du Rhin;HEAR;;67
+89;Bordeaux INP;;2009;33
+90;Institut textile et chimique;ITECH;1988;69
+91;Université de Haute-Alsace;;1975;68
+92;Université de La Réunion;;1982;974
+93;Université Toulouse III - Paul Sabatier;;1970;31
+94;Université d'Orléans;;1971;45
+95;Université Paris 8 - Vincennes - Saint-Denis;;1971;93
+96;Institut français de la mode;;;75
+97;École nationale de la météorologie;ENM;1948;31
+98;École nationale supérieure des arts et industries textiles;;1881;59
+99;École navale;;1827;29
+100;École supérieure d'art et de design d'Amiens;Ésad Amiens;;80
+101;École supérieure de chimie physique électronique de Lyon;CPE Lyon;1994;69
+102;École supérieure d'électronique de l'Ouest;ESEO;1956;49
+103;Groupe Institut catholique d'arts et métiers;Groupe ICAM;1898;75
+104;Institut national des langues et civilisations orientales;INALCO;1669;75
+105;Institut supérieur d’agriculture Rhône-Alpes;Isara-Lyon;1968;69
+106;ISAE-Supméca;;1990;93
+107;ISMANS;;1987;72
+108;Université Panthéon-Assas;;1971;75
+109;Université Paris Nanterre;;1971;92
+110;Université Savoie Mont Blanc;;1979;73
+111;Centrale Lyon;EC Lyon;1857;69
+112;École nationale supérieure de mécanique et d'aérotechnique de Poitiers;ISAE-ENSMA;1948;86
+113;École supérieure d'ingénieurs des travaux de la construction de Paris;ESITC Paris;1992;94
+114;Institut européen d'administration des affaires;;;77
+115;Institut national d'histoire de l'art;;2001;75
+116;Université Clermont Auvergne;;2020;63
+117;Université Paris-Saclay;;2019;91
+118;École nationale supérieure Louis Lumière;ENSLL;1926;93
+119;École spéciale des travaux publics, du bâtiment et de l'industrie;ESTP;1891;94
+120;École supérieure des technologies industrielles avancées;ESTIA;1996;64
+121;EPF - École d'ingénieurs;EPF;1925;92
+122;Université de Caen Normandie;UNICAEN;1971;14
+123;Université de Strasbourg;;2009;67
+124;Université de technologie de Troyes;;1994;10
+125;Université d'Évry-Val-d'Essonne;;1991;91
+126;Université Polytechnique Hauts-de-France;UPHF;2019;59
+127;CESI;;1958;92
+128;École nationale d'administration;;1945;67
+129;École nationale supérieure d’architecture de Versailles;ENSA-V;1969;78
+130;École supérieure d'art et de design de Reims;ESAD Reims;;51
+131;ESCP Business School;;1819;75
+132;Institut supérieur de l'électronique et du numérique de Brest;Yncréa Ouest;1994;29
+133;Muséum national d'histoire naturelle;;1793;75
+134;Pôle supérieur d'enseignement artistique Paris - Boulogne-Billancourt;PSPBB;;75
+135;Université de Picardie Jules-Verne;;1971;80
+136;Université de Reims Champagne-Ardenne;URCA;1971;51
+137;Université de Toulon;;1979;83
+138;École spéciale d'architecture;;1865;75
+139;Centre de ressources, d'expertise et de performance sportives de Toulouse;CREPS Toulouse;;31
+140;École supérieure angevine en informatique et productique;ESAIP;1987;49
+141;Facultés Libres de Philosophie et de Psychologie;IPC;;75
+142;Itescia;Itescia;;95
+143;Université de Guyane;;2015;973
+144;Université de Versailles Saint-Quentin-en-Yvelines;UVSQ;1991;78
+145;Université du Littoral Côte d’Opale;ULCO;1991;59
+146;Y SCHOOLS;Y SCHOOLS;;10
+147;École spéciale militaire de Saint-Cyr;ESM ST CYR;1802;56
+148;ICN Business School;;;54
+149;Institut catholique de Toulouse;;1876;31
+150;Institut catholique de Vendée;ICES;1990;85
+151;Institut national des sciences appliquées de Toulouse;INSA de Toulouse;1961;31
+152;Université de Franche-Comté;UFC;1971;25
+153;Université de Lorraine;;2012;54
+154;Université de Nantes;;1962;44
+155;École supérieure des technologies et des affaires de Belfort;ESTA Belfort;1986;90
+156;École nationale supérieure d'architecture de Paris-La Villette;ENSAPLV;;75
+157;École nationale supérieure d'informatique pour l'industrie et l'entreprise;;2006;91
+158;École supérieure de chimie organique et minérale;;1969;60
+159;Institut polytechnique UniLaSalle;UniLaSalle;2006;60
+160;Université Claude Bernard - Lyon 1;;1971;69
+161;Université de Perpignan Via Domitia;;1979;66
+162;Institut Mines-Télécom, au périmètre des écoles IMT Atlantique, Lille Douai, Albi, Alès, Mines Saint-Étienne et Institut Mines-Télécom Business school;;2012;91
+163;ECAM-EPMI;ECAM-EPMI;1992;95
+164;École d'ingénieur généraliste en informatique et technologies du numérique;EFREI Paris;2017;94
+165;École nationale supérieure des sciences agronomiques de Bordeaux Aquitaine;Bordeaux Sciences Agro;1963;33
+166;École nationale supérieure maritime;;2010;76
+167;École nationale vétérinaire de Toulouse;;1825;31
+168;École pour l'informatique et les techniques avancées;EPITA;1984;94
+169;ESIEE Paris;ESIEE Paris;1968;93
+170;Vet Agro Sup;Vet Agro Sup;2010;69
+171;Institut régional du travail social de Champagne-Ardennes;IRTS Champagne-Ardenne;;51
+172;Institut supérieur de l'aéronautique et de l'espace;ISAE-SUPAERO;2007;31
+173;Université de Lille;;2018;59
+174;Université de Limoges;;1971;87
+175;Université de Montpellier;;2015;34
+176;Université de Tours;;1971;37
+177;Université des Antilles;;2015;971
+178;Université Grenoble Alpes;;2019;38
+179;Université Lumière - Lyon 2;;1973;69
+180;Yncréa Méditerranée;Yncréa Méditerranée;;83
+181;École nationale supérieure d'architecture de Normandie;Ensa de Normandie;;76
+182;École nationale supérieure d'arts de Paris-Cergy;ENSAPC;;95
+183;École nationale supérieure des sciences de l'information et des bibliothèques;;1992;69
+184;École nationale supérieure du pétrole et des moteurs;IFP school;1954;92
+185;Hautes études d'ingénieur;;1885;59
+186;Institut national du sport, de l'expertise et de la performance;;;75
+187;IPAG Business School;;;75
+188;Université Jean Moulin - Lyon 3;;1973;69
+189;Avignon Université;AU;1984;84
+190;École d'ingénieurs des sciences aérospatiales;ELISA;2009;2
+191;École d'ingénieurs en génie des systèmes industriels;EIGSI;1990;17
+192;École nationale supérieure d'architecture de Paris-Malaquais;ENSAPM;;75
+193;École nationale supérieure d'architecture de Strasbourg;ENSAS;1922;67
+194;École nationale supérieure des arts et techniques du théâtre;;1941;69
+195;Université de Bourgogne;;1971;21
+196;Université Bretagne Sud;UBS;1995;56
+197;Brest Business School;Brest BS;1962;29
+198;Arts et Métiers Sciences et Technologies;Arts et Métiers;1780;75
+199;École nationale supérieure de chimie de Montpellier;ENS Chimie Montpellier;1889;34
+200;École spéciale de mécanique et d'électricité;ESME Sudria;1905;94
+201;Institut d'économie scientifique et de gestion;IÉSEG;1964;59
+202;Institut des relations publiques et de la communication d’Angers;Ircom;;49
+203;Université de Bretagne Occidentale;;1971;29
+204;Université Toulouse - Jean Jaurès;;1971;31
+205;Conservatoire national des arts et métiers;CNAM;1794;75
+206;Centrale Marseille;;2003;13
+207;École centrale d'électronique;ECE;1909;75
+208;École d'ingénieurs de Purpan;EI Purpan;1919;31
+209;École supérieure des sciences économiques et commerciales;;;95
+210;École supérieure des techniques aéronautiques et de construction automobile;ESTACA;1925;78
+211;École supérieure d'ingénieurs Léonard-de-Vinci;ESILV;1994;92
+212;Institut catholique de Rennes;;;35
+213;Sciences Po;IEP de Paris;1945;75
+214;Agrosup Dijon;Agrosup Dijon;2009;21
+215;MBS;;1992;34
+216;Université de Corse Pasquale Paoli;;1975;2B
+217;Université Paris 1 - Panthéon Sorbonne;Paris 1;1971;75
+218;Conservatoire national supérieur de musique et de danse de Paris;CNSMDP;;75
+219;École d'ingénieur d'agro-développement international;ISTOM;1908;49
+220;École nationale supérieure d'architecture de Paris-Belleville;ENSAPB;;75
+221;École nationale supérieure de techniques avancées Bretagne;ENSTA Bretagne;1975;29
+222;Institut supérieur d'agriculture de Lille;ISA Lille;1963;59
+223;IAE Paris - Sorbonne Business School;;1956;75
+224;Sciences Po Lyon;IEP de Lyon;1948;69
+225;Institut national des sciences appliquées Centre Val de Loire;INSA Centre Val de Loire;2014;18
+226;Sorbonne Université;Sorbonne U;2018;75
+227;Université de Bordeaux;UBx;2014;33
+228;Université Gustave Eiffel;;2020;77
+229;École catholique des arts et métiers;ECAM Lasalle;1900;69
+230;École de management de Normandie;EM Normandie;;76
+231;École de management Léonard De Vinci;EMLV;;92
+232;École nationale supérieure d'architecture de Clermont-Ferrand;ENSACF;;63
+233;École supérieure d’agriculture;ESA;1898;49
+234;École supérieure d'art et design Le Havre-Rouen;ESADHaR;;76
+235;École supérieure d'arts et médias de Caen - Cherbourg;ÉSAM Caen/Cherbourg;;14
+236;Burgundy School of Business;;;21
+237;École supérieure d'ingénieurs des travaux de la construction de Caen;;1993;14
+238;École supérieure d'ingénieurs en électronique et électrotechnique d'Amiens;ESIEE Amiens;1992;80
+239;Institut de management et de communication interculturels;ISIT Paris;1957;75
+240;Université de Poitiers;;1431;86
+241;Ecole de l'air et de l'espace;;1935;13
+242;École française d'Extrême-Orient;;1898;75
+243;École nationale de l'aviation civile;ENAC;1949;31
+244;École nationale des ponts et chaussées;;1747;77
+245;Institut national des sciences appliquées de Rouen Normandie;INSA Rouen Normandie;1985;76
+246;Université d'Angers;;1972;49
+247;Université d'Artois;;1991;62
+248;CY Cergy Paris Université;;2019;95
+249;ECAM Rennes Louis de Broglie;ECAM Rennes;1991;35
+250;École des hautes études en santé publique;EHESP;1945;35
+251;École nationale des travaux publics de l'État;;1954;69
+252;École nationale supérieure de mécanique et des microtechniques;ENSMM Besançon;1980;25
+253;Facultés libres de l'Ouest;FLO;1875;49
+254;Institut supérieur international du parfum, de la cosmétique et de l'aromatique alimentaire;ISIPCA;;78
+255;La Rochelle Université;;1993;17
+256;Université Côte d'Azur;;2019;6
+257;Université Le Havre Normandie;;1984;76
+258;Université Jean Monnet;;1969;42
+259;Université Rennes 2;;1971;35

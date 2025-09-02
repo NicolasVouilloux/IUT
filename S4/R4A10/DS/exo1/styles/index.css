@@ -1,0 +1,122 @@
+@charset "utf-8";
+/* ------------------------------------------------------------- */
+/* ------------------------------------------------------------- */
+*{
+	margin  : 0;
+	padding : 0;
+}
+/* ------------------------------------------------------------- */
+header{
+	margin           : 2rem;
+	padding          : 1rem;
+	background-color : #CCC;
+	border-radius    : 10px;
+	text-align       : center;
+}
+header h1{
+	font-size : 3.5rem;
+}
+header h2{
+	font-size : 3rem;
+}
+header p{
+	font-size : 1.5rem;
+}
+/* ------------------------------------------------------------- */
+main{
+	margin           : 0 3rem;	
+}
+main section{
+	margin-bottom : 2rem;
+}
+main h1{
+	margin          : 1rem 2rem 2rem 2rem;
+	font-size       : 2.2rem;
+	text-decoration : underline;
+}
+main h2{
+	font-size       : 1.8rem;
+	text-decoration : underline;
+	margin-bottom   : 1rem;
+}
+main p{
+	margin      : 1rem;
+	text-indent : 3rem;
+	font-size   : 1rem;
+}
+main .capture {
+	display:block;
+	margin:1rem auto;
+	padding:1rem;
+	border:2px solid lime;
+	border-radius:0.5rem;
+}
+main ol, main ul{
+	padding-left : 2rem;
+}
+main ol p, main ul p{
+	text-indent : 0rem;
+}
+/* ------------------------------------------------------------- */
+footer{
+	background-color : #CCC;
+	padding          : 0.5rem 1.5rem;
+}
+footer p{
+	text-align : right;
+}
+footer address p{
+	text-align : center;
+}
+/* ----------------------- css du tableau -------------------------- */
+
+main table, main table td, main table th {
+	padding         : 5px;          
+	text-align      : center;       
+	vertical-align  : center;       
+}
+main table thead {
+	background  : black;
+	color       : white;
+	font-weight : bold;
+}
+main table tfoot td{
+	background  : cornsilk;
+	color       : SaddleBrown;
+	font-weight : bold;
+}
+main table tbody tr:nth-child(odd){
+	background  : SeaShell;
+}
+main table tbody tr:nth-child(even){
+	background  : AliceBlue;
+}
+main table tbody tr th{
+	font-weight : bold;
+}
+main table tbody th[rowspan]{
+	background  : MistyRose;
+}
+main table tbody td[rowspan]{
+	background  : LightPink;
+}
+main table tbody td[colspan]{
+	background  : Plum;
+}
+main table tbody td[rowspan][colspan]{
+	background  : LightCoral;
+}
+main table caption{
+	caption-side : bottom;
+	font-weight  : bold;
+	background   : PapayaWhip;
+}
+main table {
+	margin : 0 auto;
+}
+/* ------------------------------------------------------------- */
+.incorrecte{
+	font-weight : bold;
+	color       : red;
+}
+/* ------------------------------------------------------------- */

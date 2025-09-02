@@ -1,0 +1,47 @@
+
+/* ----------------------- css du tableau -------------------------- */
+
+main table, main table td, main table th {
+	padding         : 5px;          
+	text-align      : center;       
+	vertical-align  : center;       
+}
+main table thead th, main table tfoot th{
+	background  : black;
+	color       : white;
+	font-weight : bold;
+}
+main table tfoot td{
+	background  : cornsilk;
+	color       : SaddleBrown;
+	font-weight : bold;
+}
+main table tbody tr:nth-child(odd){
+	background  : SeaShell;
+}
+main table tbody tr:nth-child(even){
+	background  : AliceBlue;
+}
+main table tbody tr th{
+	font-weight : bold;
+}
+main table tbody th[rowspan]{
+	background  : MistyRose;
+}
+main table tbody td[rowspan]{
+	background  : LightPink;
+}
+main table tbody td[colspan]{
+	background  : Plum;
+}
+main table tbody td[rowspan][colspan]{
+	background  : LightCoral;
+}
+main table caption{
+	caption-side : bottom;
+	font-weight  : bold;
+	background   : PapayaWhip;
+}
+main table {
+	margin : 0 auto;
+}

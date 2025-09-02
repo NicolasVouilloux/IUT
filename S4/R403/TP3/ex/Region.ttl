@@ -1,0 +1,54 @@
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix iut: <https://cours.iut-orsay.fr/iws/> .
+@prefix reg: <https://cours.iut-orsay.fr/iws/region/> .
+@prefix dep: <https://cours.iut-orsay.fr/iws/departement/> .
+@prefix com: <https://cours.iut-orsay.fr/iws/commune/> .
+@prefix uni: <https://cours.iut-orsay.fr/iws/universite/> .
+
+
+reg:1 a iut:Région;
+  iut:nom "Guadeloupe"@fr .
+
+reg:2 a iut:Région;
+  iut:nom "Martinique"@fr .
+
+reg:3 a iut:Région;
+  iut:nom "Guyane"@fr .
+
+reg:4 a iut:Région;
+  iut:nom "La Réunion"@fr .
+
+reg:6 a iut:Région;
+  iut:nom "Mayotte"@fr .
+
+reg:11 a iut:Région;
+  iut:nom "Île-de-France"@fr .
+
+
+
+reg:11 a iut:Région;
+  iut:nom "Île-de-France"@fr ;
+  iut:comprend dep:91 .
+
+dep:91 a iut:Département;
+  iut:nom "Essonne"@fr;
+  iut:code "91" ;
+  iut:comprend com:91471, uni:117 .
+
+com:91471 a iut:Commune;
+  iut:nom "Orsay"@fr;
+  iut:code "91471" .
+
+uni:117 a iut:Université;
+  iut:nom "Université Paris-Saclay"@fr;
+  iut:annéeDeCréation "2019"^^xsd:gYear;
+  iut:code "117" .
+
+
+iut:Région rdfs:subClassOf iut:CollectivitéTerritoriale .
+iut:Département rdfs:subClassOf iut:CollectivitéTerritoriale .
+iut:Commune rdfs:subClassOf iut:CollectivitéTerritoriale .
+iut:Université rdfs:subClassOf iut:Établissement .

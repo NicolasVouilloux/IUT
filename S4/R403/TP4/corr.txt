@@ -1,0 +1,98 @@
+----------------------------------------Q4
+---------------------a)
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX iut: <https://cours.iut-orsay.fr/iws/>
+
+SELECT ?regName
+WHERE {
+     ?reg rdf:type iut:Région;
+    	iut:nom ?regName
+} limit 100
+
+---------------------b)
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX iut: <https://cours.iut-orsay.fr/iws/>
+
+SELECT ?AnneeCrea
+WHERE {
+     ?reg rdf:type iut:Université;
+		iut:annéeDeCréation ?AnneeCrea;
+    	iut:nom ?NomUni
+    FILTER(?NomUni = "Université Paris-Saclay"@fr)
+} limit 100
+
+--------------------------------------Q5)
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX iut: <https://cours.iut-orsay.fr/iws/>
+
+SELECT ?nomDep
+WHERE {
+    ?reg a iut:Région;
+		iut:nom ?regNom;
+    	iut:comprend ?dep.
+    
+    ?dep a iut:Département;
+    	iut:nom ?nomDep;
+ 		
+    
+    FILTER(?regNom = "Île-de-France"@fr)
+} limit 100
+
+--------------------------------------Q6)
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX iut: <https://cours.iut-orsay.fr/iws/>
+
+SELECT ?uniNom
+WHERE {
+    ?uni a iut:Université;
+		iut:nom ?uniNom;
+    	iut:annéeDeCréation ?uniDateCrea.
+    
+    FILTER(Year(?uniDateCrea) >= 1800 && Year(?uniDateCrea) <=1900)
+}
+ORDER BY(?uniDateCrea)
+limit 100
+
+--------------------------------------Q7)
+
+SELECT ?nomUni ?anneeCrea WHERE {
+  ?universite a iut:Université ;
+              iut:nom ?nomUni ;
+              iut:annéeDeCréation ?anneeCrea .
+  FILTER(STRSTARTS(?nomUniversite, "Institut"))
+}
+
+--------------------------------------Q8)
+
+SELECT * WHERE {
+	?uni a iut:Université ;
+    iut:nomCourt "HEC Paris"@fr ;
+    ?predicat  ?objet .
+    
+}
+
+--------------------------------------Q9)
+
+PREFIX iut: <https://cours.iut-orsay.fr/iws/>
+SELECT ?nomUni ?nomCourt
+WHERE {
+    ?reg a iut:Région;
+		iut:nom ?regNom;
+    	iut:comprend ?dep.
+    
+    ?dep a iut:Département;
+    	iut:nom ?nomDep;
+ 		iut:comprend ?uni.
+    
+    ?uni a iut:Université;
+    	iut:nom ?nomUni.
+ 		
+    FILTER(?regNom = "Île-de-France"@fr)
+    OPTIONAL{ ?uni iut:nomCourt ?nomCourt . }
+} limit 100
+
+--------------------------------------Q10)
+

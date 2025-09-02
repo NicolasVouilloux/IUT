@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<title>r4a10 - exo</title>
+		<link rel="stylesheet" href="./styles/index.css" />
+		<script src="./scripts/index.js"></script> 
+	</head>
+	<body>
+		<header>
+			<h1>R4A10 - Exo</h1>
+			<h2>Calculette simplifiée</h2>
+			<p>Ales-Bianchetti Jacques,  IUT-Orsay</p>
+		</header>
+		<main>
+
+			<section>
+				<h1>Ennoncé</h1>
+
+				<article>
+					<h2>La calculette</h2>
+					<ol>
+						<li>
+							<p>
+								Vous devez contruire une calculette très simpliée.
+								Elle permet de :
+							</p>
+							<ul>
+								<li>
+									<p>
+										Saisir des nombres entiers, 
+										chiffre par chiffre
+									</p>
+								</li>
+								<li>
+									<p>
+										Saisir des opérations parmis 
+										les quatres basiques :
+										addition, soustraction, multiplication,
+										division
+									</p>
+								</li>
+								<li>
+									<p>
+										De demander le calcul d'une expression
+										ainsi construite
+									</p>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<p>	
+								Le comportement attendu est illustré 
+								par les captures suivantes
+							</p>
+						</li>
+					</ol>
+					<div class="captures">
+						clic sur <code>1</code>, puis <code>2</code><br> 
+						<img src="im01.png"/> <br>
+						clic sur <code>-</code>, puis <code>2</code><br> 
+						<img src="im02.png"/> <br>
+						clic sur <code>=</code><br> 
+						<img src="im03.png"/> <br>
+						clic sur <code>Reset</code><br> 
+						<img src="im04.png"/>
+					</div>
+				</article>
+
+				<article>
+					<h2>Remarques</h2>
+					<ul>
+						<li>
+							<p>
+								On supposera que l'expression saisie par 
+								l'utilisateur est correcte. Ainsi, par exemple,
+								il ne demandera pas d'évaluer <code>3*/2-</code>
+							</p>
+							<p>
+								Vous pouvez donc vous disposer de controler 
+								l'expression saisie avant de l'évaluer
+							</p>
+						</li>
+						<li>
+							<p>
+								Vous pouvez utiliser la fonction <code>eval()</code> ;
+								Celle-ci recoit une expression <code>javascript</code>,
+								l'execute, et retourne la valeur correspondante
+							</p>
+							<p>
+								Ainsi <code>eval("2+2")</code> retourne <code>4</code>
+							</p>
+						</li>
+					</ul>
+				</article>
+
+			</section>
+			<section>
+
+				<h1>Base gracieusement offerte</h1>
+				
+				<article>
+
+					<div id="calculette">
+						<div id="nb_&_op" class="chiffres_et_operations">
+						<div id="cmd_&_log" class="commandes_et_affichage">
+							<button id="Reset"> Reset </button>
+							<input id="input">
+							<button id="Equals"> = </button>
+						</div>
+					</div>
+					
+				</article>
+
+			</section>
+			
+		</main>
+		<footer>
+			<p>2024-2025</p>
+			<address>
+				<p>IUT D'Orsay - 13 avenue des Sciences - 91190 Gif-sur-Yvette | FRANCE</p>
+				<p><a href="https://www.iut-orsay.universite-paris-saclay.fr/">site web</a></p>
+			</address>
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,78 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix paris: <http://example.org/paris/> .
+
+# Définition de Paris
+paris:Paris a geo:Feature ;
+    rdfs:label "Paris"@fr ;
+    geo:hasGeometry paris:ParisGeometry .
+
+paris:ParisGeometry a geo:Geometry ;
+    geo:asWKT "POLYGON((2.25 48.8, 2.42 48.8, 2.42 48.92, 2.25 48.92, 2.25 48.8))"^^geo:wktLiteral .
+
+# Lieux emblématiques
+paris:TourEiffel a geo:Feature ;
+    rdfs:label "Tour Eiffel"@fr ;
+    geo:hasGeometry paris:TourEiffelGeometry ;
+    geo:sfWithin paris:Paris .
+
+paris:TourEiffelGeometry a geo:Point ;
+    geo:asWKT "POINT(2.2945 48.8584)"^^geo:wktLiteral .
+
+paris:Louvre a geo:Feature ;
+    rdfs:label "Musée du Louvre"@fr ;
+    geo:hasGeometry paris:LouvreGeometry ;
+    geo:sfWithin paris:Paris .
+
+paris:LouvreGeometry a geo:Point ;
+    geo:asWKT "POINT(2.3376 48.8606)"^^geo:wktLiteral .
+
+paris:Orsay a geo:Feature ;
+    rdfs:label "Musée d'Orsay"@fr ;
+    geo:hasGeometry paris:OrsayGeometry ;
+    geo:sfWithin paris:Paris .
+
+paris:OrsayGeometry a geo:Point ;
+    geo:asWKT "POINT(2.3266 48.8599)"^^geo:wktLiteral .
+
+paris:TourMontparnasse a geo:Feature ;
+    rdfs:label "Tour Montparnasse"@fr ;
+    geo:hasGeometry paris:TourMontparnasseGeometry ;
+    geo:sfWithin paris:Paris .
+
+paris:TourMontparnasseGeometry a geo:Point ;
+    geo:asWKT "POINT(2.3213 48.8421)"^^geo:wktLiteral .
+
+paris:Pantheon a geo:Feature ;
+    rdfs:label "Panthéon"@fr ;
+    geo:hasGeometry paris:PantheonGeometry ;
+    geo:sfWithin paris:Paris .
+
+paris:PantheonGeometry a geo:Point ;
+    geo:asWKT "POINT(2.3460 48.8462)"^^geo:wktLiteral .
+
+paris:JardinLuxembourg a geo:Feature ;
+    rdfs:label "Jardin du Luxembourg"@fr ;
+    geo:hasGeometry paris:JardinLuxembourgGeometry ;
+    geo:sfWithin paris:Paris .
+
+paris:JardinLuxembourgGeometry a geo:Polygon ;
+    geo:asWKT "POLYGON((2.331 48.846, 2.334 48.846, 2.334 48.849, 2.331 48.849, 2.331 48.846))"^^geo:wktLiteral .
+
+paris:ChampsElysees a geo:Feature ;
+    rdfs:label "Champs-Élysées"@fr ;
+    geo:hasGeometry paris:ChampsElyseesGeometry ;
+    geo:sfWithin paris:Paris .
+
+paris:ChampsElyseesGeometry a geo:LineString ;
+    geo:asWKT "LINESTRING(2.298 48.872, 2.307 48.873, 2.313 48.874, 2.320 48.875, 2.327 48.876)"^^geo:wktLiteral .
+
+paris:Seine a geo:Feature ;
+    rdfs:label "La Seine"@fr ;
+    geo:hasGeometry paris:SeineGeometry ;
+    geo:sfCrosses paris:Paris .
+
+paris:SeineGeometry a geo:LineString ;
+    geo:asWKT "LINESTRING(2.25 48.83, 2.30 48.85, 2.35 48.86, 2.42 48.87)"^^geo:wktLiteral .

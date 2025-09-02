@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<title>r4a10 - exo</title>
+		<link rel="stylesheet" href="./styles/index.css" />
+		<script src="./scripts/index.js"></script> 
+	</head>
+	<body>
+		<header>
+			<h1>R4A10 - Exo</h1>
+			<h2>Remplissage du <code>main</code></h2>
+			<p>Ales-Bianchetti Jacques,  IUT-Orsay</p>
+		</header>
+		<main>
+
+			<section>
+				<h1>1) Ennoncé</h1>
+
+				<article>
+					<ol>
+						<li>
+							<p>
+Vous disposez dans votre fichier <code>index.js</code>, 
+contenant une variable <code>contenu_du_main</code> 
+correspondant à un objet <code>JSON</code>. 
+Cet objet décrit le contenu de la balise <code>main</code> 
+que le script doit construire lors du chargement 
+du document <code>html</code>
+							</p>
+						</li>
+						<li>
+							<p>
+Le document <code>html</code> continent la structure initiale requise :
+balises <code>html</code>, <code>head</code>, <code>body</code>, &hellip;
+Ces éléments ont tous les fils et attributs nécessaires pour la structure
+de base. Le document <code>html</code> contient une balise 
+<code>main</code>, mais celle-ci n'a aucun enfant.
+							</p>
+						</li>
+						<li>
+							<p>
+L'objet <code>contenu_du_main</code> est contruit de la façon suivante :
+							</p>
+						</li>
+						<ul>
+							<li>
+								<p>
+Chaque balise standard est représentée par un 
+<code>dict</code> dont les attributs sont :
+								</p>
+								<ul>
+									<li>
+										<p>
+<code>tag</code> : la string indiquant le tag de la balise
+										</p>
+									</li>
+									<li>
+										<p>
+<code>attributs</code> : la liste des paires 
+<code>[ nom d'attribut, valeur ]</code> portés par la balise
+										</p>
+									</li>
+									<li>
+										<p>
+<code>fils</code> : la liste des enfants de cette balise
+										</p>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<p>
+Chaque contenu textuel, comme par exemple le contenu d'un paragraphe
+<code>p</code> ou d'un titre <code>h1</code>, est représenté par un
+<code>dict</code> ayant un seul attribut :
+								</p>
+								<ul>
+									<li>
+										<p>
+<code>texte</code> : la string indiquant le texte voulu
+										</p>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<li>
+							<p>
+								Par exemple, on peut avoir la valeur suivante :
+							</p>
+<pre>
+let contenu_du_main = {
+   tag       : 'main',
+   attributs : [ ['class','joli'] ],
+   fils      : [
+      {
+         tag       : 'h1',
+         attributs : [],
+         fils      : [
+            { texte : 'titre un' }
+         ]
+      },      
+      {
+         tag       : 'section',
+         attributs : [],
+         fils      : [ 
+            {
+               tag       : 'article',
+               attributs : [],
+               fils      : [ 
+                  {
+                     tag       : 'h2',
+                     attributs : [],
+                     fils      : [ 
+                        { texte : 'titre deux' }
+                     ]
+                  },
+                  {
+                     tag       : 'p',
+                     attributs : [],
+                     fils      : [
+                        { texte : 'paragraphe un' }
+                     ]
+                  },
+                  {
+                     tag       : 'p',
+                     attributs : [],
+                     fils      : [
+                        { texte : 'paragraphe deux' }
+                     ]
+                  },
+               ]
+            },
+            {
+               tag       : 'article',
+               attributs : [ ['class','attention'] ],
+               fils      : [ 
+                  {
+                     tag       : 'p',
+                     attributs : [],
+                     fils      : [
+                        { texte : 'paragraphe trois' }
+                     ]
+                  },
+               ]
+            },
+         ]
+      },      
+   ]
+};
+</pre>
+								<p>
+La construction attendue est la suivante :
+								</p>
+<img src="im01.png" />
+								<p>
+Ce qui, en utilisant la struture de base de la présente page doit
+fournir le rendu suivant :
+								</p>
+<img src="im02.png" style="width:80%;margin: 0 auto;display:block;"/>
+							</li>
+					</ol>
+				</article>
+			</section>
+
+			<section>
+				<h1>2) Travail attendu</h1>
+				<article>
+					<p>
+Trois fichiers vous sont fourni, contenant differents <code>json</code>. 
+Vous devez fournir trois répretoires contenant les fichiers <code>
+index.html</code> et tout le nécessaire, pour que leurs 
+visualisations dans un navigateur produisent les rendus attendus.
+					</p>
+					<p>
+Le premier fichier contient le <code>json</code> présenté ci-dessus, et 
+la capture associée montre le résultat attendu. Ci-dessous, se trouvent 
+les captures correspondantes pour les deux autres fichiers. Un fichier
+<code>css</code> supplémentaire est fourni pour la mise en page du 
+tableau.
+					</p>
+<img src="im03.png" style="width:80%;margin: 1rem auto;display:block;border:3px solid lime;"/>
+<img src="im04.png" style="width:80%;margin: 1rem auto;display:block;border:3px solid lime;"/>
+				</article>
+			</section>
+		</main>
+		<footer>
+			<p>2024-2025</p>
+			<address>
+				<p>IUT D'Orsay - 13 avenue des Sciences - 91190 Gif-sur-Yvette | FRANCE</p>
+				<p><a href="https://www.iut-orsay.universite-paris-saclay.fr/">site web</a></p>
+			</address>
+		</footer>
+	</body>
+</html>

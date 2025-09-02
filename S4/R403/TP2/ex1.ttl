@@ -1,0 +1,2 @@
+iut:o rdfs:subClassOf iut:r . (en utilisant la règle rdfs 11)
+iut:s rdf

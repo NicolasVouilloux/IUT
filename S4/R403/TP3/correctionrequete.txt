@@ -1,0 +1,17 @@
+Ex 7 
+
+PREFIX iut: <https://cours.iut-orsay.fr/iws/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+Select * where {
+    ?s rdf:type iut:Région ;
+    	iut:nom ?nomRégion 
+} limit 100
+
+
+Ex 8 
+
+PREFIX iut: <https://cours.iut-orsay.fr/iws/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+Select (count(*)as ?nbCT) where {
+    ?s rdf:type iut:CollectivitéTerritoriale .
+} limit 100
