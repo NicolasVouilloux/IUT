@@ -1,0 +1,28 @@
+@prefix rcw: <https://cours.iut-orsay.fr/rcw/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix dep: <https://cours.iut-orsay.fr/rcw/departement/> .
+@prefix pcs: <https://cours.iut-orsay.fr/rcw/PCS/> .
+@prefix reg: <https://cours.iut-orsay.fr/rcw/region/> .
+@prefix elu: <https://cours.iut-orsay.fr/rcw/elu/> .
+@prefix cir: <https://cours.iut-orsay.fr/rcw/circonsrciption/> .
+
+
+
+cir:0105 rdfs:label "1Ere Circonscriotion"@fr .
+
+pcs:37 rdfs:label "Cadre administratif et commercial"@fr .
+
+elu:3 a rcw:dirige cir:11 ;
+    rcw:prenom "Guillaume" ;
+    rcw:nom "KASBARIAN" ;
+    rcw:sexe "M" ;
+    rcw:dateNaissance "1987/02/28" ;
+    rcw:pcs pcs:37;
+    rcw:dep dep:1; 
+
+dep:1 label:"Ain"
+
+reg:84 label:"Ain"
